@@ -24,53 +24,57 @@ namespace PremiumSchedule.Infrastructure.Migrations
 
             modelBuilder.Entity("PremiumSchedule.Domain.Entities.PremiumReminder", b =>
                 {
-                    b.Property<int>("reminderId")
+                    b.Property<int>("reminder_id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("reminderId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("reminder_id"));
 
-                    b.Property<DateTime>("reminderDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("reminderType")
+                    b.Property<string>("delivery_status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("scheduleId")
+                    b.Property<DateTime>("reminder_date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("reminder_type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("schedule_id")
                         .HasColumnType("int");
 
-                    b.HasKey("reminderId");
+                    b.HasKey("reminder_id");
 
-                    b.HasIndex("scheduleId");
+                    b.HasIndex("schedule_id");
 
-                    b.ToTable("PremiumReminders", (string)null);
+                    b.ToTable("PremiumReminders");
                 });
 
             modelBuilder.Entity("PremiumSchedule.Domain.Entities.PremiumScheduler", b =>
                 {
-                    b.Property<int>("scheduleId")
+                    b.Property<int>("schedule_id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("scheduleId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("schedule_id"));
 
-                    b.Property<DateTime>("dueDate")
+                    b.Property<DateTime>("due_date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("installmentNo")
+                    b.Property<int>("installment_no")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("lateFee")
+                    b.Property<decimal>("late_fee")
                         .HasColumnType("decimal(15, 2)");
 
-                    b.Property<int>("policyId")
+                    b.Property<int>("policy_id")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("premiumAmount")
+                    b.Property<decimal>("premium_amount")
                         .HasColumnType("decimal(15, 2)");
 
-                    b.Property<string>("premiumFrequency")
+                    b.Property<string>("premium_frequency")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -78,19 +82,19 @@ namespace PremiumSchedule.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("scheduleId");
+                    b.HasKey("schedule_id");
 
-                    b.HasIndex("policyId", "installmentNo")
+                    b.HasIndex("policy_id", "installment_no")
                         .IsUnique();
 
-                    b.ToTable("PremiumSchedulers", (string)null);
+                    b.ToTable("PremiumSchedulers");
                 });
 
             modelBuilder.Entity("PremiumSchedule.Domain.Entities.PremiumReminder", b =>
                 {
                     b.HasOne("PremiumSchedule.Domain.Entities.PremiumScheduler", "PremiumScheduler")
                         .WithMany("PremiumReminders")
-                        .HasForeignKey("scheduleId")
+                        .HasForeignKey("schedule_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

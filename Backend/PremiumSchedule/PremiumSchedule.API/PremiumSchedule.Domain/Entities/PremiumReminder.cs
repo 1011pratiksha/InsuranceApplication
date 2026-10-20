@@ -11,13 +11,13 @@ namespace PremiumSchedule.Domain.Entities
     public class PremiumReminder
     {
         [Key]
-        public int reminderId { get; set; }
+        public int reminder_id { get; set; }
 
         [ForeignKey("PremiumScheduler")]
-        public int scheduleId { get; set; }
+        public int schedule_id { get; set; }
         public PremiumScheduler PremiumScheduler { get; set; }
-        public string reminderType { get; set; }
-        public DateTime reminderDate { get; set; }
-
+        public string reminder_type { get; set; }
+        public DateTime reminder_date { get; set; }
+        public string delivery_status { get; set; }
     }
 }

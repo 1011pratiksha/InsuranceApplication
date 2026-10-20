@@ -10,8 +10,8 @@ namespace PremiumSchedule.Application.Interface
     public interface IPremiumScheduleService
     {
         Task<List<PremiumScheduleResponseDto>> GeneratePremiumSchedule(PremiumScheduleRequestDto request);
-        Task<List<PremiumScheduleResponseDto>> GetPremiumSchedule(int policyId);
-        Task<PremiumScheduleResponseDto> UpdateInstallment(int scheduleId, UpdateInstallmentDto request);
+        Task<List<PremiumScheduleResponseDto>> GetPremiumSchedule(int policy_id);
+        Task<PremiumScheduleResponseDto> UpdateInstallment(int schedule_id, UpdateInstallmentDto request);
         Task UpdateOverdueInstallment();
         Task SendTodaysReminder();
     }

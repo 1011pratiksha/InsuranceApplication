@@ -11,17 +11,17 @@ namespace PremiumSchedule.Domain.Entities
     public class PremiumScheduler
     {
         [Key]
-        public int scheduleId { get; set; }
-        public int policyId { get; set; }
-        public string premiumFrequency { get; set; }
-        public int installmentNo { get; set; }
-        public DateTime dueDate { get; set; }
+        public int schedule_id { get; set; }
+        public int policy_id { get; set; }
+        public string premium_frequency { get; set; }
+        public int installment_no { get; set; }
+        public DateTime due_date { get; set; }
 
         [Column(TypeName = "decimal(15, 2)")]
-        public decimal premiumAmount { get; set; }
+        public decimal premium_amount { get; set; }
 
         [Column(TypeName = "decimal(15, 2)")]
-        public decimal lateFee { get; set; } = 0;
+        public decimal late_fee { get; set; } = 0;
         public string status { get; set; }
 
         public List<PremiumReminder> PremiumReminders { get; set; }

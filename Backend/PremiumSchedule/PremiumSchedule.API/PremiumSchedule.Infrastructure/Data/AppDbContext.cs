@@ -25,12 +25,12 @@ namespace PremiumSchedule.Infrastructure.Data
             modelBuilder.Entity<PremiumReminder>()
                             .HasOne(pr => pr.PremiumScheduler)
                             .WithMany(ps => ps.PremiumReminders)
-                            .HasForeignKey(pr => pr.scheduleId)
+                            .HasForeignKey(pr => pr.schedule_id)
                             .OnDelete(DeleteBehavior.Cascade);
 
             // One policy cannot have the same installment number twice
             modelBuilder.Entity<PremiumScheduler>()
-                .HasIndex(s => new { s.policyId, s.installmentNo })
+                .HasIndex(s => new { s.policy_id, s.installment_no })
                 .IsUnique();
         }
     }

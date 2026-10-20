@@ -23,7 +23,7 @@ namespace PremiumSchedule.Infrastructure.Services
 
         public async Task<List<PremiumScheduleResponseDto>> GeneratePremiumSchedule(PremiumScheduleRequestDto request)
         {
-            if (await db.PremiumSchedulers.AnyAsync(s => s.policyId == request.PolicyId))
+            if (await db.PremiumSchedulers.AnyAsync(s => s.policy_id == request.PolicyId))
                 throw new InvalidOperationException("Premium schedule already exists for this policy.");
 
             int monthsBetween = 12;
@@ -52,12 +52,12 @@ namespace PremiumSchedule.Infrastructure.Services
             {
                 var schedule = new PremiumScheduler
                 {
-                    policyId = request.PolicyId,
-                    premiumFrequency = request.PremiumFrequency,
-                    installmentNo = i,
-                    dueDate = request.StartDate.Date.AddMonths(monthsBetween * (i - 1)),
-                    premiumAmount = i == totalInstallments ? lastInstallmentAmount : installmentAmount,
-                    lateFee = 0,
+                    policy_id = request.PolicyId,
+                    premium_frequency = request.PremiumFrequency,
+                    installment_no = i,
+                    due_date = request.StartDate.Date.AddMonths(monthsBetween * (i - 1)),
+                    premium_amount = i == totalInstallments ? lastInstallmentAmount : installmentAmount,
+                    late_fee = 0,
                     status = "Pending"
                 };
 
@@ -66,15 +66,16 @@ namespace PremiumSchedule.Infrastructure.Services
 
                 foreach (int day in reminderDays)
                 {
-                    DateTime reminderDate = schedule.dueDate.AddDays(day);
+                    DateTime reminderDate = schedule.due_date.AddDays(day);
 
                     if (reminderDate >= DateTime.Today)
                     {
                         db.PremiumReminders.Add(new PremiumReminder
                         {
                             PremiumScheduler = schedule,
-                            reminderType = "Email",
-                            reminderDate = reminderDate
+                            reminder_type = "Email",
+                            reminder_date = reminderDate,
+                            delivery_status = "Pending"
                         });
                     }
                 }
@@ -88,8 +89,8 @@ namespace PremiumSchedule.Infrastructure.Services
         public async Task<List<PremiumScheduleResponseDto>> GetPremiumSchedule(int policyId)
         {
             var data = await db.PremiumSchedulers
-                .Where(s => s.policyId == policyId)
-                .OrderBy(s => s.installmentNo)
+                .Where(s => s.policy_id == policyId)
+                .OrderBy(s => s.installment_no)
                 .ToListAsync();
 
             return mapper.Map<List<PremiumScheduleResponseDto>>(data);
@@ -113,7 +114,7 @@ namespace PremiumSchedule.Infrastructure.Services
             schedule.status = request.Status;
 
             if (request.DueDate.HasValue)
-                schedule.dueDate = request.DueDate.Value.Date;
+                schedule.due_date = request.DueDate.Value.Date;
 
             await db.SaveChangesAsync();
 
@@ -127,13 +128,13 @@ namespace PremiumSchedule.Infrastructure.Services
             DateTime today = DateTime.Today;
 
             var installments = await db.PremiumSchedulers
-                .Where(s => (s.status == "Pending" || s.status == "Overdue") && s.dueDate < today)
+                .Where(s => (s.status == "Pending" || s.status == "Overdue") && s.due_date < today)
                 .ToListAsync();
 
             foreach (var item in installments)
             {
-                int graceDays = item.premiumFrequency == "Monthly" ? 15 : 30;
-                DateTime graceEndDate = item.dueDate.AddDays(graceDays);
+                int graceDays = item.premium_frequency == "Monthly" ? 15 : 30;
+                DateTime graceEndDate = item.due_date.AddDays(graceDays);
 
                 if (today <= graceEndDate)
                     continue;
@@ -141,7 +142,7 @@ namespace PremiumSchedule.Infrastructure.Services
                 int overdueDays = (today - graceEndDate).Days;
 
                 item.status = "Overdue";
-                item.lateFee = Math.Min(overdueDays * dailyPenaltyRate, maxLateFee);
+                item.late_fee = Math.Min(overdueDays * dailyPenaltyRate, maxLateFee);
             }
 
             await db.SaveChangesAsync();
@@ -153,8 +154,9 @@ namespace PremiumSchedule.Infrastructure.Services
 
             var reminders = await db.PremiumReminders
                 .Include(r => r.PremiumScheduler)
-                .Where(r => r.reminderDate >= today
-                         && r.reminderDate < today.AddDays(1)
+                .Where(r => r.reminder_date >= today
+                         && r.reminder_date < today.AddDays(1)
+                         && r.delivery_status == "Pending"
                          && r.PremiumScheduler.status != "Paid"
                          && r.PremiumScheduler.status != "Cancelled")
                 .ToListAsync();

@@ -14,6 +14,9 @@ namespace PremiumSchedule.Application.Mapper
         public PremiumScheduleMapper()
         {
             CreateMap<PremiumScheduler, PremiumScheduleResponseDto>().ReverseMap();
+
+            SourceMemberNamingConvention = new LowerUnderscoreNamingConvention();
+            DestinationMemberNamingConvention = new PascalCaseNamingConvention();
         }
     }
 }
