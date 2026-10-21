@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="PolicyServicing.Domain/PolicyServicing.Domain.csproj" />
+  <Project Path="PolicyServicing.Infrastructure/PolicyServicing.Infrastructure.csproj" />
+  <Project Path="PolicyServicing/PolicyServicing.csproj" />
+  <Project Path="PolicySevicing.Application/PolicySevicing.Application.csproj" />
+</Solution>
