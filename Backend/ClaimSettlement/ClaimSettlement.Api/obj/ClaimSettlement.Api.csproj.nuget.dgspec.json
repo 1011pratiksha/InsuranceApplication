@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Api.csproj": {}
+    "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Api\\ClaimSettlement.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Api.csproj": {
+    "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Api\\ClaimSettlement.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Api.csproj",
+        "projectUniqueName": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Api\\ClaimSettlement.Api.csproj",
         "projectName": "ClaimSettlement.Api",
-        "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Api.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Api\\obj\\",
+        "projectPath": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Api\\ClaimSettlement.Api.csproj",
+        "packagesPath": "C:\\Users\\Siddhesh Haldankar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Siddhesh Haldankar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -34,11 +34,11 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Application\\ClaimSettlement.Application.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Application\\ClaimSettlement.Application.csproj"
+              "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Application\\ClaimSettlement.Application.csproj": {
+                "projectPath": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Application\\ClaimSettlement.Application.csproj"
               },
-              "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Infrastructure\\ClaimSettlement.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Infrastructure\\ClaimSettlement.Infrastructure.csproj"
+              "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Infrastructure\\ClaimSettlement.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Infrastructure\\ClaimSettlement.Infrastructure.csproj"
               }
             }
           }
@@ -534,20 +534,20 @@
         }
       }
     },
-    "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Application\\ClaimSettlement.Application.csproj": {
+    "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Application\\ClaimSettlement.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Application\\ClaimSettlement.Application.csproj",
+        "projectUniqueName": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Application\\ClaimSettlement.Application.csproj",
         "projectName": "ClaimSettlement.Application",
-        "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Application\\ClaimSettlement.Application.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Application\\obj\\",
+        "projectPath": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Application\\ClaimSettlement.Application.csproj",
+        "packagesPath": "C:\\Users\\Siddhesh Haldankar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Siddhesh Haldankar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -564,8 +564,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Domain\\ClaimSettlement.Domain.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Domain\\ClaimSettlement.Domain.csproj"
+              "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Domain\\ClaimSettlement.Domain.csproj": {
+                "projectPath": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Domain\\ClaimSettlement.Domain.csproj"
               }
             }
           }
@@ -906,20 +906,20 @@
         }
       }
     },
-    "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Domain\\ClaimSettlement.Domain.csproj": {
+    "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Domain\\ClaimSettlement.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Domain\\ClaimSettlement.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Domain\\ClaimSettlement.Domain.csproj",
         "projectName": "ClaimSettlement.Domain",
-        "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Domain\\ClaimSettlement.Domain.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Domain\\ClaimSettlement.Domain.csproj",
+        "packagesPath": "C:\\Users\\Siddhesh Haldankar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Siddhesh Haldankar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -1274,20 +1274,20 @@
         }
       }
     },
-    "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Infrastructure\\ClaimSettlement.Infrastructure.csproj": {
+    "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Infrastructure\\ClaimSettlement.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Infrastructure\\ClaimSettlement.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Infrastructure\\ClaimSettlement.Infrastructure.csproj",
         "projectName": "ClaimSettlement.Infrastructure",
-        "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Infrastructure\\ClaimSettlement.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Infrastructure\\ClaimSettlement.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Siddhesh Haldankar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Siddhesh Haldankar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -1304,11 +1304,11 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Application\\ClaimSettlement.Application.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Application\\ClaimSettlement.Application.csproj"
+              "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Application\\ClaimSettlement.Application.csproj": {
+                "projectPath": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Application\\ClaimSettlement.Application.csproj"
               },
-              "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Domain\\ClaimSettlement.Domain.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Domain\\ClaimSettlement.Domain.csproj"
+              "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Domain\\ClaimSettlement.Domain.csproj": {
+                "projectPath": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Domain\\ClaimSettlement.Domain.csproj"
               }
             }
           }
