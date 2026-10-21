@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="InsuranceUnderwriting.Application/InsuranceUnderwriting.Application.csproj" Id="dc3a8300-193a-4c98-89d0-e8140ea810ea" />
+  <Project Path="InsuranceUnderwriting.Domain/InsuranceUnderwriting.Domain.csproj" Id="da59b0ae-b5cf-4ae1-8780-2ad581b925ca" />
+  <Project Path="InsuranceUnderwriting.Infrastructure/InsuranceUnderwriting.Infrastructure.csproj" Id="587db146-68c3-4514-97f7-aa5509d61a2c" />
+  <Project Path="InsuranceUnderwriting/InsuranceUnderwriting.csproj" />
+</Solution>
