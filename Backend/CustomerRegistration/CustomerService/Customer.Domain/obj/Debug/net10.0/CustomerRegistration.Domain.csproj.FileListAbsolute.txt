@@ -1,0 +1,15 @@
+C:\Users\parth\source\repos\CustomerService\Customer.Domain\bin\Debug\net10.0\CustomerRegistration.Domain.deps.json
+C:\Users\parth\source\repos\CustomerService\Customer.Domain\bin\Debug\net10.0\CustomerRegistration.Domain.runtimeconfig.json
+C:\Users\parth\source\repos\CustomerService\Customer.Domain\bin\Debug\net10.0\CustomerRegistration.Domain.dll
+C:\Users\parth\source\repos\CustomerService\Customer.Domain\bin\Debug\net10.0\CustomerRegistration.Domain.pdb
+C:\Users\parth\source\repos\CustomerService\Customer.Domain\obj\Debug\net10.0\CustomerRegistration.Domain.csproj.AssemblyReference.cache
+C:\Users\parth\source\repos\CustomerService\Customer.Domain\obj\Debug\net10.0\CustomerRegistration.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\parth\source\repos\CustomerService\Customer.Domain\obj\Debug\net10.0\CustomerRegistration.Domain.AssemblyInfoInputs.cache
+C:\Users\parth\source\repos\CustomerService\Customer.Domain\obj\Debug\net10.0\CustomerRegistration.Domain.AssemblyInfo.cs
+C:\Users\parth\source\repos\CustomerService\Customer.Domain\obj\Debug\net10.0\CustomerRegistration.Domain.csproj.CoreCompileInputs.cache
+C:\Users\parth\source\repos\CustomerService\Customer.Domain\obj\Debug\net10.0\CustomerRegistration.Domain.dll
+C:\Users\parth\source\repos\CustomerService\Customer.Domain\obj\Debug\net10.0\refint\CustomerRegistration.Domain.dll
+C:\Users\parth\source\repos\CustomerService\Customer.Domain\obj\Debug\net10.0\CustomerRegistration.Domain.pdb
+C:\Users\parth\source\repos\CustomerService\Customer.Domain\obj\Debug\net10.0\CustomerRegistration.Domain.genruntimeconfig.cache
+C:\Users\parth\source\repos\CustomerService\Customer.Domain\obj\Debug\net10.0\ref\CustomerRegistration.Domain.dll
+C:\Users\parth\source\repos\CustomerService\Customer.Domain\obj\Debug\net10.0\Customer.C0EC2908.Up2Date
