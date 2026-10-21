@@ -35,6 +35,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseHangfireDashboard();
 }
 
 app.UseHttpsRedirection();
@@ -42,5 +43,9 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+RecurringJob.AddOrUpdate<IPremiumScheduleService>("update-overdue-installments", s => s.UpdateOverdueInstallment(), Cron.Daily());
+RecurringJob.AddOrUpdate<IPremiumScheduleService>("send-todays-reminders", s => s.SendTodaysReminder(), Cron.Daily());
+
 
 app.Run();
