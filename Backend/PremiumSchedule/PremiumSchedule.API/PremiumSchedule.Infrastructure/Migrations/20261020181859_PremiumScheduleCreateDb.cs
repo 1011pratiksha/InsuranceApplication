@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PremiumSchedule.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class PremiumScheduleModuleCreated : Migration
+    public partial class PremiumScheduleCreateDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

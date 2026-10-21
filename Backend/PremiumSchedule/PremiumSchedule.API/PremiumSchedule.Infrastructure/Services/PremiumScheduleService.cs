@@ -160,6 +160,13 @@ namespace PremiumSchedule.Infrastructure.Services
                          && r.PremiumScheduler.status != "Paid"
                          && r.PremiumScheduler.status != "Cancelled")
                 .ToListAsync();
+
+            foreach (var reminder in reminders)
+            {
+                reminder.delivery_status = "Sent"; 
+            }
+
+            await db.SaveChangesAsync();
         }
     }
 }

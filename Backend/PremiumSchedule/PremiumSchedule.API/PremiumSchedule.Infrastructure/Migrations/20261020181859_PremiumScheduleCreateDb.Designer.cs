@@ -12,8 +12,8 @@ using PremiumSchedule.Infrastructure.Data;
 namespace PremiumSchedule.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261020143448_PremiumScheduleModuleCreated")]
-    partial class PremiumScheduleModuleCreated
+    [Migration("20261020181859_PremiumScheduleCreateDb")]
+    partial class PremiumScheduleCreateDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
