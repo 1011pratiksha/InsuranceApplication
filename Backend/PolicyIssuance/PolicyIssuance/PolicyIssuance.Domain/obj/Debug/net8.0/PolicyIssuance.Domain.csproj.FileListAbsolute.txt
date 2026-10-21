@@ -1,0 +1,11 @@
+C:\Users\Tanmay\source\repos\PolicyIssuance\PolicyIssuance.Domain\bin\Debug\net8.0\PolicyIssuance.Domain.deps.json
+C:\Users\Tanmay\source\repos\PolicyIssuance\PolicyIssuance.Domain\bin\Debug\net8.0\PolicyIssuance.Domain.dll
+C:\Users\Tanmay\source\repos\PolicyIssuance\PolicyIssuance.Domain\bin\Debug\net8.0\PolicyIssuance.Domain.pdb
+C:\Users\Tanmay\source\repos\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\PolicyIssuance.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tanmay\source\repos\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\PolicyIssuance.Domain.AssemblyInfoInputs.cache
+C:\Users\Tanmay\source\repos\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\PolicyIssuance.Domain.AssemblyInfo.cs
+C:\Users\Tanmay\source\repos\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\PolicyIssuance.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Tanmay\source\repos\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\PolicyIssuance.Domain.dll
+C:\Users\Tanmay\source\repos\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\refint\PolicyIssuance.Domain.dll
+C:\Users\Tanmay\source\repos\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\PolicyIssuance.Domain.pdb
+C:\Users\Tanmay\source\repos\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\ref\PolicyIssuance.Domain.dll
