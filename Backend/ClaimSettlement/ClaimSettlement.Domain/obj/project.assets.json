@@ -3799,23 +3799,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {},
+    "C:\\Users\\Siddhesh Haldankar\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Domain\\ClaimSettlement.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Domain\\ClaimSettlement.Domain.csproj",
       "projectName": "ClaimSettlement.Domain",
-      "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Domain\\ClaimSettlement.Domain.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\ClaimSettlement.Api\\ClaimSettlement.Api\\ClaimSettlement.Domain\\obj\\",
+      "projectPath": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Domain\\ClaimSettlement.Domain.csproj",
+      "packagesPath": "C:\\Users\\Siddhesh Haldankar\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Siddhesh Haldankar\\Downloads\\Insurance_App\\InsuranceApplication\\Backend\\ClaimSettlement\\ClaimSettlement.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Siddhesh Haldankar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

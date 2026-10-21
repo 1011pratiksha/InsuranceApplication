@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ClaimSettlement.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f7069799e9182269f70b190744b04c631427d7e3")]
 [assembly: System.Reflection.AssemblyProductAttribute("ClaimSettlement.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ClaimSettlement.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
