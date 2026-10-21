@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="PremiumSchedule.API/PremiumSchedule.API.csproj" />
+  <Project Path="PremiumSchedule.Application/PremiumSchedule.Application.csproj" Id="920e5022-508f-436b-be99-b924a13ee4ed" />
+  <Project Path="PremiumSchedule.Domain/PremiumSchedule.Domain.csproj" Id="38a3a8f1-2fa8-474e-89bc-a81c5fce7cfc" />
+  <Project Path="PremiumSchedule.Infrastructure/PremiumSchedule.Infrastructure.csproj" Id="fe6fcb6e-9a18-4cd7-980b-97df9fcf0beb" />
+</Solution>
