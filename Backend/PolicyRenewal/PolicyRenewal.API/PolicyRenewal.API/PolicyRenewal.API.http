@@ -1,0 +1,6 @@
+@PolicyRenewal.API_HostAddress = http://localhost:5022
+
+GET {{PolicyRenewal.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

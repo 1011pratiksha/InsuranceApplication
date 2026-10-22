@@ -1,0 +1,969 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "PolicyServicing",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/v1/policies/{id}/cancel": {
+      "post": {
+        "tags": [
+          "Cancellation"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelPolicyDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelPolicyDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelPolicyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringApisResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringApisResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringApisResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cancellations/{id}": {
+      "get": {
+        "tags": [
+          "Cancellation"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancellationDtoApisResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancellationDtoApisResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancellationDtoApisResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/endorsements": {
+      "post": {
+        "tags": [
+          "Endorsement"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EndorsementDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EndorsementDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EndorsementDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IActionResultApisResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IActionResultApisResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IActionResultApisResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/endorsements/{id}": {
+      "get": {
+        "tags": [
+          "Endorsement"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EndorsementDto2ApisResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EndorsementDto2ApisResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EndorsementDto2ApisResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/endorsements/approve/{id}": {
+      "put": {
+        "tags": [
+          "Endorsement"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IActionResultApisResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IActionResultApisResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IActionResultApisResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/endorsements/reject/{id}": {
+      "put": {
+        "tags": [
+          "Endorsement"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IActionResultApisResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IActionResultApisResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IActionResultApisResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/policies/{id}/renew": {
+      "post": {
+        "tags": [
+          "Renewal"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RenewPolicyDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RenewPolicyDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RenewPolicyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringApisResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringApisResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringApisResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/renewals/{id}": {
+      "get": {
+        "tags": [
+          "Renewal"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RenewalDto2ApisResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RenewalDto2ApisResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RenewalDto2ApisResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/service-requests/create-requests": {
+      "post": {
+        "tags": [
+          "ServiceRequestControlle"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateServiceRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateServiceRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateServiceRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IActionResultApisResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IActionResultApisResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IActionResultApisResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/service-requests/get-requests": {
+      "get": {
+        "tags": [
+          "ServiceRequestControlle"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceRequestResponseDtoListApisResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceRequestResponseDtoListApisResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceRequestResponseDtoListApisResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/service-requests/get-request/{id}": {
+      "get": {
+        "tags": [
+          "ServiceRequestControlle"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceRequestResponseDtoApisResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceRequestResponseDtoApisResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceRequestResponseDtoApisResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/service-requests/update-request/{id}": {
+      "put": {
+        "tags": [
+          "ServiceRequestControlle"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateServiceRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateServiceRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateServiceRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IActionResultApisResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IActionResultApisResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IActionResultApisResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CancelPolicyDto": {
+        "type": "object",
+        "properties": {
+          "cancellation_reason": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CancellationDto": {
+        "type": "object",
+        "properties": {
+          "cancellation_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "policy_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "cancellation_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cancellation_reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "refund_amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "approved_by": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CancellationDtoApisResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/CancellationDto"
+          },
+          "error": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateServiceRequestDto": {
+        "type": "object",
+        "properties": {
+          "policy_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "customer_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "request_type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EndorsementDto": {
+        "type": "object",
+        "properties": {
+          "request_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "endorsement_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "previous_value": {
+            "type": "string",
+            "nullable": true
+          },
+          "updated_value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EndorsementDto2": {
+        "type": "object",
+        "properties": {
+          "endorsement_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "request_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "endorsement_number": {
+            "type": "string",
+            "nullable": true
+          },
+          "endorsement_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "previous_value": {
+            "type": "string",
+            "nullable": true
+          },
+          "updated_value": {
+            "type": "string",
+            "nullable": true
+          },
+          "approval_status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EndorsementDto2ApisResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/EndorsementDto2"
+          },
+          "error": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IActionResult": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "IActionResultApisResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/IActionResult"
+          },
+          "error": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RenewPolicyDto": {
+        "type": "object",
+        "properties": {
+          "premium_amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "new_expiry_date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RenewalDto2": {
+        "type": "object",
+        "properties": {
+          "renewal_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "policy_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "renewal_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "new_expiry_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "premium_amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "renewal_status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RenewalDto2ApisResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/RenewalDto2"
+          },
+          "error": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ServiceRequestResponseDto": {
+        "type": "object",
+        "properties": {
+          "request_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "request_number": {
+            "type": "string",
+            "nullable": true
+          },
+          "policy_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "customer_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "request_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "request_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ServiceRequestResponseDtoApisResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ServiceRequestResponseDto"
+          },
+          "error": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ServiceRequestResponseDtoListApisResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceRequestResponseDto"
+            },
+            "nullable": true
+          },
+          "error": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StringApisResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          },
+          "error": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateServiceRequestDto": {
+        "type": "object",
+        "properties": {
+          "request_type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
