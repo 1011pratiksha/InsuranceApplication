@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PolicyIssuance.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0c1ee5e6b5c7d0356c6544f38c091ce47b8427b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0efbf5afffb8428c8abcd3e60ddde5076e4c09d8")]
 [assembly: System.Reflection.AssemblyProductAttribute("PolicyIssuance.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PolicyIssuance.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

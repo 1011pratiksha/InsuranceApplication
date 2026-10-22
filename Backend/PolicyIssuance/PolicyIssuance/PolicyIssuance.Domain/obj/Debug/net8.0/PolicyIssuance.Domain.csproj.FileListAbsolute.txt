@@ -22,3 +22,16 @@ C:\Users\Admin\Documents\Abhishek1305Masstech\InsuranceAppProject\InsuranceAppli
 C:\Users\Admin\Documents\Abhishek1305Masstech\InsuranceAppProject\InsuranceApplication\Backend\PolicyIssuance\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\PolicyIssuance.Domain.pdb
 C:\Users\Admin\Documents\Abhishek1305Masstech\InsuranceAppProject\InsuranceApplication\Backend\PolicyIssuance\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\ref\PolicyIssuance.Domain.dll
 C:\Users\Admin\Documents\Abhishek1305Masstech\InsuranceAppProject\InsuranceApplication\Backend\PolicyIssuance\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\PolicyIs.3D6214EC.Up2Date
+C:\Users\Rohit saw\OneDrive\Desktop\gitwork\PolicyIssuance\PolicyIssuance\PolicyIssuance.Domain\bin\Debug\net8.0\PolicyIssuance.Domain.deps.json
+C:\Users\Rohit saw\OneDrive\Desktop\gitwork\PolicyIssuance\PolicyIssuance\PolicyIssuance.Domain\bin\Debug\net8.0\PolicyIssuance.Domain.dll
+C:\Users\Rohit saw\OneDrive\Desktop\gitwork\PolicyIssuance\PolicyIssuance\PolicyIssuance.Domain\bin\Debug\net8.0\PolicyIssuance.Domain.pdb
+C:\Users\Rohit saw\OneDrive\Desktop\gitwork\PolicyIssuance\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\PolicyIssuance.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Rohit saw\OneDrive\Desktop\gitwork\PolicyIssuance\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\PolicyIssuance.Domain.AssemblyInfoInputs.cache
+C:\Users\Rohit saw\OneDrive\Desktop\gitwork\PolicyIssuance\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\PolicyIssuance.Domain.AssemblyInfo.cs
+C:\Users\Rohit saw\OneDrive\Desktop\gitwork\PolicyIssuance\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\PolicyIssuance.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Rohit saw\OneDrive\Desktop\gitwork\PolicyIssuance\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\PolicyIssuance.Domain.sourcelink.json
+C:\Users\Rohit saw\OneDrive\Desktop\gitwork\PolicyIssuance\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\PolicyIssuance.Domain.dll
+C:\Users\Rohit saw\OneDrive\Desktop\gitwork\PolicyIssuance\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\refint\PolicyIssuance.Domain.dll
+C:\Users\Rohit saw\OneDrive\Desktop\gitwork\PolicyIssuance\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\PolicyIssuance.Domain.pdb
+C:\Users\Rohit saw\OneDrive\Desktop\gitwork\PolicyIssuance\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\ref\PolicyIssuance.Domain.dll
+C:\Users\Rohit saw\OneDrive\Desktop\gitwork\PolicyIssuance\PolicyIssuance\PolicyIssuance.Domain\obj\Debug\net8.0\PolicyIs.3D6214EC.Up2Date
