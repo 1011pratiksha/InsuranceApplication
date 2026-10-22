@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Investigation.Application.DTO;
 using Investigation.Domain.Entities;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Investigation.Application.Mapper
 {
@@ -10,6 +9,8 @@ namespace Investigation.Application.Mapper
         public InvestigationMappingProfile()
         {
             CreateMap<CreateInvestigationDto, InvestigationCase>();
+            CreateMap<InvestigationReportDto, InvestigationCase>();
+            CreateMap<InvestigationCase, InvestigationResponseDto>();
         }
     }
 }

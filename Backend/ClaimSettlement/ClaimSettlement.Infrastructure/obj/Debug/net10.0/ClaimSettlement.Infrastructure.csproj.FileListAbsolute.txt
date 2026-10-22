@@ -18,3 +18,23 @@ D:\Abhishek\InsuranceApplication\InsuranceApplication\Backend\ClaimSettlement\Cl
 D:\Abhishek\InsuranceApplication\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Api\ClaimSettlement.Infrastructure\obj\Debug\net10.0\ClaimSettlement.Infrastructure.pdb
 D:\Abhishek\InsuranceApplication\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Api\ClaimSettlement.Infrastructure\obj\Debug\net10.0\ClaimSettlement.Infrastructure.genruntimeconfig.cache
 D:\Abhishek\InsuranceApplication\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Api\ClaimSettlement.Infrastructure\obj\Debug\net10.0\ref\ClaimSettlement.Infrastructure.dll
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\bin\Debug\net10.0\ClaimSettlement.Infrastructure.deps.json
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\bin\Debug\net10.0\ClaimSettlement.Infrastructure.runtimeconfig.json
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\bin\Debug\net10.0\ClaimSettlement.Infrastructure.dll
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\bin\Debug\net10.0\ClaimSettlement.Infrastructure.pdb
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\bin\Debug\net10.0\ClaimSettlement.Application.dll
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\bin\Debug\net10.0\ClaimSettlement.Domain.dll
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\bin\Debug\net10.0\ClaimSettlement.Application.pdb
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\bin\Debug\net10.0\ClaimSettlement.Domain.pdb
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\obj\Debug\net10.0\ClaimSettlement.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\obj\Debug\net10.0\ClaimSettlement.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\obj\Debug\net10.0\ClaimSettlement.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\obj\Debug\net10.0\ClaimSettlement.Infrastructure.AssemblyInfo.cs
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\obj\Debug\net10.0\ClaimSettlement.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\obj\Debug\net10.0\ClaimSettlement.Infrastructure.sourcelink.json
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\obj\Debug\net10.0\ClaimSet.CA2DADE0.Up2Date
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\obj\Debug\net10.0\ClaimSettlement.Infrastructure.dll
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\obj\Debug\net10.0\refint\ClaimSettlement.Infrastructure.dll
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\obj\Debug\net10.0\ClaimSettlement.Infrastructure.pdb
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\obj\Debug\net10.0\ClaimSettlement.Infrastructure.genruntimeconfig.cache
+C:\Users\Siddhesh Haldankar\Downloads\Insurance_App\InsuranceApplication\Backend\ClaimSettlement\ClaimSettlement.Infrastructure\obj\Debug\net10.0\ref\ClaimSettlement.Infrastructure.dll

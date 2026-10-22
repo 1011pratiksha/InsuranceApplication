@@ -1,8 +1,5 @@
-
-using AutoMapper;
 using ClaimManagement.Application.DTO;
 using ClaimManagement.Application.Interface;
-using ClaimManagement.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClaimManagement.Controllers
@@ -11,141 +8,70 @@ namespace ClaimManagement.Controllers
     [ApiController]
     public class ClaimsController : ControllerBase
     {
-        private readonly IClaimRepository repository;
-        private readonly IClaimEligibilityRepository eligibilityRepository;
-        private readonly IMapper mapper;
+        IClaimRepository repository;
+        IClaimEligibilityRepository eligibilityRepository;
 
-        public ClaimsController(IClaimRepository repository, IClaimEligibilityRepository eligibilityRepository, IMapper mapper)
+        public ClaimsController(IClaimRepository repository, IClaimEligibilityRepository eligibilityRepository)
         {
             this.repository = repository;
             this.eligibilityRepository = eligibilityRepository;
-            this.mapper = mapper;
         }
 
-        // Register a new claim
         [HttpPost]
         public async Task<IActionResult> CreateClaim(CreateClaimDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            var error = await eligibilityRepository.CheckEligibilityAsync(dto);
+            if (error != "")
+                return BadRequest(error);
 
-            if (dto.IncidentDate == default || dto.IncidentDate.Date > DateTime.UtcNow.Date)
-            {
-                return BadRequest("Invalid incident date.");
-            }
-
-            if (!await eligibilityRepository.CustomerExistsAsync(dto.CustomerId))
-            {
-                return BadRequest("Customer does not exist.");
-            }
-
-            if (!await eligibilityRepository.PolicyBelongsToCustomerAsync(dto.PolicyId, dto.CustomerId))
-            {
-                return BadRequest("Policy does not belong to this customer.");
-            }
-
-            if (!await eligibilityRepository.IsPolicyActiveAsync(dto.PolicyId, dto.IncidentDate))
-            {
-                return BadRequest("Policy is not active or does not cover the incident date.");
-            }
-
-            if (!await eligibilityRepository.HasValidCoverageAsync(dto.PolicyId, dto.IncidentDate, dto.EstimatedLoss))
-            {
-                return BadRequest("Valid coverage was not found.");
-            }
-
-            if (!await eligibilityRepository.HasEligiblePremiumAsync(dto.PolicyId))
-            {
-                return BadRequest("Premium eligibility requirements are not satisfied.");
-            }
-
-            var claim = mapper.Map<Claim>(dto);
-            claim.ClaimNumber = $"CLM-{Guid.NewGuid():N}"[..16].ToUpperInvariant();
-            claim.ClaimDate = DateTime.UtcNow;
-            claim.ClaimStatus = "Registered";
-
-            var savedClaim = await repository.AddAsync(claim);
-
-            return Ok(mapper.Map<ClaimResponseDto>(savedClaim));
+            var claim = await repository.AddClaimAsync(dto);
+            return Ok(claim);
         }
 
-        // Get all claims
         [HttpGet]
         public async Task<IActionResult> GetAllClaims()
         {
-            var claims = await repository.GetAllAsync();
-            return Ok(mapper.Map<List<ClaimResponseDto>>(claims));
+            var claims = await repository.GetAllClaimsAsync();
+            return Ok(claims);
         }
 
-        // Get claim by ID
         [HttpGet("{claimId:long}")]
         public async Task<IActionResult> GetClaimById(long claimId)
         {
-            var claim = await repository.GetByIdAsync(claimId);
-
+            var claim = await repository.GetClaimByIdAsync(claimId);
             if (claim == null)
-            {
                 return NotFound("Claim not found.");
-            }
 
-            return Ok(mapper.Map<ClaimResponseDto>(claim));
+            return Ok(claim);
         }
 
-        // Update a claim
         [HttpPut("{claimId:long}")]
         public async Task<IActionResult> UpdateClaim(long claimId, UpdateClaimDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var claim = await repository.GetByIdAsync(claimId);
-
+            var claim = await repository.GetClaimByIdAsync(claimId);
             if (claim == null)
-            {
                 return NotFound("Claim not found.");
-            }
 
-            if (claim.ClaimStatus != "Registered")
-            {
-                return BadRequest("Only registered claims can be updated.");
-            }
+            var error = await repository.UpdateClaimAsync(claimId, dto);
+            if (error != "")
+                return BadRequest(error);
 
-            if (dto.IncidentDate == default || dto.IncidentDate.Date > DateTime.UtcNow.Date)
-            {
-                return BadRequest("Invalid incident date.");
-            }
-
-            mapper.Map(dto, claim);
-
-            await repository.UpdateAsync(claim);
-
-            return Ok(mapper.Map<ClaimResponseDto>(claim));
+            var updatedClaim = await repository.GetClaimByIdAsync(claimId);
+            return Ok(updatedClaim);
         }
 
-        // Delete a registered claim
         [HttpDelete("{claimId:long}")]
         public async Task<IActionResult> DeleteClaim(long claimId)
         {
-            var claim = await repository.GetByIdAsync(claimId);
-
+            var claim = await repository.GetClaimByIdAsync(claimId);
             if (claim == null)
-            {
                 return NotFound("Claim not found.");
-            }
 
-            if (claim.ClaimStatus != "Registered")
-            {
-                return BadRequest("Only registered claims can be deleted.");
-            }
-
-            await repository.DeleteAsync(claimId);
+            var error = await repository.DeleteClaimAsync(claimId);
+            if (error != "")
+                return BadRequest(error);
 
             return Ok("Claim deleted successfully.");
         }
     }
 }
-

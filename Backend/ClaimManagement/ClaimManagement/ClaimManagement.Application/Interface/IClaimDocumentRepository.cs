@@ -1,12 +1,11 @@
-using ClaimManagement.Domain.Entities;
+using ClaimManagement.Application.DTO;
 
 namespace ClaimManagement.Application.Interface
 {
     public interface IClaimDocumentRepository
     {
-        Task<ClaimDocument> AddAsync(ClaimDocument document);
-        Task<List<ClaimDocument>> GetByClaimIdAsync(int claimId);
-        Task<ClaimDocument?> GetByIdAsync(int documentId);
-        Task UpdateAsync(ClaimDocument document);
+        Task<ClaimDocumentResponseDto> AddDocumentAsync(int claimId, CreateClaimDocumentDto dto);
+        Task<List<ClaimDocumentResponseDto>> GetDocumentsByClaimIdAsync(int claimId);
+        Task<List<ClaimDocumentResponseDto>?> VerifyDocumentsAsync(int claimId, List<int> documentIds);
     }
 }

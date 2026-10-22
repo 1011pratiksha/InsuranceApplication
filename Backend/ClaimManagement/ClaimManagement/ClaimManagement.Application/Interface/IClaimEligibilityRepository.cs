@@ -1,15 +1,10 @@
-﻿namespace ClaimManagement.Application.Interface
+﻿using ClaimManagement.Application.DTO;
+
+namespace ClaimManagement.Application.Interface
 {
     public interface IClaimEligibilityRepository
     {
-        Task<bool> CustomerExistsAsync(long customerId);
-
-        Task<bool> PolicyBelongsToCustomerAsync(long policyId, long customerId);
-
-        Task<bool> IsPolicyActiveAsync(long policyId, DateTime incidentDate);
-
-        Task<bool> HasValidCoverageAsync(long policyId, DateTime incidentDate, decimal estimatedLoss);
-
-        Task<bool> HasEligiblePremiumAsync(long policyId);
+        // Returns "" if the claim is eligible, otherwise returns the error message
+        Task<string> CheckEligibilityAsync(CreateClaimDto dto);
     }
 }

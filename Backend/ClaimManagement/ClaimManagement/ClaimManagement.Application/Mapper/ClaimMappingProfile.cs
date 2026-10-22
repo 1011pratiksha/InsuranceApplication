@@ -9,14 +9,15 @@ namespace ClaimManagement.Application.Mapper
         public ClaimMappingProfile()
         {
             CreateMap<CreateClaimDto, Claim>();
-
             CreateMap<UpdateClaimDto, Claim>();
-
             CreateMap<Claim, ClaimResponseDto>();
+
             CreateMap<CreateClaimDocumentDto, ClaimDocument>();
             CreateMap<ClaimDocument, ClaimDocumentResponseDto>();
+
             CreateMap<CreateSurveyDto, SurveyAssignment>();
-            
+            CreateMap<SurveyReportDto, SurveyAssignment>();
+            CreateMap<SurveyAssignment, SurveyResponseDto>();
         }
     }
 }

@@ -5,7 +5,6 @@ using ClaimSettlement.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using SettlementEntity = ClaimSettlement.Domain.Entities.ClaimSettlement;
 
-
 namespace ClaimSettlement.Infrastructure.Repositories;
 
 public class ClaimSettlementService : IClaimSettlementService
