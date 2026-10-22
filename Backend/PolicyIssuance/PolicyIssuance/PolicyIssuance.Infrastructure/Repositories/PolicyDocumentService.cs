@@ -14,29 +14,23 @@ namespace PolicyIssuance.Infrastructure.Repositories
 {
     public class PolicyDocumentService : IPolicyDocumentService
     {
-        AppDbContext db;
+        AppDbContext dbcontext;
         IMapper mapper;
 
-        public PolicyDocumentService(AppDbContext db, IMapper mapper)
+        public PolicyDocumentService(AppDbContext dbcontext, IMapper mapper)
         {
-            this.db = db;
+            this.dbcontext = dbcontext;
             this.mapper = mapper;
         }
 
         public async Task<PolicyDocumentDto?> GetPolicyDocumentAsync(int policyId)
         {
-            var document = await db.PolicyDocuments
-                .Where(d => d.PolicyId == policyId)
-                .OrderByDescending(d => d.VersionNo)
-                .FirstOrDefaultAsync();
-
+            var document = await dbcontext.PolicyDocuments.Where(d => d.PolicyId == policyId).OrderByDescending(d => d.VersionNo).FirstOrDefaultAsync();
             if (document == null)
             {
                 return null;
             }
-
             var dto = mapper.Map<PolicyDocumentDto>(document);
-
             if (File.Exists(document.FilePath))
             {
                 dto.FileBytes = await File.ReadAllBytesAsync(document.FilePath);
@@ -46,52 +40,32 @@ namespace PolicyIssuance.Infrastructure.Repositories
                 var fallbackContent = GenerateDocumentContent(policyId, document.VersionNo);
                 dto.FileBytes = Encoding.UTF8.GetBytes(fallbackContent);
             }
-
             return dto;
         }
 
         public async Task<PolicyDocumentDto> GeneratePolicyDocumentAsync(int policyId)
         {
-            var policy = await db.Policies
-                .Include(p => p.PolicyCoverages)
-                .Include(p => p.PolicyRiders)
-                .FirstOrDefaultAsync(p => p.PolicyId == policyId);
-
+            var policy = await dbcontext.Policies.Include(p => p.PolicyCoverages).Include(p => p.PolicyRiders).FirstOrDefaultAsync(p => p.PolicyId == policyId);
             if (policy == null)
             {
                 throw new Exception("Policy not found");
             }
-
-            var existingDoc = await db.PolicyDocuments
-                .Where(d => d.PolicyId == policyId)
-                .OrderByDescending(d => d.VersionNo)
-                .FirstOrDefaultAsync();
-
+            var existingDoc = await dbcontext.PolicyDocuments.Where(d => d.PolicyId == policyId).OrderByDescending(d => d.VersionNo).FirstOrDefaultAsync();
             if (existingDoc != null)
             {
                 return (await GetPolicyDocumentAsync(policyId))!;
             }
-
             return await CreateAndSaveDocumentAsync(policy, 1, "DOCUMENT_GENERATED");
         }
 
         public async Task<PolicyDocumentDto> RegeneratePolicyDocumentAsync(int policyId)
         {
-            var policy = await db.Policies
-                .Include(p => p.PolicyCoverages)
-                .Include(p => p.PolicyRiders)
-                .FirstOrDefaultAsync(p => p.PolicyId == policyId);
-
+            var policy = await dbcontext.Policies.Include(p => p.PolicyCoverages).Include(p => p.PolicyRiders).FirstOrDefaultAsync(p => p.PolicyId == policyId);
             if (policy == null)
             {
                 throw new Exception("Policy not found");
             }
-
-            var latestDoc = await db.PolicyDocuments
-                .Where(d => d.PolicyId == policyId)
-                .OrderByDescending(d => d.VersionNo)
-                .FirstOrDefaultAsync();
-
+            var latestDoc = await dbcontext.PolicyDocuments.Where(d => d.PolicyId == policyId).OrderByDescending(d => d.VersionNo).FirstOrDefaultAsync();
             int nextVersion = (latestDoc?.VersionNo ?? 0) + 1;
             return await CreateAndSaveDocumentAsync(policy, nextVersion, "DOCUMENT_REGENERATED");
         }
@@ -120,9 +94,9 @@ namespace PolicyIssuance.Infrastructure.Repositories
                 GeneratedDate = DateTime.UtcNow
             };
 
-            db.PolicyDocuments.Add(docRecord);
+            dbcontext.PolicyDocuments.Add(docRecord);
 
-            db.PolicyHistories.Add(new PolicyHistory
+            dbcontext.PolicyHistories.Add(new PolicyHistory
             {
                 PolicyId = policy.PolicyId,
                 Action = action,
@@ -130,7 +104,7 @@ namespace PolicyIssuance.Infrastructure.Repositories
                 Remarks = $"Policy schedule document version {versionNo} generated ({fileName})"
             });
 
-            await db.SaveChangesAsync();
+            await dbcontext.SaveChangesAsync();
 
             var dto = mapper.Map<PolicyDocumentDto>(docRecord);
             dto.FileBytes = fileBytes;

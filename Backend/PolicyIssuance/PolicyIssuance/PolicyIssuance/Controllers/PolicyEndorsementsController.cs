@@ -10,11 +10,11 @@ namespace PolicyIssuance.Controllers
     [ApiController]
     public class PolicyEndorsementsController : ControllerBase
     {
-        private readonly IPolicyEndorsementService _endorsementService;
+        private readonly IPolicyEndorsementService endorsementService;
 
         public PolicyEndorsementsController(IPolicyEndorsementService endorsementService)
         {
-            _endorsementService = endorsementService;
+            this.endorsementService = endorsementService;
         }
 
         [HttpPost("api/v1/policies/{policyId}/endorsements")]
@@ -24,10 +24,9 @@ namespace PolicyIssuance.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             try
             {
-                var result = await _endorsementService.CreateEndorsementAsync(policyId, dto);
+                var result = await endorsementService.CreateEndorsementAsync(policyId, dto);
                 return Created($"/api/v1/endorsements/{result.EndorsementId}", result);
             }
             catch (Exception ex)
@@ -44,14 +43,14 @@ namespace PolicyIssuance.Controllers
         [HttpGet("api/v1/policies/{policyId}/endorsements")]
         public async Task<IActionResult> GetEndorsementsByPolicyId(int policyId)
         {
-            var result = await _endorsementService.GetEndorsementsByPolicyIdAsync(policyId);
+            var result = await endorsementService.GetEndorsementsByPolicyIdAsync(policyId);
             return Ok(result);
         }
 
         [HttpPut("api/v1/endorsements/{endorsementId}/approve")]
         public async Task<IActionResult> ApproveEndorsement(int endorsementId, [FromQuery] int approvedBy = 1)
         {
-            var success = await _endorsementService.ApproveEndorsementAsync(endorsementId, approvedBy);
+            var success = await endorsementService.ApproveEndorsementAsync(endorsementId, approvedBy);
             if (!success)
             {
                 return NotFound("Endorsement not found");
@@ -63,12 +62,11 @@ namespace PolicyIssuance.Controllers
         [HttpPut("api/v1/endorsements/{endorsementId}/reject")]
         public async Task<IActionResult> RejectEndorsement(int endorsementId)
         {
-            var success = await _endorsementService.RejectEndorsementAsync(endorsementId);
+            var success = await endorsementService.RejectEndorsementAsync(endorsementId);
             if (!success)
             {
                 return NotFound("Endorsement not found");
             }
-
             return Ok("Endorsement rejected successfully");
         }
     }
