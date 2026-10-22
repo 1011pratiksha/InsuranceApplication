@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dell9\\source\\repos\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj": {}
+    "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dell9\\source\\repos\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj": {
+    "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dell9\\source\\repos\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj",
         "projectName": "PolicyServicing.Domain",
-        "projectPath": "C:\\Users\\dell9\\source\\repos\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj",
+        "projectPath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj",
         "packagesPath": "C:\\Users\\dell9\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dell9\\source\\repos\\PolicyServicing\\PolicyServicing.Domain\\obj\\",
+        "outputPath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

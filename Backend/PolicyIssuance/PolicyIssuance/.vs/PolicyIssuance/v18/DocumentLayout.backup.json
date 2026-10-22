@@ -1,41 +1,53 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\",
+  "WorkspaceRootPath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|c:\\users\\tanmay\\source\\repos\\policyissuance\\policyissuance.infrastructure\\repositories\\policyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|c:\\users\\dell9\\onedrive\\desktop\\insuranceproject\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|solutionrelative:policyissuance\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|c:\\users\\dell9\\onedrive\\desktop\\insuranceproject\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance.infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|solutionrelative:policyissuance.infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4F5409C-2508-414D-AF60-39F6272F8ACD}|PolicyIssuance.Application\\PolicyIssuance.Application.csproj|c:\\users\\dell9\\onedrive\\desktop\\insuranceproject\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance.application\\dto\\policydetaildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E4F5409C-2508-414D-AF60-39F6272F8ACD}|PolicyIssuance.Application\\PolicyIssuance.Application.csproj|solutionrelative:policyissuance.application\\dto\\policydetaildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|c:\\users\\dell9\\onedrive\\desktop\\insuranceproject\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance.infrastructure\\repositories\\policyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|solutionrelative:policyissuance.infrastructure\\repositories\\policyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DDECDD6B-4190-45ED-94B8-C8AE77D95423}|PolicyIssuance.Domain\\PolicyIssuance.Domain.csproj|c:\\users\\tanmay\\source\\repos\\policyissuance\\policyissuance.domain\\entities\\policycoverage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DDECDD6B-4190-45ED-94B8-C8AE77D95423}|PolicyIssuance.Domain\\PolicyIssuance.Domain.csproj|solutionrelative:policyissuance.domain\\entities\\policycoverage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|c:\\users\\tanmay\\source\\repos\\policyissuance\\policyissuance.infrastructure\\repositories\\policyendorsementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|solutionrelative:policyissuance.infrastructure\\repositories\\policyendorsementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|c:\\users\\tanmay\\source\\repos\\policyissuance\\policyissuance.infrastructure\\repositories\\policydocumentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|solutionrelative:policyissuance.infrastructure\\repositories\\policydocumentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|c:\\users\\tanmay\\source\\repos\\policyissuance\\policyissuance\\controllers\\policyendorsementscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|solutionrelative:policyissuance\\controllers\\policyendorsementscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|c:\\users\\tanmay\\source\\repos\\policyissuance\\policyissuance\\controllers\\policydocumentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|solutionrelative:policyissuance\\controllers\\policydocumentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|c:\\users\\tanmay\\source\\repos\\policyissuance\\policyissuance\\controllers\\policiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|c:\\users\\dell9\\onedrive\\desktop\\insuranceproject\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance\\controllers\\policiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|solutionrelative:policyissuance\\controllers\\policiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|c:\\users\\tanmay\\source\\repos\\policyissuance\\policyissuance\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{DDECDD6B-4190-45ED-94B8-C8AE77D95423}|PolicyIssuance.Domain\\PolicyIssuance.Domain.csproj|c:\\users\\dell9\\onedrive\\desktop\\insuranceproject\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance.domain\\entities\\policycoverage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DDECDD6B-4190-45ED-94B8-C8AE77D95423}|PolicyIssuance.Domain\\PolicyIssuance.Domain.csproj|solutionrelative:policyissuance.domain\\entities\\policycoverage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|c:\\users\\dell9\\onedrive\\desktop\\insuranceproject\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance.infrastructure\\repositories\\policyendorsementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|solutionrelative:policyissuance.infrastructure\\repositories\\policyendorsementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|c:\\users\\dell9\\onedrive\\desktop\\insuranceproject\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance.infrastructure\\repositories\\policydocumentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|solutionrelative:policyissuance.infrastructure\\repositories\\policydocumentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|c:\\users\\dell9\\onedrive\\desktop\\insuranceproject\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance\\controllers\\policyendorsementscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|solutionrelative:policyissuance\\controllers\\policyendorsementscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|c:\\users\\dell9\\onedrive\\desktop\\insuranceproject\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance\\controllers\\policydocumentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|solutionrelative:policyissuance\\controllers\\policydocumentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|c:\\users\\dell9\\onedrive\\desktop\\insuranceproject\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|solutionrelative:policyissuance\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E4F5409C-2508-414D-AF60-39F6272F8ACD}|PolicyIssuance.Application\\PolicyIssuance.Application.csproj|c:\\users\\tanmay\\source\\repos\\policyissuance\\policyissuance.application\\mapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E4F5409C-2508-414D-AF60-39F6272F8ACD}|PolicyIssuance.Application\\PolicyIssuance.Application.csproj|c:\\users\\dell9\\onedrive\\desktop\\insuranceproject\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance.application\\mapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E4F5409C-2508-414D-AF60-39F6272F8ACD}|PolicyIssuance.Application\\PolicyIssuance.Application.csproj|solutionrelative:policyissuance.application\\mapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -46,278 +58,176 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 38,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PolicyCoverage.cs",
-              "DocumentMoniker": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance.Domain\\Entities\\PolicyCoverage.cs",
-              "RelativeDocumentMoniker": "PolicyIssuance.Domain\\Entities\\PolicyCoverage.cs",
-              "ToolTip": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance.Domain\\Entities\\PolicyCoverage.cs",
-              "RelativeToolTip": "PolicyIssuance.Domain\\Entities\\PolicyCoverage.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAzwAAAAAAAAAAAAAAAAA==",
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "PolicyIssuance.Infrastructure\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "PolicyIssuance.Infrastructure\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAgwBMAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-21T08:22:13.559Z",
+              "WhenOpened": "2026-10-22T19:04:13.674Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{4a8466fe-5a05-4f81-ad45-7d7c1316817e}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PolicyDetailDto.cs",
+              "DocumentMoniker": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Application\\DTO\\PolicyDetailDto.cs",
+              "RelativeDocumentMoniker": "PolicyIssuance.Application\\DTO\\PolicyDetailDto.cs",
+              "ToolTip": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Application\\DTO\\PolicyDetailDto.cs*",
+              "RelativeToolTip": "PolicyIssuance.Application\\DTO\\PolicyDetailDto.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-22T09:15:38.808Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance\\appsettings.json",
+              "RelativeDocumentMoniker": "PolicyIssuance\\appsettings.json",
+              "ToolTip": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance\\appsettings.json",
+              "RelativeToolTip": "PolicyIssuance\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-10-22T08:43:54.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{e8b06f53-6d01-11d2-aa7d-00c04f990343}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:133:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:140:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:139:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:138:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:137:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:136:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:133:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:135:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:134:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:137:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:139:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:135:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:134:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PolicyEndorsementService.cs",
-              "DocumentMoniker": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyEndorsementService.cs",
-              "RelativeDocumentMoniker": "PolicyIssuance.Infrastructure\\Repositories\\PolicyEndorsementService.cs",
-              "ToolTip": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyEndorsementService.cs",
-              "RelativeToolTip": "PolicyIssuance.Infrastructure\\Repositories\\PolicyEndorsementService.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAsAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-21T04:55:29.446Z",
-              "EditorCaption": ""
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "PolicyDocumentService.cs",
-              "DocumentMoniker": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyDocumentService.cs",
-              "RelativeDocumentMoniker": "PolicyIssuance.Infrastructure\\Repositories\\PolicyDocumentService.cs",
-              "ToolTip": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyDocumentService.cs",
-              "RelativeToolTip": "PolicyIssuance.Infrastructure\\Repositories\\PolicyDocumentService.cs",
-              "ViewState": "AgIAAJMAAAAAAAAAAAAYwJwAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-21T04:55:17.476Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PolicyEndorsementsController.cs",
-              "DocumentMoniker": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance\\Controllers\\PolicyEndorsementsController.cs",
-              "RelativeDocumentMoniker": "PolicyIssuance\\Controllers\\PolicyEndorsementsController.cs",
-              "ToolTip": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance\\Controllers\\PolicyEndorsementsController.cs",
-              "RelativeToolTip": "PolicyIssuance\\Controllers\\PolicyEndorsementsController.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAYwEIAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-21T04:54:59.53Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "PolicyDocumentsController.cs",
-              "DocumentMoniker": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance\\Controllers\\PolicyDocumentsController.cs",
-              "RelativeDocumentMoniker": "PolicyIssuance\\Controllers\\PolicyDocumentsController.cs",
-              "ToolTip": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance\\Controllers\\PolicyDocumentsController.cs",
-              "RelativeToolTip": "PolicyIssuance\\Controllers\\PolicyDocumentsController.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAYwFAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-21T04:54:43.737Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance\\Program.cs",
-              "RelativeDocumentMoniker": "PolicyIssuance\\Program.cs",
-              "ToolTip": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance\\Program.cs",
-              "RelativeToolTip": "PolicyIssuance\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-20T13:43:39.63Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "PoliciesController.cs",
-              "DocumentMoniker": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance\\Controllers\\PoliciesController.cs",
-              "RelativeDocumentMoniker": "PolicyIssuance\\Controllers\\PoliciesController.cs",
-              "ToolTip": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance\\Controllers\\PoliciesController.cs",
-              "RelativeToolTip": "PolicyIssuance\\Controllers\\PoliciesController.cs",
-              "ViewState": "AgIAAGwAAAAAAAAAAAAIwH4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-20T13:07:10.507Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "PolicyService.cs",
-              "DocumentMoniker": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyService.cs",
+              "DocumentMoniker": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyService.cs",
               "RelativeDocumentMoniker": "PolicyIssuance.Infrastructure\\Repositories\\PolicyService.cs",
-              "ToolTip": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyService.cs",
+              "ToolTip": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyService.cs",
               "RelativeToolTip": "PolicyIssuance.Infrastructure\\Repositories\\PolicyService.cs",
-              "ViewState": "AgIAAMsAAAAAAAAAAAAUwLkAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAowGYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-20T12:34:24.902Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PolicyEndorsementService.cs",
+              "DocumentMoniker": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyEndorsementService.cs",
+              "RelativeDocumentMoniker": "PolicyIssuance.Infrastructure\\Repositories\\PolicyEndorsementService.cs",
+              "ToolTip": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyEndorsementService.cs",
+              "RelativeToolTip": "PolicyIssuance.Infrastructure\\Repositories\\PolicyEndorsementService.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAsAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-21T04:55:29.446Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PolicyDocumentService.cs",
+              "DocumentMoniker": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyDocumentService.cs",
+              "RelativeDocumentMoniker": "PolicyIssuance.Infrastructure\\Repositories\\PolicyDocumentService.cs",
+              "ToolTip": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyDocumentService.cs",
+              "RelativeToolTip": "PolicyIssuance.Infrastructure\\Repositories\\PolicyDocumentService.cs",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAYwJwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-21T04:55:17.476Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "PolicyEndorsementsController.cs",
+              "DocumentMoniker": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance\\Controllers\\PolicyEndorsementsController.cs",
+              "RelativeDocumentMoniker": "PolicyIssuance\\Controllers\\PolicyEndorsementsController.cs",
+              "ToolTip": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance\\Controllers\\PolicyEndorsementsController.cs",
+              "RelativeToolTip": "PolicyIssuance\\Controllers\\PolicyEndorsementsController.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAYwEIAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-21T04:54:59.53Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PoliciesController.cs",
+              "DocumentMoniker": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance\\Controllers\\PoliciesController.cs",
+              "RelativeDocumentMoniker": "PolicyIssuance\\Controllers\\PoliciesController.cs",
+              "ToolTip": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance\\Controllers\\PoliciesController.cs",
+              "RelativeToolTip": "PolicyIssuance\\Controllers\\PoliciesController.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAuwDMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T13:07:10.507Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PolicyCoverage.cs",
+              "DocumentMoniker": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Domain\\Entities\\PolicyCoverage.cs",
+              "RelativeDocumentMoniker": "PolicyIssuance.Domain\\Entities\\PolicyCoverage.cs",
+              "ToolTip": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Domain\\Entities\\PolicyCoverage.cs",
+              "RelativeToolTip": "PolicyIssuance.Domain\\Entities\\PolicyCoverage.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-21T08:22:13.559Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PolicyDocumentsController.cs",
+              "DocumentMoniker": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance\\Controllers\\PolicyDocumentsController.cs",
+              "RelativeDocumentMoniker": "PolicyIssuance\\Controllers\\PolicyDocumentsController.cs",
+              "ToolTip": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance\\Controllers\\PolicyDocumentsController.cs",
+              "RelativeToolTip": "PolicyIssuance\\Controllers\\PolicyDocumentsController.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAYwFAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-21T04:54:43.737Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance\\Program.cs",
+              "RelativeDocumentMoniker": "PolicyIssuance\\Program.cs",
+              "ToolTip": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance\\Program.cs",
+              "RelativeToolTip": "PolicyIssuance\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T13:43:39.63Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "MappingProfile.cs",
-              "DocumentMoniker": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance.Application\\Mapper\\MappingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Application\\Mapper\\MappingProfile.cs",
               "RelativeDocumentMoniker": "PolicyIssuance.Application\\Mapper\\MappingProfile.cs",
-              "ToolTip": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance.Application\\Mapper\\MappingProfile.cs",
+              "ToolTip": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Application\\Mapper\\MappingProfile.cs",
               "RelativeToolTip": "PolicyIssuance.Application\\Mapper\\MappingProfile.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-20T12:33:27.386Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 165,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+              "WhenOpened": "2026-10-20T12:33:27.386Z"
             }
           ]
         }

@@ -22,222 +22,6 @@ namespace PolicyServicing.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("PolicyServicing.Domain.Entities.Customer", b =>
-                {
-                    b.Property<int>("CustomerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"));
-
-                    b.Property<decimal>("AnnualIncome")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CustomerCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomerStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateOnly>("DateOfBirth")
-                        .HasColumnType("date");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MaritalStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MiddleName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MobileNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Occupation")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("CustomerId");
-
-                    b.ToTable("customers");
-                });
-
-            modelBuilder.Entity("PolicyServicing.Domain.Entities.CustomerAddress", b =>
-                {
-                    b.Property<int>("AddressId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AddressId"));
-
-                    b.Property<string>("AddressLine1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AddressLine2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AddressType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("CustomerId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int?>("CustomerId1")
-                        .HasColumnType("int");
-
-                    b.Property<string>("District")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pincode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AddressId");
-
-                    b.HasIndex("CustomerId1");
-
-                    b.ToTable("CustomerAddress");
-                });
-
-            modelBuilder.Entity("PolicyServicing.Domain.Entities.CustomerContact", b =>
-                {
-                    b.Property<int>("ContactId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContactId"));
-
-                    b.Property<string>("AlternateMobile")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("OfficePhone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PreferredContactMode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ContactId");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("CustomerContact");
-                });
-
-            modelBuilder.Entity("PolicyServicing.Domain.Entities.CustomerDocument", b =>
-                {
-                    b.Property<int>("DocumentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DocumentId"));
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DocumentType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FileName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FilePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UploadedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("VerificationStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("DocumentId");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("CustomerDocument");
-                });
-
-            modelBuilder.Entity("PolicyServicing.Domain.Entities.Nominee", b =>
-                {
-                    b.Property<int>("NomineeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NomineeId"));
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<DateOnly>("DateOfBirth")
-                        .HasColumnType("date");
-
-                    b.Property<string>("MobileNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NomineeName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Relationship")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("SharePercentage")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("NomineeId");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("Nominee");
-                });
-
             modelBuilder.Entity("PolicyServicing.Domain.Entities.NomineeDetails", b =>
                 {
                     b.Property<long>("nominee_id")
@@ -269,51 +53,10 @@ namespace PolicyServicing.Infrastructure.Migrations
 
                     b.HasKey("nominee_id");
 
-                    b.HasIndex("policy_id");
-
                     b.ToTable("NomineeDetails", t =>
                         {
                             t.HasCheckConstraint("CK_NomineeDetails_SharePercentage", "[share_percentage] > 0 AND [share_percentage] <= 100");
                         });
-                });
-
-            modelBuilder.Entity("PolicyServicing.Domain.Entities.Policy", b =>
-                {
-                    b.Property<long>("policy_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("policy_id"));
-
-                    b.Property<long>("customer_id")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("effective_date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("expiry_date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("issue_date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("policy_number")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("policy_status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("product_id")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("quote_id")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("policy_id");
-
-                    b.ToTable("policies");
                 });
 
             modelBuilder.Entity("PolicyServicing.Domain.Entities.PolicyCancellation", b =>
@@ -324,7 +67,7 @@ namespace PolicyServicing.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("cancellation_id"));
 
-                    b.Property<long>("approved_by")
+                    b.Property<long?>("approved_by")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("cancellation_date")
@@ -341,8 +84,6 @@ namespace PolicyServicing.Infrastructure.Migrations
                         .HasColumnType("decimal(15,2)");
 
                     b.HasKey("cancellation_id");
-
-                    b.HasIndex("policy_id");
 
                     b.ToTable("PolicyCancellations");
                 });
@@ -416,8 +157,6 @@ namespace PolicyServicing.Infrastructure.Migrations
 
                     b.HasKey("renewal_id");
 
-                    b.HasIndex("policy_id");
-
                     b.ToTable("PolicyRenewals", t =>
                         {
                             t.HasCheckConstraint("CK_PolicyRenewal_Status", "[renewal_status] IN ('Pending', 'Paid', 'Renewed', 'Expired')");
@@ -454,10 +193,6 @@ namespace PolicyServicing.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("request_id");
-
-                    b.HasIndex("customer_id");
-
-                    b.HasIndex("policy_id");
 
                     b.HasIndex("request_number")
                         .IsUnique();
@@ -499,62 +234,6 @@ namespace PolicyServicing.Infrastructure.Migrations
                     b.ToTable("ServiceRequestHistories");
                 });
 
-            modelBuilder.Entity("PolicyServicing.Domain.Entities.CustomerAddress", b =>
-                {
-                    b.HasOne("PolicyServicing.Domain.Entities.Customer", null)
-                        .WithMany("CustomerAddresses")
-                        .HasForeignKey("CustomerId1");
-                });
-
-            modelBuilder.Entity("PolicyServicing.Domain.Entities.CustomerContact", b =>
-                {
-                    b.HasOne("PolicyServicing.Domain.Entities.Customer", null)
-                        .WithMany("CustomerContacts")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("PolicyServicing.Domain.Entities.CustomerDocument", b =>
-                {
-                    b.HasOne("PolicyServicing.Domain.Entities.Customer", null)
-                        .WithMany("CustomerDocuments")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("PolicyServicing.Domain.Entities.Nominee", b =>
-                {
-                    b.HasOne("PolicyServicing.Domain.Entities.Customer", null)
-                        .WithMany("Nominees")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("PolicyServicing.Domain.Entities.NomineeDetails", b =>
-                {
-                    b.HasOne("PolicyServicing.Domain.Entities.Policy", "Policy")
-                        .WithMany()
-                        .HasForeignKey("policy_id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Policy");
-                });
-
-            modelBuilder.Entity("PolicyServicing.Domain.Entities.PolicyCancellation", b =>
-                {
-                    b.HasOne("PolicyServicing.Domain.Entities.Policy", "Policy")
-                        .WithMany()
-                        .HasForeignKey("policy_id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Policy");
-                });
-
             modelBuilder.Entity("PolicyServicing.Domain.Entities.PolicyEndorsement", b =>
                 {
                     b.HasOne("PolicyServicing.Domain.Entities.ServiceRequest", "ServiceRequest")
@@ -566,36 +245,6 @@ namespace PolicyServicing.Infrastructure.Migrations
                     b.Navigation("ServiceRequest");
                 });
 
-            modelBuilder.Entity("PolicyServicing.Domain.Entities.PolicyRenewal", b =>
-                {
-                    b.HasOne("PolicyServicing.Domain.Entities.Policy", "Policy")
-                        .WithMany()
-                        .HasForeignKey("policy_id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Policy");
-                });
-
-            modelBuilder.Entity("PolicyServicing.Domain.Entities.ServiceRequest", b =>
-                {
-                    b.HasOne("PolicyServicing.Domain.Entities.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("customer_id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("PolicyServicing.Domain.Entities.Policy", "Policy")
-                        .WithMany()
-                        .HasForeignKey("policy_id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Policy");
-                });
-
             modelBuilder.Entity("PolicyServicing.Domain.Entities.ServiceRequestHistory", b =>
                 {
                     b.HasOne("PolicyServicing.Domain.Entities.ServiceRequest", "ServiceRequest")
@@ -605,17 +254,6 @@ namespace PolicyServicing.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("ServiceRequest");
-                });
-
-            modelBuilder.Entity("PolicyServicing.Domain.Entities.Customer", b =>
-                {
-                    b.Navigation("CustomerAddresses");
-
-                    b.Navigation("CustomerContacts");
-
-                    b.Navigation("CustomerDocuments");
-
-                    b.Navigation("Nominees");
                 });
 
             modelBuilder.Entity("PolicyServicing.Domain.Entities.ServiceRequest", b =>

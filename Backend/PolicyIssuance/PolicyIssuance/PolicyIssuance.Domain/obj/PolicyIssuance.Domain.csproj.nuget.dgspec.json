@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance.Domain\\PolicyIssuance.Domain.csproj": {}
+    "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Domain\\PolicyIssuance.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance.Domain\\PolicyIssuance.Domain.csproj": {
+    "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Domain\\PolicyIssuance.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance.Domain\\PolicyIssuance.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Domain\\PolicyIssuance.Domain.csproj",
         "projectName": "PolicyIssuance.Domain",
-        "projectPath": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance.Domain\\PolicyIssuance.Domain.csproj",
-        "packagesPath": "C:\\Users\\Tanmay\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tanmay\\source\\repos\\PolicyIssuance\\PolicyIssuance.Domain\\obj\\",
+        "projectPath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Domain\\PolicyIssuance.Domain.csproj",
+        "packagesPath": "C:\\Users\\dell9\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsuranceProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Tanmay\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dell9\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

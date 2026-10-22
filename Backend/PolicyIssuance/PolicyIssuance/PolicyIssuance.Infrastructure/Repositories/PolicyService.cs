@@ -217,7 +217,6 @@ namespace PolicyIssuance.Infrastructure.Repositories
         public async Task<bool> CancelPolicyAsync(int id)
         {
             var policy = await db.Policies.FindAsync(id);
-
             if (policy == null)
             {
                 return false;
