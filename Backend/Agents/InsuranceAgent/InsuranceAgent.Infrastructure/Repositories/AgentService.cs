@@ -18,29 +18,29 @@ namespace InsuranceAgent.Infrastructure.Repositories
 
         public async Task CreateAgent(CreateAgentDto dto)
         {
-            var user = await data.Users.FindAsync(dto.UserId);
+            //var user = await data.Users.FindAsync(dto.UserId);
 
-            if (user == null)
-            {
-                throw new Exception("User not found.");
-            }
+            //if (user == null)
+            //{
+            //    throw new Exception("User not found.");
+            //}
 
-            var agent = new Agent
-            {
-                UserId = dto.UserId,
-                AgentCode = "AG00" + (await data.Agents.CountAsync() + 1),
-                UserName = user.UserName,
-                Email = user.Email,
-                MobileNo = user.Mobile,
-                JoiningDate = dto.JoiningDate,
-                LicenseNumber = dto.LicenseNumber,
-                Status = "Pending",
-                CreatedAt = DateTime.Now
-            };
+            //var agent = new Agent
+            //{
+            //    UserId = dto.UserId,
+            //    AgentCode = "AG00" + (await data.Agents.CountAsync() + 1),
+            //    UserName = user.UserName,
+            //    Email = user.Email,
+            //    MobileNo = user.Mobile,
+            //    JoiningDate = dto.JoiningDate,
+            //    LicenseNumber = dto.LicenseNumber,
+            //    Status = "Pending",
+            //    CreatedAt = DateTime.Now
+            //};
 
-            data.Agents.Add(agent);
+            //data.Agents.Add(agent);
 
-            await data.SaveChangesAsync();
+            //await data.SaveChangesAsync();
         }
 
         public async Task<GetAgentDto?> GetAgentById(int id)

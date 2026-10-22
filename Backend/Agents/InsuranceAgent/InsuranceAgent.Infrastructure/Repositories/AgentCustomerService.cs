@@ -18,43 +18,43 @@ namespace InsuranceAgent.Infrastructure.Repositories
 
         public async Task AssignCustomer(int agentId, CreateAgentCustomerDto dto)
         {
-            var agent = await data.Agents.FirstOrDefaultAsync(x => x.AgentId == agentId);
+            //var agent = await data.Agents.FirstOrDefaultAsync(x => x.AgentId == agentId);
 
-            if (agent == null)
-            {
-                throw new Exception("Agent not found.");
-            }
-
-
-            var customer = await data.Customers.FirstOrDefaultAsync(x => x.CustomerId == dto.CustomerId);
-
-            if (customer == null)
-            {
-                throw new Exception("Customer not found.");
-            }
+            //if (agent == null)
+            //{
+            //    throw new Exception("Agent not found.");
+            //}
 
 
-            var existing = await data.AgentCustomers.AnyAsync(x => x.CustomerId == dto.CustomerId && x.Status == "Active");
+            //var customer = await data.Customers.FirstOrDefaultAsync(x => x.CustomerId == dto.CustomerId);
 
-            if (existing)
-            {
-                throw new Exception(
-                    "Customer is already assigned to an agent.");
-            }
+            //if (customer == null)
+            //{
+            //    throw new Exception("Customer not found.");
+            //}
 
-            var agentCustomer = new AgentCustomer
-            {
-                AgentId = agentId,
-                CustomerId = dto.CustomerId,
-                AssignedBy = dto.AssignedBy,
-                AssignedDate = DateTime.Now,
-                Status = "Active",
-                CreatedAt = DateTime.Now
-            };
 
-            data.AgentCustomers.Add(agentCustomer);
+            //var existing = await data.AgentCustomers.AnyAsync(x => x.CustomerId == dto.CustomerId && x.Status == "Active");
 
-            await data.SaveChangesAsync();
+            //if (existing)
+            //{
+            //    throw new Exception(
+            //        "Customer is already assigned to an agent.");
+            //}
+
+            //var agentCustomer = new AgentCustomer
+            //{
+            //    AgentId = agentId,
+            //    CustomerId = dto.CustomerId,
+            //    AssignedBy = dto.AssignedBy,
+            //    AssignedDate = DateTime.Now,
+            //    Status = "Active",
+            //    CreatedAt = DateTime.Now
+            //};
+
+            //data.AgentCustomers.Add(agentCustomer);
+
+            //await data.SaveChangesAsync();
         }
 
         public async Task<List<GetAgentCustomerDto>> GetAssignedCustomers(int agentId)
@@ -65,10 +65,10 @@ namespace InsuranceAgent.Infrastructure.Repositories
                     AgentCustomerId = x.AgentCustomerId,
                     AgentId = x.AgentId,
                     CustomerId = x.CustomerId,
-                    FirstName = x.Customer.FirstName,
-                    LastName = x.Customer.LastName,
-                    Email = x.Customer.Email,
-                    MobileNo = x.Customer.MobileNo,
+                    //FirstName = x.Customer.FirstName,
+                    //LastName = x.Customer.LastName,
+                    //Email = x.Customer.Email,
+                    //MobileNo = x.Customer.MobileNo,
                     AssignedDate = x.AssignedDate,
                     AssignedBy = x.AssignedBy,
                     Status = x.Status,

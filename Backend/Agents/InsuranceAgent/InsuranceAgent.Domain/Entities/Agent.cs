@@ -14,9 +14,9 @@ namespace InsuranceAgent.Domain.Entities
         public int AgentId { get; set; }
 
 
-        [ForeignKey("UserId")]
+        //[ForeignKey("UserId")]
         public int UserId { get; set; }
-        public User User { get; set; }
+        //public User User { get; set; }
 
 
 

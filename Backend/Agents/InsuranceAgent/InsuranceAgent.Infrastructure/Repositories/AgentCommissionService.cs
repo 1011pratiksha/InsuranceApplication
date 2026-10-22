@@ -1,5 +1,6 @@
 ﻿using InsuranceAgent.Application.DTO;
 using InsuranceAgent.Application.Interfaces;
+using InsuranceAgent.Application.Mapper;
 using InsuranceAgent.Domain.Entities;
 using InsuranceAgent.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -14,54 +15,58 @@ namespace InsuranceAgent.Infrastructure.Repositories
     public class AgentCommissionService : IAgentCommissionService
     {
 
-        AppDbContext data;
+        private readonly  AppDbContext data;
+        private readonly PolicyClient policyClient;
 
-        public AgentCommissionService(AppDbContext data)
+
+        public AgentCommissionService(AppDbContext data, PolicyClient policyClient)
         {
             this.data = data;
+            this.policyClient = policyClient;
         }
 
         public async Task CalculateCommission(CalculateCommissionDto dto)
         {
-            var policy = await data.Policies.Include(p => p.Quote).FirstOrDefaultAsync(p => p.PolicyId == dto.PolicyId);
 
-            if (policy == null)
-            {
-                throw new Exception("Policy not found.");
-            }
+            //var policy = await policyClient.GetPolicyById(dto.PolicyId);
 
-            if (policy.Quote == null)
-            {
-                throw new Exception("Quote not found.");
-            }
+            //if (policy == null)
+            //{
+            //    throw new Exception("Policy not found.");
+            //}
 
-            var rule = await data.CommissionRules.FirstOrDefaultAsync(r => r.ProductId == policy.ProductId && r.IsActive);
+            //if (policy.Quote == null)
+            //{
+            //    throw new Exception("Quote not found.");
+            //}
 
-            if (rule == null)
-            {
-                throw new Exception("Commission rule not found.");
+            //var rule = await data.CommissionRules.FirstOrDefaultAsync(r => r.ProductId == policy.ProductId && r.IsActive);
 
-            }
+            //if (rule == null)
+            //{
+            //    throw new Exception("Commission rule not found.");
 
-            decimal premium = policy.Quote.PremiumAmount;
+            //}
 
-            decimal amount = premium * rule.CommissionPercentage / 100;
+            //decimal premium = policy.Quote.PremiumAmount;
 
-            var commission = new AgentCommission
-            {
-                AgentId = dto.AgentId,
-                PolicyId = dto.PolicyId,
-                PremiumAmount = premium,
-                CommissionPercentage = rule.CommissionPercentage,
-                CommissionAmount = amount,
-                Status = "Pending",
-                EarnedDate = DateTime.Now,
-                CreatedAt = DateTime.Now
-            };
+            //decimal amount = premium * rule.CommissionPercentage / 100;
 
-            data.AgentCommissions.Add(commission);
+            //var commission = new AgentCommission
+            //{
+            //    AgentId = dto.AgentId,
+            //    PolicyId = dto.PolicyId,
+            //    PremiumAmount = premium,
+            //    CommissionPercentage = rule.CommissionPercentage,
+            //    CommissionAmount = amount,
+            //    Status = "Pending",
+            //    EarnedDate = DateTime.Now,
+            //    CreatedAt = DateTime.Now
+            //};
 
-            await data.SaveChangesAsync();
+            //data.AgentCommissions.Add(commission);
+
+            //await data.SaveChangesAsync();
         }
 
 

@@ -23,33 +23,33 @@ namespace InsuranceAgent.Infrastructure.Repositories
 
         public async Task CreateAgentPolicy(int agentId, CreateAgentPolicyDto dto)
         {
-            var agent = await data.Agents.FirstOrDefaultAsync(a => a.AgentId == agentId);
+            //var agent = await data.Agents.FirstOrDefaultAsync(a => a.AgentId == agentId);
 
-            if (agent == null)
-            {
-                throw new Exception("Agent not found.");
-            }
+            //if (agent == null)
+            //{
+            //    throw new Exception("Agent not found.");
+            //}
 
-            var customer = await data.Customers.FirstOrDefaultAsync(c => c.CustomerId == dto.CustomerId);
+            //var customer = await data.Customers.FirstOrDefaultAsync(c => c.CustomerId == dto.CustomerId);
 
-            if (customer == null)
-            {
-                throw new Exception("Customer not found.");
-            }
+            //if (customer == null)
+            //{
+            //    throw new Exception("Customer not found.");
+            //}
 
-            var agentPolicy = new AgentPolicy
-            {
-                AgentId = agentId,
-                PolicyId = dto.PolicyId,
-                CustomerId = dto.CustomerId,
-                AssignedDate = DateTime.Now,
-                SaleDate = dto.SaleDate,
-                Status = dto.SaleDate.HasValue ? "Sold" : "Assigned",
-                CreatedAt = DateTime.Now
-            };
+            //var agentPolicy = new AgentPolicy
+            //{
+            //    AgentId = agentId,
+            //    PolicyId = dto.PolicyId,
+            //    CustomerId = dto.CustomerId,
+            //    AssignedDate = DateTime.Now,
+            //    SaleDate = dto.SaleDate,
+            //    Status = dto.SaleDate.HasValue ? "Sold" : "Assigned",
+            //    CreatedAt = DateTime.Now
+            //};
 
-            await data.AgentPolicies.AddAsync(agentPolicy);
-            await data.SaveChangesAsync();
+            //await data.AgentPolicies.AddAsync(agentPolicy);
+            //await data.SaveChangesAsync();
         }
 
 
