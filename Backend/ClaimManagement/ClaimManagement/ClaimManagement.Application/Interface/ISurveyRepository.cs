@@ -1,12 +1,11 @@
-using ClaimManagement.Domain.Entities;
+using ClaimManagement.Application.DTO;
 
 namespace ClaimManagement.Application.Interface
 {
     public interface ISurveyRepository
     {
-        Task<SurveyAssignment> AddAsync(SurveyAssignment survey);
-        Task<List<SurveyAssignment>> GetByClaimIdAsync(int claimId);
-        Task<SurveyAssignment?> GetByIdAsync(int surveyId);
-        Task UpdateAsync(SurveyAssignment survey);
+        Task<SurveyResponseDto> AssignSurveyorAsync(int claimId, CreateSurveyDto dto);
+        Task<List<SurveyResponseDto>> GetSurveysByClaimIdAsync(int claimId);
+        Task<SurveyResponseDto?> SubmitSurveyReportAsync(int surveyId, SurveyReportDto dto);
     }
 }

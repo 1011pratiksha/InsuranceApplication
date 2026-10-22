@@ -1,3 +1,5 @@
+using AutoMapper;
+using ClaimManagement.Application.DTO;
 using ClaimManagement.Application.Interface;
 using ClaimManagement.Domain.Entities;
 using ClaimManagement.Infrastructure.Data;
@@ -7,59 +9,77 @@ namespace ClaimManagement.Infrastructure.Repository
 {
     public class ClaimRepository : IClaimRepository
     {
-        private readonly AppDbContext context;
+        AppDbContext context;
+        IMapper mapper;
 
-        public ClaimRepository(AppDbContext context)
+        public ClaimRepository(AppDbContext context, IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
 
-        public async Task<Claim> AddAsync(Claim claim)
+        public async Task<ClaimResponseDto> AddClaimAsync(CreateClaimDto dto)
         {
+            var claim = mapper.Map<Claim>(dto);
+            claim.ClaimNumber = "CLM-" + Guid.NewGuid().ToString("N").Substring(0, 12).ToUpper();
+            claim.ClaimDate = DateTime.UtcNow;
+            claim.ClaimStatus = "Registered";
+
             await context.Claims.AddAsync(claim);
             await context.SaveChangesAsync();
 
-            return claim;
+            return mapper.Map<ClaimResponseDto>(claim);
         }
 
-        public async Task<List<Claim>> GetAllAsync()
+        public async Task<List<ClaimResponseDto>> GetAllClaimsAsync()
         {
-            return await context.Claims
-                .AsNoTracking()
-                .OrderByDescending(c => c.ClaimDate)
-                .ToListAsync();
+            var data = await context.Claims.OrderByDescending(c => c.ClaimDate).ToListAsync();
+            return mapper.Map<List<ClaimResponseDto>>(data);
         }
 
-        public async Task<Claim?> GetByIdAsync(long claimId)
+        // Returns null if the claim is not found
+        public async Task<ClaimResponseDto?> GetClaimByIdAsync(long claimId)
         {
-            return await context.Claims
-                .AsNoTracking()
-                .FirstOrDefaultAsync(c => c.ClaimId == claimId);
-        }
-
-        public async Task<bool> ExistsAsync(long claimId)
-        {
-            return await context.Claims
-                .AnyAsync(c => c.ClaimId == claimId);
-        }
-
-        public async Task UpdateAsync(Claim claim)
-        {
-            context.Claims.Update(claim);
-            await context.SaveChangesAsync();
-        }
-
-        public async Task<bool> DeleteAsync(long claimId)
-        {
-            var claim = await context.Claims.FindAsync((int)claimId);
-
+            var claim = await context.Claims.FirstOrDefaultAsync(c => c.ClaimId == claimId);
             if (claim == null)
-                return false;
+                return null;
+
+            return mapper.Map<ClaimResponseDto>(claim);
+        }
+
+        // Returns "" when updated, otherwise the error message
+        public async Task<string> UpdateClaimAsync(long claimId, UpdateClaimDto dto)
+        {
+            var claim = await context.Claims.FirstOrDefaultAsync(c => c.ClaimId == claimId);
+            if (claim == null)
+                return "Claim not found.";
+
+            if (claim.ClaimStatus != "Registered")
+                return "Only registered claims can be updated.";
+
+            if (dto.IncidentDate == DateTime.MinValue || dto.IncidentDate.Date > DateTime.UtcNow.Date)
+                return "Invalid incident date.";
+
+            mapper.Map(dto, claim);
+            await context.SaveChangesAsync();
+
+            return "";
+        }
+
+        // Returns "" when deleted, otherwise the error message
+        public async Task<string> DeleteClaimAsync(long claimId)
+        {
+            var claim = await context.Claims.FirstOrDefaultAsync(c => c.ClaimId == claimId);
+            if (claim == null)
+                return "Claim not found.";
+
+            if (claim.ClaimStatus != "Registered")
+                return "Only registered claims can be deleted.";
 
             context.Claims.Remove(claim);
             await context.SaveChangesAsync();
 
-            return true;
+            return "";
         }
     }
 }
