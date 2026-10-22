@@ -1,29 +1,41 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\",
+  "WorkspaceRootPath": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|c:\\users\\admin\\documents\\abhishek1305masstech\\insuranceappproject\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance.infrastructure\\repositories\\policystatusservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|c:\\users\\admin\\source\\repos\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|solutionrelative:policyissuance\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DDECDD6B-4190-45ED-94B8-C8AE77D95423}|PolicyIssuance.Domain\\PolicyIssuance.Domain.csproj|c:\\users\\admin\\source\\repos\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance.domain\\entities\\policy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DDECDD6B-4190-45ED-94B8-C8AE77D95423}|PolicyIssuance.Domain\\PolicyIssuance.Domain.csproj|solutionrelative:policyissuance.domain\\entities\\policy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|c:\\users\\admin\\source\\repos\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance\\controllers\\policiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|solutionrelative:policyissuance\\controllers\\policiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|c:\\users\\admin\\source\\repos\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance.infrastructure\\repositories\\policystatusservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|solutionrelative:policyissuance.infrastructure\\repositories\\policystatusservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|c:\\users\\admin\\documents\\abhishek1305masstech\\insuranceappproject\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance.infrastructure\\repositories\\policyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|solutionrelative:policyissuance.infrastructure\\repositories\\policyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|c:\\users\\admin\\documents\\abhishek1305masstech\\insuranceappproject\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance.infrastructure\\repositories\\policyendorsementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|solutionrelative:policyissuance.infrastructure\\repositories\\policyendorsementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|c:\\users\\admin\\documents\\abhishek1305masstech\\insuranceappproject\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance.infrastructure\\repositories\\policydocumentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|solutionrelative:policyissuance.infrastructure\\repositories\\policydocumentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|c:\\users\\admin\\documents\\abhishek1305masstech\\insuranceappproject\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance.infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|c:\\users\\admin\\source\\repos\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance.infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|solutionrelative:policyissuance.infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|c:\\users\\admin\\documents\\abhishek1305masstech\\insuranceappproject\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|c:\\users\\admin\\source\\repos\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance.infrastructure\\repositories\\policyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|solutionrelative:policyissuance.infrastructure\\repositories\\policyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|c:\\users\\admin\\source\\repos\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance.infrastructure\\repositories\\policyendorsementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|solutionrelative:policyissuance.infrastructure\\repositories\\policyendorsementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|c:\\users\\admin\\source\\repos\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance.infrastructure\\repositories\\policydocumentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB7514E5-91D6-47F9-A9F5-1A3C55891BC6}|PolicyIssuance.Infrastructure\\PolicyIssuance.Infrastructure.csproj|solutionrelative:policyissuance.infrastructure\\repositories\\policydocumentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|c:\\users\\admin\\source\\repos\\insuranceapplication\\backend\\policyissuance\\policyissuance\\policyissuance\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CC9A79BC-6253-4AC0-B7D0-ABA145573619}|PolicyIssuance\\PolicyIssuance.csproj|solutionrelative:policyissuance\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -34,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 35,
+          "SelectedChildIndex": 30,
           "Children": [
             {
               "$type": "Bookmark",
@@ -47,10 +59,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
@@ -75,10 +83,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Bookmark",
@@ -166,50 +170,86 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PolicyService.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyService.cs",
-              "RelativeDocumentMoniker": "PolicyIssuance.Infrastructure\\Repositories\\PolicyService.cs",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyService.cs",
-              "RelativeToolTip": "PolicyIssuance.Infrastructure\\Repositories\\PolicyService.cs",
-              "ViewState": "AgIAAN8AAAAAAAAAAAAcwAEBAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-22T08:40:58.972Z",
+              "DocumentIndex": 0,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "PolicyIssuance\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance\\Properties\\launchSettings.json",
+              "RelativeToolTip": "PolicyIssuance\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAiwB8AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-10-22T15:30:07.455Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "PoliciesController.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance\\Controllers\\PoliciesController.cs",
+              "RelativeDocumentMoniker": "PolicyIssuance\\Controllers\\PoliciesController.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance\\Controllers\\PoliciesController.cs",
+              "RelativeToolTip": "PolicyIssuance\\Controllers\\PoliciesController.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAgwDIAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-22T15:15:10.445Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Policy.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Domain\\Entities\\Policy.cs",
+              "RelativeDocumentMoniker": "PolicyIssuance.Domain\\Entities\\Policy.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Domain\\Entities\\Policy.cs",
+              "RelativeToolTip": "PolicyIssuance.Domain\\Entities\\Policy.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-22T15:01:36.134Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PolicyService.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyService.cs",
+              "RelativeDocumentMoniker": "PolicyIssuance.Infrastructure\\Repositories\\PolicyService.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyService.cs",
+              "RelativeToolTip": "PolicyIssuance.Infrastructure\\Repositories\\PolicyService.cs",
+              "ViewState": "AgIAAN8AAAAAAAAAAAAcwAEBAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-22T08:40:58.972Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "PolicyEndorsementService.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyEndorsementService.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyEndorsementService.cs",
               "RelativeDocumentMoniker": "PolicyIssuance.Infrastructure\\Repositories\\PolicyEndorsementService.cs",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyEndorsementService.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyEndorsementService.cs",
               "RelativeToolTip": "PolicyIssuance.Infrastructure\\Repositories\\PolicyEndorsementService.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAEQAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-22T08:36:42.952Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-22T08:36:42.952Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PolicyDocumentService.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyDocumentService.cs",
+              "RelativeDocumentMoniker": "PolicyIssuance.Infrastructure\\Repositories\\PolicyDocumentService.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyDocumentService.cs",
+              "RelativeToolTip": "PolicyIssuance.Infrastructure\\Repositories\\PolicyDocumentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHUAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-22T08:33:08.661Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "PolicyDocumentService.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyDocumentService.cs",
-              "RelativeDocumentMoniker": "PolicyIssuance.Infrastructure\\Repositories\\PolicyDocumentService.cs",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyDocumentService.cs",
-              "RelativeToolTip": "PolicyIssuance.Infrastructure\\Repositories\\PolicyDocumentService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHUAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-22T08:33:08.661Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "PolicyStatusService.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyStatusService.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyStatusService.cs",
               "RelativeDocumentMoniker": "PolicyIssuance.Infrastructure\\Repositories\\PolicyStatusService.cs",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyStatusService.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Repositories\\PolicyStatusService.cs",
               "RelativeToolTip": "PolicyIssuance.Infrastructure\\Repositories\\PolicyStatusService.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAArwDQAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -220,27 +260,37 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Data\\AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "PolicyIssuance.Infrastructure\\Data\\AppDbContext.cs",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance.Infrastructure\\Data\\AppDbContext.cs",
               "RelativeToolTip": "PolicyIssuance.Infrastructure\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAQwA4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-22T08:32:06.856Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-22T08:32:06.856Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance\\Program.cs",
               "RelativeDocumentMoniker": "PolicyIssuance\\Program.cs",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\InsuranceAppProject\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance\\Program.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\PolicyIssuance\\PolicyIssuance\\PolicyIssuance\\Program.cs",
               "RelativeToolTip": "PolicyIssuance\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-22T08:30:24.061Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-22T08:30:24.061Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         },

@@ -18,10 +18,7 @@ namespace InsuranceAgent.Domain.Entities
         public int AgentId { get; set; }
         public Agent Agent { get; set; }
 
-
-        [ForeignKey("PolicyId")]
         public int PolicyId { get; set; }
-        public Policy Policy { get; set; }
 
 
         public decimal PremiumAmount { get; set; }

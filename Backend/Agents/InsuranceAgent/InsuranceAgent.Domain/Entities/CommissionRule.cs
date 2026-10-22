@@ -14,9 +14,9 @@ namespace InsuranceAgent.Domain.Entities
         public int CommissionRuleId { get; set; }
 
 
-        [ForeignKey("ProductId")]
+        //[ForeignKey("ProductId")]
         public int ProductId { get; set; }
-        public Product Product { get; set; }
+        //public Product Product { get; set; }
        
 
         public decimal CommissionPercentage { get; set; }

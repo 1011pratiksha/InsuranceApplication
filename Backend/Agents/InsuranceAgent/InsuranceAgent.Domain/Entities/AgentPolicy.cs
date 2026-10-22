@@ -19,15 +19,11 @@ namespace InsuranceAgent.Domain.Entities
         public Agent Agent { get; set; }
 
 
-        [ForeignKey("PolicyId")]
         public int PolicyId { get; set; }
-        public Policy Policy { get; set; }
 
 
 
-        [ForeignKey("CustomerId")]
         public int CustomerId { get; set; }
-        public Customer Customer { get; set; }
 
 
         public DateTime AssignedDate { get; set; }

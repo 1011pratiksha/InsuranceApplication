@@ -20,9 +20,9 @@ namespace InsuranceAgent.Domain.Entities
         public Agent Agent { get; set; }
 
 
-        [ForeignKey("CustomerId")]
+        //[ForeignKey("CustomerId")]
         public int CustomerId { get; set; }
-        public Customer Customer { get; set; }
+        //public Customer Customer { get; set; }
 
 
         public DateTime AssignedDate { get; set; }

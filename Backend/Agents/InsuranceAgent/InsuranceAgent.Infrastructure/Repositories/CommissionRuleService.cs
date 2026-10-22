@@ -24,27 +24,27 @@ namespace InsuranceAgent.Infrastructure.Repositories
         public async Task CreateCommissionRule(CreateCommissionRuleDto dto)
         {
 
-            var productExists = await data.Products.AnyAsync(p => p.ProductId == dto.ProductId);
+            //var productExists = await data.Products.AnyAsync(p => p.ProductId == dto.ProductId);
 
-            if (!productExists)
-            {
-                throw new Exception("Product not found.");
-            }
+            //if (!productExists)
+            //{
+            //    throw new Exception("Product not found.");
+            //}
 
 
-            var commissionRule = new CommissionRule
-            {
-                ProductId = dto.ProductId,
-                CommissionPercentage = dto.CommissionPercentage,
-                EffectiveFrom = dto.EffectiveFrom,
-                EffectiveTo = dto.EffectiveTo,
-                IsActive = dto.IsActive,
-                CreatedAt = DateTime.Now
-            };
+            //var commissionRule = new CommissionRule
+            //{
+            //    ProductId = dto.ProductId,
+            //    CommissionPercentage = dto.CommissionPercentage,
+            //    EffectiveFrom = dto.EffectiveFrom,
+            //    EffectiveTo = dto.EffectiveTo,
+            //    IsActive = dto.IsActive,
+            //    CreatedAt = DateTime.Now
+            //};
 
-            await data.CommissionRules.AddAsync(commissionRule);
+            //await data.CommissionRules.AddAsync(commissionRule);
 
-            await data.SaveChangesAsync();
+            //await data.SaveChangesAsync();
         }
 
 

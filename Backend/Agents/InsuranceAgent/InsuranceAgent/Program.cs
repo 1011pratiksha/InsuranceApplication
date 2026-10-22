@@ -1,4 +1,5 @@
 using InsuranceAgent.Application.Interfaces;
+using InsuranceAgent.Application.Mapper;
 using InsuranceAgent.Infrastructure.Data;
 using InsuranceAgent.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,12 @@ builder.Services.AddScoped<IAgentPolicyService, AgentPolicyService>();
 builder.Services.AddScoped<ICommissionRuleService, CommissionRuleService>();
 builder.Services.AddScoped<IAgentCommissionService, AgentCommissionService>();
 builder.Services.AddScoped<ICommissionPaymentService, CommissionPaymentService>();
+
+
+builder.Services.AddHttpClient<PolicyClient>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7083/");
+});
 
 
 

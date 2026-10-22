@@ -18,8 +18,4 @@
     <ProjectReference Include="..\InsuranceAgent.Domain\InsuranceAgent.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Mapper\" />
-  </ItemGroup>
-
 </Project>
