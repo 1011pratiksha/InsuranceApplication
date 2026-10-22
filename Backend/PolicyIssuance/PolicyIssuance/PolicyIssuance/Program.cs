@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using PolicyIssuance.Application.Interfaces;
 using PolicyIssuance.Application.Mapper;
 using PolicyIssuance.Infrastructure.Data;
+using PolicyIssuance.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,15 +12,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("dbconn")
-    )
-);
+builder.Services.AddDbContext<AppDbContext>(options =>options.UseSqlServer(builder.Configuration.GetConnectionString("dbconn")));
 
-builder.Services.AddScoped<PolicyIssuance.Application.Interfaces.IPolicyService, PolicyIssuance.Infrastructure.Repositories.PolicyService>();
-builder.Services.AddScoped<PolicyIssuance.Application.Interfaces.IPolicyEndorsementService, PolicyIssuance.Infrastructure.Repositories.PolicyEndorsementService>();
-builder.Services.AddScoped<PolicyIssuance.Application.Interfaces.IPolicyDocumentService, PolicyIssuance.Infrastructure.Repositories.PolicyDocumentService>();
+builder.Services.AddScoped<IPolicyService, PolicyService>();
+builder.Services.AddScoped<IPolicyEndorsementService, PolicyEndorsementService>();
+builder.Services.AddScoped<IPolicyDocumentService, PolicyDocumentService>();
+builder.Services.AddScoped<IPolicyStatusService, PolicyStatusService>();
+
 builder.Services.AddAutoMapper(typeof(PolicyIssuanceMapper));
 
 var app = builder.Build();

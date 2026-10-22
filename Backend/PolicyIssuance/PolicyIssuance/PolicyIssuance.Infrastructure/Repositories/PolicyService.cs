@@ -13,30 +13,30 @@ namespace PolicyIssuance.Infrastructure.Repositories
 {
     public class PolicyService : IPolicyService
     {
-        AppDbContext db;
+        AppDbContext dbcontext;
         IMapper mapper;
 
-        public PolicyService(AppDbContext db, IMapper mapper)
+        public PolicyService(AppDbContext dbcontext, IMapper mapper)
         {
-            this.db = db;
+            this.dbcontext = dbcontext;
             this.mapper = mapper;
         }
 
         public async Task<PolicyDetailDto> IssuePolicyAsync(IssuePolicyDto dto)
         {
-            var quote = await db.Quotes.FindAsync(dto.QuoteId);
+            var quote = await dbcontext.Quotes.FindAsync(dto.QuoteId);
             if (quote == null)
             {
                 throw new Exception("Quote not found");
             }
 
-            var customer = await db.Customers.FindAsync(dto.CustomerId);
+            var customer = await dbcontext.Customers.FindAsync(dto.CustomerId);
             if (customer == null)
             {
                 throw new Exception("Customer not found");
             }
 
-            var product = await db.InsuranceProducts.FindAsync(dto.ProductId);
+            var product = await dbcontext.InsuranceProducts.FindAsync(dto.ProductId);
             if (product == null)
             {
                 throw new Exception("Product not found");
@@ -73,20 +73,20 @@ namespace PolicyIssuance.Infrastructure.Repositories
                 Remarks = "Policy created in draft status"
             });
 
-            db.Policies.Add(policy);
-            await db.SaveChangesAsync();
+            dbcontext.Policies.Add(policy);
+            await dbcontext.SaveChangesAsync();
             return mapper.Map<PolicyDetailDto>(policy);
         }
 
         public async Task<List<PolicyDto>> GetAllPoliciesAsync()
         {
-            var policies = await db.Policies.ToListAsync();
+            var policies = await dbcontext.Policies.ToListAsync();
             return mapper.Map<List<PolicyDto>>(policies);
         }
 
         public async Task<PolicyDetailDto?> GetPolicyByIdAsync(int id)
         {
-            var policy = await db.Policies
+            var policy = await dbcontext.Policies
                 .Include(p => p.PolicyCoverages)
                 .Include(p => p.PolicyRiders)
                 .Include(p => p.PolicyDocuments)
@@ -104,7 +104,7 @@ namespace PolicyIssuance.Infrastructure.Repositories
 
         public async Task<PolicyDetailDto?> UpdatePolicyAsync(int id, UpdatePolicyDto dto)
         {
-            var policy = await db.Policies
+            var policy = await dbcontext.Policies
                 .Include(p => p.PolicyCoverages)
                 .Include(p => p.PolicyRiders)
                 .Include(p => p.PolicyDocuments)
@@ -139,14 +139,13 @@ namespace PolicyIssuance.Infrastructure.Repositories
                 Remarks = "Policy details updated"
             });
 
-            await db.SaveChangesAsync();
-
+            await dbcontext.SaveChangesAsync();
             return mapper.Map<PolicyDetailDto>(policy);
         }
 
         public async Task<bool> DeletePolicyAsync(int id)
         {
-            var policy = await db.Policies.FindAsync(id);
+            var policy = await dbcontext.Policies.FindAsync(id);
 
             if (policy == null)
             {
@@ -155,7 +154,7 @@ namespace PolicyIssuance.Infrastructure.Repositories
 
             policy.PolicyStatus = "Cancelled";
 
-            db.PolicyHistories.Add(new PolicyHistory
+            dbcontext.PolicyHistories.Add(new PolicyHistory
             {
                 PolicyId = id,
                 Action = "POLICY_CANCELLED",
@@ -163,14 +162,14 @@ namespace PolicyIssuance.Infrastructure.Repositories
                 Remarks = "Policy cancelled via delete request"
             });
 
-            await db.SaveChangesAsync();
+            await dbcontext.SaveChangesAsync();
 
             return true;
         }
 
         public async Task<bool> ActivatePolicyAsync(int id)
         {
-            var policy = await db.Policies.FindAsync(id);
+            var policy = await dbcontext.Policies.FindAsync(id);
 
             if (policy == null)
             {
@@ -179,7 +178,7 @@ namespace PolicyIssuance.Infrastructure.Repositories
 
             policy.PolicyStatus = "Active";
 
-            db.PolicyHistories.Add(new PolicyHistory
+            dbcontext.PolicyHistories.Add(new PolicyHistory
             {
                 PolicyId = id,
                 Action = "POLICY_ACTIVATED",
@@ -187,13 +186,13 @@ namespace PolicyIssuance.Infrastructure.Repositories
                 Remarks = "Policy activated after payment confirmation"
             });
 
-            await db.SaveChangesAsync();
+            await dbcontext.SaveChangesAsync();
             return true;
         }
 
         public async Task<bool> SuspendPolicyAsync(int id)
         {
-            var policy = await db.Policies.FindAsync(id);
+            var policy = await dbcontext.Policies.FindAsync(id);
 
             if (policy == null)
             {
@@ -202,7 +201,7 @@ namespace PolicyIssuance.Infrastructure.Repositories
 
             policy.PolicyStatus = "Suspended";
 
-            db.PolicyHistories.Add(new PolicyHistory
+            dbcontext.PolicyHistories.Add(new PolicyHistory
             {
                 PolicyId = id,
                 Action = "POLICY_SUSPENDED",
@@ -210,13 +209,13 @@ namespace PolicyIssuance.Infrastructure.Repositories
                 Remarks = "Policy suspended"
             });
 
-            await db.SaveChangesAsync();
+            await dbcontext.SaveChangesAsync();
             return true;
         }
 
         public async Task<bool> CancelPolicyAsync(int id)
         {
-            var policy = await db.Policies.FindAsync(id);
+            var policy = await dbcontext.Policies.FindAsync(id);
 
             if (policy == null)
             {
@@ -225,7 +224,7 @@ namespace PolicyIssuance.Infrastructure.Repositories
 
             policy.PolicyStatus = "Cancelled";
 
-            db.PolicyHistories.Add(new PolicyHistory
+            dbcontext.PolicyHistories.Add(new PolicyHistory
             {
                 PolicyId = id,
                 Action = "POLICY_CANCELLED",
@@ -233,13 +232,13 @@ namespace PolicyIssuance.Infrastructure.Repositories
                 Remarks = "Policy cancelled by admin"
             });
 
-            await db.SaveChangesAsync();
+            await dbcontext.SaveChangesAsync();
             return true;
         }
 
         public async Task<bool> ExpirePolicyAsync(int id)
         {
-            var policy = await db.Policies.FindAsync(id);
+            var policy = await dbcontext.Policies.FindAsync(id);
 
             if (policy == null)
             {
@@ -248,7 +247,7 @@ namespace PolicyIssuance.Infrastructure.Repositories
 
             policy.PolicyStatus = "Expired";
 
-            db.PolicyHistories.Add(new PolicyHistory
+            dbcontext.PolicyHistories.Add(new PolicyHistory
             {
                 PolicyId = id,
                 Action = "POLICY_EXPIRED",
@@ -256,7 +255,7 @@ namespace PolicyIssuance.Infrastructure.Repositories
                 Remarks = "Policy expired"
             });
 
-            await db.SaveChangesAsync();
+            await dbcontext.SaveChangesAsync();
             return true;
         }
     }
