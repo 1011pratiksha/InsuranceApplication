@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PremiumPayment.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ecfd4f20eaf8de3844c1cafde8569726c151744")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+acc3b10b613f5f7423834ae188a1f6a0addcb5f3")]
 [assembly: System.Reflection.AssemblyProductAttribute("PremiumPayment.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PremiumPayment.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
