@@ -32,6 +32,11 @@ builder.Services.AddHttpClient<PolicyClient>(client =>
 });
 
 
+builder.Services.AddHttpClient<PremiumCalculationClient>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7227/");
+});
+
 
 var app = builder.Build();
 
