@@ -3,6 +3,7 @@ using PolicyIssuance.Application.Interfaces;
 using PolicyIssuance.Application.Mapper;
 using PolicyIssuance.Infrastructure.Data;
 using PolicyIssuance.Infrastructure.Repositories;
+using PolicyIssuance.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,28 @@ builder.Services.AddScoped<IPolicyDocumentService, PolicyDocumentService>();
 builder.Services.AddScoped<IPolicyStatusService, PolicyStatusService>();
 
 builder.Services.AddAutoMapper(typeof(PolicyIssuanceMapper));
+
+// Register HTTP clients for other modules.
+string GetServiceUrl(string name) =>
+    builder.Configuration[$"ServiceUrls:{name}"]
+    ?? throw new InvalidOperationException(
+        $"Missing ServiceUrls:{name} configuration.");
+
+foreach (var name in new[]
+{
+    "Customer", "Kyc", "Product", "Quote",
+    "Underwriting", "Payment", "Document", "Notification"
+})
+{
+    builder.Services.AddHttpClient(name, client =>
+    {
+        client.BaseAddress = new Uri(GetServiceUrl(name));
+        client.Timeout = TimeSpan.FromSeconds(15);
+    });
+}
+
+builder.Services.AddScoped<
+    IPolicyIntegrationService, PolicyIntegrationService>();
 
 var app = builder.Build();
 
