@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj": {}
+    "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj": {
+    "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj",
+        "projectUniqueName": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj",
         "projectName": "PremiumPayment.Domain",
-        "projectPath": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj",
+        "projectPath": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj",
         "packagesPath": "C:\\Users\\Pratiksha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\obj\\",
+        "outputPath": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -52,6 +52,10 @@
           "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[16.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.0, )"
