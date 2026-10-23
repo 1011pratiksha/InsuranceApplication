@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KycVerification.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ecfd4f20eaf8de3844c1cafde8569726c151744")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f7f3b668fb6bbcfd0577e7a8807dafaa08dec65f")]
 [assembly: System.Reflection.AssemblyProductAttribute("KycVerification.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KycVerification.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
