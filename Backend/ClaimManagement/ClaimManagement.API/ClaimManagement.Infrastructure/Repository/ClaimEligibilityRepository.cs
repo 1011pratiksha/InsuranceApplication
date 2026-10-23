@@ -13,8 +13,6 @@ namespace ClaimManagement.Infrastructure.Repository
             this.context = context;
         }
 
-        // Returns "" if eligible, otherwise the error message
-        // Note: Customer, Policy, Coverage and Premium checks are done via HttpClient (other microservices)
         public async Task<string> CheckEligibilityAsync(CreateClaimDto dto)
         {
             // Incident date validation

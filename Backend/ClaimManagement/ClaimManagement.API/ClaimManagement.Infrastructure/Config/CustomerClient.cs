@@ -1,14 +1,8 @@
 using System.Net.Http.Json;
+using ClaimManagement.Application.DTO;
 
 namespace ClaimManagement.Infrastructure.Config
 {
-    public class CustomerDto
-    {
-        public int customer_id { get; set; }
-        public string customer_name { get; set; } = string.Empty;
-        public string customer_status { get; set; } = string.Empty;
-    }
-
     public class CustomerClient
     {
         HttpClient client;
