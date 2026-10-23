@@ -6,57 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PolicyIssuance.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class qq : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Customers",
-                columns: table => new
-                {
-                    CustomerId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MaritalStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Occupation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AnnualIncome = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
-                    MobileNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CustomerStatus = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Customers", x => x.CustomerId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "InsuranceProducts",
-                columns: table => new
-                {
-                    ProductId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    ProductCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MinimumAge = table.Column<int>(type: "int", nullable: false),
-                    MaximumAge = table.Column<int>(type: "int", nullable: false),
-                    MinimumSumInsured = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
-                    MaximumSumInsured = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_InsuranceProducts", x => x.ProductId);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Policies",
                 columns: table => new
@@ -75,62 +29,6 @@ namespace PolicyIssuance.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Policies", x => x.PolicyId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Quotes",
-                columns: table => new
-                {
-                    QuoteId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    QuoteNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    PolicyTerm = table.Column<int>(type: "int", nullable: false),
-                    SumInsured = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
-                    PremiumFrequencyId = table.Column<int>(type: "int", nullable: false),
-                    QuoteDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    QuoteStatus = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Quotes", x => x.QuoteId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RiderMasters",
-                columns: table => new
-                {
-                    RiderId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    RiderName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RiderDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RiderPremium = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RiderMasters", x => x.RiderId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
@@ -272,12 +170,6 @@ namespace PolicyIssuance.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Customers");
-
-            migrationBuilder.DropTable(
-                name: "InsuranceProducts");
-
-            migrationBuilder.DropTable(
                 name: "PolicyCoverages");
 
             migrationBuilder.DropTable(
@@ -291,15 +183,6 @@ namespace PolicyIssuance.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "PolicyRiders");
-
-            migrationBuilder.DropTable(
-                name: "Quotes");
-
-            migrationBuilder.DropTable(
-                name: "RiderMasters");
-
-            migrationBuilder.DropTable(
-                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Policies");
