@@ -30,7 +30,7 @@ namespace InsuranceAgent.Infrastructure.Repositories
 
         public async Task CalculateCommission(CalculateCommissionDto dto)
         {
-            // 1. Policy service madhun policy milva
+          
             var policy = await policyClient.GetPolicyById(dto.PolicyId);
 
             if (policy == null)
@@ -38,9 +38,9 @@ namespace InsuranceAgent.Infrastructure.Repositories
                 throw new Exception("Policy not found.");
             }
 
-            // 2. QuoteId vaprun actual premium milva
-            var premiumDetails =
-                await premiumCalculationClient.GetPremiumByQuoteId(policy.QuoteId);
+            
+            var premiumDetails = await premiumCalculationClient.GetPremiumByQuoteId(policy.QuoteId);
+
 
             if (premiumDetails == null)
             {
@@ -49,20 +49,18 @@ namespace InsuranceAgent.Infrastructure.Repositories
 
             decimal premium = premiumDetails.final_premium;
 
-            // 3. ProductId nusar active commission rule shodha
-            var rule = await data.CommissionRules
-                .FirstOrDefaultAsync(r =>
-                    r.ProductId == policy.ProductId && r.IsActive);
+         
+            var rule = await data.CommissionRules.FirstOrDefaultAsync(r =>r.ProductId == policy.ProductId && r.IsActive);
 
             if (rule == null)
             {
                 throw new Exception("Commission rule not found.");
             }
 
-            // 4. Commission calculate kara
+            
             decimal amount = premium * rule.CommissionPercentage / 100;
 
-            // 5. Commission record tayar kara
+            
             var commission = new AgentCommission
             {
                 AgentId = dto.AgentId,
@@ -77,15 +75,8 @@ namespace InsuranceAgent.Infrastructure.Repositories
 
             data.AgentCommissions.Add(commission);
 
-            try
-            {
-                await data.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-                throw;
-            }
+            await data.SaveChangesAsync();
+            
         }
 
 
@@ -135,6 +126,9 @@ namespace InsuranceAgent.Infrastructure.Repositories
                 CreatedAt = c.CreatedAt
             }).ToList();
         }
+
+
+
 
         public async Task UpdateCommissionStatus(int commissionId, CommissionStatusUpdateDto dto)
         {
