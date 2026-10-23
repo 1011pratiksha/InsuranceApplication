@@ -6,33 +6,38 @@ using QuoteGenerationMS.Application.Interface;
 using QuoteGenerationMS.Domain.Entities;
 using QuoteGenerationMS.Infrastructure.Data;
 
-namespace QuoteGenerationMS.Infrastructure.Services
+namespace QuoteGenerationMS.Infrastructure.Repositories
 {
     public class QuoteService : IQuoteService
     {
         private readonly AppDbContext db;
         private readonly IMapper mapper;
         private readonly IProductManagementClient productClient;
+        private readonly IUnderwritingClient underwritingClient;
 
         public QuoteService(
             AppDbContext db,
             IMapper mapper,
-            IProductManagementClient productClient)
+            IProductManagementClient productClient,
+            IUnderwritingClient underwritingClient)
         {
             this.db = db;
             this.mapper = mapper;
             this.productClient = productClient;
+            this.underwritingClient = underwritingClient;
         }
 
         public async Task CreateQuote(createQuoteDTO dto)
         {
-            // Call Product Management to fetch the product
-            var product = await productClient.GetProductById(dto.product_id);
+            // Fetch product from Product Management MS
+            var product =
+                await productClient.GetProductById(dto.product_id);
 
             if (product == null)
-                throw new Exception("Product not found in Product Management.");
+                throw new Exception(
+                    "Product not found in Product Management.");
 
-            // Only active products can be used for quotes
+            // Only active products can be quoted
             if (!string.Equals(
                 product.status,
                 "Active",
@@ -42,7 +47,7 @@ namespace QuoteGenerationMS.Infrastructure.Services
                     "Cannot create quote because the product is inactive.");
             }
 
-            // Validate sum insured against product limits
+            // Validate sum insured
             if (dto.sum_insured < product.minimum_sum_insured ||
                 dto.sum_insured > product.maximum_sum_insured)
             {
@@ -52,7 +57,7 @@ namespace QuoteGenerationMS.Infrastructure.Services
                     $"{product.maximum_sum_insured}.");
             }
 
-            // Existing quote creation logic
+            // Create quote
             var d = mapper.Map<quote>(dto);
 
             d.quote_id = 0;
@@ -65,17 +70,62 @@ namespace QuoteGenerationMS.Infrastructure.Services
             await db.quote.AddAsync(d);
             await db.SaveChangesAsync();
 
-            var history = new quote_history
+            // Add quote history
+            await db.quote_history.AddAsync(new quote_history
             {
                 quote_id = d.quote_id,
                 action = "Quote Created",
                 performed_by = 0,
                 remarks = "Quote created with Pending status.",
                 action_date = DateTime.Now
+            });
+
+            await db.SaveChangesAsync();
+        }
+
+        // Send a pending quote to Underwriting MS
+        public async Task<int> SendQuoteForUnderwriting(
+            int quoteId,
+            int customerId)
+        {
+            var quote = await db.quote.FindAsync(quoteId);
+
+            if (quote == null)
+                throw new Exception("Quote not found.");
+
+            if (quote.quote_status != "Pending")
+                throw new Exception(
+                    "Only Pending quotes can be sent for underwriting.");
+
+            if (customerId <= 0)
+                throw new Exception("Invalid customer ID.");
+
+            // Prepare request for Underwriting MS
+            var request = new createUnderwritingRequestDTO
+            {
+                quote_id = quote.quote_id,
+                customer_id = customerId,
+                product_id = quote.product_id
             };
 
-            await db.quote_history.AddAsync(history);
+            // Call Underwriting MS
+            int underwritingId =
+                await underwritingClient.CreateCase(request);
+
+            // Record successful case creation in quote history
+            await db.quote_history.AddAsync(new quote_history
+            {
+                quote_id = quote.quote_id,
+                action = "Underwriting Case Created",
+                performed_by = 0,
+                remarks =
+                    $"Underwriting case created. ID: {underwritingId}",
+                action_date = DateTime.Now
+            });
+
             await db.SaveChangesAsync();
+
+            return underwritingId;
         }
 
         public async Task<List<quoteDTO>> GetAllQuotes()
@@ -103,7 +153,8 @@ namespace QuoteGenerationMS.Infrastructure.Services
                 throw new Exception("Quote not found.");
 
             if (d.quote_status != "Pending")
-                throw new Exception("Only Pending quotes can be updated.");
+                throw new Exception(
+                    "Only Pending quotes can be updated.");
 
             if (d.expiry_date < DateTime.Today)
             {
@@ -147,12 +198,15 @@ namespace QuoteGenerationMS.Infrastructure.Services
                 throw new Exception("Quote not found.");
 
             if (d.quote_status == "Converted")
-                throw new Exception("Converted quote cannot be cancelled.");
+                throw new Exception(
+                    "Converted quote cannot be cancelled.");
 
             if (d.quote_status == "Expired" ||
                 d.quote_status == "Rejected")
+            {
                 throw new Exception(
                     "Expired or rejected quote cannot be cancelled.");
+            }
 
             d.quote_status = "Rejected";
 

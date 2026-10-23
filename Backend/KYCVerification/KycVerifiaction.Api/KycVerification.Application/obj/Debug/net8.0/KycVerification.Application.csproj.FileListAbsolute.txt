@@ -1,0 +1,17 @@
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Application\bin\Debug\net8.0\KycVerification.Application.deps.json
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Application\bin\Debug\net8.0\KycVerification.Application.runtimeconfig.json
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Application\bin\Debug\net8.0\KycVerification.Application.dll
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Application\bin\Debug\net8.0\KycVerification.Application.pdb
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Application\bin\Debug\net8.0\KycVerification.Domain.dll
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Application\bin\Debug\net8.0\KycVerification.Domain.pdb
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Application\obj\Debug\net8.0\KycVerification.Application.csproj.AssemblyReference.cache
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Application\obj\Debug\net8.0\KycVerification.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Application\obj\Debug\net8.0\KycVerification.Application.AssemblyInfoInputs.cache
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Application\obj\Debug\net8.0\KycVerification.Application.AssemblyInfo.cs
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Application\obj\Debug\net8.0\KycVerification.Application.csproj.CoreCompileInputs.cache
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Application\obj\Debug\net8.0\KycVerif.63F1C4E8.Up2Date
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Application\obj\Debug\net8.0\KycVerification.Application.dll
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Application\obj\Debug\net8.0\refint\KycVerification.Application.dll
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Application\obj\Debug\net8.0\KycVerification.Application.pdb
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Application\obj\Debug\net8.0\KycVerification.Application.genruntimeconfig.cache
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Application\obj\Debug\net8.0\ref\KycVerification.Application.dll
