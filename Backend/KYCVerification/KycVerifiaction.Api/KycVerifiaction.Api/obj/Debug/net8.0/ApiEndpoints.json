@@ -1,0 +1,538 @@
+[
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.KycController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/kyc",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.KycController",
+    "Method": "Create",
+    "RelativePath": "api/v1/kyc",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "KycVerification.Application.DTO.CreateCustomerKycDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.KycController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/kyc/{kycId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "kycId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.KycController",
+    "Method": "Approve",
+    "RelativePath": "api/v1/kyc/{kycId}/approve",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "kycId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "KycVerification.Application.DTO.ReviewKycDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.KycController",
+    "Method": "GetDocuments",
+    "RelativePath": "api/v1/kyc/{kycId}/documents",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "kycId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.KycController",
+    "Method": "Reject",
+    "RelativePath": "api/v1/kyc/{kycId}/reject",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "kycId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "KycVerification.Application.DTO.ReviewKycDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.CkycDetailsController",
+    "Method": "Create",
+    "RelativePath": "api/v1/kyc/ckyc",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "details",
+        "Type": "KycVerification.Domain.Entities.CkycDetails",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.CkycDetailsController",
+    "Method": "Update",
+    "RelativePath": "api/v1/kyc/ckyc/{ckycId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ckycId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "details",
+        "Type": "KycVerification.Domain.Entities.CkycDetails",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.CkycDetailsController",
+    "Method": "GetByCustomerId",
+    "RelativePath": "api/v1/kyc/ckyc/customer/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.CustomerKycController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/kyc/customer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.CustomerKycController",
+    "Method": "Create",
+    "RelativePath": "api/v1/kyc/customer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "kyc",
+        "Type": "KycVerification.Domain.Entities.CustomerKyc",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.CustomerKycController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/kyc/customer/{kycId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "kycId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.CustomerKycController",
+    "Method": "Update",
+    "RelativePath": "api/v1/kyc/customer/{kycId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "kycId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "kyc",
+        "Type": "KycVerification.Domain.Entities.CustomerKyc",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.CustomerKycController",
+    "Method": "GetByCustomerId",
+    "RelativePath": "api/v1/kyc/customer/customer/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.DocumentTypeMasterController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/kyc/document-types",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.DocumentTypeMasterController",
+    "Method": "Create",
+    "RelativePath": "api/v1/kyc/document-types",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "documentType",
+        "Type": "KycVerification.Domain.Entities.DocumentTypeMaster",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.DocumentTypeMasterController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/kyc/document-types/{documentTypeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "documentTypeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.DocumentTypeMasterController",
+    "Method": "Update",
+    "RelativePath": "api/v1/kyc/document-types/{documentTypeId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "documentTypeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "documentType",
+        "Type": "KycVerification.Domain.Entities.DocumentTypeMaster",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.KycDocumentController",
+    "Method": "Create",
+    "RelativePath": "api/v1/kyc/documents",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "document",
+        "Type": "KycVerification.Domain.Entities.KycDocument",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.KycDocumentController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/kyc/documents/{documentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "documentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.KycDocumentController",
+    "Method": "Update",
+    "RelativePath": "api/v1/kyc/documents/{documentId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "documentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "document",
+        "Type": "KycVerification.Domain.Entities.KycDocument",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.KycController",
+    "Method": "RejectDocument",
+    "RelativePath": "api/v1/kyc/documents/{documentId}/reject",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "documentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "KycVerification.Application.DTO.ReviewKycDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.KycController",
+    "Method": "ReuploadDocument",
+    "RelativePath": "api/v1/kyc/documents/{documentId}/reupload",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "documentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "KycId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "DocumentType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DocumentNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "File",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.KycController",
+    "Method": "VerifyDocument",
+    "RelativePath": "api/v1/kyc/documents/{documentId}/verify",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "documentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "KycVerification.Application.DTO.ReviewKycDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.KycDocumentController",
+    "Method": "GetByKycId",
+    "RelativePath": "api/v1/kyc/documents/kyc/{kycId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "kycId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.KycDocumentController",
+    "Method": "Upload",
+    "RelativePath": "api/v1/kyc/documents/upload",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "KycId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "DocumentType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DocumentNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "File",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.KycVerificationLogController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/kyc/logs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.KycVerificationLogController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/kyc/logs/{logId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "logId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.KycVerificationLogController",
+    "Method": "GetByKycId",
+    "RelativePath": "api/v1/kyc/logs/kyc/{kycId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "kycId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KycVerifiaction.Api.Controllers.WeatherForecastController",
+    "Method": "Get",
+    "RelativePath": "WeatherForecast",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[KycVerifiaction.Api.WeatherForecast, KycVerifiaction.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetWeatherForecast"
+  }
+]

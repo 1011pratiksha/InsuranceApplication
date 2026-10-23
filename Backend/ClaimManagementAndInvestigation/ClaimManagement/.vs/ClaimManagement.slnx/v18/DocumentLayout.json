@@ -1,0 +1,723 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3DB5E1-3A14-A1F2-41EE-E899B6454B6A}|ClaimManagement.Infrastructure\\ClaimManagement.Infrastructure.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.infrastructure\\repository\\claimdocumentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3DB5E1-3A14-A1F2-41EE-E899B6454B6A}|ClaimManagement.Infrastructure\\ClaimManagement.Infrastructure.csproj|solutionrelative:claimmanagement.infrastructure\\repository\\claimdocumentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9A8904A-6617-B702-0431-9C9CD905952C}|ClaimManagement\\ClaimManagement.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement\\controllers\\claimscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9A8904A-6617-B702-0431-9C9CD905952C}|ClaimManagement\\ClaimManagement.csproj|solutionrelative:claimmanagement\\controllers\\claimscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9A8904A-6617-B702-0431-9C9CD905952C}|ClaimManagement\\ClaimManagement.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement\\controllers\\surveyscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9A8904A-6617-B702-0431-9C9CD905952C}|ClaimManagement\\ClaimManagement.csproj|solutionrelative:claimmanagement\\controllers\\surveyscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9A8904A-6617-B702-0431-9C9CD905952C}|ClaimManagement\\ClaimManagement.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement\\controllers\\claimdocumentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9A8904A-6617-B702-0431-9C9CD905952C}|ClaimManagement\\ClaimManagement.csproj|solutionrelative:claimmanagement\\controllers\\claimdocumentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3DB5E1-3A14-A1F2-41EE-E899B6454B6A}|ClaimManagement.Infrastructure\\ClaimManagement.Infrastructure.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.infrastructure\\repository\\claimrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3DB5E1-3A14-A1F2-41EE-E899B6454B6A}|ClaimManagement.Infrastructure\\ClaimManagement.Infrastructure.csproj|solutionrelative:claimmanagement.infrastructure\\repository\\claimrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3DB5E1-3A14-A1F2-41EE-E899B6454B6A}|ClaimManagement.Infrastructure\\ClaimManagement.Infrastructure.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.infrastructure\\repository\\claimeligibilityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3DB5E1-3A14-A1F2-41EE-E899B6454B6A}|ClaimManagement.Infrastructure\\ClaimManagement.Infrastructure.csproj|solutionrelative:claimmanagement.infrastructure\\repository\\claimeligibilityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3DB5E1-3A14-A1F2-41EE-E899B6454B6A}|ClaimManagement.Infrastructure\\ClaimManagement.Infrastructure.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.infrastructure\\repository\\surveyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3DB5E1-3A14-A1F2-41EE-E899B6454B6A}|ClaimManagement.Infrastructure\\ClaimManagement.Infrastructure.csproj|solutionrelative:claimmanagement.infrastructure\\repository\\surveyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.application\\dto\\createsurveydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|solutionrelative:claimmanagement.application\\dto\\createsurveydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.application\\dto\\claimdocumentresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|solutionrelative:claimmanagement.application\\dto\\claimdocumentresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7F3505D-C0FF-AF65-5E4B-A3B98EFC9B63}|ClaimManagement.Domain\\ClaimManagement.Domain.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.domain\\entities\\claimhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F3505D-C0FF-AF65-5E4B-A3B98EFC9B63}|ClaimManagement.Domain\\ClaimManagement.Domain.csproj|solutionrelative:claimmanagement.domain\\entities\\claimhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9A8904A-6617-B702-0431-9C9CD905952C}|ClaimManagement\\ClaimManagement.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9A8904A-6617-B702-0431-9C9CD905952C}|ClaimManagement\\ClaimManagement.csproj|solutionrelative:claimmanagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7F3505D-C0FF-AF65-5E4B-A3B98EFC9B63}|ClaimManagement.Domain\\ClaimManagement.Domain.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.domain\\entities\\surveyassignment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F3505D-C0FF-AF65-5E4B-A3B98EFC9B63}|ClaimManagement.Domain\\ClaimManagement.Domain.csproj|solutionrelative:claimmanagement.domain\\entities\\surveyassignment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.application\\mapper\\claimmappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|solutionrelative:claimmanagement.application\\mapper\\claimmappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.application\\interface\\isurveyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|solutionrelative:claimmanagement.application\\interface\\isurveyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.application\\dto\\surveyreportdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|solutionrelative:claimmanagement.application\\dto\\surveyreportdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.application\\interface\\iclaimdocumentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|solutionrelative:claimmanagement.application\\interface\\iclaimdocumentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.application\\dto\\createclaimdocumentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|solutionrelative:claimmanagement.application\\dto\\createclaimdocumentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.application\\interface\\iclaimrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|solutionrelative:claimmanagement.application\\interface\\iclaimrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7F3505D-C0FF-AF65-5E4B-A3B98EFC9B63}|ClaimManagement.Domain\\ClaimManagement.Domain.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.domain\\entities\\claimdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F3505D-C0FF-AF65-5E4B-A3B98EFC9B63}|ClaimManagement.Domain\\ClaimManagement.Domain.csproj|solutionrelative:claimmanagement.domain\\entities\\claimdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.application\\interface\\iclaimeligibilityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|solutionrelative:claimmanagement.application\\interface\\iclaimeligibilityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.application\\claimmanagement.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|solutionrelative:claimmanagement.application\\claimmanagement.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.application\\dto\\claimresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|solutionrelative:claimmanagement.application\\dto\\claimresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.application\\dto\\updateclaimdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|solutionrelative:claimmanagement.application\\dto\\updateclaimdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.application\\dto\\createclaimdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{977EDAEC-B9DA-4635-0DB5-A311BFA2CE48}|ClaimManagement.Application\\ClaimManagement.Application.csproj|solutionrelative:claimmanagement.application\\dto\\createclaimdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9A8904A-6617-B702-0431-9C9CD905952C}|ClaimManagement\\ClaimManagement.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E9A8904A-6617-B702-0431-9C9CD905952C}|ClaimManagement\\ClaimManagement.csproj|solutionrelative:claimmanagement\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7F3505D-C0FF-AF65-5E4B-A3B98EFC9B63}|ClaimManagement.Domain\\ClaimManagement.Domain.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.domain\\entities\\premiumschedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F3505D-C0FF-AF65-5E4B-A3B98EFC9B63}|ClaimManagement.Domain\\ClaimManagement.Domain.csproj|solutionrelative:claimmanagement.domain\\entities\\premiumschedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7F3505D-C0FF-AF65-5E4B-A3B98EFC9B63}|ClaimManagement.Domain\\ClaimManagement.Domain.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.domain\\entities\\premiumpayment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F3505D-C0FF-AF65-5E4B-A3B98EFC9B63}|ClaimManagement.Domain\\ClaimManagement.Domain.csproj|solutionrelative:claimmanagement.domain\\entities\\premiumpayment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7F3505D-C0FF-AF65-5E4B-A3B98EFC9B63}|ClaimManagement.Domain\\ClaimManagement.Domain.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.domain\\entities\\policycoverage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F3505D-C0FF-AF65-5E4B-A3B98EFC9B63}|ClaimManagement.Domain\\ClaimManagement.Domain.csproj|solutionrelative:claimmanagement.domain\\entities\\policycoverage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7F3505D-C0FF-AF65-5E4B-A3B98EFC9B63}|ClaimManagement.Domain\\ClaimManagement.Domain.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.domain\\entities\\policy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F3505D-C0FF-AF65-5E4B-A3B98EFC9B63}|ClaimManagement.Domain\\ClaimManagement.Domain.csproj|solutionrelative:claimmanagement.domain\\entities\\policy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7F3505D-C0FF-AF65-5E4B-A3B98EFC9B63}|ClaimManagement.Domain\\ClaimManagement.Domain.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.domain\\entities\\insuranceproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F3505D-C0FF-AF65-5E4B-A3B98EFC9B63}|ClaimManagement.Domain\\ClaimManagement.Domain.csproj|solutionrelative:claimmanagement.domain\\entities\\insuranceproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7F3505D-C0FF-AF65-5E4B-A3B98EFC9B63}|ClaimManagement.Domain\\ClaimManagement.Domain.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.domain\\entities\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F3505D-C0FF-AF65-5E4B-A3B98EFC9B63}|ClaimManagement.Domain\\ClaimManagement.Domain.csproj|solutionrelative:claimmanagement.domain\\entities\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3DB5E1-3A14-A1F2-41EE-E899B6454B6A}|ClaimManagement.Infrastructure\\ClaimManagement.Infrastructure.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.infrastructure\\migrations\\20261020114221_addsurveyremarks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3DB5E1-3A14-A1F2-41EE-E899B6454B6A}|ClaimManagement.Infrastructure\\ClaimManagement.Infrastructure.csproj|solutionrelative:claimmanagement.infrastructure\\migrations\\20261020114221_addsurveyremarks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3DB5E1-3A14-A1F2-41EE-E899B6454B6A}|ClaimManagement.Infrastructure\\ClaimManagement.Infrastructure.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\claimmanagement\\claimmanagement.infrastructure\\migrations\\20261020073517_first.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3DB5E1-3A14-A1F2-41EE-E899B6454B6A}|ClaimManagement.Infrastructure\\ClaimManagement.Infrastructure.csproj|solutionrelative:claimmanagement.infrastructure\\migrations\\20261020073517_first.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 228,
+          "SelectedChildIndex": 38,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f53-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:140:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:139:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:138:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:137:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:136:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:137:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:139:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:136:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:136:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:141:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SurveysController.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement\\Controllers\\SurveysController.cs",
+              "RelativeDocumentMoniker": "ClaimManagement\\Controllers\\SurveysController.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement\\Controllers\\SurveysController.cs",
+              "RelativeToolTip": "ClaimManagement\\Controllers\\SurveysController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T11:41:00.826Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ClaimDocumentRepository.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Infrastructure\\Repository\\ClaimDocumentRepository.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Infrastructure\\Repository\\ClaimDocumentRepository.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Infrastructure\\Repository\\ClaimDocumentRepository.cs",
+              "RelativeToolTip": "ClaimManagement.Infrastructure\\Repository\\ClaimDocumentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T11:01:53.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ClaimDocumentsController.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement\\Controllers\\ClaimDocumentsController.cs",
+              "RelativeDocumentMoniker": "ClaimManagement\\Controllers\\ClaimDocumentsController.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement\\Controllers\\ClaimDocumentsController.cs",
+              "RelativeToolTip": "ClaimManagement\\Controllers\\ClaimDocumentsController.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAqwFAAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T11:04:08.05Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ClaimEligibilityRepository.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Infrastructure\\Repository\\ClaimEligibilityRepository.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Infrastructure\\Repository\\ClaimEligibilityRepository.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Infrastructure\\Repository\\ClaimEligibilityRepository.cs",
+              "RelativeToolTip": "ClaimManagement.Infrastructure\\Repository\\ClaimEligibilityRepository.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAmwEoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T08:29:20.624Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement\\Program.cs",
+              "RelativeDocumentMoniker": "ClaimManagement\\Program.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement\\Program.cs",
+              "RelativeToolTip": "ClaimManagement\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T07:32:08.255Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "20261020114221_AddSurveyRemarks.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Infrastructure\\Migrations\\20261020114221_AddSurveyRemarks.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Infrastructure\\Migrations\\20261020114221_AddSurveyRemarks.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Infrastructure\\Migrations\\20261020114221_AddSurveyRemarks.cs",
+              "RelativeToolTip": "ClaimManagement.Infrastructure\\Migrations\\20261020114221_AddSurveyRemarks.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T11:42:21.906Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ClaimMappingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\Mapper\\ClaimMappingProfile.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Application\\Mapper\\ClaimMappingProfile.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\Mapper\\ClaimMappingProfile.cs",
+              "RelativeToolTip": "ClaimManagement.Application\\Mapper\\ClaimMappingProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T08:07:44.319Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "IClaimDocumentRepository.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\Interface\\IClaimDocumentRepository.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Application\\Interface\\IClaimDocumentRepository.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\Interface\\IClaimDocumentRepository.cs",
+              "RelativeToolTip": "ClaimManagement.Application\\Interface\\IClaimDocumentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T11:01:14.809Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ClaimDocumentResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\DTO\\ClaimDocumentResponseDto.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Application\\DTO\\ClaimDocumentResponseDto.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\DTO\\ClaimDocumentResponseDto.cs",
+              "RelativeToolTip": "ClaimManagement.Application\\DTO\\ClaimDocumentResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T11:00:42.829Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CreateClaimDocumentDto.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\DTO\\CreateClaimDocumentDto.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Application\\DTO\\CreateClaimDocumentDto.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\DTO\\CreateClaimDocumentDto.cs",
+              "RelativeToolTip": "ClaimManagement.Application\\DTO\\CreateClaimDocumentDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T11:00:27.124Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "IClaimRepository.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\Interface\\IClaimRepository.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Application\\Interface\\IClaimRepository.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\Interface\\IClaimRepository.cs",
+              "RelativeToolTip": "ClaimManagement.Application\\Interface\\IClaimRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T07:56:42.379Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "IClaimEligibilityRepository.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\Interface\\IClaimEligibilityRepository.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Application\\Interface\\IClaimEligibilityRepository.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\Interface\\IClaimEligibilityRepository.cs",
+              "RelativeToolTip": "ClaimManagement.Application\\Interface\\IClaimEligibilityRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T08:26:21.242Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ClaimManagement.Application.csproj",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\ClaimManagement.Application.csproj",
+              "RelativeDocumentMoniker": "ClaimManagement.Application\\ClaimManagement.Application.csproj",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\ClaimManagement.Application.csproj",
+              "RelativeToolTip": "ClaimManagement.Application\\ClaimManagement.Application.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-10-20T08:11:57.885Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ClaimResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\DTO\\ClaimResponseDto.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Application\\DTO\\ClaimResponseDto.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\DTO\\ClaimResponseDto.cs",
+              "RelativeToolTip": "ClaimManagement.Application\\DTO\\ClaimResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T08:07:05.135Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "UpdateClaimDto.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\DTO\\UpdateClaimDto.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Application\\DTO\\UpdateClaimDto.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\DTO\\UpdateClaimDto.cs",
+              "RelativeToolTip": "ClaimManagement.Application\\DTO\\UpdateClaimDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T08:06:11.289Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "CreateClaimDto.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\DTO\\CreateClaimDto.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Application\\DTO\\CreateClaimDto.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\DTO\\CreateClaimDto.cs",
+              "RelativeToolTip": "ClaimManagement.Application\\DTO\\CreateClaimDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T08:05:44.112Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "20261020073517_first.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Infrastructure\\Migrations\\20261020073517_first.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Infrastructure\\Migrations\\20261020073517_first.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Infrastructure\\Migrations\\20261020073517_first.cs",
+              "RelativeToolTip": "ClaimManagement.Infrastructure\\Migrations\\20261020073517_first.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T07:35:17.842Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 184,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ClaimsController.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement\\Controllers\\ClaimsController.cs",
+              "RelativeDocumentMoniker": "ClaimManagement\\Controllers\\ClaimsController.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement\\Controllers\\ClaimsController.cs",
+              "RelativeToolTip": "ClaimManagement\\Controllers\\ClaimsController.cs",
+              "ViewState": "AgIAAHAAAAAAAAAAAADwv5cAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T08:47:29.166Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ClaimRepository.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Infrastructure\\Repository\\ClaimRepository.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Infrastructure\\Repository\\ClaimRepository.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Infrastructure\\Repository\\ClaimRepository.cs",
+              "RelativeToolTip": "ClaimManagement.Infrastructure\\Repository\\ClaimRepository.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAkwC0AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T07:59:05.492Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CreateSurveyDto.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\DTO\\CreateSurveyDto.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Application\\DTO\\CreateSurveyDto.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\DTO\\CreateSurveyDto.cs",
+              "RelativeToolTip": "ClaimManagement.Application\\DTO\\CreateSurveyDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T11:35:02.227Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SurveyRepository.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Infrastructure\\Repository\\SurveyRepository.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Infrastructure\\Repository\\SurveyRepository.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Infrastructure\\Repository\\SurveyRepository.cs",
+              "RelativeToolTip": "ClaimManagement.Infrastructure\\Repository\\SurveyRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T11:38:21.048Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ClaimHistory.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Domain\\Entities\\ClaimHistory.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Domain\\Entities\\ClaimHistory.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Domain\\Entities\\ClaimHistory.cs",
+              "RelativeToolTip": "ClaimManagement.Domain\\Entities\\ClaimHistory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T19:26:34.691Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SurveyAssignment.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Domain\\Entities\\SurveyAssignment.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Domain\\Entities\\SurveyAssignment.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Domain\\Entities\\SurveyAssignment.cs",
+              "RelativeToolTip": "ClaimManagement.Domain\\Entities\\SurveyAssignment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T19:27:05.816Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ISurveyRepository.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\Interface\\ISurveyRepository.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Application\\Interface\\ISurveyRepository.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\Interface\\ISurveyRepository.cs",
+              "RelativeToolTip": "ClaimManagement.Application\\Interface\\ISurveyRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T11:37:54.159Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "SurveyReportDto.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\DTO\\SurveyReportDto.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Application\\DTO\\SurveyReportDto.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Application\\DTO\\SurveyReportDto.cs",
+              "RelativeToolTip": "ClaimManagement.Application\\DTO\\SurveyReportDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T11:35:26.965Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ClaimDocument.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Domain\\Entities\\ClaimDocument.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Domain\\Entities\\ClaimDocument.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Domain\\Entities\\ClaimDocument.cs",
+              "RelativeToolTip": "ClaimManagement.Domain\\Entities\\ClaimDocument.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T19:25:18.054Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement\\appsettings.json",
+              "RelativeDocumentMoniker": "ClaimManagement\\appsettings.json",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement\\appsettings.json",
+              "RelativeToolTip": "ClaimManagement\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-10-19T19:43:41.683Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "PremiumSchedule.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Domain\\Entities\\PremiumSchedule.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Domain\\Entities\\PremiumSchedule.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Domain\\Entities\\PremiumSchedule.cs",
+              "RelativeToolTip": "ClaimManagement.Domain\\Entities\\PremiumSchedule.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T07:14:54.119Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "PremiumPayment.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Domain\\Entities\\PremiumPayment.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Domain\\Entities\\PremiumPayment.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Domain\\Entities\\PremiumPayment.cs",
+              "RelativeToolTip": "ClaimManagement.Domain\\Entities\\PremiumPayment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T07:15:21.908Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "PolicyCoverage.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Domain\\Entities\\PolicyCoverage.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Domain\\Entities\\PolicyCoverage.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Domain\\Entities\\PolicyCoverage.cs",
+              "RelativeToolTip": "ClaimManagement.Domain\\Entities\\PolicyCoverage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T07:13:49.868Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Policy.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Domain\\Entities\\Policy.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Domain\\Entities\\Policy.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Domain\\Entities\\Policy.cs",
+              "RelativeToolTip": "ClaimManagement.Domain\\Entities\\Policy.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T07:13:07.912Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "InsuranceProduct.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Domain\\Entities\\InsuranceProduct.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Domain\\Entities\\InsuranceProduct.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Domain\\Entities\\InsuranceProduct.cs",
+              "RelativeToolTip": "ClaimManagement.Domain\\Entities\\InsuranceProduct.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T07:14:24.984Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Customer.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Domain\\Entities\\Customer.cs",
+              "RelativeDocumentMoniker": "ClaimManagement.Domain\\Entities\\Customer.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\ClaimManagement\\ClaimManagement.Domain\\Entities\\Customer.cs",
+              "RelativeToolTip": "ClaimManagement.Domain\\Entities\\Customer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T07:12:28.658Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 8,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
