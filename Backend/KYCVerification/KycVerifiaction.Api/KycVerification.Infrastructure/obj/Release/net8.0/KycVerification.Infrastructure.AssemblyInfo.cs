@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KycVerification.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ecfd4f20eaf8de3844c1cafde8569726c151744")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b253e31e0152e5ceba1d745c7dffca186342a140")]
 [assembly: System.Reflection.AssemblyProductAttribute("KycVerification.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KycVerification.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

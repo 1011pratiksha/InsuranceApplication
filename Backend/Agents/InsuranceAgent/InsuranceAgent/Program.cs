@@ -38,6 +38,25 @@ builder.Services.AddHttpClient<PremiumCalculationClient>(client =>
 });
 
 
+builder.Services.AddHttpClient<CustomerClient>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7083/");
+});
+
+
+builder.Services.AddHttpClient<UserClient>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7040/");
+});
+
+
+builder.Services.AddHttpClient<ProductClient>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7225/");
+});
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
