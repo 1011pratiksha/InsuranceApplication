@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="UnderwritingMS.Application/UnderwritingMS.Application.csproj" />
+  <Project Path="UnderwritingMS.Domain/UnderwritingMS.Domain.csproj" />
+  <Project Path="UnderwritingMS.Infrastructure/UnderwritingMS.Infrastructure.csproj" />
+  <Project Path="UnderwritingMS/UnderwritingMS.csproj" />
+</Solution>
