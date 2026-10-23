@@ -12,7 +12,8 @@ namespace ReportsAndDashboard.Infrastructure.Services
   {
     private readonly AppDbContext db;
 
-    public PremiumReportService(AppDbContext db)
+    public PremiumReportService(AppDbContext db
+      )
     {
       this.db = db;
     }

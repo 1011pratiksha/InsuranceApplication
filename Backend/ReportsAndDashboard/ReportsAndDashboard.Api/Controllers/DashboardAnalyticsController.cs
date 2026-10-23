@@ -13,7 +13,8 @@ namespace ReportsAndDashboard.Api.Controllers
     private readonly IDashboardAnalyticsService service;
 
     public DashboardAnalyticsController(
-        IDashboardAnalyticsService service)
+        IDashboardAnalyticsService service
+      )
     {
       this.service = service;
     }

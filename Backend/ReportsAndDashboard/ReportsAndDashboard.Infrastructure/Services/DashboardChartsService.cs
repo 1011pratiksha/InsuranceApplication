@@ -27,7 +27,7 @@ namespace ReportsAndDashboard.Infrastructure.Services
 
       // 1. Monthly Premium Collection
       var payments = await db.PremiumPayments
-          .AsNoTracking()
+         
           .Where(x =>
               x.PaymentStatus == "Success" &&
               x.PaymentDate.HasValue &&

@@ -10,8 +10,7 @@ using System.Threading.Tasks;
 
 namespace ReportsAndDashboard.Infrastructure.Services
 {
-  public class OutstandingPremiumReportService
-      : IOutstandingPremiumReportService
+  public class OutstandingPremiumReportService: IOutstandingPremiumReportService
   {
     private readonly AppDbContext db;
 
