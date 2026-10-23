@@ -1,0 +1,387 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E2F1B874-8BFE-C184-0C3A-BCAE405ECD41}|Investigation.API\\Investigation.API.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\investigation.api\\investigation.api\\controllers\\investigationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2F1B874-8BFE-C184-0C3A-BCAE405ECD41}|Investigation.API\\Investigation.API.csproj|solutionrelative:investigation.api\\controllers\\investigationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7669ED9-5859-1B31-4FB0-FAED08C55E6A}|Investigation.Infrastructure\\Investigation.Infrastructure.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\investigation.api\\investigation.infrastructure\\repository\\investigationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7669ED9-5859-1B31-4FB0-FAED08C55E6A}|Investigation.Infrastructure\\Investigation.Infrastructure.csproj|solutionrelative:investigation.infrastructure\\repository\\investigationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87C200A3-E39A-FD5B-34BF-15BDFCD57050}|Investigation.Domian\\Investigation.Domian.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\investigation.api\\investigation.domian\\entities\\investigationhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87C200A3-E39A-FD5B-34BF-15BDFCD57050}|Investigation.Domian\\Investigation.Domian.csproj|solutionrelative:investigation.domian\\entities\\investigationhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{71D4A58C-5E82-AAAA-BB6B-506B1681B47B}|Investigation.Application\\Investigation.Application.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\investigation.api\\investigation.application\\dto\\createinvestigationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{71D4A58C-5E82-AAAA-BB6B-506B1681B47B}|Investigation.Application\\Investigation.Application.csproj|solutionrelative:investigation.application\\dto\\createinvestigationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{71D4A58C-5E82-AAAA-BB6B-506B1681B47B}|Investigation.Application\\Investigation.Application.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\investigation.api\\investigation.application\\dto\\investigationreportdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{71D4A58C-5E82-AAAA-BB6B-506B1681B47B}|Investigation.Application\\Investigation.Application.csproj|solutionrelative:investigation.application\\dto\\investigationreportdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87C200A3-E39A-FD5B-34BF-15BDFCD57050}|Investigation.Domian\\Investigation.Domian.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\investigation.api\\investigation.domian\\entities\\investigationcase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87C200A3-E39A-FD5B-34BF-15BDFCD57050}|Investigation.Domian\\Investigation.Domian.csproj|solutionrelative:investigation.domian\\entities\\investigationcase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2F1B874-8BFE-C184-0C3A-BCAE405ECD41}|Investigation.API\\Investigation.API.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\investigation.api\\investigation.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2F1B874-8BFE-C184-0C3A-BCAE405ECD41}|Investigation.API\\Investigation.API.csproj|solutionrelative:investigation.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{71D4A58C-5E82-AAAA-BB6B-506B1681B47B}|Investigation.Application\\Investigation.Application.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\investigation.api\\investigation.application\\mapper\\investigationmappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{71D4A58C-5E82-AAAA-BB6B-506B1681B47B}|Investigation.Application\\Investigation.Application.csproj|solutionrelative:investigation.application\\mapper\\investigationmappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{71D4A58C-5E82-AAAA-BB6B-506B1681B47B}|Investigation.Application\\Investigation.Application.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\investigation.api\\investigation.application\\interface\\iinvestigationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{71D4A58C-5E82-AAAA-BB6B-506B1681B47B}|Investigation.Application\\Investigation.Application.csproj|solutionrelative:investigation.application\\interface\\iinvestigationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7669ED9-5859-1B31-4FB0-FAED08C55E6A}|Investigation.Infrastructure\\Investigation.Infrastructure.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\investigation.api\\investigation.infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7669ED9-5859-1B31-4FB0-FAED08C55E6A}|Investigation.Infrastructure\\Investigation.Infrastructure.csproj|solutionrelative:investigation.infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2F1B874-8BFE-C184-0C3A-BCAE405ECD41}|Investigation.API\\Investigation.API.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\investigation.api\\investigation.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E2F1B874-8BFE-C184-0C3A-BCAE405ECD41}|Investigation.API\\Investigation.API.csproj|solutionrelative:investigation.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7669ED9-5859-1B31-4FB0-FAED08C55E6A}|Investigation.Infrastructure\\Investigation.Infrastructure.csproj|c:\\users\\user\\source\\repos\\insuranceapplication\\backend\\claimmanagementandinvestigation\\investigation.api\\investigation.infrastructure\\migrations\\20261020134228_addddd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7669ED9-5859-1B31-4FB0-FAED08C55E6A}|Investigation.Infrastructure\\Investigation.Infrastructure.csproj|solutionrelative:investigation.infrastructure\\migrations\\20261020134228_addddd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 228,
+          "SelectedChildIndex": 40,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f53-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:140:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:139:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:138:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:137:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:136:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:137:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:139:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:136:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:136:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:141:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "InvestigationReportDto.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.Application\\DTO\\InvestigationReportDto.cs",
+              "RelativeDocumentMoniker": "Investigation.Application\\DTO\\InvestigationReportDto.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.Application\\DTO\\InvestigationReportDto.cs",
+              "RelativeToolTip": "Investigation.Application\\DTO\\InvestigationReportDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T13:45:32.277Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InvestigationRepository.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.Infrastructure\\Repository\\InvestigationRepository.cs",
+              "RelativeDocumentMoniker": "Investigation.Infrastructure\\Repository\\InvestigationRepository.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.Infrastructure\\Repository\\InvestigationRepository.cs",
+              "RelativeToolTip": "Investigation.Infrastructure\\Repository\\InvestigationRepository.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T13:44:19.476Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "InvestigationHistory.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.Domian\\Entities\\InvestigationHistory.cs",
+              "RelativeDocumentMoniker": "Investigation.Domian\\Entities\\InvestigationHistory.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.Domian\\Entities\\InvestigationHistory.cs",
+              "RelativeToolTip": "Investigation.Domian\\Entities\\InvestigationHistory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T19:38:19.982Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "InvestigationsController.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.API\\Controllers\\InvestigationsController.cs",
+              "RelativeDocumentMoniker": "Investigation.API\\Controllers\\InvestigationsController.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.API\\Controllers\\InvestigationsController.cs",
+              "RelativeToolTip": "Investigation.API\\Controllers\\InvestigationsController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAiwCMAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T13:52:15.361Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CreateInvestigationDto.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.Application\\DTO\\CreateInvestigationDto.cs",
+              "RelativeDocumentMoniker": "Investigation.Application\\DTO\\CreateInvestigationDto.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.Application\\DTO\\CreateInvestigationDto.cs",
+              "RelativeToolTip": "Investigation.Application\\DTO\\CreateInvestigationDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T13:45:14.262Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "InvestigationCase.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.Domian\\Entities\\InvestigationCase.cs",
+              "RelativeDocumentMoniker": "Investigation.Domian\\Entities\\InvestigationCase.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.Domian\\Entities\\InvestigationCase.cs",
+              "RelativeToolTip": "Investigation.Domian\\Entities\\InvestigationCase.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAzwAsAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T19:37:51.121Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "InvestigationMappingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.Application\\Mapper\\InvestigationMappingProfile.cs",
+              "RelativeDocumentMoniker": "Investigation.Application\\Mapper\\InvestigationMappingProfile.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.Application\\Mapper\\InvestigationMappingProfile.cs",
+              "RelativeToolTip": "Investigation.Application\\Mapper\\InvestigationMappingProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T13:47:00.965Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.API\\Program.cs",
+              "RelativeDocumentMoniker": "Investigation.API\\Program.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.API\\Program.cs",
+              "RelativeToolTip": "Investigation.API\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T13:21:29.952Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IInvestigationRepository.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.Application\\Interface\\IInvestigationRepository.cs",
+              "RelativeDocumentMoniker": "Investigation.Application\\Interface\\IInvestigationRepository.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.Application\\Interface\\IInvestigationRepository.cs",
+              "RelativeToolTip": "Investigation.Application\\Interface\\IInvestigationRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T13:43:32.342Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "20261020134228_addddd.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.Infrastructure\\Migrations\\20261020134228_addddd.cs",
+              "RelativeDocumentMoniker": "Investigation.Infrastructure\\Migrations\\20261020134228_addddd.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.Infrastructure\\Migrations\\20261020134228_addddd.cs",
+              "RelativeToolTip": "Investigation.Infrastructure\\Migrations\\20261020134228_addddd.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T13:42:28.782Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.Infrastructure\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Investigation.Infrastructure\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.Infrastructure\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "Investigation.Infrastructure\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAkwDsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T19:37:05.505Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.API\\appsettings.json",
+              "RelativeDocumentMoniker": "Investigation.API\\appsettings.json",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\InsuranceApplication\\Backend\\ClaimManagementAndInvestigation\\Investigation.API\\Investigation.API\\appsettings.json",
+              "RelativeToolTip": "Investigation.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-10-19T19:44:46.207Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 184,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 8,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
