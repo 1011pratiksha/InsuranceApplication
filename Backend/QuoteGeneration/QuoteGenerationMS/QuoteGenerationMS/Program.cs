@@ -5,6 +5,8 @@ using QuoteGenerationMS.Application.Mapper;
 using QuoteGenerationMS.Infrastructure.Data;
 using QuoteGenerationMS.Infrastructure.Services;
 using QuoteGenerationMS.Infrastructure.Repositories;
+using QuoteGenerationMS.Infrastructure.Clients;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
