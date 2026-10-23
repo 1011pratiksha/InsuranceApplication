@@ -45,6 +45,42 @@ builder.Services.AddHttpClient<KycClient>(client =>
         builder.Configuration["ServiceUrls:KycVerification"]!);
 });
 
+builder.Services.AddHttpClient<AgentCustomerClient>(client =>
+{
+    client.BaseAddress = new Uri(
+        builder.Configuration["ServiceUrls:InsuranceAgent"]!);
+});
+
+builder.Services.AddHttpClient<AgentCommissionClient>(client =>
+{
+    client.BaseAddress = new Uri(
+        builder.Configuration["ServiceUrls:InsuranceAgent"]!);
+});
+
+builder.Services.AddHttpClient<CommissionPaymentClient>(client =>
+{
+    client.BaseAddress = new Uri(
+        builder.Configuration["ServiceUrls:InsuranceAgent"]!);
+});
+
+builder.Services.AddHttpClient<AgentAdminClient>(client =>
+{
+    client.BaseAddress = new Uri(
+        builder.Configuration["ServiceUrls:InsuranceAgent"]!);
+});
+
+builder.Services.AddHttpClient<KycAdminClient>(client =>
+{
+    client.BaseAddress = new Uri(
+        builder.Configuration["ServiceUrls:KycVerification"]!);
+});
+
+builder.Services.AddHttpClient<UnderwritingAdminClient>(client =>
+{
+    client.BaseAddress = new Uri(
+        builder.Configuration["ServiceUrls:Underwriting"]!);
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

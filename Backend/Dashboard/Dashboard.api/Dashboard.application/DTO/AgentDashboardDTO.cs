@@ -3,11 +3,8 @@
     public class AgentDashboardDTO
     {
         public int TotalCustomers { get; set; }
-        public int TotalPolicies { get; set; }
-        public int ActivePolicies { get; set; }
-        public decimal PremiumCollected { get; set; }
-        public decimal PendingPremium { get; set; }
-        public int ClaimsRegistered { get; set; }
-        public decimal TotalCommission { get; set; }
+        public int PoliciesSold { get; set; }
+        public decimal CommissionPending { get; set; }
+        public decimal CommissionPaidYTD { get; set; }
     }
 }
