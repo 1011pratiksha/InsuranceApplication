@@ -22,61 +22,61 @@ namespace PolicyIssuance.Infrastructure.Repositories
             this.mapper = mapper;
         }
 
-        public async Task<PolicyDetailDto> IssuePolicyAsync(IssuePolicyDto dto)
-        {
-            var quote = await dbcontext.Quotes.FindAsync(dto.QuoteId);
-            if (quote == null)
-            {
-                throw new Exception("Quote not found");
-            }
+        //public async Task<PolicyDetailDto> IssuePolicyAsync(IssuePolicyDto dto)
+        //{
+        //    var quote = await dbcontext.Quotes.FindAsync(dto.QuoteId);
+        //    if (quote == null)
+        //    {
+        //        throw new Exception("Quote not found");
+        //    }
 
-            var customer = await dbcontext.Customers.FindAsync(dto.CustomerId);
-            if (customer == null)
-            {
-                throw new Exception("Customer not found");
-            }
+        //    var customer = await dbcontext.Customers.FindAsync(dto.CustomerId);
+        //    if (customer == null)
+        //    {
+        //        throw new Exception("Customer not found");
+        //    }
 
-            var product = await dbcontext.InsuranceProducts.FindAsync(dto.ProductId);
-            if (product == null)
-            {
-                throw new Exception("Product not found");
-            }
+        //    var product = await dbcontext.InsuranceProducts.FindAsync(dto.ProductId);
+        //    if (product == null)
+        //    {
+        //        throw new Exception("Product not found");
+        //    }
 
-            var policyNumber = $"POL-{DateTime.UtcNow:yyyy}-{Guid.NewGuid().ToString("N")[..8].ToUpper()}";
+        //    var policyNumber = $"POL-{DateTime.UtcNow:yyyy}-{Guid.NewGuid().ToString("N")[..8].ToUpper()}";
 
-            var policy = new Policy
-            {
-                PolicyNumber = policyNumber,
-                QuoteId = dto.QuoteId,
-                CustomerId = dto.CustomerId,
-                ProductId = dto.ProductId,
-                IssueDate = DateTime.UtcNow,
-                EffectiveDate = dto.EffectiveDate,
-                ExpiryDate = dto.ExpiryDate,
-                PolicyStatus = "Draft"
-            };
+        //    var policy = new Policy
+        //    {
+        //        PolicyNumber = policyNumber,
+        //        QuoteId = dto.QuoteId,
+        //        CustomerId = dto.CustomerId,
+        //        ProductId = dto.ProductId,
+        //        IssueDate = DateTime.UtcNow,
+        //        EffectiveDate = dto.EffectiveDate,
+        //        ExpiryDate = dto.ExpiryDate,
+        //        PolicyStatus = "Draft"
+        //    };
 
-            if (dto.Coverages != null && dto.Coverages.Count > 0)
-            {
-                policy.PolicyCoverages = mapper.Map<List<PolicyCoverage>>(dto.Coverages);
-            }
+        //    if (dto.Coverages != null && dto.Coverages.Count > 0)
+        //    {
+        //        policy.PolicyCoverages = mapper.Map<List<PolicyCoverage>>(dto.Coverages);
+        //    }
 
-            if (dto.Riders != null && dto.Riders.Count > 0)
-            {
-                policy.PolicyRiders = mapper.Map<List<PolicyRider>>(dto.Riders);
-            }
+        //    if (dto.Riders != null && dto.Riders.Count > 0)
+        //    {
+        //        policy.PolicyRiders = mapper.Map<List<PolicyRider>>(dto.Riders);
+        //    }
 
-            policy.PolicyHistories.Add(new PolicyHistory
-            {
-                Action = "POLICY_CREATED",
-                ActionDate = DateTime.UtcNow,
-                Remarks = "Policy created in draft status"
-            });
+        //    policy.PolicyHistories.Add(new PolicyHistory
+        //    {
+        //        Action = "POLICY_CREATED",
+        //        ActionDate = DateTime.UtcNow,
+        //        Remarks = "Policy created in draft status"
+        //    });
 
-            dbcontext.Policies.Add(policy);
-            await dbcontext.SaveChangesAsync();
-            return mapper.Map<PolicyDetailDto>(policy);
-        }
+        //    dbcontext.Policies.Add(policy);
+        //    await dbcontext.SaveChangesAsync();
+        //    return mapper.Map<PolicyDetailDto>(policy);
+        //}
 
         public async Task<List<PolicyDto>> GetAllPoliciesAsync()
         {

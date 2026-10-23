@@ -21,15 +21,15 @@ namespace PolicyIssuance.Infrastructure.Data
 
         public DbSet<PolicyHistory> PolicyHistories { get; set; }
 
-        public DbSet<User> Users { get; set; }
+    //    public DbSet<User> Users { get; set; }
 
-        public DbSet<Customer> Customers { get; set; }
+   //     public DbSet<Customer> Customers { get; set; }
 
-        public DbSet<InsuranceProduct> InsuranceProducts { get; set; }
+   //     public DbSet<InsuranceProduct> InsuranceProducts { get; set; }
 
-        public DbSet<Quote> Quotes { get; set; }
+   //     public DbSet<Quote> Quotes { get; set; }
 
-        public DbSet<RiderMaster> RiderMasters { get; set; }
+   //     public DbSet<RiderMaster> RiderMasters { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

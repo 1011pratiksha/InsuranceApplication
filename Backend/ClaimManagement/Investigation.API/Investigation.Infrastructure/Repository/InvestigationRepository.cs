@@ -1,4 +1,6 @@
-﻿using Investigation.Application.Interface;
+﻿using AutoMapper;
+using Investigation.Application.DTO;
+using Investigation.Application.Interface;
 using Investigation.Domain.Entities;
 using Investigation.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -7,30 +9,43 @@ namespace Investigation.Infrastructure.Repository
 {
     public class InvestigationRepository : IInvestigationRepository
     {
-        private readonly AppDbContext db;
+        AppDbContext db;
+        IMapper mapper;
 
-        public InvestigationRepository(AppDbContext db)
+        public InvestigationRepository(AppDbContext db, IMapper mapper)
         {
             this.db = db;
+            this.mapper = mapper;
         }
 
-        public async Task<InvestigationCase> AddAsync(InvestigationCase investigation)
+        public async Task<InvestigationResponseDto> AssignInvestigatorAsync(int claimId, CreateInvestigationDto dto)
         {
-            db.InvestigationCases.Add(investigation);
+            var investigation = mapper.Map<InvestigationCase>(dto);
+            investigation.ClaimId = claimId;
+            investigation.CreatedDate = DateTime.UtcNow;
+            investigation.InvestigationStatus = "Pending";
+
+            if (dto.InvestigatorId != null)
+                investigation.AssignedDate = DateTime.UtcNow;
+
+            await db.InvestigationCases.AddAsync(investigation);
             await db.SaveChangesAsync();
-            return investigation;
+
+            return mapper.Map<InvestigationResponseDto>(investigation);
         }
 
-        public async Task<InvestigationCase?> GetByIdAsync(int investigationId)
+        public async Task<InvestigationResponseDto?> SubmitInvestigationReportAsync(int id, InvestigationReportDto dto)
         {
-            return await db.InvestigationCases
-                .FirstOrDefaultAsync(i => i.InvestigationId == investigationId);
-        }
+            var investigation = await db.InvestigationCases.FirstOrDefaultAsync(i => i.InvestigationId == id);
+            if (investigation == null)
+                return null;
 
-        public async Task UpdateAsync(InvestigationCase investigation)
-        {
-            db.InvestigationCases.Update(investigation);
+            mapper.Map(dto, investigation);
+            investigation.InvestigationStatus = "Completed";
+            investigation.CompletedDate = DateTime.UtcNow;
             await db.SaveChangesAsync();
+
+            return mapper.Map<InvestigationResponseDto>(investigation);
         }
     }
 }

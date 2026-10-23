@@ -8,7 +8,7 @@ namespace PolicyIssuance.Application.Interfaces
 {
     public interface IPolicyService
     {
-        Task<PolicyDetailDto> IssuePolicyAsync(IssuePolicyDto dto);
+     //   Task<PolicyDetailDto> IssuePolicyAsync(IssuePolicyDto dto);
 
         Task<List<PolicyDto>> GetAllPoliciesAsync();
 

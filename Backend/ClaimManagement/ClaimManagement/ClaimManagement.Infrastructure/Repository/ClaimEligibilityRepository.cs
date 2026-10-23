@@ -1,4 +1,5 @@
-﻿using ClaimManagement.Application.Interface;
+﻿using ClaimManagement.Application.DTO;
+using ClaimManagement.Application.Interface;
 using ClaimManagement.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,69 +7,76 @@ namespace ClaimManagement.Infrastructure.Repository
 {
     public class ClaimEligibilityRepository : IClaimEligibilityRepository
     {
-        private readonly AppDbContext context;
+        AppDbContext context;
 
         public ClaimEligibilityRepository(AppDbContext context)
         {
             this.context = context;
         }
 
-        public async Task<bool> CustomerExistsAsync(long customerId)
+        // Returns "" if eligible, otherwise the error message
+        public async Task<string> CheckEligibilityAsync(CreateClaimDto dto)
         {
-            return await context.Customers
-                .AnyAsync(c => c.CustomerId == customerId);
-        }
+            // 1. Incident date
+            if (dto.IncidentDate == DateTime.MinValue || dto.IncidentDate.Date > DateTime.UtcNow.Date)
+                return "Invalid incident date.";
 
-        public async Task<bool> PolicyBelongsToCustomerAsync(long policyId, long customerId)
-        {
-            return await context.Policies
-                .AnyAsync(p => p.PolicyId == policyId && p.CustomerId == customerId);
-        }
+            // 2. Customer
+            var customer = await context.Customers
+                .FirstOrDefaultAsync(c => c.CustomerId == dto.CustomerId);
+            if (customer == null)
+                return "Customer does not exist.";
 
-        public async Task<bool> IsPolicyActiveAsync(long policyId, DateTime incidentDate)
-        {
-            return await context.Policies
-                .AnyAsync(p => p.PolicyId == policyId
-                    && p.PolicyStatus == "Active"
-                    && p.EffectiveDate <= incidentDate
-                    && p.ExpiryDate >= incidentDate);
-        }
+            // 3. Policy belongs to customer
+            var policy = await context.Policies
+                .FirstOrDefaultAsync(p => p.PolicyId == dto.PolicyId && p.CustomerId == dto.CustomerId);
+            if (policy == null)
+                return "Policy does not belong to this customer.";
 
-        public async Task<bool> HasValidCoverageAsync(long policyId, DateTime incidentDate, decimal estimatedLoss)
-        {
-            return await context.PolicyCoverages
-                .AnyAsync(c => c.PolicyId == policyId
-                    && c.CoverageStartDate <= incidentDate
-                    && c.CoverageEndDate >= incidentDate
-                    && c.SumInsured >= estimatedLoss);
-        }
+            // 4. Policy is active on the incident date
+            if (policy.PolicyStatus != "Active"
+                || policy.EffectiveDate > dto.IncidentDate
+                || policy.ExpiryDate < dto.IncidentDate)
+                return "Policy is not active or does not cover the incident date.";
 
-        public async Task<bool> HasEligiblePremiumAsync(long policyId)
-        {
+            // 5. Coverage
+            var coverage = await context.PolicyCoverages
+                .FirstOrDefaultAsync(c => c.PolicyId == dto.PolicyId
+                    && c.CoverageStartDate <= dto.IncidentDate
+                    && c.CoverageEndDate >= dto.IncidentDate
+                    && c.SumInsured >= dto.EstimatedLoss);
+            if (coverage == null)
+                return "Valid coverage was not found.";
+
+            // 6. Premium: every schedule that is already due must be fully paid
             var schedules = await context.PremiumSchedules
-                .Where(s => s.PolicyId == policyId)
+                .Where(s => s.PolicyId == dto.PolicyId)
                 .ToListAsync();
-
             if (schedules.Count == 0)
-            {
-                return false;
-            }
+                return "Premium eligibility requirements are not satisfied.";
 
-            foreach (var schedule in schedules.Where(s => s.DueDate <= DateTime.UtcNow))
+            foreach (var schedule in schedules)
             {
-                var paidAmount = await context.PremiumPayments
+                if (schedule.DueDate > DateTime.UtcNow)
+                    continue;
+
+                var payments = await context.PremiumPayments
                     .Where(p => p.ScheduleId == schedule.ScheduleId
-                        && p.PolicyId == policyId
+                        && p.PolicyId == dto.PolicyId
                         && p.PaymentStatus == "Success")
-                    .SumAsync(p => (decimal?)p.AmountPaid) ?? 0;
+                    .ToListAsync();
+
+                decimal paidAmount = 0;
+                foreach (var payment in payments)
+                {
+                    paidAmount += payment.AmountPaid;
+                }
 
                 if (paidAmount < schedule.PremiumAmount + schedule.LateFee)
-                {
-                    return false;
-                }
+                    return "Premium eligibility requirements are not satisfied.";
             }
 
-            return true;
+            return "";
         }
     }
 }

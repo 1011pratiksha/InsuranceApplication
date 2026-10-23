@@ -19,16 +19,16 @@ namespace PolicyIssuance.Controllers
             this.service = service;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> IssuePolicy(IssuePolicyDto dto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            var result = await service.IssuePolicyAsync(dto);
-            return Ok(result);
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> IssuePolicy(IssuePolicyDto dto)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+        //    var result = await service.IssuePolicyAsync(dto);
+        //    return Ok(result);
+        //}
 
         [HttpGet]
         public async Task<IActionResult> GetAllPolicies()

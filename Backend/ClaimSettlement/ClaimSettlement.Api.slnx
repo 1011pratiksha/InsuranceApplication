@@ -1,6 +1,0 @@
-<Solution>
-  <Project Path="ClaimSettlement.Api/ClaimSettlement.Api.csproj" />
-  <Project Path="ClaimSettlement.Application/ClaimSettlement.Application.csproj" />
-  <Project Path="ClaimSettlement.Domain/ClaimSettlement.Domain.csproj" />
-  <Project Path="ClaimSettlement.Infrastructure/ClaimSettlement.Infrastructure.csproj" />
-</Solution>
