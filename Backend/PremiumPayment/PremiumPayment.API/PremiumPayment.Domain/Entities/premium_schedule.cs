@@ -10,12 +10,20 @@ namespace PremiumPayment.Domain.Entities
 {
     public class premium_schedule
     {
-        public long schedule_id { get; set; }
-        public long policy_id { get; set; }
+        [Key]
+        public int schedule_id { get; set; }
+        public int policy_id { get; set; }
+        public string premium_frequency { get; set; }
         public int installment_no { get; set; }
         public DateTime due_date { get; set; }
+
+        [Column(TypeName = "decimal(15, 2)")]
         public decimal premium_amount { get; set; }
+
+        [Column(TypeName = "decimal(15, 2)")]
         public decimal late_fee { get; set; } = 0;
-        public string status { get; set; } = string.Empty;   // Pending, Paid, Partial Paid, Overdue, Cancelled
+        public string status { get; set; }
+
+        public List<premium_reminder> premium_Reminder { get; set; }
     }
 }
