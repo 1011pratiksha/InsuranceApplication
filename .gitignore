@@ -13,3 +13,10 @@ obj/
 # OS files
 Thumbs.db
 .DS_Store
+
+# Visual Studio generated files
+.vs/
+**/.vs/
+**/bin/
+**/obj/
+

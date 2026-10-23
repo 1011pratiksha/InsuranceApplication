@@ -1,0 +1,45 @@
+using ClaimManagement.Application.DTO;
+using ClaimManagement.Application.Interface;
+using Microsoft.AspNetCore.Mvc;
+
+namespace ClaimManagement.API.Controllers
+{
+    [Route("api/claims/{claimId:long}/assessment")]
+    [ApiController]
+    public class ClaimAssessmentController : ControllerBase
+    {
+        IClaimAssessmentRepository assessmentRepository;
+        IClaimRepository claimRepository;
+
+        public ClaimAssessmentController(IClaimAssessmentRepository assessmentRepository, IClaimRepository claimRepository)
+        {
+            this.assessmentRepository = assessmentRepository;
+            this.claimRepository = claimRepository;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddAssessment(long claimId, CreateAssessmentDto dto)
+        {
+            var claim = await claimRepository.GetClaimByIdAsync(claimId);
+            if (claim == null)
+                return NotFound("Claim not found.");
+
+            var assessment = await assessmentRepository.AddAssessmentAsync(claimId, dto);
+            return Ok(assessment);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAssessment(long claimId)
+        {
+            var claim = await claimRepository.GetClaimByIdAsync(claimId);
+            if (claim == null)
+                return NotFound("Claim not found.");
+
+            var assessment = await assessmentRepository.GetAssessmentByClaimIdAsync(claimId);
+            if (assessment == null)
+                return NotFound("Assessment not found.");
+
+            return Ok(assessment);
+        }
+    }
+}

@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="InsuranceAgent.Application/InsuranceAgent.Application.csproj" />
+  <Project Path="InsuranceAgent.Domain/InsuranceAgent.Domain.csproj" />
+  <Project Path="InsuranceAgent.Infrastructure/InsuranceAgent.Infrastructure.csproj" />
+  <Project Path="InsuranceAgent/InsuranceAgent.csproj" />
+</Solution>

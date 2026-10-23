@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="ClaimManagement.API/ClaimManagement.API.csproj" />
+  <Project Path="ClaimManagement.Application/ClaimManagement.Application.csproj" />
+  <Project Path="ClaimManagement.Domain/ClaimManagement.Domain.csproj" />
+  <Project Path="ClaimManagement.Infrastructure/ClaimManagement.Infrastructure.csproj" />
+</Solution>
