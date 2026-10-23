@@ -68,12 +68,12 @@ public class PolicyIntegrationService : IPolicyIntegrationService
     {
         var client = _factory.CreateClient("Document");
 
-        using var response = await client.PostAsJsonAsync(
-            "api/v1/documents/policy",
-            new { PolicyId = policyId },
-            cancellationToken);
+        //using var response = await client.PostAsJsonAsync(
+        //    "api/v1/documents/policy",
+        //    new { PolicyId = policyId },
+        //    cancellationToken);
 
-        response.EnsureSuccessStatusCode();
+        //response.EnsureSuccessStatusCode();
     }
 
     public async Task NotifyPolicyIssuedAsync(
@@ -81,11 +81,11 @@ public class PolicyIntegrationService : IPolicyIntegrationService
     {
         var client = _factory.CreateClient("Notification");
 
-        using var response = await client.PostAsJsonAsync(
-            "api/v1/notifications/policy-issued",
-            new { PolicyId = policyId },
-            cancellationToken);
+        //using var response = await client.PostAsJsonAsync(
+        //    "api/v1/notifications/policy-issued",
+        //    new { PolicyId = policyId },
+        //    cancellationToken);
 
-        response.EnsureSuccessStatusCode();
+        //response.EnsureSuccessStatusCode();
     }
 }
