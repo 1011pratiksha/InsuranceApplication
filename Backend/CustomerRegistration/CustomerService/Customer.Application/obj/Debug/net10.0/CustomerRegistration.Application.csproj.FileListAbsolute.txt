@@ -15,3 +15,6 @@ C:\Users\parth\source\repos\CustomerService\Customer.Application\obj\Debug\net10
 C:\Users\parth\source\repos\CustomerService\Customer.Application\obj\Debug\net10.0\CustomerRegistration.Application.pdb
 C:\Users\parth\source\repos\CustomerService\Customer.Application\obj\Debug\net10.0\CustomerRegistration.Application.genruntimeconfig.cache
 C:\Users\parth\source\repos\CustomerService\Customer.Application\obj\Debug\net10.0\ref\CustomerRegistration.Application.dll
+C:\Users\ADMIN\source\repos\InsuranceApplication\Backend\CustomerRegistration\CustomerService\Customer.Application\obj\Debug\net10.0\CustomerRegistration.Application.dll
+C:\Users\ADMIN\source\repos\InsuranceApplication\Backend\CustomerRegistration\CustomerService\Customer.Application\obj\Debug\net10.0\refint\CustomerRegistration.Application.dll
+C:\Users\ADMIN\source\repos\InsuranceApplication\Backend\CustomerRegistration\CustomerService\Customer.Application\obj\Debug\net10.0\CustomerRegistration.Application.pdb

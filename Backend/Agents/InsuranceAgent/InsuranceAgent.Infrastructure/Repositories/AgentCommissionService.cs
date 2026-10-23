@@ -15,59 +15,79 @@ namespace InsuranceAgent.Infrastructure.Repositories
     public class AgentCommissionService : IAgentCommissionService
     {
 
-        private readonly  AppDbContext data;
-        private readonly PolicyClient policyClient;
+         AppDbContext data;
+         PolicyClient policyClient;
+        PremiumCalculationClient premiumCalculationClient;
 
 
-        public AgentCommissionService(AppDbContext data, PolicyClient policyClient)
+        public AgentCommissionService(AppDbContext data, PolicyClient policyClient, PremiumCalculationClient premiumCalculationClient)
         {
             this.data = data;
             this.policyClient = policyClient;
+            this.premiumCalculationClient = premiumCalculationClient;
         }
+
 
         public async Task CalculateCommission(CalculateCommissionDto dto)
         {
+            // 1. Policy service madhun policy milva
+            var policy = await policyClient.GetPolicyById(dto.PolicyId);
 
-            //var policy = await policyClient.GetPolicyById(dto.PolicyId);
+            if (policy == null)
+            {
+                throw new Exception("Policy not found.");
+            }
 
-            //if (policy == null)
-            //{
-            //    throw new Exception("Policy not found.");
-            //}
+            // 2. QuoteId vaprun actual premium milva
+            var premiumDetails =
+                await premiumCalculationClient.GetPremiumByQuoteId(policy.QuoteId);
 
-            //if (policy.Quote == null)
-            //{
-            //    throw new Exception("Quote not found.");
-            //}
+            if (premiumDetails == null)
+            {
+                throw new Exception("Premium calculation not found.");
+            }
 
-            //var rule = await data.CommissionRules.FirstOrDefaultAsync(r => r.ProductId == policy.ProductId && r.IsActive);
+            decimal premium = premiumDetails.final_premium;
 
-            //if (rule == null)
-            //{
-            //    throw new Exception("Commission rule not found.");
+            // 3. ProductId nusar active commission rule shodha
+            var rule = await data.CommissionRules
+                .FirstOrDefaultAsync(r =>
+                    r.ProductId == policy.ProductId && r.IsActive);
 
-            //}
+            if (rule == null)
+            {
+                throw new Exception("Commission rule not found.");
+            }
 
-            //decimal premium = policy.Quote.PremiumAmount;
+            // 4. Commission calculate kara
+            decimal amount = premium * rule.CommissionPercentage / 100;
 
-            //decimal amount = premium * rule.CommissionPercentage / 100;
+            // 5. Commission record tayar kara
+            var commission = new AgentCommission
+            {
+                AgentId = dto.AgentId,
+                PolicyId = dto.PolicyId,
+                PremiumAmount = premium,
+                CommissionPercentage = rule.CommissionPercentage,
+                CommissionAmount = amount,
+                Status = "Pending",
+                EarnedDate = DateTime.Now,
+                CreatedAt = DateTime.Now
+            };
 
-            //var commission = new AgentCommission
-            //{
-            //    AgentId = dto.AgentId,
-            //    PolicyId = dto.PolicyId,
-            //    PremiumAmount = premium,
-            //    CommissionPercentage = rule.CommissionPercentage,
-            //    CommissionAmount = amount,
-            //    Status = "Pending",
-            //    EarnedDate = DateTime.Now,
-            //    CreatedAt = DateTime.Now
-            //};
+            data.AgentCommissions.Add(commission);
 
-            //data.AgentCommissions.Add(commission);
-
-            //await data.SaveChangesAsync();
+            try
+            {
+                await data.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
         }
+
 
 
 
