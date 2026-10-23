@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="PremiumPayment.API/PremiumPayment.API.csproj" />
+  <Project Path="PremiumPayment.Application/PremiumPayment.Application.csproj" />
+  <Project Path="PremiumPayment.Domain/PremiumPayment.Domain.csproj" />
+  <Project Path="PremiumPayment.Infratructure/PremiumPayment.Infratructure.csproj" />
+</Solution>

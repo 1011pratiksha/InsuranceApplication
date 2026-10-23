@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="PolicyRenewal.API/PolicyRenewal.API.csproj" />
+  <Project Path="PolicyRenewal.Application/PolicyRenewal.Application.csproj" />
+  <Project Path="PolicyRenewal.Domain/PolicyRenewal.Domain.csproj" />
+  <Project Path="PolicyRenewal.Infrastructure/PolicyRenewal.Infrastructure.csproj" />
+</Solution>
