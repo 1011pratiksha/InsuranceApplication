@@ -9,7 +9,7 @@ namespace Dashboard.api.Controllers
     {
         private readonly IDashboardRepository repository;
 
-    public DashboardController(IDashboardRepository repository)
+        public DashboardController(IDashboardRepository repository)
         {
             this.repository = repository;
         }
@@ -18,7 +18,6 @@ namespace Dashboard.api.Controllers
         public async Task<IActionResult> GetAdminDashboard()
         {
             var result = await repository.GetAdminDashboardAsync();
-
             return Ok(result);
         }
 
@@ -26,7 +25,6 @@ namespace Dashboard.api.Controllers
         public async Task<IActionResult> GetAgentDashboard(int agentId)
         {
             var result = await repository.GetAgentDashboardAsync(agentId);
-
             return Ok(result);
         }
 
@@ -34,9 +32,7 @@ namespace Dashboard.api.Controllers
         public async Task<IActionResult> GetCustomerDashboard(int customerId)
         {
             var result = await repository.GetCustomerDashboardAsync(customerId);
-
             return Ok(result);
         }
     }
-
 }
