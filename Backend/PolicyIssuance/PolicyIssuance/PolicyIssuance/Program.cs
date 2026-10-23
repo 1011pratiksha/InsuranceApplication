@@ -39,6 +39,12 @@ foreach (var name in new[]
         client.BaseAddress = new Uri(GetServiceUrl(name));
         client.Timeout = TimeSpan.FromSeconds(15);
     });
+
+    builder.Services.AddHttpClient("Underwriting", client =>
+    {
+        client.BaseAddress = new Uri(
+            builder.Configuration["ServiceUrls:Underwriting"]!);
+    });
 }
 
 builder.Services.AddScoped<
