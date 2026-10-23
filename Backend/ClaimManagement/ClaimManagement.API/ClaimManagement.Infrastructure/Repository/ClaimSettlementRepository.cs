@@ -60,7 +60,6 @@ namespace ClaimManagement.Infrastructure.Repository
 
             await dbcontext.ClaimSettlements.AddAsync(settlement);
 
-            // Mark the parent claim as Settled
             claim.claim_status = "Settled";
 
             await dbcontext.SaveChangesAsync();

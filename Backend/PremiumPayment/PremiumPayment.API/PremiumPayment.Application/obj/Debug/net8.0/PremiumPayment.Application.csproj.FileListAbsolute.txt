@@ -16,3 +16,21 @@ C:\Users\Pratiksha\source\repos\InsuranceApplication\Backend\PremiumPayment\Prem
 C:\Users\Pratiksha\source\repos\InsuranceApplication\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\obj\Debug\net8.0\PremiumPayment.Application.pdb
 C:\Users\Pratiksha\source\repos\InsuranceApplication\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\obj\Debug\net8.0\PremiumPayment.Application.genruntimeconfig.cache
 C:\Users\Pratiksha\source\repos\InsuranceApplication\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\obj\Debug\net8.0\ref\PremiumPayment.Application.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\bin\Debug\net8.0\PremiumPayment.Application.deps.json
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\bin\Debug\net8.0\PremiumPayment.Application.runtimeconfig.json
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\bin\Debug\net8.0\PremiumPayment.Application.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\bin\Debug\net8.0\PremiumPayment.Application.pdb
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\bin\Debug\net8.0\PremiumPayment.Domain.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\bin\Debug\net8.0\PremiumPayment.Domain.pdb
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\obj\Debug\net8.0\PremiumPayment.Application.csproj.AssemblyReference.cache
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\obj\Debug\net8.0\PremiumPayment.Application.GeneratedMSBuildEditorConfig.editorconfig
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\obj\Debug\net8.0\PremiumPayment.Application.AssemblyInfoInputs.cache
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\obj\Debug\net8.0\PremiumPayment.Application.AssemblyInfo.cs
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\obj\Debug\net8.0\PremiumPayment.Application.csproj.CoreCompileInputs.cache
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\obj\Debug\net8.0\PremiumPayment.Application.sourcelink.json
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\obj\Debug\net8.0\PremiumP.A708CBA7.Up2Date
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\obj\Debug\net8.0\PremiumPayment.Application.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\obj\Debug\net8.0\refint\PremiumPayment.Application.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\obj\Debug\net8.0\PremiumPayment.Application.pdb
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\obj\Debug\net8.0\PremiumPayment.Application.genruntimeconfig.cache
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.Application\obj\Debug\net8.0\ref\PremiumPayment.Application.dll
