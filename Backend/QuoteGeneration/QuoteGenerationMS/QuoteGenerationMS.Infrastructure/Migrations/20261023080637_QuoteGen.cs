@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace QuoteGenerationMS.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreateQuote : Migration
+    public partial class QuoteGen : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

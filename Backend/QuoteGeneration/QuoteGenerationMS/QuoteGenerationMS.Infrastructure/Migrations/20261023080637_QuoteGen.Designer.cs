@@ -12,8 +12,8 @@ using QuoteGenerationMS.Infrastructure.Data;
 namespace QuoteGenerationMS.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261021200944_InitialCreateQuote")]
-    partial class InitialCreateQuote
+    [Migration("20261023080637_QuoteGen")]
+    partial class QuoteGen
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

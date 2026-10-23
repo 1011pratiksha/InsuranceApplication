@@ -12,8 +12,8 @@ using ProductManagementMS.Infrastructure.Data;
 namespace ProductManagementMS.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261020103720_InitialProductManagement")]
-    partial class InitialProductManagement
+    [Migration("20261023080439_ProductMgmt")]
+    partial class ProductMgmt
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
