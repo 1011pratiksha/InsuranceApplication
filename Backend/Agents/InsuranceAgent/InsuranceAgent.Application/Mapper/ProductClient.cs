@@ -18,5 +18,12 @@ namespace InsuranceAgent.Application.Mapper
             return await client.GetFromJsonAsync<ProductDTO>(
                 $"api/v1/products/{id}");
         }
+
+
+        public async Task<List<ProductDTO>> GetAllProducts()
+        {
+            return await client.GetFromJsonAsync<List<ProductDTO>>(
+                "api/v1/products") ?? new List<ProductDTO>();
+        }
     }
 }
