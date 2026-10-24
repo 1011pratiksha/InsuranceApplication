@@ -30,6 +30,11 @@ export class Policyservices {
     return this.http.put<any>(`${this.url3}/${id}`,{status});
   }
 
+  url4="https://localhost:44374/api/v1/service-requests/get-request"
+  getreqbyid(id: number) {
+  return this.http.get<any>(`${this.url4}/${id}`);
+  }
+
    endorsementUrl = 'https://localhost:44374/api/v1/endorsements';
 
     createEndorsement(data: any) {
@@ -51,6 +56,22 @@ export class Policyservices {
     return this.http.put<any>(
       `${this.endorsementUrl}/reject/${id}`,
       {}
+    );
+  }
+
+
+  cancelPolicy(policyId: number, reason: string) {
+    return this.http.post<any>(
+      `https://localhost:44374/api/v1/policies/${policyId}/cancel`,
+      {
+        cancellation_reason: reason
+      }
+    );
+  }
+
+  getCancellation(cancellationId: number) {
+    return this.http.get<any>(
+      `https://localhost:44374/api/v1/cancellations/${cancellationId}`
     );
   }
 }
