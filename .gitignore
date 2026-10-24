@@ -1,9 +1,12 @@
-<<<<<<< HEAD
-=======
-
 # Visual Studio generated files
->>>>>>> 8d1b521ba09eae897c09be46037c1452a6261cf1
 .vs/
 **/.vs/
+
+# .NET build output
 **/bin/
 **/obj/
+
+# Node and Angular generated files
+**/node_modules/
+**/dist/
+**/.angular/
