@@ -1,0 +1,217 @@
+
+<div class="renewals-layout">
+
+  <!-- Main Content: No Sidebar -->
+  <main class="main-content">
+
+    <div class="breadcrumb">
+      <span>Policy Servicing, Renewal &amp; Closure</span>
+      <span>/</span>
+      <strong>Renewals Due</strong>
+    </div>
+
+    <div class="page-heading">
+      <h1>Renewals Due</h1>
+      <button
+        type="button"
+        class="refresh-btn"
+        (click)="loadRenewals()"
+        [disabled]="loading">
+        ↻ Refresh
+      </button>
+    </div>
+
+    <section class="renewals-card">
+
+      <!-- Search and Filters -->
+      <div class="filter-bar">
+
+        <div class="search-box">
+          <span class="search-icon">⌕</span>
+          <input
+            type="text"
+            placeholder="Search..."
+            aria-label="Search renewals"
+            [(ngModel)]="search"
+            (input)="applyFilters()">
+        </div>
+
+        <select
+          aria-label="Filter by status"
+          [(ngModel)]="statusFilter"
+          (change)="applyFilters()">
+
+          <option value="">Status</option>
+          <option value="Pending">Pending</option>
+          <option value="Approved">Approved</option>
+          <option value="In Review">In Review</option>
+          <option value="Rejected">Rejected</option>
+          <option value="Active">Active</option>
+        </select>
+
+        <select
+          aria-label="Filter by renewal date"
+          [(ngModel)]="dateFilter"
+          (change)="applyFilters()">
+
+          <option value="">Date range</option>
+          <option value="7">Next 7 days</option>
+          <option value="30">Next 30 days</option>
+          <option value="90">Next 90 days</option>
+          <option value="365">Next year</option>
+        </select>
+
+        <button
+          type="button"
+          class="clear-btn"
+          (click)="clearFilters()">
+          Clear filters
+        </button>
+      </div>
+
+      <!-- Loading State -->
+      <div class="state-message" *ngIf="loading">
+        <span class="loader"></span>
+        Loading renewal records...
+      </div>
+
+      <!-- Error State -->
+      <div
+        class="error-message"
+        *ngIf="!loading && errorMessage">
+
+        <span>{{ errorMessage }}</span>
+
+        <button type="button" (click)="loadRenewals()">
+          Try again
+        </button>
+      </div>
+
+      <!-- Renewals Table -->
+      <div
+        class="table-wrapper"
+        *ngIf="!loading && !errorMessage">
+
+        <table>
+          <thead>
+            <tr>
+              <th>Policy no.</th>
+              <th>Customer</th>
+              <th>Product</th>
+              <th>Renewal date</th>
+              <th>Premium</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let policy of paginatedPolicies">
+
+              <td class="policy-number">
+                {{ getPolicyNumber(policy) }}
+              </td>
+
+              <td>{{ getCustomerName(policy) }}</td>
+
+              <td>{{ getProductName(policy) }}</td>
+
+              <td>
+                <ng-container
+                  *ngIf="getRenewalDate(policy) as renewalDate; else noRenewalDate">
+                  {{ renewalDate | date:'dd MMM yyyy' }}
+                </ng-container>
+
+                <ng-template #noRenewalDate>—</ng-template>
+              </td>
+
+              <td>
+                {{ getPremium(policy) |
+                   currency:'INR':'symbol':'1.0-0' }}
+              </td>
+
+              <td>
+                <span
+                  class="status-badge"
+                  [ngClass]="getStatusClass(getStatus(policy))">
+                  {{ getStatus(policy) }}
+                </span>
+              </td>
+
+              <td>
+                <button
+                  type="button"
+                  class="open-customer-btn"
+                  (click)="openCustomer(policy)">
+                  Open customer <span>›</span>
+                </button>
+              </td>
+
+            </tr>
+
+            <!-- Empty State -->
+            <tr *ngIf="filteredPolicies.length === 0">
+              <td colspan="7" class="empty-state">
+                <div class="empty-icon">▤</div>
+                <strong>No renewals found</strong>
+                <p>
+                  Try changing your search or filter criteria.
+                </p>
+                <button
+                  type="button"
+                  class="clear-filters-btn"
+                  (click)="clearFilters()">
+                  Clear filters
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div
+        class="table-footer"
+        *ngIf="!loading && !errorMessage">
+
+        <span>
+          Showing {{ showingFrom }}–{{ showingTo }}
+          of {{ filteredPolicies.length }}
+        </span>
+
+        <div class="pagination">
+          <button
+            type="button"
+            class="page-arrow"
+            [disabled]="currentPage === 1"
+            (click)="changePage(currentPage - 1)">
+            ‹
+          </button>
+
+          <button
+            type="button"
+            *ngFor="let page of pageNumbers"
+            class="page-number"
+            [class.current-page]="page === currentPage"
+            (click)="changePage(page)">
+            {{ page }}
+          </button>
+
+          <button
+            type="button"
+            class="page-arrow"
+            [disabled]="currentPage === totalPages"
+            (click)="changePage(currentPage + 1)">
+            ›
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <footer class="page-footer">
+      PAS Insurance · Policy Servicing, Renewal &amp; Closure
+    </footer>
+
+  </main>
+</div>

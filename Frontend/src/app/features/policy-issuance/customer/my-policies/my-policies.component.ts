@@ -1,3 +1,4 @@
+
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -12,12 +13,16 @@ import { PolicyIssuanceService } from '../../../../services/policy-issurance/pol
   styleUrl: './my-policies.component.css'
 })
 export class MyPoliciesComponent implements OnInit {
+
   private service = inject(PolicyIssuanceService);
   private router = inject(Router);
 
   policies: any[] = [];
+
   search = '';
   statusFilter = '';
+  dateFilter = '';
+
   loading = false;
   errorMessage = '';
 
@@ -25,6 +30,7 @@ export class MyPoliciesComponent implements OnInit {
     this.loadPolicies();
   }
 
+  // Load policies from the existing API.
   loadPolicies(): void {
     this.loading = true;
     this.errorMessage = '';
@@ -33,43 +39,162 @@ export class MyPoliciesComponent implements OnInit {
       next: (response: any) => {
         const data = Array.isArray(response)
           ? response
-          : response?.data ?? response?.items ?? [];
+          : response?.data
+            ?? response?.items
+            ?? response?.Data
+            ?? response?.Items
+            ?? [];
 
-        this.policies = data;
+        this.policies = Array.isArray(data) ? data : [];
         this.loading = false;
       },
       error: (err: any) => {
         this.errorMessage =
-          err?.error?.message ?? 'Unable to load policies.';
+          err?.error?.message
+          ?? err?.error?.title
+          ?? 'Unable to load policies. Please try again.';
+
         this.loading = false;
       }
     });
   }
 
+  // Supports different property naming conventions in API responses.
+  getPolicyNumber(policy: any): string {
+    return String(
+      policy?.policyNumber
+      ?? policy?.PolicyNumber
+      ?? policy?.policyNo
+      ?? policy?.PolicyNo
+      ?? '—'
+    );
+  }
+
+  getProductName(policy: any): string {
+    return String(
+      policy?.productName
+      ?? policy?.ProductName
+      ?? policy?.product?.productName
+      ?? policy?.Product?.ProductName
+      ?? '—'
+    );
+  }
+
+  getPolicyStatus(policy: any): string {
+    return String(
+      policy?.status
+      ?? policy?.Status
+      ?? policy?.policyStatus
+      ?? policy?.PolicyStatus
+      ?? 'Pending'
+    );
+  }
+
+  getSumInsured(policy: any): number {
+    return Number(
+      policy?.sumInsured
+      ?? policy?.SumInsured
+      ?? 0
+    );
+  }
+
+  getPremium(policy: any): number {
+    return Number(
+      policy?.premium
+      ?? policy?.Premium
+      ?? policy?.totalPremium
+      ?? policy?.TotalPremium
+      ?? 0
+    );
+  }
+
+  getNextDueDate(policy: any): any {
+    return policy?.nextDueDate
+      ?? policy?.NextDueDate
+      ?? null;
+  }
+
+  // Search, status and date filtering.
   get filteredPolicies(): any[] {
     const query = this.search.trim().toLowerCase();
+    const now = new Date();
 
-    return this.policies.filter((p: any) => {
-      const number = String(p.policyNumber ?? p.policyNo ?? '');
-      const product = String(
-        p.productName ?? p.product?.productName ?? ''
-      );
-      const status = String(p.status ?? p.policyStatus ?? '');
+    return this.policies.filter((policy: any) => {
+      const policyNumber = this.getPolicyNumber(policy).toLowerCase();
+      const productName = this.getProductName(policy).toLowerCase();
+      const status = this.getPolicyStatus(policy).toLowerCase();
 
-      return (
-        (!query ||
-          number.toLowerCase().includes(query) ||
-          product.toLowerCase().includes(query)) &&
-        (!this.statusFilter ||
-          status.toLowerCase() === this.statusFilter.toLowerCase())
-      );
+      const matchesSearch =
+        !query ||
+        policyNumber.includes(query) ||
+        productName.includes(query);
+
+      const matchesStatus =
+        !this.statusFilter ||
+        status === this.statusFilter.toLowerCase();
+
+      let matchesDate = true;
+
+      if (this.dateFilter) {
+        const rawDate =
+          policy?.issueDate
+          ?? policy?.IssueDate
+          ?? policy?.createdDate
+          ?? policy?.CreatedDate
+          ?? null;
+
+        const policyDate = rawDate ? new Date(rawDate) : null;
+        const days = Number(this.dateFilter);
+
+        matchesDate =
+          !!policyDate &&
+          !Number.isNaN(policyDate.getTime()) &&
+          policyDate <= now &&
+          now.getTime() - policyDate.getTime() <=
+            days * 24 * 60 * 60 * 1000;
+      }
+
+      return matchesSearch && matchesStatus && matchesDate;
     });
   }
 
-  openPolicy(policy: any): void {
-    const id = policy.id ?? policy.policyId;
+  getStatusClass(status: string): string {
+    switch (String(status ?? '').trim().toLowerCase()) {
+      case 'pending':
+        return 'status-pending';
 
-    if (!id) {
+      case 'approved':
+        return 'status-approved';
+
+      case 'active':
+        return 'status-active';
+
+      case 'in review':
+        return 'status-in-review';
+
+      case 'rejected':
+        return 'status-rejected';
+
+      default:
+        return 'status-default';
+    }
+  }
+
+  clearFilters(): void {
+    this.search = '';
+    this.statusFilter = '';
+    this.dateFilter = '';
+  }
+
+  // Open the existing customer policy details route.
+  openPolicy(policy: any): void {
+    const id =
+      policy?.id
+      ?? policy?.Id
+      ?? policy?.policyId
+      ?? policy?.PolicyId;
+
+    if (id == null) {
       this.errorMessage = 'Policy ID is missing.';
       return;
     }

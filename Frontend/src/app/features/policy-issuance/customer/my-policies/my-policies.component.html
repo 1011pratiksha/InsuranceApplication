@@ -1,78 +1,228 @@
 
-<div class="page-container">
-  <p class="breadcrumb">Policy Issuance / My Policies</p>
-  <h2>My Policies</h2>
+<div class="customer-layout">
 
-  <div class="table-card">
-    <div class="filters">
-      <input
-        class="form-control"
-        [(ngModel)]="search"
-        placeholder="Search policy or product..."
-      />
-
-      <select class="form-select"
-              [(ngModel)]="statusFilter">
-        <option value="">All statuses</option>
-        <option value="Pending Payment">Pending Payment</option>
-        <option value="Active">Active</option>
-        <option value="Suspended">Suspended</option>
-        <option value="Cancelled">Cancelled</option>
-        <option value="Expired">Expired</option>
-        <option value="Closed">Closed</option>
-      </select>
+  <!-- Customer Header -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">▣</span>
+      <span>PAS · Insurance</span>
+      <span class="customer-badge">Customer</span>
     </div>
 
-    <div *ngIf="loading" class="alert alert-info m-3">
-      Loading policies...
+    <div class="header-right">
+      <span class="online-dot"></span>
+      <span>Customer Portal</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <div class="breadcrumb">
+      <span>Policy Issuance</span>
+      <span>/</span>
+      <strong>My Policies</strong>
     </div>
 
-    <div *ngIf="errorMessage" class="alert alert-danger m-3">
-      {{ errorMessage }}
+    <div class="page-heading">
+      <div>
+        <h1>My Policies</h1>
+        <p>View your insurance policies and track their status.</p>
+      </div>
+
+      <button
+        type="button"
+        class="refresh-btn"
+        (click)="loadPolicies()"
+        [disabled]="loading">
+        ↻ Refresh
+      </button>
     </div>
 
-    <div class="table-responsive"
-         *ngIf="!loading && !errorMessage">
-      <table class="table align-middle mb-0">
-        <thead>
-          <tr>
-            <th>Policy no.</th>
-            <th>Product</th>
-            <th>Sum insured</th>
-            <th>Next due</th>
-            <th>Premium</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
+    <!-- Policies Card -->
+    <section class="policies-card">
 
-        <tbody>
-          <tr *ngFor="let p of filteredPolicies">
-            <td>{{ p.policyNumber || p.policyNo || '-' }}</td>
-            <td>{{ p.productName || p.product?.productName || '-' }}</td>
-            <td>{{ p.sumInsured | currency:'INR':'symbol':'1.0-0' }}</td>
-            <td>{{ p.nextDueDate ? (p.nextDueDate | date:'dd MMM yyyy') : '-' }}</td>
-            <td>{{ p.premium | currency:'INR':'symbol':'1.0-0' }}</td>
-            <td>
-              <span class="status-chip">
-                {{ p.status || p.policyStatus || 'Unknown' }}
-              </span>
-            </td>
-            <td>
-              <button class="open-link"
-                      (click)="openPolicy(p)">
-                Open policy &rsaquo;
-              </button>
-            </td>
-          </tr>
+      <!-- Search and Filters -->
+      <div class="filter-bar">
 
-          <tr *ngIf="filteredPolicies.length === 0">
-            <td colspan="7" class="text-center p-4">
-              No policies found.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+        <div class="search-box">
+          <span class="search-icon">⌕</span>
+
+          <input
+            type="text"
+            placeholder="Search policy or product..."
+            aria-label="Search policies"
+            [(ngModel)]="search">
+        </div>
+
+        <select
+          aria-label="Filter by status"
+          [(ngModel)]="statusFilter">
+
+          <option value="">All statuses</option>
+          <option value="Pending">Pending</option>
+          <option value="Approved">Approved</option>
+          <option value="In Review">In Review</option>
+          <option value="Rejected">Rejected</option>
+          <option value="Active">Active</option>
+        </select>
+
+        <select
+          aria-label="Filter by date"
+          [(ngModel)]="dateFilter">
+
+          <option value="">All dates</option>
+          <option value="30">Last 30 days</option>
+          <option value="90">Last 90 days</option>
+          <option value="365">Last year</option>
+        </select>
+
+        <button
+          type="button"
+          class="clear-btn"
+          (click)="clearFilters()">
+          Clear filters
+        </button>
+      </div>
+
+      <!-- Loading State -->
+      <div class="state-message" *ngIf="loading">
+        <span class="loader"></span>
+        <span>Loading your policies...</span>
+      </div>
+
+      <!-- Error State -->
+      <div
+        class="error-message"
+        *ngIf="!loading && errorMessage">
+
+        <span>{{ errorMessage }}</span>
+
+        <button
+          type="button"
+          (click)="loadPolicies()">
+          Try again
+        </button>
+      </div>
+
+      <!-- Policies Table -->
+      <div
+        class="table-wrapper"
+        *ngIf="!loading && !errorMessage">
+
+        <table>
+          <thead>
+            <tr>
+              <th>Policy no.</th>
+              <th>Product</th>
+              <th>Sum insured</th>
+              <th>Next due</th>
+              <th>Premium</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr *ngFor="let policy of filteredPolicies">
+
+              <td class="policy-number">
+                {{ getPolicyNumber(policy) }}
+              </td>
+
+              <td>
+                {{ getProductName(policy) }}
+              </td>
+
+              <td>
+                {{ getSumInsured(policy) |
+                   currency:'INR':'symbol':'1.0-0' }}
+              </td>
+
+              <td>
+                <ng-container *ngIf="getNextDueDate(policy) as dueDate; else noDueDate">
+                  {{ dueDate | date:'dd MMM yyyy' }}
+                </ng-container>
+
+                <ng-template #noDueDate>
+                  —
+                </ng-template>
+              </td>
+
+              <td>
+                {{ getPremium(policy) |
+                   currency:'INR':'symbol':'1.0-0' }}
+              </td>
+
+              <td>
+                <span
+                  class="status-badge"
+                  [ngClass]="getStatusClass(getPolicyStatus(policy))">
+
+                  {{ getPolicyStatus(policy) }}
+                </span>
+              </td>
+
+              <td>
+                <button
+                  type="button"
+                  class="open-policy-btn"
+                  (click)="openPolicy(policy)">
+
+                  Open policy <span>›</span>
+                </button>
+              </td>
+
+            </tr>
+
+            <!-- Empty State -->
+            <tr *ngIf="filteredPolicies.length === 0">
+              <td colspan="7" class="empty-state">
+
+                <div class="empty-icon">▤</div>
+
+                <strong>No policies found</strong>
+
+                <p>
+                  Try changing your search or filter criteria.
+                </p>
+
+                <button
+                  type="button"
+                  class="clear-filters-btn"
+                  (click)="clearFilters()">
+
+                  Clear filters
+                </button>
+
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table Footer -->
+      <div
+        class="table-footer"
+        *ngIf="!loading && !errorMessage">
+
+        <span>
+          Showing {{ filteredPolicies.length }}
+          of {{ policies.length }} policies
+        </span>
+
+        <span class="footer-label">
+          PAS Customer Portal
+        </span>
+      </div>
+
+    </section>
+
+    <footer class="page-footer">
+      PAS Insurance · Customer Portal · Your policies, all in one place
+    </footer>
+
+  </main>
 </div>
