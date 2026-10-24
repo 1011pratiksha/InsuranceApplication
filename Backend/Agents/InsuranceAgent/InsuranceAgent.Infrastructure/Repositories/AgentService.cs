@@ -25,7 +25,6 @@ namespace InsuranceAgent.Infrastructure.Repositories
         {
             var user = await userClient.GetUserById(dto.UserId);
 
-
             if (user == null)
             {
                 throw new Exception("User not found.");
@@ -49,6 +48,7 @@ namespace InsuranceAgent.Infrastructure.Repositories
 
             await data.SaveChangesAsync();
         }
+
 
 
         public async Task<GetAgentDto?> GetAgentById(int id)
@@ -116,6 +116,14 @@ namespace InsuranceAgent.Infrastructure.Repositories
             agent.UpdatedAt = DateTime.Now;
 
             await data.SaveChangesAsync();
+        }
+
+
+        public async Task<List<UserDTO>> GetAllUsers()
+        {
+            var users = await userClient.GetAllUsers();
+
+            return users;
         }
     }
 }

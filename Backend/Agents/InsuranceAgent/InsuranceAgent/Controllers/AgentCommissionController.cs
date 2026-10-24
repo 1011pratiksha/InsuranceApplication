@@ -41,8 +41,7 @@ namespace InsuranceAgent.Controllers
         {
             try
             {
-                var commissions = await service.GetAllCommissions(
-                    status, agentId, fromDate, toDate);
+                var commissions = await service.GetAllCommissions(status, agentId, fromDate, toDate);
 
                 return Ok(commissions);
             }
