@@ -1,0 +1,557 @@
+
+<div class="container-fluid py-4">
+  <!-- Page Header -->
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <div>
+      <div class="text-secondary small">Customer Portal / Premiums</div>
+      <h2 class="fw-bold mb-1">Premium Schedule</h2>
+      <p class="text-secondary mb-0">Manage installments, pay premiums and view receipts.</p>
+    </div>
+
+    <div class="d-flex flex-wrap gap-2">
+      <button class="btn btn-outline-secondary"
+              (click)="loadSchedule()"
+              [disabled]="loading">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+        Refresh
+      </button>
+
+      <button class="btn text-white"
+              style="background-color: #0d9488;"
+              (click)="showGenerateForm = !showGenerateForm">
+        Generate Schedule
+      </button>
+    </div>
+  </div>
+
+  <!-- Alerts -->
+  <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible">
+    {{ errorMessage }}
+    <button type="button" class="btn-close"
+            aria-label="Close"
+            (click)="errorMessage = ''"></button>
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success alert-dismissible">
+    {{ successMessage }}
+    <button type="button" class="btn-close"
+            aria-label="Close"
+            (click)="successMessage = ''"></button>
+  </div>
+
+  <div *ngIf="paymentMessage" class="alert alert-info">
+    {{ paymentMessage }}
+  </div>
+
+  <!-- Policy Selection -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <label for="policyId" class="form-label fw-semibold">Policy ID</label>
+
+      <div class="input-group" style="max-width: 400px;">
+        <input id="policyId"
+               type="number"
+               min="1"
+               class="form-control"
+               [(ngModel)]="policyId"
+               (keyup.enter)="changePolicy()">
+
+        <button class="btn text-white"
+                style="background-color: #0d9488;"
+                (click)="changePolicy()">
+          Load Policy
+        </button>
+      </div>
+
+      <div class="form-text">Enter a policy ID available in the backend.</div>
+    </div>
+  </div>
+
+  <!-- Generate Schedule -->
+  <div *ngIf="showGenerateForm" class="card shadow-sm mb-4">
+    <div class="card-header bg-white py-3">
+      <h5 class="mb-0">Generate Premium Schedule</h5>
+    </div>
+
+    <form class="card-body" (ngSubmit)="generateSchedule()">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label">Policy ID</label>
+          <input class="form-control"
+                 type="number"
+                 min="1"
+                 required
+                 [(ngModel)]="scheduleRequest.policyId"
+                 name="generatePolicyId">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Premium Frequency</label>
+          <select class="form-select"
+                  [(ngModel)]="scheduleRequest.premiumFrequency"
+                  name="premiumFrequency"
+                  required>
+            <option value="Monthly">Monthly</option>
+            <option value="Quarterly">Quarterly</option>
+            <option value="Half-Yearly">Half-Yearly</option>
+            <option value="Yearly">Yearly</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Policy Term (Years)</label>
+          <input class="form-control"
+                 type="number"
+                 min="1"
+                 max="100"
+                 required
+                 [(ngModel)]="scheduleRequest.policyTermInYears"
+                 name="policyTermInYears">
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Annual Premium (₹)</label>
+          <input class="form-control"
+                 type="number"
+                 min="1"
+                 step="0.01"
+                 required
+                 [(ngModel)]="scheduleRequest.annualPremium"
+                 name="annualPremium">
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">First Installment Date</label>
+          <input class="form-control"
+                 type="date"
+                 required
+                 [(ngModel)]="scheduleRequest.startDate"
+                 name="startDate">
+        </div>
+      </div>
+
+      <div class="alert alert-warning mt-3 mb-0">
+        Schedule generation requires an existing policy and must follow the backend's
+        schedule-generation rules.
+      </div>
+
+      <div class="d-flex justify-content-end gap-2 mt-3">
+        <button type="button"
+                class="btn btn-outline-secondary"
+                (click)="showGenerateForm = false">
+          Cancel
+        </button>
+
+        <button type="submit"
+                class="btn text-white"
+                style="background-color: #0d9488;"
+                [disabled]="generating">
+          <span *ngIf="generating"
+                class="spinner-border spinner-border-sm me-1"></span>
+          Generate Schedule
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="row g-3 mb-4">
+    <div class="col-sm-6 col-xl-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <div class="text-secondary small">Total Installments</div>
+          <div class="fs-3 fw-bold">{{ installments.length }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <div class="text-secondary small">Paid Installments</div>
+          <div class="fs-3 fw-bold text-success">{{ paidCount }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <div class="text-secondary small">Outstanding Amount</div>
+          <div class="fs-3 fw-bold">₹{{ totalDue | number:'1.2-2' }}</div>
+          <div class="text-secondary small">{{ pendingCount }} pending or overdue</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Installments -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-white py-3">
+      <h5 class="mb-0">Premium Installments</h5>
+    </div>
+
+    <!-- Filters -->
+    <div class="card-body border-bottom">
+      <div class="row g-3">
+        <div class="col-md-3">
+          <label class="form-label">Search</label>
+          <input class="form-control"
+                 type="search"
+                 placeholder="Installment or schedule ID"
+                 [(ngModel)]="searchText"
+                 (ngModelChange)="onFilterChange()">
+        </div>
+
+        <div class="col-md-3">
+          <label class="form-label">Status</label>
+          <select class="form-select"
+                  [(ngModel)]="selectedStatus"
+                  (ngModelChange)="onFilterChange()">
+            <option value="">All statuses</option>
+            <option value="Pending">Pending</option>
+            <option value="Paid">Paid</option>
+            <option value="Partial Paid">Partial Paid</option>
+            <option value="Overdue">Overdue</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+        </div>
+
+        <div class="col-md-2">
+          <label class="form-label">Due From</label>
+          <input class="form-control"
+                 type="date"
+                 [(ngModel)]="fromDate"
+                 (ngModelChange)="onFilterChange()">
+        </div>
+
+        <div class="col-md-2">
+          <label class="form-label">Due To</label>
+          <input class="form-control"
+                 type="date"
+                 [(ngModel)]="toDate"
+                 (ngModelChange)="onFilterChange()">
+        </div>
+
+        <div class="col-md-2 d-flex align-items-end">
+          <button class="btn btn-outline-secondary w-100"
+                  (click)="clearFilters()">
+            Clear Filters
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="loading" class="text-center py-5">
+      <div class="spinner-border" style="color: #0d9488;" role="status"></div>
+      <div class="text-secondary mt-2">Loading installments...</div>
+    </div>
+
+    <!-- Installment Table -->
+    <div *ngIf="!loading" class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>Installment</th>
+            <th>Due Date</th>
+            <th>Premium</th>
+            <th>Late Fee</th>
+            <th>Total Due</th>
+            <th>Status</th>
+            <th style="min-width: 250px;">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of paginatedInstallments"
+              [class.table-danger]="item.status === 'Overdue'">
+            <td>
+              <div class="fw-semibold">#{{ item.installmentNo }}</div>
+              <div class="text-secondary small">ID: {{ item.scheduleId }}</div>
+            </td>
+
+            <td>
+              <input type="date"
+                     class="form-control form-control-sm"
+                     [(ngModel)]="editDueDate[item.scheduleId]"
+                     [disabled]="item.status === 'Paid'">
+            </td>
+
+            <td>₹{{ item.amount | number:'1.2-2' }}</td>
+            <td>₹{{ item.lateFee | number:'1.2-2' }}</td>
+            <td class="fw-semibold">
+              ₹{{ item.amount + item.lateFee | number:'1.2-2' }}
+            </td>
+
+            <td>
+              <span class="badge"
+                    [ngClass]="{
+                      'text-bg-success': item.status === 'Paid',
+                      'text-bg-warning': item.status === 'Pending',
+                      'text-bg-danger': item.status === 'Overdue',
+                      'text-bg-secondary': item.status === 'Cancelled',
+                      'text-bg-info': item.status === 'Partial Paid'
+                    }">
+                {{ item.status }}
+              </span>
+            </td>
+
+            <td>
+              <div class="d-flex flex-column gap-2">
+                <button class="btn btn-sm text-white"
+                        style="background-color: #0d9488;"
+                        *ngIf="item.status !== 'Paid' && item.status !== 'Cancelled'"
+                        [disabled]="payingScheduleId === item.scheduleId"
+                        (click)="payNow(item)">
+                  <span *ngIf="payingScheduleId === item.scheduleId"
+                        class="spinner-border spinner-border-sm me-1"></span>
+                  {{ payingScheduleId === item.scheduleId ? 'Starting...' : 'Pay Premium' }}
+                </button>
+
+                <div class="input-group input-group-sm">
+                  <select class="form-select"
+                          [(ngModel)]="editStatus[item.scheduleId]"
+                          [disabled]="item.status === 'Paid'">
+                    <option value="Pending">Pending</option>
+                    <option value="Overdue">Overdue</option>
+                    <option value="Partial Paid">Partial Paid</option>
+                    <option value="Cancelled">Cancelled</option>
+                  </select>
+
+                  <button class="btn btn-outline-secondary"
+                          [disabled]="savingScheduleId === item.scheduleId || item.status === 'Paid'"
+                          (click)="updateInstallment(item)">
+                    <span *ngIf="savingScheduleId === item.scheduleId"
+                          class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="savingScheduleId !== item.scheduleId">Save</span>
+                  </button>
+                </div>
+
+                <div class="form-text">
+                  Installment updates depend on backend permissions and validation.
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="paginatedInstallments.length === 0">
+            <td colspan="7" class="text-center py-5 text-secondary">
+              <div class="fw-semibold">No installments found</div>
+              <div>Try another policy ID or clear your filters.</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="card-footer bg-white d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <span class="text-secondary small">
+        {{ filteredInstallments.length }} installment(s)
+      </span>
+
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-sm btn-outline-secondary"
+                [disabled]="currentPage <= 1"
+                (click)="changePage(currentPage - 1)">
+          Previous
+        </button>
+
+        <span class="small">{{ currentPage }} / {{ totalPages }}</span>
+
+        <button class="btn btn-sm btn-outline-secondary"
+                [disabled]="currentPage >= totalPages"
+                (click)="changePage(currentPage + 1)">
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment History and Receipts -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-white py-3">
+      <h5 class="mb-0">Payment History & Receipts</h5>
+    </div>
+
+    <div class="card-body" *ngIf="historyError">
+      <div class="alert alert-warning mb-0">{{ historyError }}</div>
+    </div>
+
+    <div *ngIf="loadingHistory" class="text-center py-4">
+      <div class="spinner-border spinner-border-sm" style="color: #0d9488;"></div>
+      <span class="ms-2">Loading payment history...</span>
+    </div>
+
+    <div *ngIf="!loadingHistory" class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>Payment ID</th>
+            <th>Schedule ID</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Mode</th>
+            <th>Status</th>
+            <th style="min-width: 230px;">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let payment of payments">
+            <td>{{ payment.payment_id }}</td>
+            <td>{{ payment.schedule_id }}</td>
+            <td>{{ payment.payment_date | date:'mediumDate' }}</td>
+            <td>₹{{ payment.amount_paid | number:'1.2-2' }}</td>
+            <td>{{ payment.payment_mode }}</td>
+
+            <td>
+              <span class="badge"
+                    [ngClass]="{
+                      'text-bg-success': payment.payment_status === 'Success',
+                      'text-bg-warning': payment.payment_status === 'Initiated' || payment.payment_status === 'Pending',
+                      'text-bg-danger': payment.payment_status === 'Failed'
+                    }">
+                {{ payment.payment_status }}
+              </span>
+            </td>
+
+            <td>
+              <div class="d-flex flex-wrap gap-2">
+                <button *ngIf="payment.payment_status === 'Success'"
+                        class="btn btn-sm btn-outline-secondary"
+                        (click)="downloadReceipt(payment)">
+                  Download Receipt
+                </button>
+
+                <button *ngIf="payment.payment_status === 'Success'"
+                        class="btn btn-sm btn-outline-secondary"
+                        (click)="regenerateReceipt(payment)">
+                  Regenerate
+                </button>
+
+                <button *ngIf="payment.payment_status === 'Success'"
+                        class="btn btn-sm btn-outline-danger"
+                        (click)="refundPaymentId = payment.payment_id; refundAmount = payment.amount_paid; refundError = ''; refundMessage = ''">
+                  Request Refund
+                </button>
+
+                <span *ngIf="payment.payment_status !== 'Success'"
+                      class="text-secondary small">
+                  Receipt/refund unavailable
+                </span>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="payments.length === 0">
+            <td colspan="7" class="text-center text-secondary py-4">
+              No payment records found for this policy.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Request Refund -->
+  <div class="card shadow-sm mb-4" *ngIf="refundPaymentId">
+    <div class="card-header bg-white">
+      <h5 class="mb-0">Request Refund</h5>
+    </div>
+
+    <div class="card-body">
+      <p>Payment ID: <strong>{{ refundPaymentId }}</strong></p>
+
+      <label class="form-label">Refund Amount (₹)</label>
+      <input class="form-control mb-3"
+             type="number"
+             min="0.01"
+             step="0.01"
+             [max]="payments.find ? undefined : undefined"
+             [(ngModel)]="refundAmount"
+             style="max-width: 300px;">
+
+      <div *ngIf="refundError" class="alert alert-danger">{{ refundError }}</div>
+      <div *ngIf="refundMessage" class="alert alert-success">{{ refundMessage }}</div>
+
+      <div class="d-flex flex-wrap gap-2">
+        <button class="btn btn-danger"
+                [disabled]="refundLoading"
+                (click)="submitRefund()">
+          <span *ngIf="refundLoading"
+                class="spinner-border spinner-border-sm me-1"></span>
+          Submit Refund Request
+        </button>
+
+        <button class="btn btn-outline-secondary"
+                (click)="refundPaymentId = null">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Refund Status Lookup -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-white py-3">
+      <h5 class="mb-0">Refund Status</h5>
+    </div>
+
+    <div class="card-body">
+      <p class="text-secondary">
+        Enter the refund ID returned when you submitted a refund request.
+      </p>
+
+      <div class="input-group mb-3" style="max-width: 450px;">
+        <input class="form-control"
+               type="number"
+               min="1"
+               placeholder="Enter refund ID"
+               [(ngModel)]="refundLookupId"
+               (keyup.enter)="lookupRefund()">
+
+        <button class="btn text-white"
+                style="background-color: #0d9488;"
+                [disabled]="refundLoading"
+                (click)="lookupRefund()">
+          <span *ngIf="refundLoading"
+                class="spinner-border spinner-border-sm me-1"></span>
+          Find Refund
+        </button>
+      </div>
+
+      <div *ngIf="refundError" class="alert alert-danger mt-3">
+        {{ refundError }}
+      </div>
+
+      <div *ngIf="refundResult" class="table-responsive">
+        <table class="table table-bordered mb-0">
+          <tbody>
+            <tr>
+              <th>Refund ID</th>
+              <td>{{ refundResult.refund_id }}</td>
+            </tr>
+            <tr>
+              <th>Payment ID</th>
+              <td>{{ refundResult.payment_id }}</td>
+            </tr>
+            <tr>
+              <th>Refund Amount</th>
+              <td>₹{{ refundResult.refund_amount | number:'1.2-2' }}</td>
+            </tr>
+            <tr>
+              <th>Status</th>
+              <td>{{ refundResult.refund_status }}</td>
+            </tr>
+            <tr>
+              <th>Approved By</th>
+              <td>{{ refundResult.approved_by ?? 'Not approved' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

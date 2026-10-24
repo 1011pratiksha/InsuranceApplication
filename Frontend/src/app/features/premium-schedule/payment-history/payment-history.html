@@ -1,0 +1,83 @@
+
+<div class="container py-4">
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-info text-white py-3">
+      <h4 class="mb-1">Payment History</h4>
+      <small>View premium payments for your policy</small>
+    </div>
+
+    <div class="card-body">
+      <form
+        class="row g-3 align-items-end mb-4"
+        (ngSubmit)="loadPaymentHistory()">
+
+        <div class="col-md-6">
+          <label for="policyId" class="form-label">Policy ID</label>
+          <input
+            id="policyId"
+            type="number"
+            class="form-control"
+            name="policyId"
+            [(ngModel)]="policyId"
+            min="1"
+            required>
+        </div>
+
+        <div class="col-md-3">
+          <button
+            type="submit"
+            class="btn btn-info text-white w-100"
+            [disabled]="loading">
+            {{ loading ? 'Loading...' : 'View History' }}
+          </button>
+        </div>
+      </form>
+
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <div *ngIf="successMessage" class="alert alert-info">
+        {{ successMessage }}
+      </div>
+
+      <div *ngIf="loading" class="text-center py-3">
+        Loading payment history...
+      </div>
+
+      <div class="table-responsive" *ngIf="payments.length > 0">
+        <table class="table table-hover table-bordered align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Payment ID</th>
+              <th>Schedule ID</th>
+              <th>Payment Date</th>
+              <th>Amount Paid</th>
+              <th>Payment Mode</th>
+              <th>Transaction Reference</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let payment of payments">
+              <td>{{ payment.payment_id }}</td>
+              <td>{{ payment.schedule_id }}</td>
+              <td>
+                {{ payment.payment_date ? (payment.payment_date | date:'mediumDate') : '-' }}
+              </td>
+              <td>{{ payment.amount_paid | currency:'INR':'symbol':'1.2-2' }}</td>
+              <td>{{ payment.payment_mode || '-' }}</td>
+              <td>{{ payment.transaction_reference || '-' }}</td>
+              <td>
+                <span class="badge bg-secondary">
+                  {{ payment.payment_status || '-' }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

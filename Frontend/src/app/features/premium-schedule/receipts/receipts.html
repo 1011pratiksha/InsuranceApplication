@@ -1,0 +1,57 @@
+
+<div class="container py-4">
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-info text-white py-3">
+      <h4 class="mb-1">Payment Receipts</h4>
+      <small>Download or regenerate a premium payment receipt</small>
+    </div>
+
+    <div class="card-body">
+      <form (ngSubmit)="downloadReceipt()" class="row g-3 align-items-end">
+        <div class="col-md-6">
+          <label for="paymentId" class="form-label">Payment ID</label>
+          <input
+            id="paymentId"
+            type="number"
+            class="form-control"
+            name="paymentId"
+            [(ngModel)]="paymentId"
+            min="1"
+            required
+            placeholder="Enter payment ID">
+        </div>
+
+        <div class="col-md-3">
+          <button
+            type="submit"
+            class="btn btn-info text-white w-100"
+            [disabled]="loading">
+            Download Receipt
+          </button>
+        </div>
+
+        <div class="col-md-3">
+          <button
+            type="button"
+            class="btn btn-outline-info w-100"
+            [disabled]="loading"
+            (click)="regenerateReceipt()">
+            Regenerate Receipt
+          </button>
+        </div>
+      </form>
+
+      <div *ngIf="loading" class="alert alert-info mt-3 mb-0">
+        Processing your request...
+      </div>
+
+      <div *ngIf="successMessage" class="alert alert-success mt-3 mb-0">
+        {{ successMessage }}
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3 mb-0">
+        {{ errorMessage }}
+      </div>
+    </div>
+  </div>
+</div>

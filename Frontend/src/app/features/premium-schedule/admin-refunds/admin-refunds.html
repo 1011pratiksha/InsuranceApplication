@@ -1,0 +1,133 @@
+
+<div class="container py-4">
+  <div class="card shadow-sm border-0">
+    <div class="card-header text-white py-3" style="background-color: #4338ca;">
+      <h4 class="mb-1">Refund Management</h4>
+      <small>Review refund details and approve pending requests</small>
+    </div>
+
+    <div class="card-body">
+      <form (ngSubmit)="loadRefund()" class="row g-3 align-items-end mb-4">
+        <div class="col-md-7">
+          <label for="refundId" class="form-label">Refund ID</label>
+          <input
+            id="refundId"
+            name="refundId"
+            type="number"
+            class="form-control"
+            [(ngModel)]="refundId"
+            min="1"
+            required
+            placeholder="Enter refund ID">
+        </div>
+
+        <div class="col-md-3">
+          <button
+            type="submit"
+            class="btn btn-primary w-100"
+            [disabled]="loading">
+            {{ loading ? 'Loading...' : 'Find Refund' }}
+          </button>
+        </div>
+      </form>
+
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <div *ngIf="successMessage" class="alert alert-success">
+        {{ successMessage }}
+      </div>
+
+      <div *ngIf="loading" class="text-center py-3">
+        Loading refund details...
+      </div>
+
+      <div *ngIf="refund" class="card">
+        <div class="card-header">
+          <strong>Refund Details</strong>
+        </div>
+
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <strong>Refund ID</strong>
+              <div>{{ refund.refund_id ?? '-' }}</div>
+            </div>
+
+            <div class="col-md-6">
+              <strong>Payment ID</strong>
+              <div>{{ refund.payment_id ?? '-' }}</div>
+            </div>
+
+            <div class="col-md-6">
+              <strong>Refund Amount</strong>
+              <div>
+                {{ refund.refund_amount != null
+                  ? (refund.refund_amount | currency:'INR':'symbol':'1.2-2')
+                  : '-' }}
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <strong>Refund Date</strong>
+              <div>
+                {{ refund.refund_date ? (refund.refund_date | date:'mediumDate') : '-' }}
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <strong>Status</strong>
+              <div>
+                <span class="badge bg-secondary">
+                  {{ refund.refund_status ?? '-' }}
+                </span>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <strong>Approved By</strong>
+              <div>{{ refund.approved_by ?? '-' }}</div>
+            </div>
+          </div>
+
+          <hr>
+
+          <form (ngSubmit)="approveRefund()" class="row g-3 align-items-end">
+            <div class="col-md-7">
+              <label for="approvedBy" class="form-label">Approver ID</label>
+              <input
+                id="approvedBy"
+                name="approvedBy"
+                type="number"
+                class="form-control"
+                [(ngModel)]="approvedBy"
+                min="1"
+                required
+                placeholder="Enter approver ID">
+            </div>
+
+            <div class="col-md-5">
+              <button
+                type="submit"
+                class="btn btn-success w-100"
+                [disabled]="approving || loading ">
+                {{ approving ? 'Approving...' : 'Approve Refund' }}
+              </button>
+            </div>
+          </form>
+
+          <small class="text-muted d-block mt-3">
+            Approval is sent to the existing backend API. The backend remains
+            responsible for validating the approver and refund eligibility.
+          </small>
+        </div>
+      </div>
+
+      <div class="alert alert-warning mt-4 mb-0">
+        This page looks up refunds by ID. Listing every refund and rejecting
+        a refund with remarks are not supported by the existing APIs identified so far.
+      </div>
+    </div>
+  </div>
+</div>
