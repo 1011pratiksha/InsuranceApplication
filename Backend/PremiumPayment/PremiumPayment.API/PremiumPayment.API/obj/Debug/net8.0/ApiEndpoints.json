@@ -96,6 +96,59 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "PremiumPayment.API.Controllers.PremiumScheduleController",
+    "Method": "GeneratePremiumSchedule",
+    "RelativePath": "api/v1/premium-schedules",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "PremiumPayment.Application.DTO.PremiumScheduleRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PremiumPayment.API.Controllers.PremiumScheduleController",
+    "Method": "GetPremiumSchedule",
+    "RelativePath": "api/v1/premium-schedules/{policyId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "policyId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PremiumPayment.API.Controllers.PremiumScheduleController",
+    "Method": "UpdateInstallment",
+    "RelativePath": "api/v1/premium-schedules/{scheduleId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "scheduleId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "PremiumPayment.Application.DTO.UpdateInstallmentDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PremiumPayment.API.Controllers.RefundsController",
     "Method": "CreateRefund",
     "RelativePath": "api/v1/refunds",

@@ -1,18 +1,18 @@
-﻿using System;
-using System.Net.Http.Headers;
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.Json;
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
 using PremiumPayment.Application.DTO;
 using PremiumPayment.Application.Interfaces;
 using PremiumPayment.Domain.Entities;
 using PremiumPayment.Infrastructure.Data;
+using System;
+using System.Net.Http.Headers;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 namespace PremiumPayment.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/v1/payments")]
     public class PaymentsController : ControllerBase

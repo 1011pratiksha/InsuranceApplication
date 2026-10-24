@@ -22,95 +22,33 @@ namespace PremiumPayment.Infratructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("PremiumPayment.Domain.Entities.PolicyCancellation", b =>
+            modelBuilder.Entity("PremiumPayment.Domain.Entities.PremiumReminders", b =>
                 {
-                    b.Property<long>("cancellation_id")
+                    b.Property<int>("reminder_id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("cancellation_id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("reminder_id"));
 
-                    b.Property<long>("approved_by")
-                        .HasColumnType("bigint");
+                    b.Property<string>("delivery_status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("cancellation_date")
+                    b.Property<DateTime>("reminder_date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("cancellation_reason")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("policy_id")
-                        .HasColumnType("bigint");
-
-                    b.Property<decimal>("refund_amount")
-                        .HasColumnType("decimal(15,2)");
-
-                    b.HasKey("cancellation_id");
-
-                    b.ToTable("policy_cancellation", (string)null);
-                });
-
-            modelBuilder.Entity("PremiumPayment.Domain.Entities.RoleMaster", b =>
-                {
-                    b.Property<long>("role_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("role_id"));
-
-                    b.Property<string>("description")
+                    b.Property<string>("reminder_type")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("role_name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("schedule_id")
+                        .HasColumnType("int");
 
-                    b.HasKey("role_id");
+                    b.HasKey("reminder_id");
 
-                    b.ToTable("role_master", (string)null);
-                });
+                    b.HasIndex("schedule_id");
 
-            modelBuilder.Entity("PremiumPayment.Domain.Entities.UserMaster", b =>
-                {
-                    b.Property<long>("user_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("user_id"));
-
-                    b.Property<long>("branch_id")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("employee_id")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("mobile")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("password_hash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("role_id")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("user_id");
-
-                    b.ToTable("user_master", (string)null);
+                    b.ToTable("PremiumReminders", "dbo");
                 });
 
             modelBuilder.Entity("PremiumPayment.Domain.Entities.payment_receipt", b =>
@@ -146,52 +84,7 @@ namespace PremiumPayment.Infratructure.Migrations
                         .IsUnique()
                         .HasDatabaseName("uk_payment_receipt_receipt_number");
 
-                    b.ToTable("payment_receipt", (string)null);
-                });
-
-            modelBuilder.Entity("PremiumPayment.Domain.Entities.policy", b =>
-                {
-                    b.Property<long>("policy_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("policy_id"));
-
-                    b.Property<long>("customer_id")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("effective_date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("expiry_date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("issue_date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("policy_number")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("policy_status")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<long>("product_id")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("quote_id")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("policy_id");
-
-                    b.HasIndex("policy_number")
-                        .IsUnique()
-                        .HasDatabaseName("uk_policy_policy_number");
-
-                    b.ToTable("policy", (string)null);
+                    b.ToTable("payment_receipt", "dbo");
                 });
 
             modelBuilder.Entity("PremiumPayment.Domain.Entities.premium_payment", b =>
@@ -237,7 +130,7 @@ namespace PremiumPayment.Infratructure.Migrations
                     b.HasIndex("schedule_id")
                         .HasDatabaseName("idx_premium_payment_schedule_id");
 
-                    b.ToTable("premium_payment", (string)null);
+                    b.ToTable("premium_payment", "dbo");
                 });
 
             modelBuilder.Entity("PremiumPayment.Domain.Entities.premium_refund", b =>
@@ -269,16 +162,16 @@ namespace PremiumPayment.Infratructure.Migrations
 
                     b.HasIndex("payment_id");
 
-                    b.ToTable("premium_refund", (string)null);
+                    b.ToTable("premium_refund", "dbo");
                 });
 
             modelBuilder.Entity("PremiumPayment.Domain.Entities.premium_schedule", b =>
                 {
-                    b.Property<long>("schedule_id")
+                    b.Property<int>("schedule_id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("schedule_id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("schedule_id"));
 
                     b.Property<DateTime>("due_date")
                         .HasColumnType("datetime2");
@@ -291,11 +184,15 @@ namespace PremiumPayment.Infratructure.Migrations
                         .HasColumnType("decimal(15,2)")
                         .HasDefaultValue(0m);
 
-                    b.Property<long>("policy_id")
-                        .HasColumnType("bigint");
+                    b.Property<int>("policy_id")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("premium_amount")
                         .HasColumnType("decimal(15,2)");
+
+                    b.Property<string>("premium_frequency")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("status")
                         .IsRequired()
@@ -304,7 +201,21 @@ namespace PremiumPayment.Infratructure.Migrations
 
                     b.HasKey("schedule_id");
 
-                    b.ToTable("premium_schedule", (string)null);
+                    b.HasIndex("policy_id", "installment_no")
+                        .IsUnique();
+
+                    b.ToTable("premium_schedule", "dbo");
+                });
+
+            modelBuilder.Entity("PremiumPayment.Domain.Entities.PremiumReminders", b =>
+                {
+                    b.HasOne("PremiumPayment.Domain.Entities.premium_schedule", "premium_Schedule")
+                        .WithMany("premium_reminders")
+                        .HasForeignKey("schedule_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("premium_Schedule");
                 });
 
             modelBuilder.Entity("PremiumPayment.Domain.Entities.payment_receipt", b =>
@@ -334,6 +245,11 @@ namespace PremiumPayment.Infratructure.Migrations
                     b.Navigation("payment_receipt");
 
                     b.Navigation("premium_refunds");
+                });
+
+            modelBuilder.Entity("PremiumPayment.Domain.Entities.premium_schedule", b =>
+                {
+                    b.Navigation("premium_reminders");
                 });
 #pragma warning restore 612, 618
         }

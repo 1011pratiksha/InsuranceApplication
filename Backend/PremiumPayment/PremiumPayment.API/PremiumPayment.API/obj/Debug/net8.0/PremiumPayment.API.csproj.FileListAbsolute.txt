@@ -163,22 +163,10 @@ C:\Users\Pratiksha\source\repos\InsuranceApplication\Backend\PremiumPayment\Prem
 C:\Users\Pratiksha\source\repos\InsuranceApplication\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.pdb
 C:\Users\Pratiksha\source\repos\InsuranceApplication\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.genruntimeconfig.cache
 C:\Users\Pratiksha\source\repos\InsuranceApplication\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\ref\PremiumPayment.API.dll
-E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.csproj.AssemblyReference.cache
-E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\rpswa.dswa.cache.json
-E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.GeneratedMSBuildEditorConfig.editorconfig
-E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.AssemblyInfoInputs.cache
-E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.AssemblyInfo.cs
-E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.csproj.CoreCompileInputs.cache
-E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.MvcApplicationPartsAssemblyInfo.cs
-E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.MvcApplicationPartsAssemblyInfo.cache
-E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.sourcelink.json
-E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.dll
-E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\refint\PremiumPayment.API.dll
-E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.pdb
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\appsettings.Development.json
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\appsettings.json
-E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\QuestPDF.Fonts.Lato.br
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\PremiumPayment.API.staticwebassets.endpoints.json
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\QuestPDF.Fonts.Lato.br
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\PremiumPayment.API.exe
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\PremiumPayment.API.deps.json
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\PremiumPayment.API.runtimeconfig.json
@@ -187,7 +175,11 @@ E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bi
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\AutoMapper.dll
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\Azure.Core.dll
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\Azure.Identity.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\Hangfire.Core.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\Hangfire.NetCore.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\Hangfire.SqlServer.dll
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\Humanizer.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
@@ -216,6 +208,7 @@ E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bi
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\Mono.TextTemplating.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\Newtonsoft.Json.dll
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\QuestPDF.dll
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
@@ -235,6 +228,21 @@ E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bi
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\System.Security.Permissions.dll
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\System.Windows.Extensions.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\ca\Hangfire.Core.resources.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\de\Hangfire.Core.resources.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\es\Hangfire.Core.resources.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\fa\Hangfire.Core.resources.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\fr\Hangfire.Core.resources.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\nb\Hangfire.Core.resources.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\nl\Hangfire.Core.resources.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\pt-BR\Hangfire.Core.resources.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\pt-PT\Hangfire.Core.resources.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\pt\Hangfire.Core.resources.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\ru\Hangfire.Core.resources.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\sv\Hangfire.Core.resources.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\tr-TR\Hangfire.Core.resources.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\zh-TW\Hangfire.Core.resources.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\zh\Hangfire.Core.resources.dll
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
@@ -321,6 +329,15 @@ E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bi
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\PremiumPayment.Application.pdb
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\PremiumPayment.Domain.pdb
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\bin\Debug\net8.0\PremiumPayment.Infratructure.pdb
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.csproj.AssemblyReference.cache
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\rpswa.dswa.cache.json
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.GeneratedMSBuildEditorConfig.editorconfig
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.AssemblyInfoInputs.cache
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.AssemblyInfo.cs
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.csproj.CoreCompileInputs.cache
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.MvcApplicationPartsAssemblyInfo.cs
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.MvcApplicationPartsAssemblyInfo.cache
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.sourcelink.json
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\rjimswa.dswa.cache.json
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
@@ -332,5 +349,8 @@ E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\ob
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\swae.build.ex.cache
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumP.0CDAED95.Up2Date
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\refint\PremiumPayment.API.dll
+E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.pdb
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\PremiumPayment.API.genruntimeconfig.cache
 E:\Insurance prj\Backend\PremiumPayment\PremiumPayment.API\PremiumPayment.API\obj\Debug\net8.0\ref\PremiumPayment.API.dll

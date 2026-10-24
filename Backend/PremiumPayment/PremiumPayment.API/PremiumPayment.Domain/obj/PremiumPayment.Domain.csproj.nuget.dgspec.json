@@ -56,6 +56,14 @@
               "target": "Package",
               "version": "[16.2.0, )"
             },
+            "Hangfire.NetCore": {
+              "target": "Package",
+              "version": "[1.8.25, )"
+            },
+            "Hangfire.SqlServer": {
+              "target": "Package",
+              "version": "[1.8.25, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.0, )"

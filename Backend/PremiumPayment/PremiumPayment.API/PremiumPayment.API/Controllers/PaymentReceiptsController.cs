@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PremiumPayment.Application.Interfaces;
@@ -10,6 +11,7 @@ using QuestPDF.Infrastructure;
 
 namespace PremiumPayment.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/v1/payments")]
     public class PaymentReceiptsController : ControllerBase

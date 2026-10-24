@@ -6,50 +6,17 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PremiumPayment.Infratructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class initial1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "policy",
-                columns: table => new
-                {
-                    policy_id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    policy_number = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    quote_id = table.Column<long>(type: "bigint", nullable: false),
-                    customer_id = table.Column<long>(type: "bigint", nullable: false),
-                    product_id = table.Column<long>(type: "bigint", nullable: false),
-                    issue_date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    effective_date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    expiry_date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    policy_status = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_policy", x => x.policy_id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "policy_cancellation",
-                columns: table => new
-                {
-                    cancellation_id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    policy_id = table.Column<long>(type: "bigint", nullable: false),
-                    cancellation_date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    cancellation_reason = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    refund_amount = table.Column<decimal>(type: "decimal(15,2)", nullable: false),
-                    approved_by = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_policy_cancellation", x => x.cancellation_id);
-                });
+            migrationBuilder.EnsureSchema(
+                name: "dbo");
 
             migrationBuilder.CreateTable(
                 name: "premium_payment",
+                schema: "dbo",
                 columns: table => new
                 {
                     payment_id = table.Column<long>(type: "bigint", nullable: false)
@@ -69,11 +36,13 @@ namespace PremiumPayment.Infratructure.Migrations
 
             migrationBuilder.CreateTable(
                 name: "premium_schedule",
+                schema: "dbo",
                 columns: table => new
                 {
-                    schedule_id = table.Column<long>(type: "bigint", nullable: false)
+                    schedule_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    policy_id = table.Column<long>(type: "bigint", nullable: false),
+                    policy_id = table.Column<int>(type: "int", nullable: false),
+                    premium_frequency = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     installment_no = table.Column<int>(type: "int", nullable: false),
                     due_date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     premium_amount = table.Column<decimal>(type: "decimal(15,2)", nullable: false),
@@ -86,41 +55,8 @@ namespace PremiumPayment.Infratructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "role_master",
-                columns: table => new
-                {
-                    role_id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    role_name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    description = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_role_master", x => x.role_id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "user_master",
-                columns: table => new
-                {
-                    user_id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    employee_id = table.Column<long>(type: "bigint", nullable: false),
-                    username = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    password_hash = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    mobile = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    role_id = table.Column<long>(type: "bigint", nullable: false),
-                    branch_id = table.Column<long>(type: "bigint", nullable: false),
-                    status = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_user_master", x => x.user_id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "payment_receipt",
+                schema: "dbo",
                 columns: table => new
                 {
                     receipt_id = table.Column<long>(type: "bigint", nullable: false)
@@ -136,6 +72,7 @@ namespace PremiumPayment.Infratructure.Migrations
                     table.ForeignKey(
                         name: "FK_payment_receipt_premium_payment_payment_id",
                         column: x => x.payment_id,
+                        principalSchema: "dbo",
                         principalTable: "premium_payment",
                         principalColumn: "payment_id",
                         onDelete: ReferentialAction.Cascade);
@@ -143,6 +80,7 @@ namespace PremiumPayment.Infratructure.Migrations
 
             migrationBuilder.CreateTable(
                 name: "premium_refund",
+                schema: "dbo",
                 columns: table => new
                 {
                     refund_id = table.Column<long>(type: "bigint", nullable: false)
@@ -159,71 +97,104 @@ namespace PremiumPayment.Infratructure.Migrations
                     table.ForeignKey(
                         name: "FK_premium_refund_premium_payment_payment_id",
                         column: x => x.payment_id,
+                        principalSchema: "dbo",
                         principalTable: "premium_payment",
                         principalColumn: "payment_id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "PremiumReminders",
+                schema: "dbo",
+                columns: table => new
+                {
+                    reminder_id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    schedule_id = table.Column<int>(type: "int", nullable: false),
+                    reminder_type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    reminder_date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    delivery_status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PremiumReminders", x => x.reminder_id);
+                    table.ForeignKey(
+                        name: "FK_PremiumReminders_premium_schedule_schedule_id",
+                        column: x => x.schedule_id,
+                        principalSchema: "dbo",
+                        principalTable: "premium_schedule",
+                        principalColumn: "schedule_id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_payment_receipt_payment_id",
+                schema: "dbo",
                 table: "payment_receipt",
                 column: "payment_id",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "uk_payment_receipt_receipt_number",
+                schema: "dbo",
                 table: "payment_receipt",
                 column: "receipt_number",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "uk_policy_policy_number",
-                table: "policy",
-                column: "policy_number",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "idx_premium_payment_policy_id",
+                schema: "dbo",
                 table: "premium_payment",
                 column: "policy_id");
 
             migrationBuilder.CreateIndex(
                 name: "idx_premium_payment_schedule_id",
+                schema: "dbo",
                 table: "premium_payment",
                 column: "schedule_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_premium_refund_payment_id",
+                schema: "dbo",
                 table: "premium_refund",
                 column: "payment_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_premium_schedule_policy_id_installment_no",
+                schema: "dbo",
+                table: "premium_schedule",
+                columns: new[] { "policy_id", "installment_no" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PremiumReminders_schedule_id",
+                schema: "dbo",
+                table: "PremiumReminders",
+                column: "schedule_id");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "payment_receipt");
+                name: "payment_receipt",
+                schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "policy");
+                name: "premium_refund",
+                schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "policy_cancellation");
+                name: "PremiumReminders",
+                schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "premium_refund");
+                name: "premium_payment",
+                schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "premium_schedule");
-
-            migrationBuilder.DropTable(
-                name: "role_master");
-
-            migrationBuilder.DropTable(
-                name: "user_master");
-
-            migrationBuilder.DropTable(
-                name: "premium_payment");
+                name: "premium_schedule",
+                schema: "dbo");
         }
     }
 }

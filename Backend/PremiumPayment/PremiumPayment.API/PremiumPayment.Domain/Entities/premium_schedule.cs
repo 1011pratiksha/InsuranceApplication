@@ -24,6 +24,6 @@ namespace PremiumPayment.Domain.Entities
         public decimal late_fee { get; set; } = 0;
         public string status { get; set; }
 
-        public List<premium_reminder> premium_Reminder { get; set; }
-    }
+        public ICollection<PremiumReminders> premium_reminders { get; set; }
+        }
 }

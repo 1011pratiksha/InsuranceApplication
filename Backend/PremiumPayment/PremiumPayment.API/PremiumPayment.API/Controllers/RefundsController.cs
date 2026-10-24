@@ -4,9 +4,11 @@ using PremiumPayment.Application.DTO;
 using PremiumPayment.Application.Interfaces;
 using PremiumPayment.Domain.Entities;
 using PremiumPayment.Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PremiumPayment.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/v1/refunds")]
     public class RefundsController : ControllerBase
@@ -29,6 +31,9 @@ namespace PremiumPayment.API.Controllers
         public async Task<IActionResult> CreateRefund(
             [FromBody] CreateRefundDto request)
         {
+            if (request.refund_amount <= 0)
+                return BadRequest("Refund amount must be greater than zero.");
+
             var payment = await _paymentService.GetById(request.payment_id);
 
             if (payment == null)
@@ -37,9 +42,6 @@ namespace PremiumPayment.API.Controllers
             if (payment.payment_status != "Success")
                 return BadRequest("Only successful payments can be refunded.");
 
-            if (request.refund_amount <= 0)
-                return BadRequest("Refund amount must be greater than zero.");
-
             var existingRefunds = await _context.premium_refund
                 .Where(x => x.payment_id == request.payment_id &&
                     (x.refund_status == "Pending" ||
@@ -47,8 +49,10 @@ namespace PremiumPayment.API.Controllers
                 .SumAsync(x => (decimal?)x.refund_amount) ?? 0;
 
             if (existingRefunds + request.refund_amount > payment.amount_paid)
+            {
                 return BadRequest(
                     "Total pending and approved refunds cannot exceed the payment amount.");
+            }
 
             var refund = new premium_refund
             {
@@ -62,7 +66,7 @@ namespace PremiumPayment.API.Controllers
             await _refundService.Add(refund);
 
             return CreatedAtAction(
-    nameof(GetRefundById),
+                nameof(GetRefundById),
                 new { refundId = refund.refund_id },
                 new
                 {
@@ -79,7 +83,8 @@ namespace PremiumPayment.API.Controllers
             long refundId,
             [FromBody] ApproveRefundDto request)
         {
-            var refund = await _refundService.GetById(refundId);
+            var refund = await _context.premium_refund
+                .FirstOrDefaultAsync(x => x.refund_id == refundId);
 
             if (refund == null)
                 return NotFound("Refund not found.");
@@ -94,7 +99,7 @@ namespace PremiumPayment.API.Controllers
             refund.approved_by = request.approved_by;
             refund.refund_date = DateTime.UtcNow;
 
-            await _refundService.Update(refund);
+            await _context.SaveChangesAsync();
 
             return Ok(new
             {
@@ -105,25 +110,27 @@ namespace PremiumPayment.API.Controllers
             });
         }
 
-
         [HttpGet("{refundId:long}")]
         public async Task<IActionResult> GetRefundById(long refundId)
         {
-            var refund = await _refundService.GetById(refundId);
+            var refund = await _context.premium_refund
+                .AsNoTracking()
+                .Where(x => x.refund_id == refundId)
+                .Select(x => new
+                {
+                    refund_id = x.refund_id,
+                    payment_id = x.payment_id,
+                    refund_amount = x.refund_amount,
+                    refund_date = x.refund_date,
+                    refund_status = x.refund_status,
+                    approved_by = x.approved_by
+                })
+                .FirstOrDefaultAsync();
 
             if (refund == null)
                 return NotFound("Refund not found.");
 
-            return Ok(new
-            {
-                refund_id = refund.refund_id,
-                payment_id = refund.payment_id,
-                refund_amount = refund.refund_amount,
-                refund_date = refund.refund_date,
-                refund_status = refund.refund_status,
-                approved_by = refund.approved_by
-            });
+            return Ok(refund);
         }
-
     }
 }

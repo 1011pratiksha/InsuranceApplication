@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using PremiumPayment.Domain.Entities;
+using PremiumPayment.Infrastructure.Entities;
 
 namespace PremiumPayment.Infrastructure.Data
 {
@@ -15,24 +16,31 @@ namespace PremiumPayment.Infrastructure.Data
         public DbSet<premium_payment> premium_payment { get; set; } = null!;
         public DbSet<payment_receipt> payment_receipt { get; set; } = null!;
         public DbSet<premium_refund> premium_refund { get; set; } = null!;
-        public DbSet<premium_reminder> premium_reminder { get; set; } = null!;
+        public DbSet<PremiumReminders> premium_reminder { get; set; } = null!;
         public DbSet<premium_schedule> premium_schedule { get; set; } = null!;
 
-        // Keep these DbSets commented if these entities are not
-        // part of this microservice.
-        // public DbSet<UserMaster> user_master { get; set; } = null!;
-        // public DbSet<RoleMaster> role_master { get; set; } = null!;
-        // public DbSet<policy> policy { get; set; } = null!;
-        // public DbSet<PolicyCancellation> policy_cancellation { get; set; } = null!;
+        // Read-only mapping to the existing Auth Microservice Users table.
+        public DbSet<AuthUser> AuthUsers { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Premium payment configuration
+            modelBuilder.Entity<AuthUser>(e =>
+            {
+                e.ToTable("Users", "dbo");
+                e.HasKey(x => x.UserId);
+
+                e.Property(x => x.UserId).HasColumnName("UserId");
+                e.Property(x => x.Status).HasColumnName("Status");
+                e.Property(x => x.TokenVersion).HasColumnName("TokenVersion");
+
+                e.Metadata.SetIsTableExcludedFromMigrations(true);
+            });
+
             modelBuilder.Entity<premium_payment>(e =>
             {
-                e.ToTable("premium_payment");
+                e.ToTable("premium_payment", "dbo");
                 e.HasKey(x => x.payment_id);
 
                 e.Property(x => x.schedule_id).IsRequired();
@@ -70,10 +78,9 @@ namespace PremiumPayment.Infrastructure.Data
                     .HasForeignKey(x => x.payment_id);
             });
 
-            // Payment receipt configuration
             modelBuilder.Entity<payment_receipt>(e =>
             {
-                e.ToTable("payment_receipt");
+                e.ToTable("payment_receipt", "dbo");
                 e.HasKey(x => x.receipt_id);
 
                 e.Property(x => x.payment_id).IsRequired();
@@ -93,10 +100,9 @@ namespace PremiumPayment.Infrastructure.Data
                     .HasDatabaseName("uk_payment_receipt_receipt_number");
             });
 
-            // Premium refund configuration
             modelBuilder.Entity<premium_refund>(e =>
             {
-                e.ToTable("premium_refund");
+                e.ToTable("premium_refund", "dbo");
                 e.HasKey(x => x.refund_id);
 
                 e.Property(x => x.payment_id).IsRequired();
@@ -115,10 +121,9 @@ namespace PremiumPayment.Infrastructure.Data
                     .IsRequired(false);
             });
 
-            // Premium schedule configuration
             modelBuilder.Entity<premium_schedule>(e =>
             {
-                e.ToTable("premium_schedule");
+                e.ToTable("premium_schedule", "dbo");
                 e.HasKey(x => x.schedule_id);
 
                 e.Property(x => x.premium_amount)
@@ -136,11 +141,18 @@ namespace PremiumPayment.Infrastructure.Data
                     x.policy_id,
                     x.installment_no
                 })
-                    .IsUnique();
+                .IsUnique();
             });
 
-            // Configure premium_reminder relationships here after
-            // confirming the actual navigation property names.
+            modelBuilder.Entity<PremiumReminders>(e =>
+            {
+                e.ToTable("PremiumReminders", "dbo");
+                e.HasKey(x => x.reminder_id);
+
+                e.HasOne(x => x.premium_Schedule)
+                    .WithMany(x => x.premium_reminders)
+                    .HasForeignKey(x => x.schedule_id);
+            });
         }
     }
 }
