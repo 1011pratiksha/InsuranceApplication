@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClaimManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261022183343_ClaimMgmmtDbInit")]
-    partial class ClaimMgmmtDbInit
+    [Migration("20261023193010_ClaimMgmtProcessDb")]
+    partial class ClaimMgmtProcessDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

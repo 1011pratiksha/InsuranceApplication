@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ClaimManagement.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class ClaimMgmmtDbInit : Migration
+    public partial class ClaimMgmtProcessDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
