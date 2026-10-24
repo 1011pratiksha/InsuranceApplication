@@ -12,9 +12,9 @@ namespace PolicyServicing.Domain.Entities
     {
         [Key]
         public long renewal_id { get; set; }
-        [ForeignKey("Policy")]
+        //[ForeignKey("Policy")]
         public long policy_id { get; set; }
-        public  Policy? Policy { get; set; }
+        //public  Policy? Policy { get; set; }
         public DateTime renewal_date { get; set; }
         public DateTime new_expiry_date { get; set; }
         public decimal premium_amount { get; set; }

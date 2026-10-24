@@ -1,62 +1,157 @@
 ﻿using Dashboard.application.DTO;
 using Dashboard.application.Interface;
+using Dashboard.infrastructure.Config;
 
 namespace Dashboard.infrastructure.Repository
 {
     public class DashboardRepository : IDashboardRepository
     {
-        public async Task<AdminDashboardDTO> GetAdminDashboardAsync()
+        private readonly PolicyClient policyClient;
+        private readonly PremiumScheduleClient premiumScheduleClient;
+        private readonly ClaimClient claimClient;
+        private readonly KycClient kycClient;
+        private readonly AgentCustomerClient agentCustomerClient;
+        private readonly AgentCommissionClient agentCommissionClient;
+        private readonly CommissionPaymentClient commissionPaymentClient;
+        private readonly AgentAdminClient agentAdminClient;
+        private readonly KycAdminClient kycAdminClient;
+        private readonly UnderwritingAdminClient underwritingAdminClient;
+
+        public DashboardRepository(PolicyClient policyClient, PremiumScheduleClient premiumScheduleClient, ClaimClient claimClient, KycClient kycClient, AgentCustomerClient agentCustomerClient, AgentCommissionClient agentCommissionClient,
+    CommissionPaymentClient commissionPaymentClient, AgentAdminClient agentAdminClient, KycAdminClient kycAdminClient, UnderwritingAdminClient underwritingAdminClient)
         {
+            this.policyClient = policyClient;
+            this.premiumScheduleClient = premiumScheduleClient;
+            this.claimClient = claimClient;
+            this.kycClient = kycClient;
+            this.agentCustomerClient = agentCustomerClient;
+            this.agentCommissionClient = agentCommissionClient;
+            this.commissionPaymentClient = commissionPaymentClient;
+            this.agentAdminClient = agentAdminClient;
+            this.kycAdminClient = kycAdminClient;
+            this.underwritingAdminClient = underwritingAdminClient;
+        }
+
+    public async Task<AdminDashboardDTO> GetAdminDashboardAsync()
+        {
+            var agents = await agentAdminClient.GetAllAgentsAsync();
+
+            var kycRecords = await kycAdminClient.GetAllKycAsync();
+
+            var underwritingCases = await underwritingAdminClient.GetAllCasesAsync();
+
+            var claims = await claimClient.GetAllClaimsAsync();
+
             var dashboard = new AdminDashboardDTO
             {
-                TotalCustomers = 500,
-                TotalPolicies = 850,
-                ActivePolicies = 700,
-                PremiumCollected = 2500000,
-                PendingPremium = 150000,
-                ClaimsRegistered = 120,
-                ClaimsSettled = 90,
-                OutstandingClaims = 200000,
-                MonthlyRevenue = 450000,
-                TopPerformingAgent = "Sample Agent"
+                // Count agents awaiting approval
+                PendingAgentApprovals = agents.Count(a =>
+                    a.Status.Equals("Pending", StringComparison.OrdinalIgnoreCase)),
+
+                // Count KYC records awaiting verification
+                KYCQueue = kycRecords.Count(k =>
+                    k.VerificationStatus.Equals("Pending", StringComparison.OrdinalIgnoreCase)),
+
+                // Count underwriting cases awaiting review
+                OpenUWCases = underwritingCases.Count(c =>
+                    c.Status.Equals("Pending", StringComparison.OrdinalIgnoreCase)),
+
+                // Count open claims
+                OpenClaims = claims.Count(c =>
+                    c.ClaimStatus.Equals("Open", StringComparison.OrdinalIgnoreCase))
             };
 
-
-        return await Task.FromResult(dashboard);
+            return dashboard;
         }
-
-        public async Task<AgentDashboardDTO> GetAgentDashboardAsync(int agentId)
+     
+    public async Task<AgentDashboardDTO> GetAgentDashboardAsync(int agentId)
         {
+            var customers = await agentCustomerClient.GetAssignedCustomersAsync(agentId);
+
+            var commissions = await agentCommissionClient.GetCommissionsByAgentIdAsync(agentId);
+
+            var payments = await commissionPaymentClient.GetAgentPayoutHistoryAsync(agentId);
+
+            var currentYear = DateTime.Today.Year;
+
             var dashboard = new AgentDashboardDTO
             {
-                TotalCustomers = 45,
-                TotalPolicies = 60,
-                ActivePolicies = 52,
-                PremiumCollected = 350000,
-                PendingPremium = 25000,
-                ClaimsRegistered = 8,
-                TotalCommission = 18000
+                // Count customers currently assigned to this agent
+                TotalCustomers = customers.Count(c =>
+                    c.Status.Equals("Active", StringComparison.OrdinalIgnoreCase)),
+
+                // Count distinct policies associated with this agent's commission records
+                PoliciesSold = commissions
+                    .Select(c => c.PolicyId)
+                    .Distinct()
+                    .Count(),
+
+                // Calculate commissions with Pending status
+                CommissionPending = commissions
+                    .Where(c => c.Status.Equals("Pending", StringComparison.OrdinalIgnoreCase))
+                    .Sum(c => c.CommissionAmount),
+
+                // Calculate successful commission payments made during the current year
+                CommissionPaidYTD = payments
+                    .Where(p => p.Status.Equals("Success", StringComparison.OrdinalIgnoreCase)
+                                && p.PaymentDate.HasValue
+                                && p.PaymentDate.Value.Year == currentYear)
+                    .Sum(p => p.TotalAmount)
             };
 
-            return await Task.FromResult(dashboard);
+            return dashboard;
         }
+
 
         public async Task<CustomerDashboardDTO> GetCustomerDashboardAsync(int customerId)
         {
+            var policies = await policyClient.GetAllPoliciesAsync();
+
+            var customerPolicies = policies
+                .Where(p => p.CustomerId == customerId)
+                .ToList();
+
+            var activePolicies = customerPolicies
+                .Where(p => p.PolicyStatus.Equals("Active", StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            DateTime? nextPremiumDue = null;
+
+            foreach (var policy in activePolicies)
+            {
+                var schedules = await premiumScheduleClient.GetPremiumScheduleAsync(policy.PolicyId);
+
+                var nextSchedule = schedules
+                    .Where(s => s.DueDate.Date >= DateTime.Today &&
+                                s.Status.Equals("Pending", StringComparison.OrdinalIgnoreCase))
+                    .OrderBy(s => s.DueDate)
+                    .FirstOrDefault();
+
+                if (nextSchedule != null &&
+                    (nextPremiumDue == null || nextSchedule.DueDate < nextPremiumDue))
+                {
+                    nextPremiumDue = nextSchedule.DueDate;
+                }
+            }
+
+            var claims = await claimClient.GetAllClaimsAsync();
+
+            var openClaims = claims.Count(c =>
+                c.CustomerId == customerId &&
+                c.ClaimStatus.Equals("Open", StringComparison.OrdinalIgnoreCase));
+
+            var kyc = await kycClient.GetCustomerKycAsync(customerId);
+
             var dashboard = new CustomerDashboardDTO
             {
-                TotalPolicies = 3,
-                ActivePolicies = 2,
-                UpcomingPremium = 5000,
-                TotalPremiumPaid = 45000,
-                TotalClaims = 2,
-                PendingClaims = 1,
-                SettledClaims = 1,
-                UnreadNotifications = 3
+                ActivePolicies = activePolicies.Count,
+                NextPremiumDue = nextPremiumDue,
+                OpenClaims = openClaims,
+                KYCStatus = kyc?.VerificationStatus ?? "Not Submitted"
             };
 
-            return await Task.FromResult(dashboard);
+            return dashboard;
         }
     }
-
 }
+

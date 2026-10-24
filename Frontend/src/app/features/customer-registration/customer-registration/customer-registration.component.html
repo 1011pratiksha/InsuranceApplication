@@ -1,0 +1,69 @@
+<div class="page-container">
+  <div class="crumb">Customer Registration / My Profile</div>
+  <h1>My Profile</h1>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <div class="card grid2">
+    <div class="f">
+      <label>First name</label>
+      <input type="text" class="in" [(ngModel)]="personalForm.firstName" placeholder="Enter first name" />
+    </div>
+
+    <div class="f">
+      <label>Middle name</label>
+      <input type="text" class="in" [(ngModel)]="personalForm.middleName" placeholder="Enter middle name" />
+    </div>
+
+    <div class="f">
+      <label>Last name</label>
+      <input type="text" class="in" [(ngModel)]="personalForm.lastName" placeholder="Enter last name" />
+    </div>
+
+    <div class="f">
+      <label>Date of birth</label>
+      <input type="date" class="in" [(ngModel)]="personalForm.dateOfBirth" />
+    </div>
+
+    <div class="f">
+      <label>Gender</label>
+      <input type="text" class="in" [(ngModel)]="personalForm.gender" placeholder="Enter gender" />
+    </div>
+
+    <div class="f">
+      <label>Marital status</label>
+      <input type="text" class="in" [(ngModel)]="personalForm.maritalStatus" placeholder="Enter marital status" />
+    </div>
+
+    <div class="f">
+      <label>Occupation</label>
+      <input type="text" class="in" [(ngModel)]="personalForm.occupation" placeholder="Enter occupation" />
+    </div>
+
+    <div class="f">
+      <label>Annual income</label>
+      <input type="number" class="in" [(ngModel)]="personalForm.annualIncome" placeholder="Enter annual income" />
+    </div>
+
+    <div class="f">
+      <label>Mobile</label>
+      <input type="tel" class="in" [(ngModel)]="personalForm.mobileNumber" placeholder="Enter mobile" />
+    </div>
+
+    <div class="f">
+      <label>Email</label>
+      <input type="email" class="in" [(ngModel)]="personalForm.email" placeholder="Enter email" />
+    </div>
+  </div>
+
+  <div class="acts">
+    <button class="btn p" [disabled]="submitting" (click)="saveChanges()">
+      {{ submitting ? 'Saving...' : 'Save changes' }}
+    </button>
+  </div>
+</div>

@@ -1,15 +1,18 @@
 ﻿using System.Net;
+using System.Net.Http;
 using System.Net.Http.Json;
 using PolicyIssuance.Application.DTO;
 using PolicyIssuance.Application.Interfaces;
+using Microsoft.Extensions.Http;
 
 namespace PolicyIssuance.Infrastructure.Services;
 
 public class PolicyIntegrationService : IPolicyIntegrationService
 {
-    private readonly IHttpClientFactory _factory;
+    private readonly System.Net.Http.IHttpClientFactory _factory;
 
-    public PolicyIntegrationService(IHttpClientFactory factory)
+    public PolicyIntegrationService(
+        System.Net.Http.IHttpClientFactory factory)
     {
         _factory = factory;
     }
@@ -19,7 +22,7 @@ public class PolicyIntegrationService : IPolicyIntegrationService
         string endpoint,
         CancellationToken cancellationToken)
     {
-        var client = _factory.CreateClient(clientName);
+        HttpClient client = _factory.CreateClient(clientName);
 
         using var response = await client.GetAsync(
             endpoint, cancellationToken);
@@ -63,29 +66,11 @@ public class PolicyIntegrationService : IPolicyIntegrationService
         => GetAsync<PaymentIntegrationDto>(
             "Payment", $"api/v1/payments/quote/{quoteId}", cancellationToken);
 
-    public async Task RegisterPolicyDocumentAsync(
+    public Task RegisterPolicyDocumentAsync(
         int policyId, CancellationToken cancellationToken = default)
-    {
-        var client = _factory.CreateClient("Document");
+        => Task.CompletedTask;
 
-        //using var response = await client.PostAsJsonAsync(
-        //    "api/v1/documents/policy",
-        //    new { PolicyId = policyId },
-        //    cancellationToken);
-
-        //response.EnsureSuccessStatusCode();
-    }
-
-    public async Task NotifyPolicyIssuedAsync(
+    public Task NotifyPolicyIssuedAsync(
         int policyId, CancellationToken cancellationToken = default)
-    {
-        var client = _factory.CreateClient("Notification");
-
-        //using var response = await client.PostAsJsonAsync(
-        //    "api/v1/notifications/policy-issued",
-        //    new { PolicyId = policyId },
-        //    cancellationToken);
-
-        //response.EnsureSuccessStatusCode();
-    }
+        => Task.CompletedTask;
 }

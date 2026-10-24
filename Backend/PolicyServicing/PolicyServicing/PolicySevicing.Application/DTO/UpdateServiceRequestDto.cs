@@ -8,6 +8,8 @@ namespace PolicySevicing.Application.DTO
 {
     public class UpdateServiceRequestDto
     {
-        public string request_type { get; set; }
+        public string? request_type { get; set; }
+
+        public string? Status { get; set; }
     }
 }
