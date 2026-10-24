@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CustomerEndorsementng } from './customer-endorsementng';
+import { Policyclosure } from './policyclosure';
 
-describe('CustomerEndorsementng', () => {
-  let component: CustomerEndorsementng;
-  let fixture: ComponentFixture<CustomerEndorsementng>;
+describe('Policyclosure', () => {
+  let component: Policyclosure;
+  let fixture: ComponentFixture<Policyclosure>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CustomerEndorsementng]
+      imports: [Policyclosure]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CustomerEndorsementng);
+    fixture = TestBed.createComponent(Policyclosure);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
