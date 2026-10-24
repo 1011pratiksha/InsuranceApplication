@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\parth\\source\\repos\\CustomerService\\CustomerService\\CustomerRegistration.API.csproj": {}
+    "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\CustomerService\\CustomerRegistration.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj": {
+    "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj",
+        "projectUniqueName": "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj",
         "projectName": "CustomerRegistration.Application",
-        "projectPath": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj",
-        "packagesPath": "C:\\Users\\parth\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Application\\obj\\",
+        "projectPath": "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj",
+        "packagesPath": "C:\\Users\\vaibh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\parth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vaibh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -34,8 +34,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj": {
-                "projectPath": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj"
+              "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj": {
+                "projectPath": "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj"
               }
             }
           }
@@ -107,7 +107,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
@@ -525,20 +525,20 @@
         }
       }
     },
-    "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj": {
+    "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj",
         "projectName": "CustomerRegistration.Domain",
-        "projectPath": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj",
-        "packagesPath": "C:\\Users\\parth\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Domain\\obj\\",
+        "projectPath": "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj",
+        "packagesPath": "C:\\Users\\vaibh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\parth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vaibh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -621,7 +621,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -899,20 +899,20 @@
         }
       }
     },
-    "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Infrastructure\\CustomerRegistration.Infrastructure.csproj": {
+    "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Infrastructure\\CustomerRegistration.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Infrastructure\\CustomerRegistration.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Infrastructure\\CustomerRegistration.Infrastructure.csproj",
         "projectName": "CustomerRegistration.Infrastructure",
-        "projectPath": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Infrastructure\\CustomerRegistration.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\parth\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Infrastructure\\CustomerRegistration.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\vaibh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\parth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vaibh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -929,11 +929,11 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj": {
-                "projectPath": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj"
+              "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj": {
+                "projectPath": "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj"
               },
-              "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj": {
-                "projectPath": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj"
+              "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj": {
+                "projectPath": "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj"
               }
             }
           }
@@ -1002,7 +1002,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -1280,20 +1280,20 @@
         }
       }
     },
-    "C:\\Users\\parth\\source\\repos\\CustomerService\\CustomerService\\CustomerRegistration.API.csproj": {
+    "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\CustomerService\\CustomerRegistration.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\parth\\source\\repos\\CustomerService\\CustomerService\\CustomerRegistration.API.csproj",
+        "projectUniqueName": "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\CustomerService\\CustomerRegistration.API.csproj",
         "projectName": "CustomerRegistration.API",
-        "projectPath": "C:\\Users\\parth\\source\\repos\\CustomerService\\CustomerService\\CustomerRegistration.API.csproj",
-        "packagesPath": "C:\\Users\\parth\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\parth\\source\\repos\\CustomerService\\CustomerService\\obj\\",
+        "projectPath": "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\CustomerService\\CustomerRegistration.API.csproj",
+        "packagesPath": "C:\\Users\\vaibh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\CustomerService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\parth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vaibh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -1310,11 +1310,11 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj": {
-                "projectPath": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj"
+              "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj": {
+                "projectPath": "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj"
               },
-              "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Infrastructure\\CustomerRegistration.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Infrastructure\\CustomerRegistration.Infrastructure.csproj"
+              "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Infrastructure\\CustomerRegistration.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\vaibh\\OneDrive\\Desktop\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Infrastructure\\CustomerRegistration.Infrastructure.csproj"
               }
             }
           }
@@ -1394,7 +1394,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

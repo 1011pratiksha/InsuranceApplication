@@ -49,6 +49,18 @@ builder.Services.AddHttpClient<IUnderwritingClient, UnderwritingClient>(client =
     client.BaseAddress = uri;
 });
 
+builder.Services.AddHttpClient<ICustomerRegistrationClient, CustomerRegistrationClient>(
+    client =>
+    {
+        var baseUrl = builder.Configuration["ServiceUrls:CustomerRegistration"];
+
+        if (string.IsNullOrWhiteSpace(baseUrl))
+            throw new InvalidOperationException(
+                "Customer Registration service URL is missing.");
+
+        client.BaseAddress = new Uri(baseUrl);
+    });
+
 
 builder.Services.AddScoped<IQuoteService, QuoteService>();
 builder.Services.AddScoped<IPremiumCalculationService,PremiumCalculationService>();

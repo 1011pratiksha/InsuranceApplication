@@ -14,21 +14,45 @@ namespace QuoteGenerationMS.Infrastructure.Repositories
         private readonly IMapper mapper;
         private readonly IProductManagementClient productClient;
         private readonly IUnderwritingClient underwritingClient;
+        private readonly ICustomerRegistrationClient customerClient;
 
         public QuoteService(
             AppDbContext db,
             IMapper mapper,
             IProductManagementClient productClient,
-            IUnderwritingClient underwritingClient)
+            IUnderwritingClient underwritingClient,
+            ICustomerRegistrationClient customerClient)
         {
             this.db = db;
             this.mapper = mapper;
             this.productClient = productClient;
             this.underwritingClient = underwritingClient;
+            this.customerClient = customerClient;
         }
 
         public async Task CreateQuote(createQuoteDTO dto)
         {
+            // 1. Validate customer through Customer Registration MS
+            if (dto.customer_id <= 0)
+                throw new ArgumentException("Invalid customer ID.");
+
+            var customer =
+                await customerClient.GetCustomerById(dto.customer_id);
+
+            if (customer == null)
+                throw new KeyNotFoundException(
+                    $"Customer with ID {dto.customer_id} was not found.");
+
+            if (!string.Equals(
+                    customer.CustomerStatus,
+                    "Active",
+                    StringComparison.OrdinalIgnoreCase))
+            {
+                throw new InvalidOperationException(
+                    "Only active customers can create quotes.");
+            }
+
+            // 2. Validate product through Product Management MS
             var product =
                 await productClient.GetProductById(dto.product_id);
 
@@ -36,18 +60,25 @@ namespace QuoteGenerationMS.Infrastructure.Repositories
                 throw new Exception(
                     "Product not found in Product Management.");
 
-            if (!string.Equals(product.status, "Active",
-                StringComparison.OrdinalIgnoreCase))
-                throw new Exception(
+            if (!string.Equals(
+                    product.status,
+                    "Active",
+                    StringComparison.OrdinalIgnoreCase))
+            {
+                throw new InvalidOperationException(
                     "Cannot create quote because the product is inactive.");
+            }
 
             if (dto.sum_insured < product.minimum_sum_insured ||
                 dto.sum_insured > product.maximum_sum_insured)
-                throw new Exception(
+            {
+                throw new ArgumentException(
                     $"Sum insured must be between " +
                     $"{product.minimum_sum_insured} and " +
                     $"{product.maximum_sum_insured}.");
+            }
 
+            // 3. Create quote
             var d = mapper.Map<quote>(dto);
 
             d.quote_id = 0;
@@ -60,12 +91,15 @@ namespace QuoteGenerationMS.Infrastructure.Repositories
             await db.quote.AddAsync(d);
             await db.SaveChangesAsync();
 
+            // 4. Save quote history
             await db.quote_history.AddAsync(new quote_history
             {
                 quote_id = d.quote_id,
                 action = "Quote Created",
                 performed_by = 0,
-                remarks = "Quote created with Pending status.",
+                remarks =
+                    $"Quote created for customer {dto.customer_id} " +
+                    "with Pending status.",
                 action_date = DateTime.Now
             });
 
@@ -87,6 +121,27 @@ namespace QuoteGenerationMS.Infrastructure.Repositories
             if (customerId <= 0)
                 throw new ArgumentException("Invalid customer ID.");
 
+            // Verify the customer before creating an underwriting case.
+            var customer =
+                await customerClient.GetCustomerById(customerId);
+
+            if (customer == null)
+                throw new KeyNotFoundException(
+                    $"Customer with ID {customerId} was not found.");
+
+            if (!string.Equals(
+                    customer.CustomerStatus,
+                    "Active",
+                    StringComparison.OrdinalIgnoreCase))
+            {
+                throw new InvalidOperationException(
+                    "Only active customers can be sent for underwriting.");
+            }
+
+            if (quote.customer_id != customerId)
+                throw new InvalidOperationException(
+                    "Customer ID does not match the quote.");
+
             var request = new createUnderwritingRequestDTO
             {
                 quote_id = quote.quote_id,
@@ -102,7 +157,8 @@ namespace QuoteGenerationMS.Infrastructure.Repositories
                 quote_id = quoteId,
                 action = "Underwriting Case Created",
                 performed_by = 0,
-                remarks = $"Underwriting case created. ID: {underwritingId}",
+                remarks =
+                    $"Underwriting case created. ID: {underwritingId}",
                 action_date = DateTime.Now
             });
 
@@ -131,7 +187,6 @@ namespace QuoteGenerationMS.Infrastructure.Repositories
             return result;
         }
 
-        // 1. Calculate risk score
         public async Task CalculateUnderwritingRiskScore(
             int quoteId, calculateRiskScoreRequestDTO dto)
         {
@@ -140,8 +195,10 @@ namespace QuoteGenerationMS.Infrastructure.Repositories
 
             if (underwritingCase.status == "Approved" ||
                 underwritingCase.status == "Rejected")
+            {
                 throw new InvalidOperationException(
                     "Risk score cannot be updated after a final decision.");
+            }
 
             await underwritingClient.CalculateRiskScore(
                 underwritingCase.underwriting_id, dto);
@@ -160,7 +217,6 @@ namespace QuoteGenerationMS.Infrastructure.Repositories
             await db.SaveChangesAsync();
         }
 
-        // 2. Retrieve underwriting case
         public async Task<underwriting_caseResponseDTO?>
             GetUnderwritingCase(int quoteId)
         {
@@ -170,7 +226,6 @@ namespace QuoteGenerationMS.Infrastructure.Repositories
                 item.underwriting_id);
         }
 
-        // 3. Retrieve risk score
         public async Task<risk_scoreResponseDTO?>
             GetUnderwritingRiskScore(int quoteId)
         {
@@ -180,7 +235,6 @@ namespace QuoteGenerationMS.Infrastructure.Repositories
                 item.underwriting_id);
         }
 
-        // 4. Retrieve underwriting decision
         public async Task<underwriting_decisionResponseDTO?>
             GetUnderwritingDecision(int quoteId)
         {
@@ -228,6 +282,7 @@ namespace QuoteGenerationMS.Infrastructure.Repositories
                 });
 
                 await db.SaveChangesAsync();
+
                 throw new InvalidOperationException("Quote has expired.");
             }
 
@@ -260,8 +315,10 @@ namespace QuoteGenerationMS.Infrastructure.Repositories
 
             if (data.quote_status == "Expired" ||
                 data.quote_status == "Rejected")
+            {
                 throw new InvalidOperationException(
                     "Expired or rejected quote cannot be cancelled.");
+            }
 
             data.quote_status = "Rejected";
 
