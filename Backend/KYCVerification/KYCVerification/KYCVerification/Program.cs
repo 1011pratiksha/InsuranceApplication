@@ -1,4 +1,3 @@
-
 using KycVerification.Application.Interface;
 using KycVerification.Application.Mapper;
 using KycVerification.Infrastructure.Config;
@@ -8,56 +7,71 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Register controllers.
+// 1. Register controller support.
 builder.Services.AddControllers();
 
-// Register Swagger services.
+// 2. Register Swagger services.
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Register the database.
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("dbconn")));
+// 3. Register the SQL Server database context.
+// The connection string key must match "dbconn" in appsettings.json.
+var connectionString = builder.Configuration.GetConnectionString("dbconn");
 
-// Register AutoMapper.
+if (string.IsNullOrWhiteSpace(connectionString))
+{
+    throw new InvalidOperationException(
+        "Connection string 'dbconn' is missing from appsettings.json.");
+}
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+// 4. Register AutoMapper using the existing KYC mapping profile.
 builder.Services.AddAutoMapper(
     cfg => { },
     typeof(KycMappingProfile).Assembly);
 
-// Register the Customer API client.
+// 5. Register the HTTP client for communicating with Customer Service.
+var customerApiUrl = builder.Configuration["Services:CustomerApi"];
+
+if (string.IsNullOrWhiteSpace(customerApiUrl) ||
+    !Uri.TryCreate(customerApiUrl, UriKind.Absolute, out var customerApiUri) ||
+    (customerApiUri.Scheme != Uri.UriSchemeHttp &&
+     customerApiUri.Scheme != Uri.UriSchemeHttps))
+{
+    throw new InvalidOperationException(
+        "Configure a valid HTTP or HTTPS URL for 'Services:CustomerApi' in appsettings.json.");
+}
+
 builder.Services.AddHttpClient<CustomerClient>(client =>
 {
-    var customerApiUrl =
-        builder.Configuration["Services:CustomerApi"];
-
-    if (string.IsNullOrWhiteSpace(customerApiUrl))
-    {
-        throw new InvalidOperationException(
-            "Services:CustomerApi is missing in appsettings.json.");
-    }
-
-    client.BaseAddress = new Uri(customerApiUrl);
+    client.BaseAddress = customerApiUri;
 });
 
-// Register the KYC service.
+// 6. Register the KYC service implementation.
 builder.Services.AddScoped<IKycService, KycService>();
 
 var app = builder.Build();
 
-// Enable Swagger UI in Development.
+// 7. Enable Swagger and Swagger UI in Development.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 
-    // Open Swagger UI automatically at the root URL.
-    app.MapGet("/", () =>
-        Results.Redirect("/swagger"));
+    // Redirect the root URL to Swagger UI.
+    app.MapGet("/", () => Results.Redirect("/swagger"));
 }
 
+// 8. Redirect HTTP requests to HTTPS when HTTPS is configured.
 app.UseHttpsRedirection();
+
+// 9. Enable authorization middleware.
 app.UseAuthorization();
+
+// 10. Map controller endpoints.
 app.MapControllers();
 
+// 11. Start the application.
 app.Run();

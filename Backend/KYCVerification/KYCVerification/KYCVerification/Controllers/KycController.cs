@@ -6,25 +6,25 @@ using Microsoft.AspNetCore.Mvc;
 namespace KycVerification.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/kyc")]
     public class KycController : ControllerBase
     {
-        private readonly IKycService _kycService;
+        private readonly IKycService service;
 
-        public KycController(IKycService kycService)
+        public KycController(IKycService service)
         {
-            _kycService = kycService;
+            this.service = service;
         }
 
-        // POST: api/Kyc
-        // Create a new KYC request.
+        // POST: /api/v1/kyc
+        // Create a KYC request.
         [HttpPost]
         public async Task<IActionResult> CreateKyc(
             [FromBody] CreateCustomerKycDto dto)
         {
             try
             {
-                var result = await _kycService.CreateKycAsync(dto);
+                var result = await service.CreateKycAsync(dto);
                 return CreatedAtAction(
                     nameof(GetKycById),
                     new { kycId = result.KycId },
@@ -36,29 +36,78 @@ namespace KycVerification.Controllers
             }
         }
 
-        // GET: api/Kyc
-        // Retrieve all KYC requests.
+        // GET: /api/v1/kyc
+        // List all KYC requests.
         [HttpGet]
         public async Task<IActionResult> GetAllKyc()
         {
-            var result = await _kycService.GetAllKycAsync();
+            var result = await service.GetAllKycAsync();
             return Ok(result);
         }
 
-        // GET: api/Kyc/5
-        // Retrieve a KYC request by ID.
+        // GET: /api/v1/kyc/5
+        // Get one KYC request.
         [HttpGet("{kycId:int}")]
         public async Task<IActionResult> GetKycById(int kycId)
         {
-            var result = await _kycService.GetKycByIdAsync(kycId);
+            var result = await service.GetKycByIdAsync(kycId);
 
             if (result == null)
-                return NotFound(new { message = "KYC record not found." });
+                return NotFound(new { message = "KYC request not found." });
 
             return Ok(result);
         }
 
-        // POST: api/Kyc/documents
+        // PUT: /api/v1/kyc/5
+        // Update editable KYC details.
+        [HttpPut("{kycId:int}")]
+        public async Task<IActionResult> UpdateKyc(
+            int kycId,
+            [FromBody] UpdateCustomerKycDto dto)
+        {
+            try
+            {
+                var result = await service.UpdateKycAsync(kycId, dto);
+
+                if (result == null)
+                    return NotFound(new { message = "KYC request not found." });
+
+                return Ok(result);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(new { message = ex.Message });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+        // DELETE: /api/v1/kyc/5
+        // Delete a KYC request and its related documents/logs.
+        [HttpDelete("{kycId:int}")]
+        public async Task<IActionResult> DeleteKyc(int kycId)
+        {
+            try
+            {
+                bool deleted = await service.DeleteKycAsync(kycId);
+
+                if (!deleted)
+                    return NotFound(new { message = "KYC request not found." });
+
+                return Ok(new
+                {
+                    message = "KYC request deleted successfully."
+                });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(new { message = ex.Message });
+            }
+        }
+
+        // POST: /api/v1/kyc/documents
         // Upload a document using multipart/form-data.
         [HttpPost("documents")]
         [Consumes("multipart/form-data")]
@@ -67,7 +116,7 @@ namespace KycVerification.Controllers
         {
             try
             {
-                var result = await _kycService.UploadDocumentAsync(dto);
+                var result = await service.UploadDocumentAsync(dto);
                 return Ok(result);
             }
             catch (KeyNotFoundException ex)
@@ -84,7 +133,16 @@ namespace KycVerification.Controllers
             }
         }
 
-        // PUT: api/Kyc/5/approve
+        // GET: /api/v1/kyc/5/documents
+        // List documents belonging to a KYC request.
+        [HttpGet("{kycId:int}/documents")]
+        public async Task<IActionResult> GetDocuments(int kycId)
+        {
+            var result = await service.GetDocumentsAsync(kycId);
+            return Ok(result);
+        }
+
+        // PUT: /api/v1/kyc/5/approve
         // Approve a KYC request.
         [HttpPut("{kycId:int}/approve")]
         public async Task<IActionResult> ApproveKyc(
@@ -92,10 +150,10 @@ namespace KycVerification.Controllers
         {
             try
             {
-                var result = await _kycService.ApproveKycAsync(kycId, dto);
+                bool approved = await service.ApproveKycAsync(kycId, dto);
 
-                if (!result)
-                    return NotFound(new { message = "KYC record not found." });
+                if (!approved)
+                    return NotFound(new { message = "KYC request not found." });
 
                 return Ok(new { message = "KYC approved successfully." });
             }
@@ -105,7 +163,7 @@ namespace KycVerification.Controllers
             }
         }
 
-        // PUT: api/Kyc/5/reject
+        // PUT: /api/v1/kyc/5/reject
         // Reject a KYC request.
         [HttpPut("{kycId:int}/reject")]
         public async Task<IActionResult> RejectKyc(
@@ -113,10 +171,10 @@ namespace KycVerification.Controllers
         {
             try
             {
-                var result = await _kycService.RejectKycAsync(kycId, dto);
+                bool rejected = await service.RejectKycAsync(kycId, dto);
 
-                if (!result)
-                    return NotFound(new { message = "KYC record not found." });
+                if (!rejected)
+                    return NotFound(new { message = "KYC request not found." });
 
                 return Ok(new { message = "KYC rejected successfully." });
             }
@@ -126,45 +184,52 @@ namespace KycVerification.Controllers
             }
         }
 
-        // GET: api/Kyc/5/documents
-        // Retrieve all documents for a KYC request.
-        [HttpGet("{kycId:int}/documents")]
-        public async Task<IActionResult> GetDocuments(int kycId)
+        // PUT: /api/v1/kyc/5/resubmit
+        // Resubmit a rejected KYC request.
+        [HttpPut("{kycId:int}/resubmit")]
+        public async Task<IActionResult> ResubmitKyc(int kycId)
         {
-            var kyc = await _kycService.GetKycByIdAsync(kycId);
+            try
+            {
+                bool resubmitted = await service.ResubmitKycAsync(kycId);
 
-            if (kyc == null)
-                return NotFound(new { message = "KYC record not found." });
+                if (!resubmitted)
+                    return NotFound(new { message = "KYC request not found." });
 
-            var result = await _kycService.GetDocumentsAsync(kycId);
-            return Ok(result);
+                return Ok(new { message = "KYC resubmitted successfully." });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(new { message = ex.Message });
+            }
         }
 
-        // PUT: api/Kyc/documents/10/verify
-        // Verify a document.
+        // PUT: /api/v1/kyc/documents/5/verify
+        // Verify an uploaded document.
         [HttpPut("documents/{documentId:int}/verify")]
         public async Task<IActionResult> VerifyDocument(
             int documentId, [FromBody] ReviewKycDto dto)
         {
-            var result = await _kycService.VerifyDocumentAsync(documentId, dto);
+            bool verified = await service.VerifyDocumentAsync(documentId, dto);
 
-            if (!result)
+            if (!verified)
                 return NotFound(new { message = "Document not found." });
 
             return Ok(new { message = "Document verified successfully." });
         }
 
-        // PUT: api/Kyc/documents/10/reject
-        // Reject a document.
+        // PUT: /api/v1/kyc/documents/5/reject
+        // Reject an uploaded document.
         [HttpPut("documents/{documentId:int}/reject")]
         public async Task<IActionResult> RejectDocument(
             int documentId, [FromBody] ReviewKycDto dto)
         {
             try
             {
-                var result = await _kycService.RejectDocumentAsync(documentId, dto);
+                bool rejected =
+                    await service.RejectDocumentAsync(documentId, dto);
 
-                if (!result)
+                if (!rejected)
                     return NotFound(new { message = "Document not found." });
 
                 return Ok(new { message = "Document rejected successfully." });
@@ -175,7 +240,7 @@ namespace KycVerification.Controllers
             }
         }
 
-        // PUT: api/Kyc/documents/10/reupload
+        // PUT: /api/v1/kyc/documents/5/reupload
         // Replace a rejected document.
         [HttpPut("documents/{documentId:int}/reupload")]
         [Consumes("multipart/form-data")]
@@ -184,8 +249,8 @@ namespace KycVerification.Controllers
         {
             try
             {
-                var result = await _kycService.ReuploadDocumentAsync(
-                    documentId, dto);
+                var result =
+                    await service.ReuploadDocumentAsync(documentId, dto);
 
                 return Ok(result);
             }
@@ -201,6 +266,15 @@ namespace KycVerification.Controllers
             {
                 return Conflict(new { message = ex.Message });
             }
+        }
+
+        // GET: /api/v1/kyc/dashboard
+        // Get KYC dashboard counts.
+        [HttpGet("dashboard")]
+        public async Task<IActionResult> GetDashboard()
+        {
+            var result = await service.GetDashboardAsync();
+            return Ok(result);
         }
     }
 }
