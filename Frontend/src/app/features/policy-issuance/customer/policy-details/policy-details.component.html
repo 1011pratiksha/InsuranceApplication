@@ -1,75 +1,158 @@
 
-<div class="page-container">
-  <p class="breadcrumb">Policy Issuance / Policy Details</p>
-  <h2>Policy Details</h2>
+<div class="customer-layout">
 
-  <div *ngIf="loading" class="alert alert-info">
-    Loading policy details...
-  </div>
-
-  <div *ngIf="errorMessage" class="alert alert-danger">
-    {{ errorMessage }}
-  </div>
-
-  <ng-container *ngIf="policy && !loading">
-    <div class="details-card">
-      <div class="detail">
-        <small>Policy no.</small>
-        <strong>{{ policy.policyNumber || policy.policyNo || '-' }}</strong>
-      </div>
-
-      <div class="detail">
-        <small>Status</small>
-        <strong>{{ policy.status || policy.policyStatus || '-' }}</strong>
-      </div>
-
-      <div class="detail">
-        <small>Cover</small>
-        <strong>{{ policy.sumInsured | currency:'INR':'symbol':'1.0-0' }}</strong>
-      </div>
-
-      <div class="detail">
-        <small>Nominee</small>
-        <strong>{{ policy.nomineeName || '-' }}</strong>
-      </div>
-
-      <div class="detail">
-        <small>Riders</small>
-        <strong>{{ policy.riders?.join(', ') || 'None' }}</strong>
-      </div>
-
-      <div class="detail">
-        <small>Valid till</small>
-        <strong>{{ policy.expiryDate ? (policy.expiryDate | date:'dd MMM yyyy') : '-' }}</strong>
-      </div>
+  <!-- Customer Header -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">▣</span>
+      <span>PAS · Insurance</span>
+      <span class="customer-badge">Customer</span>
     </div>
 
-    <div class="actions">
-      <button class="btn btn-success"
-              [disabled]="downloading"
-              (click)="downloadPdf()">
-        {{ downloading ? 'Downloading...' : 'Download policy PDF' }}
-      </button>
+    <div class="header-right">
+      <span class="online-dot"></span>
+      <span>Customer Portal</span>
+    </div>
+  </header>
 
-      <button class="btn btn-outline-secondary"
-              (click)="payPremium()">
-        Pay premium
-      </button>
+  <!-- Main Content -->
+  <main class="main-content">
 
-      <button class="btn btn-outline-secondary"
-              (click)="requestChange()">
-        Request change
-      </button>
+    <div class="breadcrumb">
+      <a (click)="backToPolicies()">My Policies</a>
+      <span>/</span>
+      <strong>Policy Details</strong>
+    </div>
 
-      <button class="btn btn-outline-secondary"
-              (click)="raiseClaim()">
-        Raise claim
-      </button>
+    <div class="page-heading">
+      <div>
+        <h1>Policy Details</h1>
+        <p>View your coverage, nominee and policy information.</p>
+      </div>
 
-      <button class="btn btn-outline-secondary"
-              (click)="backToPolicies()">
-        Back to My Policies
+      <button
+        type="button"
+        class="back-btn"
+        (click)="backToPolicies()">
+        ← My Policies
       </button>
     </div>
-  </ng-container>
+
+    <!-- Loading -->
+    <div class="state-message" *ngIf="loading">
+      <span class="loader"></span>
+      Loading policy details...
+    </div>
+
+    <!-- Error -->
+    <div class="error-message" *ngIf="!loading && errorMessage">
+      <span>{{ errorMessage }}</span>
+
+      <button type="button" (click)="loadPolicy()">
+        Try again
+      </button>
+    </div>
+
+    <!-- Policy Information -->
+    <ng-container *ngIf="!loading && policy">
+
+      <section class="details-card">
+
+        <div class="card-top">
+          <div>
+            <span class="section-label">POLICY INFORMATION</span>
+            <h2>{{ policyNumber }}</h2>
+          </div>
+
+          <span
+            class="status-badge"
+            [ngClass]="getStatusClass()">
+            <span class="status-dot"></span>
+            {{ status }}
+          </span>
+        </div>
+
+        <div class="details-grid">
+
+          <div class="detail-item">
+            <span class="detail-label">Policy no.</span>
+            <strong>{{ policyNumber }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Status</span>
+            <strong>{{ status }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Cover</span>
+            <strong class="cover-amount">
+              {{ cover | currency:'INR':'symbol':'1.0-0' }}
+            </strong>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Nominee</span>
+            <strong>{{ nominee }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Riders</span>
+            <strong>{{ riders }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Valid till</span>
+            <strong>
+              {{ validTill ? (validTill | date:'dd MMM yyyy') : '—' }}
+            </strong>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- Action Buttons -->
+      <section class="actions-section">
+        <button
+          type="button"
+          class="btn-primary"
+          (click)="downloadPolicyPdf()">
+          <span>↓</span>
+          Download policy PDF
+        </button>
+
+        <button
+          type="button"
+          class="btn-secondary"
+          (click)="payPremium()">
+          Pay premium
+        </button>
+
+        <button
+          type="button"
+          class="btn-secondary"
+          (click)="requestChange()">
+          Request change
+        </button>
+
+        <button
+          type="button"
+          class="btn-secondary"
+          (click)="raiseClaim()">
+          Raise claim
+        </button>
+      </section>
+
+      <div class="action-message" *ngIf="actionMessage">
+        {{ actionMessage }}
+      </div>
+
+      <footer class="page-footer">
+        PAS Insurance · Customer Portal · Your policy, protected
+      </footer>
+
+    </ng-container>
+
+  </main>
 </div>

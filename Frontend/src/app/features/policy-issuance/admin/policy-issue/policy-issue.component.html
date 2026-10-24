@@ -1,60 +1,176 @@
 
-<div class="page-container">
-  <p class="breadcrumb">Policy Issuance / Policy Issuance</p>
-  <h2>Policy Issuance</h2>
+<div class="admin-layout">
+  <!-- Top Navbar -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">▣</span>
+      <span>PAS · Insurance</span>
+      <span class="admin-badge">Admin</span>
+    </div>
+    <div class="topbar-right">
+      <span class="status-dot"></span>
+      <span>Policy Administration</span>
+    </div>
+  </header>
 
-  <div class="steps">
-    <div class="step done">✓ UW approved</div>
-    <div class="step current">2. Policy no. generated</div>
-    <div class="step">3. Docs generated</div>
-    <div class="step">4. Active</div>
-  </div>
+  <div class="workspace">
+    <!-- Sidebar -->
+    
 
-  <p *ngIf="loading">Loading policies...</p>
-  <div *ngIf="errorMessage" class="alert alert-danger">
-    {{ errorMessage }}
-  </div>
-  <div *ngIf="successMessage" class="alert alert-success">
-    {{ successMessage }}
-  </div>
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="breadcrumb">
+        <span>Policy Issuance</span>
+        <span>/</span>
+        <strong>Policy Issuance</strong>
+      </div>
 
-  <div class="policy-card" *ngIf="policy">
-    <div>
-      <small>Policy no.</small>
-      <strong>{{ policy.policyNumber || policy.policyNo || '-' }}</strong>
-    </div>
-    <div>
-      <small>Customer</small>
-      <strong>{{ policy.customerName || '-' }}</strong>
-    </div>
-    <div>
-      <small>Product</small>
-      <strong>{{ policy.productName || '-' }}</strong>
-    </div>
-    <div>
-      <small>Start date</small>
-      <strong>{{ policy.effectiveDate | date:'dd MMM yyyy' }}</strong>
-    </div>
-    <div>
-      <small>Nominee</small>
-      <strong>{{ policy.nomineeName || '-' }}</strong>
-    </div>
-    <div>
-      <small>Riders</small>
-      <strong>{{ policy.riders?.join(', ') || 'None' }}</strong>
-    </div>
-  </div>
+      <div class="page-heading">
+        <div>
+          <h1>Policy Issuance</h1>
+          <p>Review underwriting approval and issue the insurance policy.</p>
+        </div>
+        <button class="refresh-btn"
+(click)="loadPolicies()"
+                [disabled]="loading || issuing">
+          ↻ Refresh
+        </button>
+      </div>
 
-  <div class="actions">
-    <button class="btn btn-primary"
-            [disabled]="issuing"
-            (click)="issuePolicy()">
-      {{ issuing ? 'Issuing...' : 'Issue policy' }}
-    </button>
+      <!-- Progress Tracker -->
+      <section class="progress-tracker">
+        <div class="step completed">
+          <span class="step-icon">✓</span>
+          <span>UW approved</span>
+        </div>
+        <div class="step"
+             [class.completed]="policyNumber">
+          <span class="step-icon">
+            {{ policyNumber ? '✓' : '2' }}
+          </span>
+          <span>Policy no. generated</span>
+        </div>
+        <div class="step"
+             [class.completed]="documentsGenerated">
+          <span class="step-icon">
+            {{ documentsGenerated ? '✓' : '3' }}
+          </span>
+          <span>Docs generated</span>
+        </div>
+        <div class="step"
+             [class.completed]="policyStatus === 'Active'">
+          <span class="step-icon">
+            {{ policyStatus === 'Active' ? '✓' : '4' }}
+          </span>
+          <span>Active</span>
+        </div>
+      </section>
 
-    <button class="btn btn-outline-secondary"
-            (click)="backToUnderwriting()">
-      Back to UW
-    </button>
+      <!-- Loading / Error -->
+      <div class="alert alert-loading" *ngIf="loading">
+        Loading policy information...
+      </div>
+
+      <div class="alert alert-error" *ngIf="errorMessage">
+        <span>⚠</span>
+        {{ errorMessage }}
+      </div>
+
+      <div class="alert alert-success" *ngIf="successMessage">
+        <span>✓</span>
+        {{ successMessage }}
+      </div>
+
+      <!-- Policy Information -->
+      <section class="policy-card" *ngIf="!loading">
+        <div class="card-heading">
+          <div>
+            <h2>Policy Details</h2>
+            <p>Review the information before issuing the policy.</p>
+          </div>
+          <span class="status-badge"
+                [class.active-status]="policyStatus === 'Active'">
+            <span class="status-dot"></span>
+            {{ policyStatus || 'Ready for issuance' }}
+          </span>
+        </div>
+
+        <div class="details-grid">
+          <div class="detail-item">
+            <span class="detail-label">Policy no.</span>
+            <strong>{{ policyNumber || 'Generated on issuance' }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Customer</span>
+            <strong>{{ customerName || '—' }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Product</span>
+            <strong>{{ productName || '—' }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Start date</span>
+            <strong>{{ startDate || '—' }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Nominee mapped</span>
+            <strong>{{ nomineeMapped ? 'Yes' : 'Not confirmed' }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Riders</span>
+            <strong>{{ riders || 'None selected' }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Sum insured</span>
+            <strong>{{ sumInsured | currency:'INR':'symbol':'1.0-0' }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Premium</span>
+            <strong>{{ premium | currency:'INR':'symbol':'1.0-0' }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Documents</span>
+            <strong [class.document-ready]="documentsGenerated">
+              {{ documentsGenerated ? 'Policy documents ready' : 'Pending generation' }}
+            </strong>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span class="secure-note">
+            <span>✓</span> Verify all details before proceeding
+          </span>
+          <span class="reference">Policy Administration System</span>
+        </div>
+      </section>
+
+      <!-- Actions -->
+      <div class="action-bar">
+        <button class="btn-primary"
+                (click)="issuePolicy()"
+                [disabled]="loading || issuing || policyStatus === 'Active'">
+          <span *ngIf="!issuing">✓</span>
+          {{ issuing ? 'Issuing policy...' :
+             policyStatus === 'Active' ? 'Policy Issued' : 'Issue policy' }}
+        </button>
+
+        <button class="btn-secondary"
+                routerLink="/admin/underwriting">
+          ← Back to UW
+        </button>
+      </div>
+
+      <p class="footer-note">
+        PAS Insurance · Policy Administration · Authorized personnel only
+      </p>
+    </main>
   </div>
 </div>

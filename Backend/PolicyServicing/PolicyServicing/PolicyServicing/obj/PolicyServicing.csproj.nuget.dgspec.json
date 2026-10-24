@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing\\PolicyServicing.csproj": {}
+    "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing\\PolicyServicing.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj": {
+    "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj",
         "projectName": "PolicyServicing.Domain",
-        "projectPath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj",
-        "packagesPath": "C:\\Users\\dell9\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\dell9\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -88,20 +88,20 @@
         }
       }
     },
-    "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Infrastructure\\PolicyServicing.Infrastructure.csproj": {
+    "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Infrastructure\\PolicyServicing.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Infrastructure\\PolicyServicing.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Infrastructure\\PolicyServicing.Infrastructure.csproj",
         "projectName": "PolicyServicing.Infrastructure",
-        "projectPath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Infrastructure\\PolicyServicing.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\dell9\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Infrastructure\\PolicyServicing.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\dell9\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -118,11 +118,11 @@
             "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj": {
-                "projectPath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj"
+              "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj"
               },
-              "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicySevicing.Application\\PolicySevicing.Application.csproj": {
-                "projectPath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicySevicing.Application\\PolicySevicing.Application.csproj"
+              "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicySevicing.Application\\PolicySevicing.Application.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicySevicing.Application\\PolicySevicing.Application.csproj"
               }
             }
           }
@@ -179,20 +179,20 @@
         }
       }
     },
-    "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing\\PolicyServicing.csproj": {
+    "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing\\PolicyServicing.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing\\PolicyServicing.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing\\PolicyServicing.csproj",
         "projectName": "PolicyServicing",
-        "projectPath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing\\PolicyServicing.csproj",
-        "packagesPath": "C:\\Users\\dell9\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing\\PolicyServicing.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\dell9\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -209,11 +209,11 @@
             "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Infrastructure\\PolicyServicing.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Infrastructure\\PolicyServicing.Infrastructure.csproj"
+              "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Infrastructure\\PolicyServicing.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Infrastructure\\PolicyServicing.Infrastructure.csproj"
               },
-              "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicySevicing.Application\\PolicySevicing.Application.csproj": {
-                "projectPath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicySevicing.Application\\PolicySevicing.Application.csproj"
+              "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicySevicing.Application\\PolicySevicing.Application.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicySevicing.Application\\PolicySevicing.Application.csproj"
               }
             }
           }
@@ -277,20 +277,20 @@
         }
       }
     },
-    "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicySevicing.Application\\PolicySevicing.Application.csproj": {
+    "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicySevicing.Application\\PolicySevicing.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicySevicing.Application\\PolicySevicing.Application.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicySevicing.Application\\PolicySevicing.Application.csproj",
         "projectName": "PolicySevicing.Application",
-        "projectPath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicySevicing.Application\\PolicySevicing.Application.csproj",
-        "packagesPath": "C:\\Users\\dell9\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicySevicing.Application\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicySevicing.Application\\PolicySevicing.Application.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicySevicing.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\dell9\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -307,8 +307,8 @@
             "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj": {
-                "projectPath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj"
+              "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Desktop\\InsyranceCodePush\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj"
               }
             }
           }
