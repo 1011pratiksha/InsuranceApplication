@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj": {}
+    "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj": {
+    "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj",
+        "projectUniqueName": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj",
         "projectName": "CustomerRegistration.Application",
-        "projectPath": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj",
-        "packagesPath": "C:\\Users\\parth\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Application\\obj\\",
+        "projectPath": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Application\\CustomerRegistration.Application.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\parth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -34,8 +34,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj": {
-                "projectPath": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj"
+              "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj": {
+                "projectPath": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj"
               }
             }
           }
@@ -50,7 +50,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.400"
+        "SdkAnalysisLevel": "11.0.100"
       },
       "frameworks": {
         "net10.0": {
@@ -107,7 +107,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\11.0.100-rc.2.26504.105/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
@@ -525,20 +525,20 @@
         }
       }
     },
-    "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj": {
+    "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj",
         "projectName": "CustomerRegistration.Domain",
-        "projectPath": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj",
-        "packagesPath": "C:\\Users\\parth\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\parth\\source\\repos\\CustomerService\\Customer.Domain\\obj\\",
+        "projectPath": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Domain\\CustomerRegistration.Domain.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ADMIN\\source\\repos\\InsuranceApplication\\Backend\\CustomerRegistration\\CustomerService\\Customer.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\parth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -567,7 +567,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.400"
+        "SdkAnalysisLevel": "11.0.100"
       },
       "frameworks": {
         "net10.0": {
@@ -621,7 +621,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\11.0.100-rc.2.26504.105/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",

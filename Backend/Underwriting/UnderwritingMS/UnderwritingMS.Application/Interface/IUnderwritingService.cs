@@ -5,7 +5,7 @@ namespace UnderwritingMS.Application.Interface
 {
     public interface IUnderwritingService
     {
-        Task CreateCase(createUnderwritingDTO dto);
+        Task<int> CreateCase(createUnderwritingDTO dto);
 
         Task<List<underwriting_caseDTO>> FetchAllCases();
 

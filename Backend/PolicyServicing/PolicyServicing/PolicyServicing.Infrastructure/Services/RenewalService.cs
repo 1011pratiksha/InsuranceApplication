@@ -3,6 +3,7 @@ using PolicyServicing.Domain.Entities;
 using PolicyServicing.Infrastructure.Data;
 using PolicySevicing.Application.DTO;
 using PolicySevicing.Application.Interface;
+using PolicySevicing.Application.Mapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,13 @@ namespace PolicyServicing.Infrastructure.Services
     {
         AppDbContext db;
         IMapper mapper;
-        public RenewalService(AppDbContext db, IMapper mapper)
+
+        PolicyIssuanceClient client;
+        public RenewalService(AppDbContext db, IMapper mapper, PolicyIssuanceClient client)
         {
             this.db=db;
             this.mapper = mapper;
+            this.client = client;
         }
 
         public async Task<RenewalDto2> RenewalbyId(long id)
@@ -30,7 +34,7 @@ namespace PolicyServicing.Infrastructure.Services
 
         public async Task<string> RenewPolicy(long pid, RenewPolicyDto dto)
         {
-            var poli = db.policies.FirstOrDefault(x=>x.policy_id== pid);
+            var poli = await client.FindPolicyById(pid);
             if (poli == null)
             { 
                 return "Policy not found";

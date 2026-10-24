@@ -1,9 +1,33 @@
-<<<<<<< HEAD
-=======
+# Visual Studio temporary files
+.vs/
+**/.vs/
+
+# .NET generated files
+**/bin/
+**/obj/
+
+# User-specific files
+*.user
+*.suo
+# Visual Studio cache and settings
+.vs/
+*.user
+*.suo
+
+# Build outputs
+bin/
+obj/
+
+# Rider / JetBrains
+.idea/
+
+# OS files
+Thumbs.db
+.DS_Store
 
 # Visual Studio generated files
->>>>>>> 8d1b521ba09eae897c09be46037c1452a6261cf1
 .vs/
 **/.vs/
 **/bin/
 **/obj/
+

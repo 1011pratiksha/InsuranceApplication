@@ -1,0 +1,15 @@
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Domain\bin\Debug\net8.0\KycVerification.Domain.deps.json
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Domain\bin\Debug\net8.0\KycVerification.Domain.runtimeconfig.json
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Domain\bin\Debug\net8.0\KycVerification.Domain.dll
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Domain\bin\Debug\net8.0\KycVerification.Domain.pdb
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Domain\obj\Debug\net8.0\KycVerification.Domain.csproj.AssemblyReference.cache
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Domain\obj\Debug\net8.0\KycVerification.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Domain\obj\Debug\net8.0\KycVerification.Domain.AssemblyInfoInputs.cache
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Domain\obj\Debug\net8.0\KycVerification.Domain.AssemblyInfo.cs
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Domain\obj\Debug\net8.0\KycVerification.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Domain\obj\Debug\net8.0\KycVerification.Domain.dll
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Domain\obj\Debug\net8.0\refint\KycVerification.Domain.dll
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Domain\obj\Debug\net8.0\KycVerification.Domain.pdb
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Domain\obj\Debug\net8.0\KycVerification.Domain.genruntimeconfig.cache
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Domain\obj\Debug\net8.0\ref\KycVerification.Domain.dll
+C:\Users\Sampada Bagawe\source\repos\KycVerifiaction.Api\KycVerification.Domain\obj\Debug\net8.0\KycVerif.0691AA15.Up2Date

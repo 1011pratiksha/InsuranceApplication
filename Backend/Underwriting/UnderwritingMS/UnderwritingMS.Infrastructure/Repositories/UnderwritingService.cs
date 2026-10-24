@@ -10,8 +10,8 @@ namespace UnderwritingMS.Infrastructure.Services
 {
     public class UnderwritingService : IUnderwritingService
     {
-        AppDbContext db;
-        IMapper mapper;
+        private readonly AppDbContext db;
+        private readonly IMapper mapper;
 
         public UnderwritingService(AppDbContext db, IMapper mapper)
         {
@@ -19,13 +19,16 @@ namespace UnderwritingMS.Infrastructure.Services
             this.mapper = mapper;
         }
 
-        public async Task CreateCase(createUnderwritingDTO dto)
+        public async Task<int> CreateCase(createUnderwritingDTO dto)
         {
-            var duplicate = await db.underwriting_case.AnyAsync(
-                x => x.quote_id == dto.quote_id);
+            var duplicate = await db.underwriting_case
+                .AnyAsync(x => x.quote_id == dto.quote_id);
 
             if (duplicate)
-                throw new Exception("An underwriting case already exists for this quote.");
+            {
+                throw new Exception(
+                    "An underwriting case already exists for this quote.");
+            }
 
             var d = mapper.Map<underwriting_case>(dto);
 
@@ -47,15 +50,15 @@ namespace UnderwritingMS.Infrastructure.Services
                 });
 
             await db.SaveChangesAsync();
+
+            return d.underwriting_id;
         }
 
         public async Task<List<underwriting_caseDTO>> FetchAllCases()
         {
-            var d = await db.underwriting_case.ToListAsync();
+            var data = await db.underwriting_case.ToListAsync();
 
-            var data = mapper.Map<List<underwriting_caseDTO>>(d);
-
-            return data;
+            return mapper.Map<List<underwriting_caseDTO>>(data);
         }
 
         public async Task<underwriting_caseDTO?> FindCaseById(int id)
@@ -65,9 +68,7 @@ namespace UnderwritingMS.Infrastructure.Services
             if (d == null)
                 return null;
 
-            var data = mapper.Map<underwriting_caseDTO>(d);
-
-            return data;
+            return mapper.Map<underwriting_caseDTO>(d);
         }
 
         public async Task UpdateCase(int id, createUnderwritingDTO dto)
@@ -85,7 +86,10 @@ namespace UnderwritingMS.Infrastructure.Services
                      x.underwriting_id != id);
 
             if (duplicate)
-                throw new Exception("An underwriting case already exists for this quote.");
+            {
+                throw new Exception(
+                    "An underwriting case already exists for this quote.");
+            }
 
             d.quote_id = dto.quote_id;
             d.customer_id = dto.customer_id;

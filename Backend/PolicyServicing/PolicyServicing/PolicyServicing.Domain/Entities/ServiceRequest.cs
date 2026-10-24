@@ -16,14 +16,14 @@ namespace PolicyServicing.Domain.Entities
         [Required]
         public string request_number { get; set; } = string.Empty;
 
-        [ForeignKey("policy_id")]
+        //[ForeignKey("policy_id")]
         public long policy_id { get; set; }
-        public virtual Policy? Policy { get; set; }
+        //public virtual Policy? Policy { get; set; }
 
-        [Required]
-        [ForeignKey("customer_id")]
+        //[Required]
+        //[ForeignKey("customer_id")]
         public int customer_id { get; set; }
-        public  Customer? Customer { get; set; }
+        //public  Customer? Customer { get; set; }
 
         [Required]
         public string request_type { get; set; }
@@ -37,6 +37,10 @@ namespace PolicyServicing.Domain.Entities
         public List<PolicyEndorsement> Endorsements { get; set; }
 
         public List<ServiceRequestHistory> History { get; set; }
-            
+
+        public string? details { get; set; }
+
+        public string? remarks { get; set; }
+
     }
 }

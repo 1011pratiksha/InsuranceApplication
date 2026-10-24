@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NxIC3z5BUyU=",
+  "dgSpecHash": "VoqaJvd8YfU=",
   "success": true,
-  "projectFilePath": "C:\\Users\\dell9\\source\\repos\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj",
+  "projectFilePath": "C:\\Users\\dell9\\OneDrive\\Desktop\\InsurranceProject\\InsuranceApplication\\Backend\\PolicyServicing\\PolicyServicing\\PolicyServicing.Domain\\PolicyServicing.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dell9\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
     "C:\\Users\\dell9\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.0.1\\automapper.extensions.microsoft.dependencyinjection.8.0.1.nupkg.sha512",
