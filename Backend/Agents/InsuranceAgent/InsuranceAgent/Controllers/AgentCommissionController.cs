@@ -87,6 +87,24 @@ namespace InsuranceAgent.Controllers
             }
         }
 
+        
+     
+        [HttpGet("policies")]
+        public async Task<IActionResult> GetAllPolicies()
+                {
+                    try
+                    {
+                        var policies = await service.GetAllPolicies();
+                        return Ok(policies);
+                    }
+                    catch (Exception ex)
+                    {
+                        return BadRequest(ex.Message);
+                    }
+                }
+
+
+
 
     }
 }
