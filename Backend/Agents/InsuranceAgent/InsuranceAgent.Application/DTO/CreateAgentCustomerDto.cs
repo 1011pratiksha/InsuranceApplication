@@ -5,6 +5,5 @@ namespace InsuranceAgent.Application.DTO
     {
         public int CustomerId { get; set; }
 
-        public int AssignedBy { get; set; }
     }
 }
