@@ -1,0 +1,84 @@
+
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Service Request Queue</h1>
+      <p>Review service requests submitted by customers.</p>
+    </div>
+
+    <button type="button" (click)="allreqs()">
+      Refresh
+    </button>
+  </div>
+
+  <div class="card">
+    <div *ngIf="loading" class="message">
+      Loading service requests...
+    </div>
+
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+
+    <div
+      *ngIf="!loading && !errorMessage && totalreqs.length === 0"
+      class="message">
+      No service requests found.
+    </div>
+
+    <div
+      class="table-wrapper"
+      *ngIf="!loading && !errorMessage && totalreqs.length > 0">
+
+     
+<table>
+  <thead>
+    <tr>
+      <th>Request Number</th>
+      <th>Policy ID</th>
+      <th>Request Type</th>
+      <th>Submission Date</th>
+      <th>Current Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let req of totalreqs">
+      <td>{{ req.request_number }}</td>
+      <td>{{ req.policy_id }}</td>
+      <td>{{ req.request_type }}</td>
+      <td>{{ req.request_date | date:'dd MMM yyyy, hh:mm a' }}</td>
+
+      <td>
+        <span
+          class="status"
+          [ngClass]="(req.status || '').toLowerCase().replace(' ', '-')">
+          {{ req.status }}
+        </span>
+      </td>
+
+      <td class="action-buttons">
+       <button
+  type="button"
+  class="approve-btn"
+  (click)="updateStatus(req, 'Approved')"
+  [disabled]="req.status === 'Approved' || req.status === 'Rejected'">
+  Approve
+</button>
+
+<button
+  type="button"
+  class="reject-btn"
+  (click)="updateStatus(req, 'Rejected')"
+  [disabled]="req.status === 'Approved' || req.status === 'Rejected'">
+  Reject
+</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+
+<div class="endorsement-card">
+  <h2>Policy Endorsement</h2>
+
+  <p *ngIf="message">{{ message }}</p>
+
+  <form [formGroup]="endorsementForm" (ngSubmit)="submitEndorsement()">
+
+    <label>Service Request ID</label>
+    <input type="number" formControlName="request_id">
+
+    <label>Endorsement Type</label>
+    <select formControlName="endorsement_type">
+      <option value="">Select Type</option>
+      <option value="Address">Address Change</option>
+      <option value="Nominee">Nominee Change</option>
+      <option value="Contact">Contact Details Change</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <label>Previous Value</label>
+    <textarea formControlName="previous_value"></textarea>
+
+    <label>Updated Value</label>
+    <textarea formControlName="updated_value"></textarea>
+
+    <button type="submit">Submit Endorsement</button>
+
+  </form>
+</div>

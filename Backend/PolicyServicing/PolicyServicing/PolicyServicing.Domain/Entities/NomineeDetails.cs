@@ -13,9 +13,9 @@ namespace PolicyServicing.Domain.Entities
         [Key]
         public long nominee_id { get; set; }
 
-        [ForeignKey("Policy")]
+        //[ForeignKey("Policy")]
         public long policy_id { get; set; }
-        public  Policy? Policy { get; set; }
+     
         public string nominee_name { get; set; } 
         public string relationship { get; set; } 
         public DateTime dob { get; set; }

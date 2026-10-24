@@ -374,7 +374,7 @@
     "/api/v1/service-requests/create-requests": {
       "post": {
         "tags": [
-          "ServiceRequestControlle"
+          "ServiceRequest"
         ],
         "requestBody": {
           "content": {
@@ -422,7 +422,7 @@
     "/api/v1/service-requests/get-requests": {
       "get": {
         "tags": [
-          "ServiceRequestControlle"
+          "ServiceRequest"
         ],
         "responses": {
           "200": {
@@ -451,7 +451,7 @@
     "/api/v1/service-requests/get-request/{id}": {
       "get": {
         "tags": [
-          "ServiceRequestControlle"
+          "ServiceRequest"
         ],
         "parameters": [
           {
@@ -491,7 +491,66 @@
     "/api/v1/service-requests/update-request/{id}": {
       "put": {
         "tags": [
-          "ServiceRequestControlle"
+          "ServiceRequest"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateServiceRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateServiceRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateServiceRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IActionResultApisResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IActionResultApisResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IActionResultApisResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/service-requests/update-status/{id}": {
+      "put": {
+        "tags": [
+          "ServiceRequest"
         ],
         "parameters": [
           {
@@ -662,6 +721,14 @@
             "format": "int64"
           },
           "request_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "details": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
             "type": "string",
             "nullable": true
           }
@@ -935,6 +1002,10 @@
         "type": "object",
         "properties": {
           "request_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
             "type": "string",
             "nullable": true
           }

@@ -8,10 +8,10 @@ namespace PolicyServicing.Controllers
 {
     [Route("api/v1/service-requests")]
     [ApiController]
-    public class ServiceRequestControlle : ControllerBase
+    public class ServiceRequestController : ControllerBase
     {
         IServiceRequestService service;
-        public ServiceRequestControlle(IServiceRequestService service)
+        public ServiceRequestController(IServiceRequestService service)
         {
             this.service = service;
         }
@@ -47,10 +47,21 @@ namespace PolicyServicing.Controllers
         [HttpPut("update-request/{id}")]
         public async Task<ApisResponse<IActionResult>> UpdateReq(long id, UpdateServiceRequestDto dto)
         {
-            var res = service.UpdateServiceRequest(id, dto);
+            var res =  service.UpdateServiceRequest(id, dto);
             return ApisResponse<IActionResult>.SuccessResponse(null, "Updated Successfully");
 
         }
 
+        [HttpPut("update-status/{id}")]
+        public async Task<ApisResponse<IActionResult>> UpdateStatus( long id,UpdateServiceRequestDto dto)
+        {
+            var updated = await service.UpdateServiceRequestStatus(id, dto);
+            if (!updated)
+            {
+                return ApisResponse<IActionResult>.ErrorResponse(
+                    null, "Service request not found");
+            }
+            return ApisResponse<IActionResult>.SuccessResponse(null, "Request status updated successfully");
+        }
     }
 }
