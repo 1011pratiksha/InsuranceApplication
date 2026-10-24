@@ -1,4 +1,4 @@
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using CustomerRegistration.Application.DTO;
 using CustomerRegistration.Application.Interfaces;
@@ -22,27 +22,32 @@ namespace CustomerRegistration.Infrastructure.Repositories
             this.mapper = mapper;
         }
 
-        public async Task<string> AddCustomer(CreateCustomerDto dto)
-        {
-            var customer = mapper.Map<Customer>(dto);
-            customer.Email = dto.Email.ToLower();
 
-            if (await db.Customers.AnyAsync(x => x.Email == customer.Email || x.MobileNumber == customer.MobileNumber))
-            {
-                return "Email or mobile already exists";
-            }
+    public async Task<int?> AddCustomer(CreateCustomerDto dto)
+    {
+      var customer = mapper.Map<Customer>(dto);
+      customer.Email = dto.Email.ToLower();
 
-            customer.CustomerCode = "C" + Guid.NewGuid().ToString("N").Substring(0, 19);
-            customer.CustomerStatus = "Active";
-            customer.CreatedAt = DateTime.UtcNow;
-            customer.UpdatedAt = DateTime.UtcNow;
+      if (await db.Customers.AnyAsync(x =>
+          x.Email == customer.Email ||
+          x.MobileNumber == customer.MobileNumber))
+      {
+        return null;
+      }
 
-            db.Customers.Add(customer);
-            await db.SaveChangesAsync();
-            return "Customer added successfully";
-        }
+      customer.CustomerCode = "C" + Guid.NewGuid().ToString("N").Substring(0, 19);
+      customer.CustomerStatus = "Active";
+      customer.CreatedAt = DateTime.UtcNow;
+      customer.UpdatedAt = DateTime.UtcNow;
 
-        public async Task<List<CustomerResponseDto>> FetchCustomers()
+      db.Customers.Add(customer);
+      await db.SaveChangesAsync();
+
+      return customer.CustomerId;
+    }
+
+
+    public async Task<List<CustomerResponseDto>> FetchCustomers()
         {
             var data = await db.Customers.ToListAsync();
             return mapper.Map<List<CustomerResponseDto>>(data);

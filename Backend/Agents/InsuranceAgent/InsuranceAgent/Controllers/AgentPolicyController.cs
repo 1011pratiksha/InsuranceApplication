@@ -9,7 +9,6 @@ namespace InsuranceAgent.Controllers
     [ApiController]
     public class AgentPolicyController : ControllerBase
     {
-
         IAgentPolicyService service;
 
 
@@ -59,6 +58,36 @@ namespace InsuranceAgent.Controllers
                 var policy = await service.GetAgentPolicyById(agentId, policyId);
 
                 return Ok(policy);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpGet("/api/v1/agents/customers")]
+        public async Task<IActionResult> GetAllCustomers()
+        {
+            try
+            {
+                var customers = await service.GetAllCustomers();
+                return Ok(customers);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpGet("/api/v1/agents/all-policies")]
+        public async Task<IActionResult> GetAllPolicies()
+        {
+            try
+            {
+                var policies = await service.GetAllPolicies();
+                return Ok(policies);
             }
             catch (Exception ex)
             {

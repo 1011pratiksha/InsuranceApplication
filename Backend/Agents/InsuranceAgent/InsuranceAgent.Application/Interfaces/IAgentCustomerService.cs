@@ -9,10 +9,11 @@ namespace InsuranceAgent.Application.Interfaces
 {
     public interface IAgentCustomerService
     {
-        Task AssignCustomer(int agentId, CreateAgentCustomerDto dto);
+        Task AssignCustomer(int agentId, CreateAgentCustomerDto dto, int assignedBy);
 
         Task<List<GetAgentCustomerDto>> GetAssignedCustomers(int agentId);
 
-        Task TransferCustomer(int agentId, int customerId, TransferAgentCustomerDto dto);
+        Task TransferCustomer(int agentId, int customerId, TransferAgentCustomerDto dto, int assignedBy);
+        Task<List<CustomerDTO>?> GetAllCustomers();
     }
 }
