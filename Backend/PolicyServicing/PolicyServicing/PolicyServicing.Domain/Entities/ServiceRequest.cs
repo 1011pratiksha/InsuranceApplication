@@ -37,6 +37,10 @@ namespace PolicyServicing.Domain.Entities
         public List<PolicyEndorsement> Endorsements { get; set; }
 
         public List<ServiceRequestHistory> History { get; set; }
-            
+
+        public string? details { get; set; }
+
+        public string? remarks { get; set; }
+
     }
 }

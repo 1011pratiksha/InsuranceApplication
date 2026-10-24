@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PolicyIssuance.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0c1ee5e6b5c7d0356c6544f38c091ce47b8427b")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+afbd8005e7a9f06307aeb8d0c0908896f311eb0f")]
+>>>>>>> 8656f956a30e3ccf2e7ecb4ab01a6f97156463b2
 [assembly: System.Reflection.AssemblyProductAttribute("PolicyIssuance.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PolicyIssuance.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

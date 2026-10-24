@@ -9,11 +9,11 @@ namespace PolicyIssuance.Controllers
     [ApiController]
     public class PolicyDocumentsController : ControllerBase
     {
-        private readonly IPolicyDocumentService _documentService;
+        private readonly IPolicyDocumentService docService;
 
-        public PolicyDocumentsController(IPolicyDocumentService documentService)
+        public PolicyDocumentsController(IPolicyDocumentService docService)
         {
-            _documentService = documentService;
+           this.docService = docService;
         }
 
         [HttpGet("api/v1/policies/{id}/document")]
@@ -21,17 +21,15 @@ namespace PolicyIssuance.Controllers
         {
             try
             {
-                var doc = await _documentService.GetPolicyDocumentAsync(id);
+                var doc = await docService.GetPolicyDocumentAsync(id);
                 if (doc == null)
                 {
-                    doc = await _documentService.GeneratePolicyDocumentAsync(id);
+                    doc = await docService.GeneratePolicyDocumentAsync(id);
                 }
-
                 if (download && doc.FileBytes != null && doc.FileBytes.Length > 0)
                 {
                     return File(doc.FileBytes, "text/plain", doc.DocumentName);
                 }
-
                 return Ok(doc);
             }
             catch (Exception ex)
@@ -40,7 +38,6 @@ namespace PolicyIssuance.Controllers
                 {
                     return NotFound("Policy not found");
                 }
-
                 return StatusCode(500, ex.Message);
             }
         }
@@ -50,7 +47,7 @@ namespace PolicyIssuance.Controllers
         {
             try
             {
-                var doc = await _documentService.GeneratePolicyDocumentAsync(id);
+                var doc = await docService.GeneratePolicyDocumentAsync(id);
                 return Ok(doc);
             }
             catch (Exception ex)
@@ -59,7 +56,6 @@ namespace PolicyIssuance.Controllers
                 {
                     return NotFound("Policy not found");
                 }
-
                 return StatusCode(500, ex.Message);
             }
         }
@@ -69,7 +65,7 @@ namespace PolicyIssuance.Controllers
         {
             try
             {
-                var doc = await _documentService.RegeneratePolicyDocumentAsync(id);
+                var doc = await docService.RegeneratePolicyDocumentAsync(id);
                 return Ok(doc);
             }
             catch (Exception ex)
@@ -78,7 +74,6 @@ namespace PolicyIssuance.Controllers
                 {
                     return NotFound("Policy not found");
                 }
-
                 return StatusCode(500, ex.Message);
             }
         }

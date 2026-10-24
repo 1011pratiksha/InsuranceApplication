@@ -1,6 +1,22 @@
+# Visual Studio cache and settings
+.vs/
+*.user
+*.suo
+
+# Build outputs
+bin/
+obj/
+
+# Rider / JetBrains
+.idea/
+
+# OS files
+Thumbs.db
+.DS_Store
 
 # Visual Studio generated files
 .vs/
 **/.vs/
 **/bin/
 **/obj/
+

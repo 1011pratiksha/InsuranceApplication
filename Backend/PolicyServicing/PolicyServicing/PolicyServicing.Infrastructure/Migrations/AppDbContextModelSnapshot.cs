@@ -174,8 +174,14 @@ namespace PolicyServicing.Infrastructure.Migrations
                     b.Property<int>("customer_id")
                         .HasColumnType("int");
 
+                    b.Property<string>("details")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<long>("policy_id")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("remarks")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("request_date")
                         .HasColumnType("datetime2");

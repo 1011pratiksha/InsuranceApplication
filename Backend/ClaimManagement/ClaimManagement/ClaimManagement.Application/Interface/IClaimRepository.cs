@@ -1,15 +1,13 @@
-using ClaimManagement.Domain.Entities;
+using ClaimManagement.Application.DTO;
 
 namespace ClaimManagement.Application.Interface
 {
     public interface IClaimRepository
     {
-        Task<Claim> AddAsync(Claim claim);
-        Task<List<Claim>> GetAllAsync();
-        Task<Claim?> GetByIdAsync(long claimId);
-        Task<bool> ExistsAsync(long claimId);
-        Task UpdateAsync(Claim claim);
-        Task<bool> DeleteAsync(long claimId);
+        Task<ClaimResponseDto> AddClaimAsync(CreateClaimDto dto);
+        Task<List<ClaimResponseDto>> GetAllClaimsAsync();
+        Task<ClaimResponseDto?> GetClaimByIdAsync(long claimId);
+        Task<string> UpdateClaimAsync(long claimId, UpdateClaimDto dto);
+        Task<string> DeleteClaimAsync(long claimId);
     }
 }
-

@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Investigation.API/Investigation.API.csproj" />
+  <Project Path="Investigation.Application/Investigation.Application.csproj" />
+  <Project Path="Investigation.Domian/Investigation.Domian.csproj" />
+  <Project Path="Investigation.Infrastructure/Investigation.Infrastructure.csproj" />
+</Solution>

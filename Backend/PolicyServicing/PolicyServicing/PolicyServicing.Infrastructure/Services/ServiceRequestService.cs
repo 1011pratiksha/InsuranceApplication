@@ -36,7 +36,17 @@ namespace PolicyServicing.Infrastructure.Services
             await db.SaveChangesAsync();
 
         }
-
+        public async Task<bool> UpdateServiceRequestStatus(long id, UpdateServiceRequestDto dto)
+        {
+            var req = await db.ServiceRequests.FirstOrDefaultAsync(x => x.request_id == id);
+            if (req == null)
+            {
+                return false;
+            }
+            req.status = dto.Status;
+            await db.SaveChangesAsync();
+            return true;
+        }
         public async Task<List<ServiceRequestResponseDto>> GetAllServiceRequests()
         {
             var reqs = await db.ServiceRequests.ToListAsync();

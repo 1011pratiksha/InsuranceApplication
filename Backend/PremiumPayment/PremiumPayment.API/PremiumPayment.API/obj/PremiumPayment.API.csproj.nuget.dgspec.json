@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.API\\PremiumPayment.API.csproj": {}
+    "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.API\\PremiumPayment.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.API\\PremiumPayment.API.csproj": {
+    "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.API\\PremiumPayment.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.API\\PremiumPayment.API.csproj",
+        "projectUniqueName": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.API\\PremiumPayment.API.csproj",
         "projectName": "PremiumPayment.API",
-        "projectPath": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.API\\PremiumPayment.API.csproj",
+        "projectPath": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.API\\PremiumPayment.API.csproj",
         "packagesPath": "C:\\Users\\Pratiksha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.API\\obj\\",
+        "outputPath": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,14 +33,14 @@
             "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Application\\PremiumPayment.Application.csproj": {
-                "projectPath": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Application\\PremiumPayment.Application.csproj"
+              "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Application\\PremiumPayment.Application.csproj": {
+                "projectPath": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Application\\PremiumPayment.Application.csproj"
               },
-              "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj": {
-                "projectPath": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj"
+              "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj": {
+                "projectPath": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj"
               },
-              "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Infratructure\\PremiumPayment.Infratructure.csproj": {
-                "projectPath": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Infratructure\\PremiumPayment.Infratructure.csproj"
+              "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Infratructure\\PremiumPayment.Infratructure.csproj": {
+                "projectPath": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Infratructure\\PremiumPayment.Infratructure.csproj"
               }
             }
           }
@@ -62,6 +62,10 @@
           "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[16.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -122,14 +126,14 @@
         }
       }
     },
-    "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Application\\PremiumPayment.Application.csproj": {
+    "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Application\\PremiumPayment.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Application\\PremiumPayment.Application.csproj",
+        "projectUniqueName": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Application\\PremiumPayment.Application.csproj",
         "projectName": "PremiumPayment.Application",
-        "projectPath": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Application\\PremiumPayment.Application.csproj",
+        "projectPath": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Application\\PremiumPayment.Application.csproj",
         "packagesPath": "C:\\Users\\Pratiksha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Application\\obj\\",
+        "outputPath": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -151,8 +155,8 @@
             "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj": {
-                "projectPath": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj"
+              "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj": {
+                "projectPath": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj"
               }
             }
           }
@@ -174,6 +178,10 @@
           "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[16.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -219,14 +227,14 @@
         }
       }
     },
-    "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj": {
+    "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj",
+        "projectUniqueName": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj",
         "projectName": "PremiumPayment.Domain",
-        "projectPath": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj",
+        "projectPath": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj",
         "packagesPath": "C:\\Users\\Pratiksha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\obj\\",
+        "outputPath": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -267,6 +275,10 @@
           "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[16.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -312,14 +324,14 @@
         }
       }
     },
-    "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Infratructure\\PremiumPayment.Infratructure.csproj": {
+    "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Infratructure\\PremiumPayment.Infratructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Infratructure\\PremiumPayment.Infratructure.csproj",
+        "projectUniqueName": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Infratructure\\PremiumPayment.Infratructure.csproj",
         "projectName": "PremiumPayment.Infratructure",
-        "projectPath": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Infratructure\\PremiumPayment.Infratructure.csproj",
+        "projectPath": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Infratructure\\PremiumPayment.Infratructure.csproj",
         "packagesPath": "C:\\Users\\Pratiksha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Infratructure\\obj\\",
+        "outputPath": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Infratructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -341,11 +353,11 @@
             "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Application\\PremiumPayment.Application.csproj": {
-                "projectPath": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Application\\PremiumPayment.Application.csproj"
+              "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Application\\PremiumPayment.Application.csproj": {
+                "projectPath": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Application\\PremiumPayment.Application.csproj"
               },
-              "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj": {
-                "projectPath": "C:\\Users\\Pratiksha\\source\\repos\\InsuranceApplication\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj"
+              "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj": {
+                "projectPath": "E:\\Insurance prj\\Backend\\PremiumPayment\\PremiumPayment.API\\PremiumPayment.Domain\\PremiumPayment.Domain.csproj"
               }
             }
           }
@@ -367,6 +379,10 @@
           "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[16.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.0, )"

@@ -16,6 +16,18 @@ builder.Services.AddHttpClient<PolicyIssuanceClient>(client =>
     client.BaseAddress = new Uri(
         builder.Configuration["ServiceUrls:PolicyIssuance"]!);
 });
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyApps", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("dbconn")));
@@ -37,7 +49,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("MyApps");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
