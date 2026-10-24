@@ -25,7 +25,7 @@ namespace KycVerification.Infrastructure.Repositories
             this.env = env;
         }
 
-        // Create a KYC request for a customer.
+        // Create a new KYC request.
         public async Task<CustomerKycDto> CreateKycAsync(
             CreateCustomerKycDto dto)
         {
@@ -56,7 +56,7 @@ namespace KycVerification.Infrastructure.Repositories
             return mapper.Map<CustomerKycDto>(kyc);
         }
 
-        // Get one KYC request by its ID.
+        // Get one KYC request.
         public async Task<CustomerKycDto?> GetKycByIdAsync(int kycId)
         {
             var kyc = await db.CustomerKycs
@@ -66,7 +66,7 @@ namespace KycVerification.Infrastructure.Repositories
             return kyc == null ? null : mapper.Map<CustomerKycDto>(kyc);
         }
 
-        // Get all KYC requests, newest first.
+        // Get all KYC requests.
         public async Task<List<CustomerKycDto>> GetAllKycAsync()
         {
             var records = await db.CustomerKycs
@@ -75,6 +75,99 @@ namespace KycVerification.Infrastructure.Repositories
                 .ToListAsync();
 
             return mapper.Map<List<CustomerKycDto>>(records);
+        }
+
+        // Update editable KYC fields without changing verification details.
+        public async Task<CustomerKycDto?> UpdateKycAsync(
+            int kycId, UpdateCustomerKycDto dto)
+        {
+            var kyc = await db.CustomerKycs
+                .FirstOrDefaultAsync(x => x.KycId == kycId);
+
+            if (kyc == null)
+                return null;
+
+            // Do not change the customer after verification has started.
+            if (kyc.VerificationStatus == "Verified" ||
+                kyc.VerificationStatus == "Rejected")
+            {
+                throw new InvalidOperationException(
+                    "A verified or rejected KYC request cannot be updated.");
+            }
+
+            // Check for another active request for the selected customer.
+            bool duplicate = await db.CustomerKycs.AnyAsync(x =>
+                x.CustomerId == dto.CustomerId &&
+                x.KycId != kycId &&
+                (x.VerificationStatus == "Pending" ||
+                 x.VerificationStatus == "Re-Submitted"));
+
+            if (duplicate)
+                throw new InvalidOperationException(
+                    "This customer already has another active KYC request.");
+
+            kyc.CustomerId = dto.CustomerId;
+            kyc.Remarks = dto.Remarks;
+
+            await db.SaveChangesAsync();
+
+            await AddLogAsync(
+                kycId, "KYC Updated", null, "KYC request details updated.");
+
+            return mapper.Map<CustomerKycDto>(kyc);
+        }
+
+        // Delete a KYC request and its related records and stored files.
+        public async Task<bool> DeleteKycAsync(int kycId)
+        {
+            var kyc = await db.CustomerKycs
+                .FirstOrDefaultAsync(x => x.KycId == kycId);
+
+            if (kyc == null)
+                return false;
+
+            // Avoid deleting a completed verification record.
+            if (kyc.VerificationStatus == "Verified")
+                throw new InvalidOperationException(
+                    "A verified KYC request cannot be deleted.");
+
+            var documents = await db.KycDocuments
+                .Where(x => x.KycId == kycId)
+                .ToListAsync();
+
+            var logs = await db.KycVerificationLogs
+                .Where(x => x.KycId == kycId)
+                .ToListAsync();
+
+            // Delete stored files belonging to this KYC request.
+            foreach (var document in documents)
+            {
+                if (string.IsNullOrWhiteSpace(document.FilePath))
+                    continue;
+
+                // Only allow deletion from the SecureDocuments folder.
+                string folder = Path.GetFullPath(
+                    Path.Combine(env.ContentRootPath, "SecureDocuments"));
+
+                string fullPath = Path.GetFullPath(
+                    Path.Combine(env.ContentRootPath, document.FilePath));
+
+                if (fullPath.StartsWith(
+                    folder + Path.DirectorySeparatorChar,
+                    StringComparison.OrdinalIgnoreCase) &&
+                    File.Exists(fullPath))
+                {
+                    File.Delete(fullPath);
+                }
+            }
+
+            // Delete dependent database records before deleting the KYC.
+            db.KycDocuments.RemoveRange(documents);
+            db.KycVerificationLogs.RemoveRange(logs);
+            db.CustomerKycs.Remove(kyc);
+
+            await db.SaveChangesAsync();
+            return true;
         }
 
         // Upload a document for a KYC request.
@@ -99,17 +192,22 @@ namespace KycVerification.Infrastructure.Repositories
             const long maxFileSize = 5L * 1024 * 1024;
 
             if (file.Length > maxFileSize)
-                throw new ArgumentException("Maximum file size allowed is 5 MB.");
+                throw new ArgumentException(
+                    "Maximum file size allowed is 5 MB.");
 
-            string[] allowedExtensions = { ".pdf", ".jpg", ".jpeg", ".png" };
-            string extension = Path.GetExtension(file.FileName).ToLowerInvariant();
+            string[] allowedExtensions =
+                { ".pdf", ".jpg", ".jpeg", ".png" };
+
+            string extension =
+                Path.GetExtension(file.FileName).ToLowerInvariant();
 
             if (!allowedExtensions.Contains(extension))
                 throw new ArgumentException(
                     "Only PDF, JPG, JPEG and PNG files are allowed.");
 
-            // Save outside wwwroot so files are not publicly served by default.
-            string folder = Path.Combine(env.ContentRootPath, "SecureDocuments");
+            string folder = Path.Combine(
+                env.ContentRootPath, "SecureDocuments");
+
             Directory.CreateDirectory(folder);
 
             string fileName = $"{Guid.NewGuid():N}{extension}";
@@ -146,7 +244,6 @@ namespace KycVerification.Infrastructure.Repositories
             }
             catch
             {
-                // Remove the saved file if the database operation fails.
                 if (File.Exists(fullPath))
                     File.Delete(fullPath);
 
@@ -154,7 +251,19 @@ namespace KycVerification.Infrastructure.Repositories
             }
         }
 
-        // Approve KYC only after mandatory documents are verified.
+        // List documents belonging to a KYC request.
+        public async Task<List<KycDocumentDto>> GetDocumentsAsync(int kycId)
+        {
+            var documents = await db.KycDocuments
+                .AsNoTracking()
+                .Where(x => x.KycId == kycId)
+                .OrderByDescending(x => x.UploadDate)
+                .ToListAsync();
+
+            return mapper.Map<List<KycDocumentDto>>(documents);
+        }
+
+        // Approve KYC only when all required documents are verified.
         public async Task<bool> ApproveKycAsync(
             int kycId, ReviewKycDto dto)
         {
@@ -221,41 +330,13 @@ namespace KycVerification.Infrastructure.Repositories
 
             await db.SaveChangesAsync();
 
-            await AddLogAsync(kycId, "KYC Rejected", null, dto.Remarks);
+            await AddLogAsync(
+                kycId, "KYC Rejected", null, dto.Remarks);
 
             return true;
         }
 
-        // Get documents belonging to one KYC request.
-        public async Task<List<KycDocumentDto>> GetDocumentsAsync(int kycId)
-        {
-            var documents = await db.KycDocuments
-                .AsNoTracking()
-                .Where(x => x.KycId == kycId)
-                .OrderByDescending(x => x.UploadDate)
-                .ToListAsync();
-
-            return mapper.Map<List<KycDocumentDto>>(documents);
-        }
-
-        // Add an audit-log entry for a KYC or document action.
-        private async Task AddLogAsync(
-            int kycId, string action, int? performedBy, string? remarks)
-        {
-            var log = new KycVerificationLog
-            {
-                KycId = kycId,
-                Action = action,
-                PerformedBy = performedBy,
-                ActionDate = DateTime.UtcNow,
-                Remarks = remarks
-            };
-
-            db.KycVerificationLogs.Add(log);
-            await db.SaveChangesAsync();
-        }
-
-        // Mark a document as verified.
+        // Verify a document.
         public async Task<bool> VerifyDocumentAsync(
             int documentId, ReviewKycDto dto)
         {
@@ -277,7 +358,7 @@ namespace KycVerification.Infrastructure.Repositories
             return true;
         }
 
-        // Reject a document and record the reason.
+        // Reject a document and require a reason.
         public async Task<bool> RejectDocumentAsync(
             int documentId, ReviewKycDto dto)
         {
@@ -300,7 +381,7 @@ namespace KycVerification.Infrastructure.Repositories
             return true;
         }
 
-        // Replace a rejected document with a new upload.
+        // Re-upload a rejected document.
         public async Task<KycDocumentDto> ReuploadDocumentAsync(
             int documentId, UploadKycDocumentDto dto)
         {
@@ -314,6 +395,10 @@ namespace KycVerification.Infrastructure.Repositories
                 throw new InvalidOperationException(
                     "Only rejected documents can be re-uploaded.");
 
+            if (dto.KycId != document.KycId)
+                throw new ArgumentException(
+                    "The KYC ID does not match the original document.");
+
             var kyc = await db.CustomerKycs
                 .FirstOrDefaultAsync(x => x.KycId == document.KycId);
 
@@ -324,10 +409,6 @@ namespace KycVerification.Infrastructure.Repositories
                 throw new InvalidOperationException(
                     "Documents cannot be re-uploaded after KYC approval.");
 
-            if (dto.KycId != document.KycId)
-                throw new ArgumentException(
-                    "The KYC ID does not match the original document.");
-
             var file = dto.File;
 
             if (file == null || file.Length == 0)
@@ -336,20 +417,31 @@ namespace KycVerification.Infrastructure.Repositories
             const long maxFileSize = 5L * 1024 * 1024;
 
             if (file.Length > maxFileSize)
-                throw new ArgumentException("Maximum file size allowed is 5 MB.");
+                throw new ArgumentException(
+                    "Maximum file size allowed is 5 MB.");
 
-            string[] allowedExtensions = { ".pdf", ".jpg", ".jpeg", ".png" };
-            string extension = Path.GetExtension(file.FileName).ToLowerInvariant();
+            string[] allowedExtensions =
+                { ".pdf", ".jpg", ".jpeg", ".png" };
+
+            string extension =
+                Path.GetExtension(file.FileName).ToLowerInvariant();
 
             if (!allowedExtensions.Contains(extension))
                 throw new ArgumentException(
                     "Only PDF, JPG, JPEG and PNG files are allowed.");
 
-            string folder = Path.Combine(env.ContentRootPath, "SecureDocuments");
+            string folder = Path.Combine(
+                env.ContentRootPath, "SecureDocuments");
+
             Directory.CreateDirectory(folder);
 
             string fileName = $"{Guid.NewGuid():N}{extension}";
             string fullPath = Path.Combine(folder, fileName);
+
+            // Preserve the old file until the database update succeeds.
+            string oldRelativePath = document.FilePath;
+            string oldFullPath = Path.GetFullPath(
+                Path.Combine(env.ContentRootPath, oldRelativePath));
 
             try
             {
@@ -373,6 +465,17 @@ namespace KycVerification.Infrastructure.Repositories
                     null,
                     $"Re-uploaded document: {document.DocumentType}");
 
+                // Remove the previous stored file after the DB update.
+                string secureFolder = Path.GetFullPath(folder);
+
+                if (oldFullPath.StartsWith(
+                    secureFolder + Path.DirectorySeparatorChar,
+                    StringComparison.OrdinalIgnoreCase) &&
+                    File.Exists(oldFullPath))
+                {
+                    File.Delete(oldFullPath);
+                }
+
                 return mapper.Map<KycDocumentDto>(document);
             }
             catch
@@ -382,6 +485,89 @@ namespace KycVerification.Infrastructure.Repositories
 
                 throw;
             }
+        }
+
+        // Return summary counts for the dashboard.
+        public async Task<KycDashboardDto> GetDashboardAsync()
+        {
+            var today = DateTime.UtcNow.Date;
+            var tomorrow = today.AddDays(1);
+
+            return new KycDashboardDto
+            {
+                TotalRequests = await db.CustomerKycs.CountAsync(),
+
+                PendingRequests = await db.CustomerKycs.CountAsync(x =>
+                    x.VerificationStatus == "Pending" ||
+                    x.VerificationStatus == "Re-Submitted"),
+
+                VerifiedRequests = await db.CustomerKycs.CountAsync(x =>
+                    x.VerificationStatus == "Verified"),
+
+                RejectedRequests = await db.CustomerKycs.CountAsync(x =>
+                    x.VerificationStatus == "Rejected"),
+
+                CkycSuccessful = await db.CkycDetails.CountAsync(x =>
+                    x.CkycStatus == "Verified"),
+
+                CkycFailed = await db.CkycDetails.CountAsync(x =>
+                    x.CkycStatus == "Failed"),
+
+                RequestsCreatedToday = await db.CustomerKycs.CountAsync(x =>
+                    x.KycDate >= today && x.KycDate < tomorrow)
+            };
+        }
+
+        // Allow rejected KYC requests to be submitted for review again.
+        public async Task<bool> ResubmitKycAsync(int kycId)
+        {
+            var kyc = await db.CustomerKycs
+                .FirstOrDefaultAsync(x => x.KycId == kycId);
+
+            if (kyc == null)
+                return false;
+
+            if (kyc.VerificationStatus != "Rejected")
+                throw new InvalidOperationException(
+                    "Only rejected KYC requests can be resubmitted.");
+
+            bool rejectedDocuments = await db.KycDocuments.AnyAsync(x =>
+                x.KycId == kycId &&
+                x.VerificationStatus == "Rejected");
+
+            if (rejectedDocuments)
+                throw new InvalidOperationException(
+                    "Re-upload all rejected documents before resubmitting KYC.");
+
+            kyc.VerificationStatus = "Re-Submitted";
+            kyc.VerifiedDate = null;
+
+            await db.SaveChangesAsync();
+
+            await AddLogAsync(
+                kycId,
+                "KYC Resubmitted",
+                null,
+                "KYC request resubmitted for review.");
+
+            return true;
+        }
+
+        // Store an audit-log entry.
+        private async Task AddLogAsync(
+            int kycId, string action, int? performedBy, string? remarks)
+        {
+            var log = new KycVerificationLog
+            {
+                KycId = kycId,
+                Action = action,
+                PerformedBy = performedBy,
+                ActionDate = DateTime.UtcNow,
+                Remarks = remarks
+            };
+
+            db.KycVerificationLogs.Add(log);
+            await db.SaveChangesAsync();
         }
     }
 }
