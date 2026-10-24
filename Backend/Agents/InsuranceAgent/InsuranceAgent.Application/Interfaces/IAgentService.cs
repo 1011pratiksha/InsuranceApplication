@@ -20,6 +20,8 @@ namespace InsuranceAgent.Application.Interfaces
 
         Task UpdateAgent(int id, UpdateAgentDto dto);
 
-      
+        Task<List<UserDTO>> GetAllUsers();
+
+
     }
 }

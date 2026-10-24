@@ -13,10 +13,16 @@ namespace InsuranceAgent.Application.Mapper
             this.client = client;
         }
 
+        
         public async Task<CustomerDTO?> GetCustomerById(int id)
         {
-            return await client.GetFromJsonAsync<CustomerDTO>(
-                $"api/v1/customers/{id}");
+            return await client.GetFromJsonAsync<CustomerDTO>($"api/v1/customers/{id}");
+        }
+
+
+        public async Task<List<CustomerDTO>?> GetAllCustomers()
+        {
+            return await client.GetFromJsonAsync<List<CustomerDTO>>("api/v1/customers");
         }
     }
 }

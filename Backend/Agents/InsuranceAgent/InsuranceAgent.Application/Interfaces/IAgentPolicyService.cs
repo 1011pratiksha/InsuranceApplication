@@ -16,5 +16,9 @@ namespace InsuranceAgent.Application.Interfaces
 
         Task<AgentPolicyDetailsDto> GetAgentPolicyById(int agentId, int policyId);
 
+        Task<List<PolicyDTO>> GetAllPolicies();
+
+        Task<List<CustomerDTO>> GetAllCustomers();
+
     }
 }
