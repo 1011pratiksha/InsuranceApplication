@@ -64,12 +64,9 @@
         },
         "serve": {
   "builder": "@angular/build:dev-server",
-  "options": {
-    "proxyConfig": "proxy.conf.json",
-    "ssl": true,
-    "sslCert": ".certs/localhost.pem",
-    "sslKey": ".certs/localhost.key"
-  },
+"options": {
+  "proxyConfig": "proxy.conf.json"
+},
   "configurations": {
     "production": {
       "buildTarget": "Premium:build:production"
