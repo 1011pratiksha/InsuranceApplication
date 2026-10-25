@@ -45,21 +45,50 @@ import { CustomerEndorsement } from './features/policy-servicing/customer-endors
 // Policy Closure
 import { Policyclosure } from './features/policy-closure/policyclosure/policyclosure';
 
-export const routes: Routes = [
-  // Authentication pages: no sidebar
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: Login },
-  { path: 'two-factor', component: TwoFactor },
-  { path: 'forgot-password', component: ForgotPassword },
-  { path: 'reset-password', component: ResetPassword },
-  { path: 'login-success', component: LoginSuccess },
+// Agent Module
+import { AgentDashboard } from './features/Agent/agent-dashboard/agent-dashboard';
+import { AssignedCustomersComponent } from './features/Agent/assigned-customers/assigned-customers';
+import { Agent } from './features/Agent/agent/agent';
+import { AgentPolicies } from './features/Agent/agent-policies/agent-policies';
+import { CommissionRules } from './features/Agent/commission-rules/commission-rules';
+import { AgentCommissions } from './features/Agent/agent-commissions/agent-commissions';
 
-  // Application pages: rendered inside MainLayout
+export const routes: Routes = [
+
+  // Authentication pages
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: Login
+  },
+  {
+    path: 'two-factor',
+    component: TwoFactor
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPassword
+  },
+  {
+    path: 'reset-password',
+    component: ResetPassword
+  },
+  {
+    path: 'login-success',
+    component: LoginSuccess
+  },
+
+  // Application pages inside MainLayout
   {
     path: '',
     component: MainLayout,
     children: [
-      // Customer registration and profile
+
+      // Customer Registration and Profile
       {
         path: 'customer-registration',
         component: CustomerRegistrationComponent
@@ -73,11 +102,7 @@ export const routes: Routes = [
         component: CustomerRegistrationComponent
       },
 
-      // Policy issuance
-      {
-        path: 'admin/policy-issuance',
-        component: PolicyIssueComponent
-      },
+      // Customer Policy Issuance
       {
         path: 'customer/my-policies',
         component: MyPoliciesComponent
@@ -87,7 +112,13 @@ export const routes: Routes = [
         component: PolicyDetailsComponent
       },
 
-      // Policy servicing
+      // Admin Policy Issuance
+      {
+        path: 'admin/policy-issuance',
+        component: PolicyIssueComponent
+      },
+
+      // Policy Servicing
       {
         path: 'customer/svc',
         component: Policyserviceingss
@@ -101,13 +132,13 @@ export const routes: Routes = [
         component: CustomerEndorsement
       },
 
-      // Policy closure
+      // Policy Closure
       {
         path: 'admin/closure',
         component: Policyclosure
       },
 
-      // Customer claims
+      // Customer Claims
       {
         path: 'customer/dashboard',
         component: ClaimsDashboard
@@ -133,11 +164,35 @@ export const routes: Routes = [
         component: ClaimDetails
       },
 
-      // Agent claims
+      // Agent Dashboard
       {
         path: 'agent/dashboard',
-        component: ClaimsDashboard
+        component: AgentDashboard
       },
+
+      // Agent Module Pages
+      {
+        path: 'agent/assigned-customers',
+        component: AssignedCustomersComponent
+      },
+      {
+        path: 'agent/profile',
+        component: Agent
+      },
+      {
+        path: 'agent/policies',
+        component: AgentPolicies
+      },
+      {
+        path: 'agent/commission-rules',
+        component: CommissionRules
+      },
+      {
+        path: 'agent/commissions',
+        component: AgentCommissions
+      },
+
+      // Agent Claims
       {
         path: 'agent/claims/register',
         component: ClaimRegistration
@@ -155,11 +210,13 @@ export const routes: Routes = [
         component: ClaimDetails
       },
 
-      // Admin claims
+      // Admin Dashboard
       {
         path: 'admin/dashboard',
         component: ClaimsDashboard
       },
+
+      // Admin Claims
       {
         path: 'admin/claims/list',
         component: ClaimList
@@ -197,7 +254,7 @@ export const routes: Routes = [
         component: ClaimTracking
       },
 
-      // General claims routes retained
+      // General Claims Routes
       {
         path: 'claims/dashboard',
         component: ClaimsDashboard
@@ -247,7 +304,7 @@ export const routes: Routes = [
         component: ClaimTracking
       },
 
-      // Audit and support
+      // Audit and Support
       {
         path: 'audit-logs',
         component: AuditLogs
@@ -268,5 +325,8 @@ export const routes: Routes = [
   },
 
   // Unknown URLs
-  { path: '**', redirectTo: 'login' }
+  {
+    path: '**',
+    redirectTo: 'login'
+  }
 ];
