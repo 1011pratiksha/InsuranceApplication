@@ -1,5 +1,6 @@
 using ClaimManagement.Application.DTO;
 using ClaimManagement.Application.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClaimManagement.API.Controllers
@@ -17,6 +18,7 @@ namespace ClaimManagement.API.Controllers
             this.claimRepository = claimRepository;
         }
 
+        [Authorize(Roles = "Customer")]
         [HttpPost]
         public async Task<IActionResult> AddDocument(int claimId, CreateClaimDocumentDto dto)
         {
@@ -28,6 +30,7 @@ namespace ClaimManagement.API.Controllers
             return Ok(document);
         }
 
+        [Authorize(Roles = "Customer,Admin")]
         [HttpGet]
         public async Task<IActionResult> GetDocuments(int claimId)
         {
@@ -39,6 +42,7 @@ namespace ClaimManagement.API.Controllers
             return Ok(documents);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("verify")]
         public async Task<IActionResult> VerifyDocuments(int claimId, [FromBody] List<int> documentIds)
         {

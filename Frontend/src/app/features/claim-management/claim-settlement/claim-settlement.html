@@ -1,0 +1,112 @@
+<div class="settlement-container">
+  <div class="page-header">
+    <div>
+      <h2>Claim Settlement & Payout (ClaimSettlementController)</h2>
+      <p>Process electronic fund disbursement via <code>POST /api/claims/&#123;id&#125;/settlement</code></p>
+    </div>
+    <a [routerLink]="getRoleLink('claims/list')" class="btn btn-secondary">← Back to Claims</a>
+  </div>
+
+  <div *ngIf="successMessage" class="success-banner">
+    <span>✅ {{ successMessage }}</span>
+  </div>
+  <div *ngIf="errorMessage" class="error-banner">
+    <span>⚠️ {{ errorMessage }}</span>
+  </div>
+
+  <!-- Claim Selector -->
+  <div class="card selector-card">
+    <label class="selector-label">Select Claim ID <small class="text-muted">(Only 'Approved' claims can be settled)</small>:</label>
+    <select class="form-select claim-dropdown" [(ngModel)]="selectedClaimId" (change)="onClaimSelect()">
+      <option *ngFor="let c of claims" [value]="c.claimId">
+        Claim ID: {{ c.claimId }} — {{ c.claimNumber }} (Status: {{ c.claimStatus }}, Est. Loss: ${{ c.estimatedLoss | number:'1.2-2' }})
+      </option>
+    </select>
+  </div>
+
+  <!-- Existing Settlement Display: SettlementResponseDTO Columns -->
+  <div *ngIf="existingSettlement" class="card settlement-receipt-card">
+    <div class="card-header">
+      <h4 class="card-title">Settlement Record (GET /api/claims/&#123;id&#125;/settlement)</h4>
+      <span class="badge badge-success">{{ existingSettlement.settlementStatus }}</span>
+    </div>
+    <div class="receipt-grid">
+      <div class="receipt-item">
+        <span class="receipt-label">Settlement ID</span>
+        <span class="receipt-val font-mono">{{ existingSettlement.settlementId }}</span>
+      </div>
+      <div class="receipt-item">
+        <span class="receipt-label">Claim ID</span>
+        <span class="receipt-val">{{ existingSettlement.claimId }}</span>
+      </div>
+      <div class="receipt-item">
+        <span class="receipt-label">Approved Amount</span>
+        <span class="receipt-val large-amount">${{ existingSettlement.approvedAmount | number:'1.2-2' }}</span>
+      </div>
+      <div class="receipt-item">
+        <span class="receipt-label">Payment Mode</span>
+        <span class="receipt-val font-bold">{{ existingSettlement.paymentMode }}</span>
+      </div>
+      <div class="receipt-item">
+        <span class="receipt-label">Transaction Reference</span>
+        <span class="receipt-val font-mono">{{ existingSettlement.transactionReference }}</span>
+      </div>
+      <div class="receipt-item">
+        <span class="receipt-label">Settlement Date</span>
+        <span class="receipt-val">{{ existingSettlement.settlementDate | date:'medium' }}</span>
+      </div>
+      <div class="receipt-item">
+        <span class="receipt-label">Settlement Status</span>
+        <span class="receipt-val badge badge-success">{{ existingSettlement.settlementStatus }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settlement Form: STRICTLY SettlementDTO FIELDS (only paymentMode) -->
+  <div class="card form-card" *ngIf="!existingSettlement">
+    <h4 class="card-title">Process Settlement <small class="text-muted font-normal">(POST /api/claims/&#123;id&#125;/settlement)</small></h4>
+
+    <!-- Claim Context from ClaimResponseDto -->
+    <div class="claim-context" *ngIf="getSelectedClaim() as claim">
+      <div class="context-grid">
+        <span>Claim ID: <strong>{{ claim.claimId }}</strong></span>
+        <span>Claim #: <strong>{{ claim.claimNumber }}</strong></span>
+        <span>Status: <strong class="badge" [ngClass]="claim.claimStatus === 'Approved' ? 'badge-purple' : 'badge-warning'">{{ claim.claimStatus }}</strong></span>
+        <span>Type: <strong>{{ claim.claimType }}</strong></span>
+        <span>Est. Loss: <strong>${{ claim.estimatedLoss | number:'1.2-2' }}</strong></span>
+      </div>
+      <div *ngIf="claim.claimStatus !== 'Approved'" class="warning-notice">
+        ⚠️ This claim must be in 'Approved' status before settlement. Current: {{ claim.claimStatus }}
+      </div>
+    </div>
+
+    <p class="text-muted mt-2"><small>DTO: <code>SettlementDTO</code> — Only one field: <code>paymentMode</code></small></p>
+
+    <!-- THE ONLY FORM FIELD: PaymentMode -->
+    <div class="form-group">
+      <label class="label-lg">Payment Mode * <small class="text-muted">(NEFT | RTGS | IMPS | UPI | Cheque)</small></label>
+      <div class="payment-mode-selector">
+        <button
+          *ngFor="let mode of paymentModes"
+          class="mode-btn"
+          [class.selected]="formData.paymentMode === mode"
+          (click)="formData.paymentMode = mode"
+          type="button"
+        >
+          {{ mode }}
+        </button>
+      </div>
+    </div>
+
+    <div class="form-actions mt-4">
+      <button
+        class="btn btn-primary btn-lg"
+        (click)="processSettlement()"
+        [disabled]="isDisbursing"
+      >
+        <span *ngIf="!isDisbursing">Process Settlement via API</span>
+        <span *ngIf="isDisbursing">Processing...</span>
+      </button>
+    </div>
+  </div>
+</div>

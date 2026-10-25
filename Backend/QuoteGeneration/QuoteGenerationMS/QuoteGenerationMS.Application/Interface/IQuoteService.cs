@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using QuoteGenerationMS.Application.DTO;
 
 namespace QuoteGenerationMS.Application.Interface
@@ -18,5 +14,9 @@ namespace QuoteGenerationMS.Application.Interface
         Task UpdateQuote(int id, updateQuoteDTO dto);
 
         Task CancelQuote(int id);
+
+        Task<int> SendQuoteForUnderwriting(
+            int quoteId,
+            int customerId);
     }
 }

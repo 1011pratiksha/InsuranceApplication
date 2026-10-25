@@ -1,0 +1,181 @@
+<div class="claims-list-container">
+  <div class="page-header">
+    <div>
+      <h2>Claims Directory (ClaimsController)</h2>
+      <p>Real-time claims directly fetched from <code>GET /api/Claims</code></p>
+    </div>
+    <div class="header-actions">
+      <a [routerLink]="getRoleLink('claims/register')" class="btn btn-primary">+ Register Claim</a>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-banner">
+    <span>⚠️ {{ errorMessage }}</span>
+  </div>
+
+  <div *ngIf="successMessage" class="success-banner">
+    <span>✅ {{ successMessage }}</span>
+  </div>
+
+  <!-- Filter & Search Toolbar -->
+  <div class="card toolbar-card">
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search by Claim ID, Claim Number, Policy ID, or Customer ID..."
+        [(ngModel)]="searchTerm"
+        (input)="onSearchChange()"
+      />
+    </div>
+
+    <div class="filters-row">
+      <div class="status-pills">
+        <button
+          *ngFor="let st of statuses"
+          class="pill-btn"
+          [class.active]="selectedStatus === st"
+          (click)="setStatusFilter(st)"
+        >
+          {{ st }}
+        </button>
+      </div>
+
+      <div class="type-filter">
+        <select class="form-select form-select-sm" [(ngModel)]="selectedType" (change)="applyFilter()">
+          <option *ngFor="let t of types" [value]="t">Line: {{ t }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table Card: STRICTLY ClaimResponseDto COLUMNS -->
+  <div class="card table-card">
+    <div class="card-header">
+      <div class="count-indicator">
+        Showing <strong>{{ filteredClaims.length }}</strong> of {{ claims.length }} total claims
+      </div>
+      <button class="btn btn-secondary btn-sm" (click)="loadClaims()">🔄 Refresh APIs</button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="claims-table">
+        <thead>
+          <tr>
+            <th>Claim ID</th>
+            <th>Claim Number</th>
+            <th>Policy ID</th>
+            <th>Customer ID</th>
+            <th>Claim Type</th>
+            <th>Incident Date</th>
+            <th>Claim Date</th>
+            <th>Estimated Loss</th>
+            <th>Claim Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let claim of filteredClaims">
+            <td class="font-mono font-bold">{{ claim.claimId }}</td>
+            <td>
+              <span class="claim-badge">{{ claim.claimNumber }}</span>
+            </td>
+            <td>{{ claim.policyId }}</td>
+            <td>{{ claim.customerId }}</td>
+            <td>
+              <span class="badge badge-neutral">{{ claim.claimType }}</span>
+            </td>
+            <td>{{ claim.incidentDate | date:'mediumDate' }}</td>
+            <td>{{ claim.claimDate | date:'mediumDate' }}</td>
+            <td>
+              <span class="amount-val">${{ claim.estimatedLoss | number:'1.2-2' }}</span>
+            </td>
+            <td>
+              <span class="badge" [ngClass]="getStatusBadgeClass(claim.claimStatus)">
+                {{ claim.claimStatus }}
+              </span>
+            </td>
+            <td>
+              <div class="row-actions">
+                <button class="btn btn-secondary btn-sm" (click)="viewDetails(claim.claimId)" title="View Full Claim File">
+                  Details
+                </button>
+                <button class="btn btn-outline-primary btn-sm" (click)="trackClaim(claim)" title="Track Claim Lifecycle">
+                  Track
+                </button>
+                <button 
+                  class="btn btn-outline-secondary btn-sm" 
+                  *ngIf="claim.claimStatus === 'Registered'" 
+                  (click)="openEditModal(claim)" 
+                  title="Update Claim (PUT /api/Claims/{id})"
+                >
+                  Edit
+                </button>
+                <button
+                  class="btn btn-danger btn-sm"
+                  *ngIf="claim.claimStatus === 'Registered'"
+                  (click)="deleteClaim(claim, $event)"
+                  title="Delete Claim (DELETE /api/Claims/{id})"
+                >
+                  Delete
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="filteredClaims.length === 0">
+            <td colspan="10" class="no-records">
+              <div class="empty-state">
+                <span class="empty-icon">📂</span>
+                <p>No claims found in system.</p>
+                <a [routerLink]="getRoleLink('claims/register')" class="btn btn-primary btn-sm">+ Register New Claim</a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal for Updating Claim: STRICTLY UpdateClaimDto FIELDS -->
+  <div *ngIf="editingClaim" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Update Claim #{{ editingClaim.claimNumber }} (ID: {{ editingClaim.claimId }})</h3>
+        <button class="close-btn" (click)="closeEditModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted"><small>Backend DTO: <code>UpdateClaimDto</code> (Only editable when in 'Registered' status)</small></p>
+
+        <div class="form-group mb-3">
+          <label>Claim Type * (Max 50 chars)</label>
+          <select class="form-select" [(ngModel)]="updateForm.claimType">
+            <option value="Motor">Motor</option>
+            <option value="Health">Health</option>
+            <option value="Property">Property</option>
+            <option value="Life">Life</option>
+            <option value="Travel">Travel</option>
+          </select>
+        </div>
+
+        <div class="form-group mb-3">
+          <label>Incident Date * (<= Today)</label>
+          <input type="date" class="form-control" [(ngModel)]="updateForm.incidentDate" />
+        </div>
+
+        <div class="form-group mb-3">
+          <label>Estimated Loss ($) *</label>
+          <input type="number" step="0.01" class="form-control" [(ngModel)]="updateForm.estimatedLoss" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="closeEditModal()">Cancel</button>
+        <button class="btn btn-primary" (click)="saveClaimUpdate()" [disabled]="isUpdating">
+          <span *ngIf="!isUpdating">Save via PUT /api/Claims/{{ editingClaim.claimId }}</span>
+          <span *ngIf="isUpdating">Updating...</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

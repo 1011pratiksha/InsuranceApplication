@@ -4,6 +4,8 @@ using QuoteGenerationMS.Application.Interface;
 using QuoteGenerationMS.Application.Mapper;
 using QuoteGenerationMS.Infrastructure.Data;
 using QuoteGenerationMS.Infrastructure.Services;
+using QuoteGenerationMS.Infrastructure.Repositories;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +28,20 @@ builder.Services.AddHttpClient<IProductManagementClient, ProductManagementClient
     {
         throw new InvalidOperationException(
             "Product Management service URL is missing or invalid.");
+    }
+
+    client.BaseAddress = uri;
+});
+
+builder.Services.AddHttpClient<IUnderwritingClient, UnderwritingClient>(client =>
+{
+    var baseUrl = builder.Configuration["ServiceUrls:Underwriting"];
+
+    if (string.IsNullOrWhiteSpace(baseUrl) ||
+        !Uri.TryCreate(baseUrl, UriKind.Absolute, out var uri))
+    {
+        throw new InvalidOperationException(
+            "Underwriting service URL is missing or invalid.");
     }
 
     client.BaseAddress = uri;

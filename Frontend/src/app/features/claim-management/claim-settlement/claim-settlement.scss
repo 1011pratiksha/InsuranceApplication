@@ -1,0 +1,138 @@
+.settlement-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+}
+
+.receipt-card {
+  background: var(--bg-card);
+  border: 2px solid var(--success);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  max-width: 720px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-lg);
+
+  .receipt-header {
+    text-align: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px dashed var(--border-color);
+    position: relative;
+
+    .stamp {
+      display: inline-block;
+      border: 2px solid var(--success);
+      color: var(--success);
+      padding: 0.35rem 1rem;
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+      transform: rotate(-3deg);
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+    }
+
+    .txn-code {
+      font-family: monospace;
+      color: var(--primary);
+      font-size: 1rem;
+    }
+  }
+
+  .receipt-body {
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+
+      .receipt-amount {
+        font-size: 1.4rem;
+        color: var(--success);
+        font-weight: 800;
+      }
+    }
+  }
+
+  .receipt-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+}
+
+.settlement-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+
+  .form-section {
+    padding-top: 1.25rem;
+    margin-top: 1.25rem;
+    border-top: 1px solid var(--border-subtle);
+
+    .sub-heading {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+  }
+
+  .form-row {
+    display: flex;
+    margin: 0 -0.5rem;
+
+    .col-6 {
+      flex: 0 0 50%;
+      padding: 0 0.5rem;
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+}

@@ -13,9 +13,9 @@ namespace PolicyServicing.Domain.Entities
         [Key]
         public long cancellation_id { get; set; }
 
-        [ForeignKey("Policy")]
+        //[ForeignKey("Policy")]
         public long policy_id { get; set; }
-        public  Policy? Policy { get; set; }
+        //public  Policy? Policy { get; set; }
         public DateTime cancellation_date { get; set; }
         public string? cancellation_reason { get; set; }
         public decimal refund_amount { get; set; }

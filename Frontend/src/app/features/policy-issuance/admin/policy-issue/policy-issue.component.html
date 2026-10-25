@@ -1,0 +1,60 @@
+
+<div class="page-container">
+  <p class="breadcrumb">Policy Issuance / Policy Issuance</p>
+  <h2>Policy Issuance</h2>
+
+  <div class="steps">
+    <div class="step done">✓ UW approved</div>
+    <div class="step current">2. Policy no. generated</div>
+    <div class="step">3. Docs generated</div>
+    <div class="step">4. Active</div>
+  </div>
+
+  <p *ngIf="loading">Loading policies...</p>
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <div class="policy-card" *ngIf="policy">
+    <div>
+      <small>Policy no.</small>
+      <strong>{{ policy.policyNumber || policy.policyNo || '-' }}</strong>
+    </div>
+    <div>
+      <small>Customer</small>
+      <strong>{{ policy.customerName || '-' }}</strong>
+    </div>
+    <div>
+      <small>Product</small>
+      <strong>{{ policy.productName || '-' }}</strong>
+    </div>
+    <div>
+      <small>Start date</small>
+      <strong>{{ policy.effectiveDate | date:'dd MMM yyyy' }}</strong>
+    </div>
+    <div>
+      <small>Nominee</small>
+      <strong>{{ policy.nomineeName || '-' }}</strong>
+    </div>
+    <div>
+      <small>Riders</small>
+      <strong>{{ policy.riders?.join(', ') || 'None' }}</strong>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-primary"
+            [disabled]="issuing"
+            (click)="issuePolicy()">
+      {{ issuing ? 'Issuing...' : 'Issue policy' }}
+    </button>
+
+    <button class="btn btn-outline-secondary"
+            (click)="backToUnderwriting()">
+      Back to UW
+    </button>
+  </div>
+</div>

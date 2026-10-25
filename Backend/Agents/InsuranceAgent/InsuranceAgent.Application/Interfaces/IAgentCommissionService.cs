@@ -16,5 +16,6 @@ namespace InsuranceAgent.Application.Interfaces
         Task<List<CommissionResponseDto>> GetCommissionsByAgentId(int agentId);
       
         Task UpdateCommissionStatus(int commissionId, CommissionStatusUpdateDto dto);
+        Task<List<PolicyDTO>> GetAllPolicies();
     }
 }
