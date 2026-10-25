@@ -1,0 +1,277 @@
+<div class="portal-view-container">
+  <!-- Top Breadcrumb & Header Bar -->
+  <div class="view-header">
+    <div class="header-left">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li class="crumb-item">
+            <a [routerLink]="'/' + currentRole.toLowerCase() + '/dashboard'">Insurance App</a>
+          </li>
+          <li *ngFor="let crumb of moduleInfo().breadcrumbs; let last = last" class="crumb-item" [class.active]="last">
+            <span class="crumb-sep">/</span>
+            <span>{{ crumb }}</span>
+          </li>
+        </ol>
+      </nav>
+      <div class="title-row">
+        <h1 class="page-title">{{ moduleInfo().title }}</h1>
+        <span class="role-pill" [class]="currentRole.toLowerCase()">{{ currentRole }}</span>
+        <span class="status-pill active">&bull; Active Scope</span>
+      </div>
+      <p class="page-subtitle">{{ moduleInfo().subtitle }} &mdash; <code class="route-code">{{ moduleInfo().url }}</code></p>
+    </div>
+
+    <div class="header-actions">
+      <button type="button" class="btn btn-secondary btn-sm" (click)="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 4 23 10 17 10"></polyline>
+          <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+        </svg>
+        Refresh
+      </button>
+      <a [routerLink]="'/' + currentRole.toLowerCase() + '/dashboard'" class="btn btn-primary btn-sm">
+        {{ currentRole }} Home
+      </a>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 1. ROLE DASHBOARD VIEW (When on /<role>/dashboard) -->
+  <!-- ======================================================== -->
+  <div *ngIf="isDashboard()" class="role-dashboard-wrapper">
+    
+    <!-- A. CUSTOMER DASHBOARD -->
+    <div *ngIf="currentRole === 'Customer'" class="customer-dashboard-section">
+      <!-- Welcome Hero Banner -->
+      <div class="dashboard-hero customer-hero">
+        <div class="hero-content">
+          <h2>Customer Dashboard</h2>
+          <p>Welcome to your customer portal. Manage your insurance policies, track claims, pay scheduled premiums, and access services.</p>
+          <div class="hero-actions">
+            <a routerLink="/customer/premiums/pay" class="btn btn-primary btn-sm">Pay Premium</a>
+            <a routerLink="/customer/claims/raise" class="btn btn-secondary btn-sm">+ Raise a Claim</a>
+            <a routerLink="/customer/quotes/request" class="btn btn-outline btn-sm">Request Quote</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer KPI Metrics -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <span class="kpi-label">Active Policies</span>
+          <span class="kpi-value text-primary">0</span>
+          <span class="kpi-sub">No active policies</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Next Premium Due</span>
+          <span class="kpi-value text-warning">--</span>
+          <span class="kpi-sub">No due installments</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Active Claims</span>
+          <span class="kpi-value text-info">0</span>
+          <span class="kpi-sub">No active claims</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">KYC Status</span>
+          <span class="kpi-value text-muted">Pending</span>
+          <span class="kpi-sub">Not submitted</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- B. AGENT DASHBOARD -->
+    <div *ngIf="currentRole === 'Agent'" class="agent-dashboard-section">
+      <!-- Agent Summary Banner -->
+      <div class="dashboard-hero agent-hero">
+        <div class="hero-content">
+          <div class="agent-badge-pill">AGENT PORTAL</div>
+          <h2>Agent Dashboard</h2>
+          <p>Manage your assigned client accounts, generate customized quotes, record premium collections, and track commissions.</p>
+          <div class="hero-actions">
+            <a routerLink="/agent/customers/register" class="btn btn-primary btn-sm">+ Register Customer</a>
+            <a routerLink="/agent/quotes/generate" class="btn btn-secondary btn-sm">Generate Quote</a>
+            <a routerLink="/agent/premiums/collect" class="btn btn-outline btn-sm">Collect Premium</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agent KPI Metrics -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <span class="kpi-label">Assigned Customers</span>
+          <span class="kpi-value text-primary">0</span>
+          <span class="kpi-sub">No registered customers</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Policies Sold</span>
+          <span class="kpi-value text-success">0</span>
+          <span class="kpi-sub">0 active policies</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Total Commission</span>
+          <span class="kpi-value text-purple">₹0.00</span>
+          <span class="kpi-sub">₹0.00 pending payout</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Pending Tasks</span>
+          <span class="kpi-value text-warning">0</span>
+          <span class="kpi-sub">No pending tasks</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- C. ADMIN DASHBOARD -->
+    <div *ngIf="currentRole === 'Admin'" class="admin-dashboard-section">
+      <!-- Admin Hero Banner -->
+      <div class="dashboard-hero admin-hero">
+        <div class="hero-content">
+          <div class="admin-badge-pill">ADMINISTRATION COMMAND CENTER</div>
+          <h2>Administration Dashboard</h2>
+          <p>Enterprise administration across user management, product configuration, underwriting assessment, and policy lifecycle operations.</p>
+          <div class="hero-actions">
+            <a routerLink="/admin/kyc/pending" class="btn btn-primary btn-sm">Review KYC Queue</a>
+            <a routerLink="/admin/underwriting/cases" class="btn btn-secondary btn-sm">Underwriting Cases</a>
+            <a routerLink="/admin/commissions/payouts" class="btn btn-outline btn-sm">Process Payouts</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin KPI Metrics -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <span class="kpi-label">Registered Users</span>
+          <span class="kpi-value text-primary">0</span>
+          <span class="kpi-sub">No registered users</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Policies in Force</span>
+          <span class="kpi-value text-success">0</span>
+          <span class="kpi-sub">0 active policies</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Gross Written Premium</span>
+          <span class="kpi-value text-purple">₹0.00</span>
+          <span class="kpi-sub">No transactions recorded</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Pending Action Queue</span>
+          <span class="kpi-value text-warning">0</span>
+          <span class="kpi-sub">Queue clear</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 2. MODULE DETAIL VIEW (For all role sub-pages & modules) -->
+  <!-- ======================================================== -->
+  <div class="view-content-grid">
+    <!-- Main Card -->
+    <div class="content-card">
+      <div class="card-header">
+        <div class="card-title-group">
+          <span class="card-indicator"></span>
+          <h3>{{ moduleInfo().categoryName }} &bull; {{ moduleInfo().title }}</h3>
+        </div>
+        <span class="timestamp">Scope: {{ currentRole }}</span>
+      </div>
+
+      <div class="card-body">
+        <!-- Module Context Banner -->
+        <div class="module-banner">
+          <div class="banner-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+          </div>
+          <div class="banner-text">
+            <strong>Active Workspace: {{ moduleInfo().title }} ({{ currentRole }} Role)</strong>
+            <p>You are accessing the <strong>{{ currentRole }}</strong> workspace for route <code>{{ moduleInfo().url }}</code>. All assigned operations and permissions are strictly mapped to this view.</p>
+          </div>
+        </div>
+
+        <!-- Metric KPI row for this specific module -->
+        <div class="metrics-row">
+          <div class="metric-box">
+            <span class="metric-label">Assigned Role</span>
+            <span class="metric-val text-primary">{{ currentRole }}</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-label">Module Route</span>
+            <span class="metric-val text-success">Active</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-label">Total Records</span>
+            <span class="metric-val">0</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-label">Data Status</span>
+            <span class="metric-val">Connected</span>
+          </div>
+        </div>
+
+        <!-- Contextual Operational Data Table -->
+        <div class="section-details-table">
+          <div class="table-header-row">
+            <h4>{{ moduleInfo().title }} Records</h4>
+            <div class="table-actions">
+              <span class="badge badge-default">0 Records</span>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th *ngFor="let h of tableData().headers">{{ h }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Empty State Row when no records exist -->
+              <tr *ngIf="tableData().rows.length === 0">
+                <td [attr.colspan]="tableData().headers.length" class="empty-state-cell">
+                  <div class="empty-state-content">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="8" x2="12" y2="12"></line>
+                      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    <p class="empty-title">No records available for {{ moduleInfo().title }}</p>
+                    <p class="empty-subtitle">There are currently no records found in this view.</p>
+                  </div>
+                </td>
+              </tr>
+              <!-- Live Data Rows -->
+              <tr *ngFor="let row of tableData().rows">
+                <td><strong>{{ row.col1 }}</strong></td>
+                <td>{{ row.col2 }}</td>
+                <td>{{ row.col3 }}</td>
+                <td>{{ row.col4 }}</td>
+                <td>
+                  <span class="badge" [class]="row.statusClass">{{ row.status }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Quick Navigation / Role-specific Related Actions Card -->
+    <div class="sidebar-info-card">
+      <div class="card-header">
+        <h3>{{ currentRole }} Actions</h3>
+      </div>
+      <div class="quick-links-list">
+        <a *ngFor="let link of roleQuickLinks()" [routerLink]="link.route" class="quick-link-item">
+          <span class="link-title">{{ link.title }}</span>
+          <span class="link-desc">{{ link.desc }}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

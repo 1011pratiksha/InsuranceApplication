@@ -1,0 +1,68 @@
+
+.page-container {
+  padding: 28px;
+  background: #f0f4f9;
+  min-height: 100vh;
+}
+
+.breadcrumb {
+  color: #64748b;
+  font-size: 12px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.table-card {
+  background: white;
+  border: 1px solid #dbe3ef;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px;
+}
+
+.filters input {
+  max-width: 280px;
+}
+
+.filters select {
+  max-width: 200px;
+}
+
+.table thead th {
+  background: #f7f9fc;
+  color: #526581;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.table tbody td {
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.status-chip {
+  background: #e5e7eb;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+}
+
+.open-link {
+  border: none;
+  background: none;
+  color: #079b8a;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+

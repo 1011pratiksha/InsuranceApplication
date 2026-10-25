@@ -1,0 +1,31 @@
+
+.endorsement-card {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 25px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px #ddd;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+}
+
+input, select, textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 18px;
+  background: #174a82;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

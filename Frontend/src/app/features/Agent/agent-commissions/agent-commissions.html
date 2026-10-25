@@ -1,0 +1,257 @@
+
+<div class="container-fluid mt-4">
+
+  <!-- Page Heading -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Agent Commissions</h2>
+
+    <button type="button" class="btn btn-primary" (click)="toggleForm()">
+      {{ showForm ? 'Cancel' : '+ Calculate Commission' }}
+    </button>
+  </div>
+
+  <!-- Calculate Commission Form -->
+  <div class="card mb-4" *ngIf="showForm">
+    <div class="card-header">
+      Calculate Commission
+    </div>
+
+    <div class="card-body">
+      <form (ngSubmit)="calculateCommission()">
+
+        <div class="row">
+      <div class="col-md-5 mb-3">
+  <label for="agentId" class="form-label">Select Agent</label>
+
+  <select
+    id="agentId"
+    name="agentId"
+    class="form-select"
+    [(ngModel)]="agentId"
+    required>
+
+    <option [ngValue]="null">-- Select Agent --</option>
+
+    <option
+      *ngFor="let agent of agents"
+      [ngValue]="agent.agentId">
+
+      {{ agent.userName }} ({{ agent.agentCode }})
+
+    </option>
+  </select>
+</div>
+
+
+        <div class="col-md-5 mb-3">
+        <label for="policyId" class="form-label">Select Policy</label>
+
+        <select
+            id="policyId"
+            name="policyId"
+            class="form-select"
+            [(ngModel)]="policyId"
+            required>
+
+            <option [ngValue]="null">-- Select Policy --</option>
+
+            <option
+            *ngFor="let policy of policies"
+            [ngValue]="policy.policyId">
+
+            {{ policy.policyNumber || 'Policy' }}
+            (ID: {{ policy.policyId }})
+            </option>
+
+        </select>
+        </div>
+
+
+          <div class="col-md-2 mb-3 d-flex align-items-end">
+            <button type="submit" class="btn btn-success w-100">
+              Calculate
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="card mb-4">
+    <div class="card-header">
+      Filter Commissions
+    </div>
+
+    <div class="card-body">
+      <div class="row">
+
+        <div class="col-md-3 mb-3">
+          <label for="filterStatus" class="form-label">Status</label>
+          <select
+            id="filterStatus"
+            name="filterStatus"
+            class="form-select"
+            [(ngModel)]="filterStatus">
+            <option value="">All Statuses</option>
+            <option value="Pending">Pending</option>
+            <option value="Approved">Approved</option>
+            <option value="Reversed">Reversed</option>
+          </select>
+        </div>
+
+<div class="col-md-3 mb-3">
+  <label for="filterAgentId" class="form-label">Select Agent</label>
+
+  <select
+    id="filterAgentId"
+    name="filterAgentId"
+    class="form-select"
+    [(ngModel)]="filterAgentId">
+
+    <option [ngValue]="null">All Agents</option>
+
+    <option
+      *ngFor="let agent of agents"
+      [ngValue]="agent.agentId">
+      {{ agent.userName }} ({{ agent.agentCode }})
+    </option>
+
+  </select>
+</div>
+
+        <div class="col-md-3 mb-3">
+          <label for="fromDate" class="form-label">From Date</label>
+          <input
+            type="date"
+            id="fromDate"
+            name="fromDate"
+            class="form-control"
+            [(ngModel)]="fromDate">
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <label for="toDate" class="form-label">To Date</label>
+          <input
+            type="date"
+            id="toDate"
+            name="toDate"
+            class="form-control"
+            [(ngModel)]="toDate">
+        </div>
+
+      </div>
+
+      <div class="d-flex gap-2">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="applyFilters()">
+          Apply Filters
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="resetFilters()">
+          Reset
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Commissions Table -->
+  <div class="card">
+    <div class="card-header">
+      Commission Records
+    </div>
+
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+
+          <thead class="table-light">
+            <tr>
+              <th>Commission ID</th>
+              <th>Agent ID</th>
+              <th>Policy ID</th>
+              <th>Premium Amount</th>
+              <th>Commission %</th>
+              <th>Commission Amount</th>
+              <th>Status</th>
+              <th>Earned Date</th>
+              <th>Created At</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr *ngIf="isLoading">
+              <td colspan="10" class="text-center py-4">
+                Loading commissions...
+              </td>
+            </tr>
+
+            <tr *ngIf="!isLoading && commissions.length === 0">
+              <td colspan="10" class="text-center py-4">
+                No commission records found.
+              </td>
+            </tr>
+
+            <tr *ngFor="let commission of commissions">
+              <td>{{ commission.commissionId }}</td>
+              <td>{{ commission.agentId }}</td>
+              <td>{{ commission.policyId }}</td>
+              <td>{{ commission.premiumAmount | number:'1.2-2' }}</td>
+              <td>{{ commission.commissionPercentage }}%</td>
+              <td>{{ commission.commissionAmount | number:'1.2-2' }}</td>
+
+              <td>
+                <span
+                  class="badge"
+                  [ngClass]="{
+                    'bg-warning text-dark': commission.status === 'Pending',
+                    'bg-success': commission.status === 'Approved',
+                    'bg-danger': commission.status === 'Reversed'
+                  }">
+                  {{ commission.status }}
+                </span>
+              </td>
+
+              <td>{{ commission.earnedDate | date:'dd-MM-yyyy' }}</td>
+              <td>{{ commission.createdAt | date:'dd-MM-yyyy' }}</td>
+
+              <td>
+                <button
+                  *ngIf="commission.status === 'Pending'"
+                  type="button"
+                  class="btn btn-sm btn-success me-1"
+                  (click)="updateStatus(commission.commissionId, 'Approved')">
+                  Approve
+                </button>
+
+                <button
+                  *ngIf="commission.status === 'Pending' || commission.status === 'Approved'"
+                  type="button"
+                  class="btn btn-sm btn-danger"
+                  (click)="updateStatus(commission.commissionId, 'Reversed')">
+                  Reverse
+                </button>
+
+                <span
+                  *ngIf="commission.status === 'Reversed'"
+                  class="text-muted">
+                  No actions
+                </span>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

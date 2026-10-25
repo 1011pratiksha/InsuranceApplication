@@ -1,0 +1,15 @@
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\Investigation.API\Investigation.Domian\bin\Debug\net8.0\Investigation.Domian.deps.json
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\Investigation.API\Investigation.Domian\bin\Debug\net8.0\Investigation.Domian.runtimeconfig.json
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\Investigation.API\Investigation.Domian\bin\Debug\net8.0\Investigation.Domian.dll
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\Investigation.API\Investigation.Domian\bin\Debug\net8.0\Investigation.Domian.pdb
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\Investigation.API\Investigation.Domian\obj\Debug\net8.0\Investigation.Domian.csproj.AssemblyReference.cache
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\Investigation.API\Investigation.Domian\obj\Debug\net8.0\Investigation.Domian.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\Investigation.API\Investigation.Domian\obj\Debug\net8.0\Investigation.Domian.AssemblyInfoInputs.cache
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\Investigation.API\Investigation.Domian\obj\Debug\net8.0\Investigation.Domian.AssemblyInfo.cs
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\Investigation.API\Investigation.Domian\obj\Debug\net8.0\Investigation.Domian.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\Investigation.API\Investigation.Domian\obj\Debug\net8.0\Investigation.Domian.sourcelink.json
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\Investigation.API\Investigation.Domian\obj\Debug\net8.0\Investigation.Domian.dll
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\Investigation.API\Investigation.Domian\obj\Debug\net8.0\refint\Investigation.Domian.dll
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\Investigation.API\Investigation.Domian\obj\Debug\net8.0\Investigation.Domian.pdb
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\Investigation.API\Investigation.Domian\obj\Debug\net8.0\Investigation.Domian.genruntimeconfig.cache
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\Investigation.API\Investigation.Domian\obj\Debug\net8.0\ref\Investigation.Domian.dll

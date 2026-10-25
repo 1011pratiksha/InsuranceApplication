@@ -1,17 +1,10 @@
 ﻿using InsuranceAgent.Application.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Json;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace InsuranceAgent.Application.Mapper
 {
     public class PolicyClient
     {
-
         private readonly HttpClient client;
 
         public PolicyClient(HttpClient client)
@@ -20,11 +13,14 @@ namespace InsuranceAgent.Application.Mapper
         }
 
 
-
         public async Task<PolicyDTO?> GetPolicyById(int id)
         {
             return await client.GetFromJsonAsync<PolicyDTO>($"api/v1/policies/{id}");
         }
 
+        public async Task<List<PolicyDTO>> GetAllPolicies()
+        {
+            return await client.GetFromJsonAsync<List<PolicyDTO>>("api/v1/policies") ?? new List<PolicyDTO>();
+        }
     }
 }

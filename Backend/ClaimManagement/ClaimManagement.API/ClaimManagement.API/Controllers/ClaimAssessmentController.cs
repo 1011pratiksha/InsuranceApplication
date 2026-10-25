@@ -1,5 +1,6 @@
 using ClaimManagement.Application.DTO;
 using ClaimManagement.Application.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClaimManagement.API.Controllers
@@ -17,6 +18,7 @@ namespace ClaimManagement.API.Controllers
             this.claimRepository = claimRepository;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> AddAssessment(long claimId, CreateAssessmentDto dto)
         {
@@ -28,6 +30,7 @@ namespace ClaimManagement.API.Controllers
             return Ok(assessment);
         }
 
+        [Authorize(Roles = "Admin,Customer")]
         [HttpGet]
         public async Task<IActionResult> GetAssessment(long claimId)
         {

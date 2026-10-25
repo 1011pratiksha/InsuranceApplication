@@ -1,0 +1,15 @@
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\ClaimManagement\ClaimManagement.Domain\bin\Debug\net8.0\ClaimManagement.Domain.deps.json
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\ClaimManagement\ClaimManagement.Domain\bin\Debug\net8.0\ClaimManagement.Domain.runtimeconfig.json
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\ClaimManagement\ClaimManagement.Domain\bin\Debug\net8.0\ClaimManagement.Domain.dll
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\ClaimManagement\ClaimManagement.Domain\bin\Debug\net8.0\ClaimManagement.Domain.pdb
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\ClaimManagement\ClaimManagement.Domain\obj\Debug\net8.0\ClaimManagement.Domain.csproj.AssemblyReference.cache
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\ClaimManagement\ClaimManagement.Domain\obj\Debug\net8.0\ClaimManagement.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\ClaimManagement\ClaimManagement.Domain\obj\Debug\net8.0\ClaimManagement.Domain.AssemblyInfoInputs.cache
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\ClaimManagement\ClaimManagement.Domain\obj\Debug\net8.0\ClaimManagement.Domain.AssemblyInfo.cs
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\ClaimManagement\ClaimManagement.Domain\obj\Debug\net8.0\ClaimManagement.Domain.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\ClaimManagement\ClaimManagement.Domain\obj\Debug\net8.0\ClaimManagement.Domain.sourcelink.json
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\ClaimManagement\ClaimManagement.Domain\obj\Debug\net8.0\ClaimManagement.Domain.dll
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\ClaimManagement\ClaimManagement.Domain\obj\Debug\net8.0\refint\ClaimManagement.Domain.dll
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\ClaimManagement\ClaimManagement.Domain\obj\Debug\net8.0\ClaimManagement.Domain.pdb
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\ClaimManagement\ClaimManagement.Domain\obj\Debug\net8.0\ClaimManagement.Domain.genruntimeconfig.cache
+C:\Users\USER\source\repos\InsuranceApplication\Backend\ClaimManagementAndInvestigation\ClaimManagement\ClaimManagement.Domain\obj\Debug\net8.0\ref\ClaimManagement.Domain.dll

@@ -1,5 +1,6 @@
 using ClaimManagement.Application.DTO;
 using ClaimManagement.Application.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClaimManagement.API.Controllers
@@ -17,6 +18,7 @@ namespace ClaimManagement.API.Controllers
             this.claimRepository = claimRepository;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("claims/{claimId:int}/survey")]
         public async Task<IActionResult> AssignSurveyor(int claimId, CreateSurveyDto dto)
         {
@@ -28,6 +30,7 @@ namespace ClaimManagement.API.Controllers
             return Ok(survey);
         }
 
+        [Authorize(Roles = "Admin,Customer")]
         [HttpGet("claims/{claimId:int}/survey")]
         public async Task<IActionResult> GetSurveyDetails(int claimId)
         {
@@ -39,6 +42,7 @@ namespace ClaimManagement.API.Controllers
             return Ok(surveys);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("surveys/{surveyId:int}")]
         public async Task<IActionResult> SubmitSurveyReport(int surveyId, SurveyReportDto dto)
         {

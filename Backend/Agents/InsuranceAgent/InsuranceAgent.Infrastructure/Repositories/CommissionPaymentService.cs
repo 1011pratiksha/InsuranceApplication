@@ -21,6 +21,7 @@ namespace InsuranceAgent.Infrastructure.Repositories
             this.data = data;
         }
 
+
         public async Task<List<CommissionPaymentResponseDto>> GetAgentPayoutHistory(int agentId)
         {
             var payments = await data.AgentCommissionPayments.Where(p => p.AgentId == agentId).ToListAsync();
@@ -38,6 +39,7 @@ namespace InsuranceAgent.Infrastructure.Repositories
                 CreatedAt = p.CreatedAt
             }).ToList();
         }
+
 
         public async Task<List<CommissionPaymentResponseDto>> GetPayoutHistory(string? paymentMode, string? status)
         {

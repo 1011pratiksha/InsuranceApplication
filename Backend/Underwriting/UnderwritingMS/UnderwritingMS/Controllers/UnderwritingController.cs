@@ -9,7 +9,7 @@ namespace UnderwritingMS.Controllers
     [ApiController]
     public class UnderwritingController : ControllerBase
     {
-        IUnderwritingService service;
+        private readonly IUnderwritingService service;
 
         public UnderwritingController(IUnderwritingService service)
         {
@@ -21,8 +21,13 @@ namespace UnderwritingMS.Controllers
         {
             try
             {
-                await service.CreateCase(dto);
-                return Ok(new { msg = "Underwriting case created" });
+                var underwritingId = await service.CreateCase(dto);
+
+                return Ok(new
+                {
+                    msg = "Underwriting case created",
+                    underwriting_id = underwritingId
+                });
             }
             catch (Exception ex)
             {
@@ -55,6 +60,7 @@ namespace UnderwritingMS.Controllers
             try
             {
                 await service.UpdateCase(id, dto);
+
                 return Ok(new { msg = "Underwriting case updated" });
             }
             catch (Exception ex)

@@ -1,0 +1,156 @@
+<div class="survey-container">
+  <div class="page-header">
+    <div>
+      <h2>Survey Management (SurveysController)</h2>
+      <p>Assign surveyors and submit inspection reports via the backend APIs</p>
+    </div>
+    <a [routerLink]="getRoleLink('claims/list')" class="btn btn-secondary">← Back to Claims</a>
+  </div>
+
+  <div *ngIf="successMessage" class="success-banner">
+    <span>✅ {{ successMessage }}</span>
+  </div>
+  <div *ngIf="errorMessage" class="error-banner">
+    <span>⚠️ {{ errorMessage }}</span>
+  </div>
+
+  <!-- Claim Selector -->
+  <div class="card selector-card">
+    <label class="selector-label">Select Claim ID:</label>
+    <select class="form-select claim-dropdown" [(ngModel)]="selectedClaimId" (change)="onClaimSelect()">
+      <option *ngFor="let c of claims" [value]="c.claimId">
+        Claim ID: {{ c.claimId }} — {{ c.claimNumber }} (Type: {{ c.claimType }}, Status: {{ c.claimStatus }})
+      </option>
+    </select>
+    <span class="badge badge-info ml-2">{{ surveys.length }} Survey(s) Found</span>
+  </div>
+
+  <div class="survey-grid">
+
+    <!-- LEFT: Assign Surveyor (POST /api/claims/{id}/survey) -->
+    <div class="card form-card">
+      <h4 class="card-title">1. Assign Surveyor</h4>
+      <p class="text-muted"><small>Endpoint: <code>POST /api/claims/&#123;claimId&#125;/survey</code><br>DTO: <code>CreateSurveyDto</code></small></p>
+
+      <div class="form-group mb-3">
+        <label>Surveyor ID * <small class="text-muted">(Range: 1 to Max)</small></label>
+        <input
+          type="number"
+          min="1"
+          class="form-control"
+          [(ngModel)]="assignForm.surveyorId"
+          placeholder="e.g. 101"
+        />
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Inspection Date <small class="text-muted">(Optional)</small></label>
+        <input
+          type="date"
+          class="form-control"
+          [(ngModel)]="assignForm.inspectionDate"
+        />
+      </div>
+
+      <button class="btn btn-primary btn-block" (click)="assignSurveyor()" [disabled]="isSaving">
+        <span *ngIf="!isSaving">Assign Surveyor via API</span>
+        <span *ngIf="isSaving">Assigning...</span>
+      </button>
+    </div>
+
+    <!-- RIGHT: Submit Survey Report (PUT /api/surveys/{surveyId}) -->
+    <div class="card form-card">
+      <h4 class="card-title">2. Submit Survey Report</h4>
+      <p class="text-muted"><small>Endpoint: <code>PUT /api/surveys/&#123;surveyId&#125;</code><br>DTO: <code>SurveyReportDto</code></small></p>
+
+      <div class="form-group mb-3">
+        <label>Survey ID * <small class="text-muted">(Select from existing surveys)</small></label>
+        <select class="form-select" [(ngModel)]="selectedSurveyId">
+          <option *ngFor="let s of surveys" [value]="s.surveyId">
+            Survey #{{ s.surveyId }} — Surveyor ID: {{ s.surveyorId }} ({{ s.surveyStatus }})
+          </option>
+          <option *ngIf="surveys.length === 0" value="0" disabled>No surveys available — assign first</option>
+        </select>
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Inspection Date <small class="text-muted">(Optional)</small></label>
+        <input
+          type="date"
+          class="form-control"
+          [(ngModel)]="reportForm.inspectionDate"
+        />
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Report Path <small class="text-muted">(Optional, MaxLength: 500)</small></label>
+        <input
+          type="text"
+          class="form-control"
+          maxlength="500"
+          [(ngModel)]="reportForm.reportPath"
+          placeholder="e.g. /reports/survey_101.pdf"
+        />
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Remarks * <small class="text-muted">(Required, MaxLength: 500)</small></label>
+        <textarea
+          class="form-control"
+          rows="3"
+          maxlength="500"
+          [(ngModel)]="reportForm.remarks"
+          placeholder="Enter inspection remarks and findings..."
+        ></textarea>
+      </div>
+
+      <button class="btn btn-primary btn-block" (click)="submitReport()" [disabled]="isSubmittingReport || surveys.length === 0">
+        <span *ngIf="!isSubmittingReport">Submit Report via API</span>
+        <span *ngIf="isSubmittingReport">Submitting...</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Survey List: SurveyResponseDto Columns -->
+  <div class="card table-card mt-4">
+    <div class="card-header">
+      <h4 class="card-title">Surveys for Claim ID #{{ selectedClaimId }}</h4>
+      <button class="btn btn-secondary btn-sm" (click)="loadSurveys()">🔄 Refresh</button>
+    </div>
+    <div class="table-responsive">
+      <table class="claims-table">
+        <thead>
+          <tr>
+            <th>Survey ID</th>
+            <th>Claim ID</th>
+            <th>Surveyor ID</th>
+            <th>Assigned Date</th>
+            <th>Inspection Date</th>
+            <th>Report Path</th>
+            <th>Remarks</th>
+            <th>Survey Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of surveys">
+            <td class="font-mono font-bold">{{ s.surveyId }}</td>
+            <td>{{ s.claimId }}</td>
+            <td>{{ s.surveyorId }}</td>
+            <td>{{ s.assignedDate | date:'mediumDate' }}</td>
+            <td>{{ s.inspectionDate ? (s.inspectionDate | date:'mediumDate') : '—' }}</td>
+            <td>{{ s.reportPath || '—' }}</td>
+            <td>{{ s.remarks || '—' }}</td>
+            <td>
+              <span class="badge" [ngClass]="s.surveyStatus === 'Completed' ? 'badge-success' : 'badge-warning'">
+                {{ s.surveyStatus }}
+              </span>
+            </td>
+          </tr>
+          <tr *ngIf="surveys.length === 0">
+            <td colspan="8" class="text-center py-4 text-muted">No surveys found for this claim.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
