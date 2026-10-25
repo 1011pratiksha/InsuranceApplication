@@ -1,10 +1,12 @@
-﻿using Dashboard.application.Interface;
+using Dashboard.application.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Dashboard.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class DashboardController : ControllerBase
     {
         private readonly IDashboardRepository repository;
@@ -15,6 +17,7 @@ namespace Dashboard.api.Controllers
         }
 
         [HttpGet("Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAdminDashboard()
         {
             var result = await repository.GetAdminDashboardAsync();
@@ -22,6 +25,7 @@ namespace Dashboard.api.Controllers
         }
 
         [HttpGet("Agent/{agentId}")]
+        [Authorize(Roles = "Agent")]
         public async Task<IActionResult> GetAgentDashboard(int agentId)
         {
             var result = await repository.GetAgentDashboardAsync(agentId);
@@ -29,6 +33,7 @@ namespace Dashboard.api.Controllers
         }
 
         [HttpGet("Customer/{customerId}")]
+        [Authorize(Roles = "Customer")]
         public async Task<IActionResult> GetCustomerDashboard(int customerId)
         {
             var result = await repository.GetCustomerDashboardAsync(customerId);
@@ -36,3 +41,6 @@ namespace Dashboard.api.Controllers
         }
     }
 }
+
+
+
