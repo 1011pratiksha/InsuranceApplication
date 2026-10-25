@@ -1,6 +1,61 @@
 
+<div class="app-layout" [class]="currentRole.toLowerCase() + '-theme'" (click)="closeDropdown()">
+  <header class="topbar">
+    <div class="topbar-brand">
+      <span class="brand-square">&#9632;</span>
+      <span class="brand-name">Insurance App</span>
+    </div>
 
+    <div class="topbar-actions">
+      <div class="role-toggle-group">
+        <span class="toggle-label">Switch View:</span>
+        <button
+          *ngFor="let r of ['Customer', 'Agent', 'Admin']"
+          type="button"
+          class="role-btn"
+          [class.active]="currentRole === r"
+          (click)="setRole(r); $event.stopPropagation()">
+          {{ r }}
+        </button>
+      </div>
 
-<main class="main-content">
-  <router-outlet></router-outlet>
-</main>
+      <div class="user-menu-container" (click)="$event.stopPropagation()">
+        <button
+          type="button"
+          class="user-dropdown-btn"
+          (click)="toggleDropdown()"
+          aria-haspopup="true"
+          [attr.aria-expanded]="isDropdownOpen()">
+          <span class="user-avatar" [class]="currentRole.toLowerCase()">
+            {{ currentRole.charAt(0) }}
+          </span>
+          <span class="user-greeting">Hello, <strong>{{ currentRole }}</strong></span>
+          <svg class="dropdown-chevron" [class.open]="isDropdownOpen()" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+
+        <div *ngIf="isDropdownOpen()" class="user-dropdown-card">
+          <div class="dropdown-user-info">
+            <span class="info-label">Current Role</span>
+            <span class="info-role" [class]="currentRole.toLowerCase()">{{ currentRole }} User</span>
+          </div>
+          <div class="dropdown-divider"></div>
+          <button type="button" class="dropdown-link" (click)="closeDropdown()">
+            <span>Profile</span>
+          </button>
+          <button type="button" class="dropdown-link logout-link" (click)="closeDropdown()">
+            <span>Logout</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="content-wrapper">
+    <app-sidebar></app-sidebar>
+    <main class="main-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

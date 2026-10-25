@@ -1,0 +1,411 @@
+﻿
+<div class="container-fluid py-4">
+  <!-- Page Header -->
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <div>
+      <div class="text-secondary small">Customer Portal / Premiums</div>
+      <h2 class="fw-bold mb-1">Premium Schedule</h2>
+      <p class="text-secondary mb-0">
+        View your premium installments, due dates, and outstanding amounts.
+      </p>
+    </div>
+
+    <div class="d-flex flex-wrap gap-2">
+      <button
+        class="btn btn-outline-secondary"
+        (click)="loadSchedule()"
+        [disabled]="loading">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+        Refresh
+      </button>
+
+      <button
+        class="btn text-white"
+        style="background-color: #0d9488;"
+        (click)="showGenerateForm = !showGenerateForm">
+        {{ showGenerateForm ? 'Hide Form' : 'Generate Schedule' }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Alerts -->
+  <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible">
+    {{ errorMessage }}
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="errorMessage = ''">
+    </button>
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success alert-dismissible">
+    {{ successMessage }}
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="successMessage = ''">
+    </button>
+  </div>
+
+  <!-- Policy Selection -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <label for="policyId" class="form-label fw-semibold">Policy ID</label>
+
+      <div class="input-group" style="max-width: 400px;">
+        <input
+          id="policyId"
+          name="policyId"
+          type="number"
+          min="1"
+          class="form-control"
+          [(ngModel)]="policyId"
+          (keyup.enter)="changePolicy()">
+
+        <button
+          type="button"
+          class="btn text-white"
+          style="background-color: #0d9488;"
+          (click)="changePolicy()">
+          Load Policy
+        </button>
+      </div>
+
+      <div class="form-text">
+        Enter a policy ID available in the backend.
+      </div>
+    </div>
+  </div>
+
+  <!-- Generate Schedule -->
+  <div *ngIf="showGenerateForm" class="card shadow-sm mb-4">
+    <div class="card-header bg-white py-3">
+      <h5 class="mb-0">Generate Premium Schedule</h5>
+    </div>
+
+    <form class="card-body" (ngSubmit)="generateSchedule()">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label">Policy ID</label>
+          <input
+            class="form-control"
+            type="number"
+            min="1"
+            required
+            [(ngModel)]="scheduleRequest.policyId"
+            name="generatePolicyId">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Premium Frequency</label>
+          <select
+            class="form-select"
+            [(ngModel)]="scheduleRequest.premiumFrequency"
+            name="premiumFrequency"
+            required>
+            <option value="Monthly">Monthly</option>
+            <option value="Quarterly">Quarterly</option>
+            <option value="Half-Yearly">Half-Yearly</option>
+            <option value="Yearly">Yearly</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Policy Term (Years)</label>
+          <input
+            class="form-control"
+            type="number"
+            min="1"
+            max="100"
+            required
+            [(ngModel)]="scheduleRequest.policyTermInYears"
+            name="policyTermInYears">
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Annual Premium (₹)</label>
+          <input
+            class="form-control"
+            type="number"
+            min="1"
+            step="0.01"
+            required
+            [(ngModel)]="scheduleRequest.annualPremium"
+            name="annualPremium">
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">First Installment Date</label>
+          <input
+            class="form-control"
+            type="date"
+            required
+            [(ngModel)]="scheduleRequest.startDate"
+            name="startDate">
+        </div>
+      </div>
+
+      <div class="alert alert-warning mt-3 mb-0">
+        Schedule generation requires an existing policy and follows the backend's
+        validation rules.
+      </div>
+
+      <div class="d-flex justify-content-end gap-2 mt-3">
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          (click)="showGenerateForm = false">
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="btn text-white"
+          style="background-color: #0d9488;"
+          [disabled]="generating">
+          <span
+            *ngIf="generating"
+            class="spinner-border spinner-border-sm me-1">
+          </span>
+          {{ generating ? 'Generating...' : 'Generate Schedule' }}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Schedule Summary -->
+  <div class="row g-3 mb-4">
+    <div class="col-sm-6 col-xl-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <div class="text-secondary small">Total Installments</div>
+          <div class="fs-3 fw-bold">{{ installments.length }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <div class="text-secondary small">Paid Installments</div>
+          <div class="fs-3 fw-bold text-success">{{ paidCount }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <div class="text-secondary small">Outstanding Amount</div>
+          <div class="fs-3 fw-bold">₹{{ totalDue | number:'1.2-2' }}</div>
+          <div class="text-secondary small">
+            {{ pendingCount }} pending or overdue
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Installment Table -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-white py-3">
+      <h5 class="mb-0">Premium Installments</h5>
+    </div>
+
+    <!-- Filters -->
+    <div class="card-body border-bottom">
+      <div class="row g-3">
+        <div class="col-md-3">
+          <label class="form-label">Search</label>
+          <input
+            class="form-control"
+            type="search"
+            placeholder="Installment or schedule ID"
+            [(ngModel)]="searchText"
+            (ngModelChange)="onFilterChange()">
+        </div>
+
+        <div class="col-md-3">
+          <label class="form-label">Status</label>
+          <select
+            class="form-select"
+            [(ngModel)]="selectedStatus"
+            (ngModelChange)="onFilterChange()">
+            <option value="">All statuses</option>
+            <option value="Pending">Pending</option>
+            <option value="Paid">Paid</option>
+            <option value="Partial Paid">Partial Paid</option>
+            <option value="Overdue">Overdue</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+        </div>
+
+        <div class="col-md-2">
+          <label class="form-label">Due From</label>
+          <input
+            class="form-control"
+            type="date"
+            [(ngModel)]="fromDate"
+            (ngModelChange)="onFilterChange()">
+        </div>
+
+        <div class="col-md-2">
+          <label class="form-label">Due To</label>
+          <input
+            class="form-control"
+            type="date"
+            [(ngModel)]="toDate"
+            (ngModelChange)="onFilterChange()">
+        </div>
+
+        <div class="col-md-2 d-flex align-items-end">
+          <button
+            type="button"
+            class="btn btn-outline-secondary w-100"
+            (click)="clearFilters()">
+            Clear Filters
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="loading" class="text-center py-5">
+      <div
+        class="spinner-border"
+        style="color: #0d9488;"
+        role="status">
+      </div>
+      <div class="text-secondary mt-2">Loading installments...</div>
+    </div>
+
+    <!-- Installments -->
+    <div *ngIf="!loading" class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>Installment</th>
+            <th>Due Date</th>
+            <th>Premium</th>
+            <th>Late Fee</th>
+            <th>Total Due</th>
+            <th>Status</th>
+            <th>Update</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr
+            *ngFor="let item of paginatedInstallments"
+            [class.table-danger]="item.status === 'Overdue'">
+
+            <td>
+              <div class="fw-semibold">#{{ item.installmentNo }}</div>
+              <div class="text-secondary small">ID: {{ item.scheduleId }}</div>
+            </td>
+
+            <td>
+              <input
+                type="date"
+                class="form-control form-control-sm"
+                [(ngModel)]="editDueDate[item.scheduleId]"
+                [disabled]="item.status === 'Paid'">
+            </td>
+
+            <td>₹{{ item.amount | number:'1.2-2' }}</td>
+            <td>₹{{ item.lateFee | number:'1.2-2' }}</td>
+            <td class="fw-semibold">
+              ₹{{ item.amount + item.lateFee | number:'1.2-2' }}
+            </td>
+
+            <td>
+              <span
+                class="badge"
+                [ngClass]="{
+                  'text-bg-success': item.status === 'Paid',
+                  'text-bg-warning': item.status === 'Pending',
+                  'text-bg-danger': item.status === 'Overdue',
+                  'text-bg-secondary': item.status === 'Cancelled',
+                  'text-bg-info': item.status === 'Partial Paid'
+                }">
+                {{ item.status }}
+              </span>
+            </td>
+
+            <td style="min-width: 220px;">
+              <div class="d-flex flex-column gap-2">
+                <div class="input-group input-group-sm">
+                  <select
+                    class="form-select"
+                    [(ngModel)]="editStatus[item.scheduleId]"
+                    [disabled]="item.status === 'Paid'">
+                    <option value="Pending">Pending</option>
+                    <option value="Overdue">Overdue</option>
+                    <option value="Partial Paid">Partial Paid</option>
+                    <option value="Cancelled">Cancelled</option>
+                  </select>
+
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    [disabled]="savingScheduleId === item.scheduleId || item.status === 'Paid'"
+                    (click)="updateInstallment(item)">
+                    <span
+                      *ngIf="savingScheduleId === item.scheduleId"
+                      class="spinner-border spinner-border-sm">
+                    </span>
+                    <span *ngIf="savingScheduleId !== item.scheduleId">
+                      Save
+                    </span>
+                  </button>
+                </div>
+
+                <div class="form-text">
+                  Changes depend on backend permissions and validation.
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="paginatedInstallments.length === 0">
+            <td colspan="7" class="text-center py-5 text-secondary">
+              <div class="fw-semibold">No installments found</div>
+              <div>Try another policy ID or clear your filters.</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div
+      class="card-footer bg-white d-flex flex-wrap justify-content-between align-items-center gap-2">
+
+      <span class="text-secondary small">
+        {{ filteredInstallments.length }} installment(s)
+      </span>
+
+      <div class="d-flex align-items-center gap-2">
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-secondary"
+          [disabled]="currentPage <= 1"
+          (click)="changePage(currentPage - 1)">
+          Previous
+        </button>
+
+        <span class="small">{{ currentPage }} / {{ totalPages }}</span>
+
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-secondary"
+          [disabled]="currentPage >= totalPages"
+          (click)="changePage(currentPage + 1)">
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
