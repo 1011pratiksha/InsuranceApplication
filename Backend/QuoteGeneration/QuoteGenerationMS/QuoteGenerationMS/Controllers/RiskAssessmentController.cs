@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using QuoteGenerationMS.Application.DTO;
 using QuoteGenerationMS.Application.Interface;
+using Microsoft.AspNetCore.Authorization;
 
 namespace QuoteGenerationMS.Controllers
 {
+    [Authorize]
     [Route("api/v1/risk-assessment")]
     [ApiController]
     public class RiskAssessmentController : ControllerBase

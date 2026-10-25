@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using ProductManagementMS.Application.DTO;
 using ProductManagementMS.Application.Interface;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProductManagementMS.Controllers
 {
+    [Authorize]
     [ApiController]
     public class ProductCommissionController : ControllerBase
     {

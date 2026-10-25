@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using ProductManagementMS.Application.DTO;
 using ProductManagementMS.Application.Interface;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProductManagementMS.Controllers
 {
+    [Authorize]
     [Route("api/v1/products")]
     [ApiController]
     public class InsuranceProductController : ControllerBase

@@ -1,9 +1,11 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 using QuoteGenerationMS.Application.Interface;
+using Microsoft.AspNetCore.Authorization;
 
 namespace QuoteGenerationMS.Controllers
 {
+    [Authorize]
     [Route("api/v1/quotes")]
     [ApiController]
     public class QuoteApprovalController : ControllerBase

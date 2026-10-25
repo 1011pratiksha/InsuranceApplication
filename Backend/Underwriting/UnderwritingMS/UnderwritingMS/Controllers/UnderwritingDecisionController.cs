@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using UnderwritingMS.Application.DTO;
 using UnderwritingMS.Application.Interface;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UnderwritingMS.Controllers
 {
+    [Authorize]
     [Route("api/v1/underwriting/{id}")]
     [ApiController]
     public class UnderwritingDecisionController : ControllerBase

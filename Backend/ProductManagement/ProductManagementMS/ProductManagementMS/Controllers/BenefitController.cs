@@ -1,10 +1,11 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ProductManagementMS.Application.DTO;
 using ProductManagementMS.Application.Interface;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProductManagementMS.Controllers
 {
+    [Authorize] // Add this line
     [ApiController]
     public class BenefitController : ControllerBase
     {
