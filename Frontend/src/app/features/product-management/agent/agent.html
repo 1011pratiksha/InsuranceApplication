@@ -1,0 +1,132 @@
+<div class="catalogue-page">
+  <header class="hero">
+    <div>
+      <p class="eyebrow">INSURANCE PRODUCTS / AGENT</p>
+      <h1>Explore Insurance Plans</h1>
+      <p>Find suitable insurance products to help your customers.</p>
+    </div>
+
+    <div class="hero-icon">✦</div>
+  </header>
+
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <section class="filters" *ngIf="!selectedProduct">
+    <input
+      type="text"
+      [(ngModel)]="searchText"
+      placeholder="Search by product name or code..."
+      aria-label="Search products"
+    />
+
+    <select [(ngModel)]="selectedCategory" aria-label="Filter by category">
+      <option value="All">All Categories</option>
+      <option *ngFor="let c of categories" [value]="c.category_name">
+        {{ c.category_name }}
+      </option>
+    </select>
+
+    <button class="outline-btn" (click)="loadProducts()">Refresh</button>
+  </section>
+
+  <section *ngIf="!selectedProduct">
+    <div class="section-title">
+      <h2>Available Products</h2>
+      <span>{{ filteredProducts.length }} plans</span>
+    </div>
+
+    <p *ngIf="loading">Loading products...</p>
+
+    <div class="product-grid">
+      <article class="product-card" *ngFor="let p of filteredProducts">
+        <div class="product-symbol">
+          {{ p.product_type === 'Health' ? '♡' :
+             p.product_type === 'Vehicle' ? '🚘' : '🛡' }}
+        </div>
+
+        <span class="category-label">
+          {{ categoryName(p.category_id) }}
+        </span>
+
+        <h3>{{ p.product_name }}</h3>
+        <p>{{ p.description || 'Explore the features of this insurance plan.' }}</p>
+
+        <div class="product-info">
+          <div>
+            <small>Sum insured</small>
+            <strong>₹{{ p.minimum_sum_insured | number }} – ₹{{ p.maximum_sum_insured | number }}</strong>
+          </div>
+          <div>
+            <small>Eligible age</small>
+            <strong>{{ p.minimum_age }}–{{ p.maximum_age }} years</strong>
+          </div>
+        </div>
+
+        <button class="primary-btn" (click)="viewProduct(p)">
+          View Product Details →
+        </button>
+      </article>
+    </div>
+
+    <p class="empty" *ngIf="!loading && filteredProducts.length === 0">
+      No active products match your search.
+    </p>
+  </section>
+
+  <section class="details" *ngIf="selectedProduct as p">
+    <button class="outline-btn" (click)="closeDetails()">← Back to Products</button>
+
+    <div class="details-banner">
+      <span class="category-label">{{ categoryName(p.category_id) }}</span>
+      <h2>{{ p.product_name }}</h2>
+      <p>{{ p.description || 'Insurance product details' }}</p>
+
+      <div class="product-info">
+        <div>
+          <small>Sum insured</small>
+          <strong>₹{{ p.minimum_sum_insured | number }} – ₹{{ p.maximum_sum_insured | number }}</strong>
+        </div>
+        <div>
+          <small>Eligible age</small>
+          <strong>{{ p.minimum_age }}–{{ p.maximum_age }} years</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="details-grid">
+      <article class="detail-panel">
+        <h3>Coverage</h3>
+        <p *ngFor="let c of coverages">
+          <strong>{{ c.coverage_name }}</strong>
+          <br />
+          ₹{{ c.minimum_coverage ?? 0 | number }} – ₹{{ c.maximum_coverage ?? 0 | number }}
+          <br />
+          <small>Waiting period: {{ c.waiting_period_days }} days</small>
+        </p>
+        <p *ngIf="coverages.length === 0">No coverage details available.</p>
+      </article>
+
+      <article class="detail-panel">
+        <h3>Benefits</h3>
+        <p *ngFor="let b of benefits">
+          <strong>{{ b.benefit_name }}</strong>
+          <br />{{ b.benefit_description }}
+          <br /><small *ngIf="b.benefit_limit != null">
+            Benefit limit: ₹{{ b.benefit_limit | number }}
+          </small>
+        </p>
+        <p *ngIf="benefits.length === 0">No benefits available.</p>
+      </article>
+
+      <article class="detail-panel">
+        <h3>Optional Riders</h3>
+        <p *ngFor="let r of riders">
+          <strong>{{ r.rider_name }}</strong>
+          <br />{{ r.rider_description }}
+          <br /><small>Additional premium: ₹{{ r.rider_premium | number }}</small>
+        </p>
+        <p *ngIf="riders.length === 0">No riders available.</p>
+      </article>
+    </div>
+  </section>
+</div>

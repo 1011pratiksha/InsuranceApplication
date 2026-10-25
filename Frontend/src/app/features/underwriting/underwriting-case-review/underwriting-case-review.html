@@ -1,0 +1,481 @@
+
+<div class="review-page">
+  <header class="page-header">
+    <div>
+      <p class="breadcrumb">Underwriting / Underwriting Case Review</p>
+      <h1>Underwriting Case Review</h1>
+      <p class="subtitle">Review applicant details, assess risk, and record a decision.</p>
+    </div>
+
+    <button type="button" class="btn btn-secondary" (click)="backToQueue()">
+      Back to Queue
+    </button>
+  </header>
+
+  <div *ngIf="errorMessage" class="alert alert-error" role="alert">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success" role="status">
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="busy" class="loading-message">
+    Loading or processing underwriting information...
+  </div>
+
+  <ng-container *ngIf="caseData as c">
+    <section class="steps-card">
+      <div class="step completed">
+        <span class="step-icon">✓</span>
+        <span>Case created</span>
+      </div>
+
+      <div class="step" [class.completed]="risk !== null">
+        <span class="step-icon">{{ risk ? '✓' : '2' }}</span>
+        <span>Risk assessment</span>
+      </div>
+
+      <div
+        class="step"
+        [class.completed]="decision !== null"
+        [class.active]="decision === null"
+      >
+        <span class="step-icon">{{ decision ? '✓' : '3' }}</span>
+        <span>Manual review</span>
+      </div>
+
+      <div class="step" [class.completed]="decision !== null">
+        <span class="step-icon">{{ decision ? '✓' : '4' }}</span>
+        <span>Decision</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Case overview</h2>
+
+      <div class="details-grid">
+        <div>
+          <span class="field-label">Underwriting case ID</span>
+          <strong>{{ c.underwriting_id }}</strong>
+        </div>
+
+        <div>
+          <span class="field-label">Quote ID</span>
+          <strong>{{ c.quote_id }}</strong>
+        </div>
+
+        <div>
+          <span class="field-label">Customer ID</span>
+          <strong>{{ c.customer_id }}</strong>
+        </div>
+
+        <div>
+          <span class="field-label">Product ID</span>
+          <strong>{{ c.product_id }}</strong>
+        </div>
+
+        <div>
+          <span class="field-label">Created date</span>
+          <strong>
+            {{ c.underwriting_date ? (c.underwriting_date | date:'mediumDate') : '—' }}
+          </strong>
+        </div>
+
+        <div>
+          <span class="field-label">Current status</span>
+          <strong class="status-badge">{{ c.status || 'Pending' }}</strong>
+        </div>
+      </div>
+    </section>
+
+    <nav class="tabs" aria-label="Underwriting sections">
+      <button
+        type="button"
+        [class.active]="activeTab === 'overview'"
+        (click)="setTab('overview')"
+      >
+        Overview
+      </button>
+
+      <button
+        type="button"
+        [class.active]="activeTab === 'medical'"
+        (click)="setTab('medical')"
+      >
+        Medical details
+      </button>
+
+      <button
+        type="button"
+        [class.active]="activeTab === 'financial'"
+        (click)="setTab('financial')"
+      >
+        Financial details
+      </button>
+
+      <button
+        type="button"
+        [class.active]="activeTab === 'risk'"
+        (click)="setTab('risk')"
+      >
+        Risk assessment
+      </button>
+
+      <button
+        type="button"
+        [class.active]="activeTab === 'decision'"
+        (click)="setTab('decision')"
+      >
+        Decision
+      </button>
+
+      <button
+        type="button"
+        [class.active]="activeTab === 'audit'"
+        (click)="setTab('audit')"
+      >
+        Audit history
+      </button>
+    </nav>
+
+    <!-- Overview -->
+    <section class="panel" *ngIf="activeTab === 'overview'">
+      <h2>Applicant overview</h2>
+
+      <div class="details-grid">
+        <div>
+          <span class="field-label">Medical risk score</span>
+          <strong>{{ risk?.medical_score ?? 'Not assessed' }}</strong>
+        </div>
+
+        <div>
+          <span class="field-label">Financial risk score</span>
+          <strong>{{ risk?.financial_score ?? 'Not assessed' }}</strong>
+        </div>
+
+        <div>
+          <span class="field-label">Occupation risk score</span>
+          <strong>{{ risk?.occupation_score ?? 'Not assessed' }}</strong>
+        </div>
+
+        <div>
+          <span class="field-label">Lifestyle risk score</span>
+          <strong>{{ risk?.lifestyle_score ?? 'Not assessed' }}</strong>
+        </div>
+
+        <div>
+          <span class="field-label">Total risk score</span>
+          <strong>{{ risk?.total_score ?? 'Not calculated' }}</strong>
+        </div>
+
+        <div>
+          <span class="field-label">Risk category</span>
+          <strong>{{ risk?.risk_category || 'Not assessed' }}</strong>
+        </div>
+
+        <div>
+          <span class="field-label">Premium loading</span>
+          <strong>
+            {{ loadingData ? (loadingData.loading_percentage + '%') : 'Not calculated' }}
+          </strong>
+        </div>
+
+        <div>
+          <span class="field-label">Decision</span>
+          <strong>{{ decision?.decision || 'Awaiting review' }}</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Medical details -->
+    <section class="panel" *ngIf="activeTab === 'medical'">
+      <h2>Medical details</h2>
+
+      <ng-container *ngIf="medical as m; else noMedical">
+        <div class="details-grid">
+          <div>
+            <span class="field-label">Height</span>
+            <strong>{{ m.height }} cm</strong>
+          </div>
+
+          <div>
+            <span class="field-label">Weight</span>
+            <strong>{{ m.weight }} kg</strong>
+          </div>
+
+          <div>
+            <span class="field-label">BMI</span>
+            <strong>{{ m.bmi ?? '—' }}</strong>
+          </div>
+
+          <div>
+            <span class="field-label">Blood pressure</span>
+            <strong>{{ m.blood_pressure || '—' }}</strong>
+          </div>
+
+          <div>
+            <span class="field-label">Diabetes</span>
+            <strong>{{ m.diabetes ? 'Yes' : 'No' }}</strong>
+          </div>
+
+          <div>
+            <span class="field-label">Heart disease</span>
+            <strong>{{ m.heart_disease ? 'Yes' : 'No' }}</strong>
+          </div>
+
+          <div>
+            <span class="field-label">Cancer history</span>
+            <strong>{{ m.cancer_history ? 'Yes' : 'No' }}</strong>
+          </div>
+
+          <div>
+            <span class="field-label">Smoking</span>
+            <strong>{{ m.smoking ? 'Yes' : 'No' }}</strong>
+          </div>
+
+          <div>
+            <span class="field-label">Alcohol</span>
+            <strong>{{ m.alcohol ? 'Yes' : 'No' }}</strong>
+          </div>
+
+          <div class="full-width">
+            <span class="field-label">Medical history</span>
+            <p>{{ m.medical_history || 'No medical history provided.' }}</p>
+          </div>
+
+          <div class="full-width">
+            <span class="field-label">Medical report</span>
+            <p>{{ m.medical_report_path || 'No medical report attached.' }}</p>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #noMedical>
+        <p class="hint">Medical details are not available for this case.</p>
+      </ng-template>
+    </section>
+
+    <!-- Financial details -->
+    <section class="panel" *ngIf="activeTab === 'financial'">
+      <h2>Financial and employment details</h2>
+
+      <ng-container *ngIf="financial as f; else noFinancial">
+        <div class="details-grid">
+          <div>
+            <span class="field-label">Annual income</span>
+            <strong>{{ f.annual_income | currency:'INR':'symbol':'1.0-2' }}</strong>
+          </div>
+
+          <div>
+            <span class="field-label">Monthly income</span>
+            <strong>{{ f.monthly_income | currency:'INR':'symbol':'1.0-2' }}</strong>
+          </div>
+
+          <div>
+            <span class="field-label">Employer</span>
+            <strong>{{ f.employer_name || '—' }}</strong>
+          </div>
+
+          <div>
+            <span class="field-label">Occupation</span>
+            <strong>{{ f.occupation || '—' }}</strong>
+          </div>
+
+          <div>
+            <span class="field-label">Existing insurance</span>
+            <strong>{{ f.existing_insurance | currency:'INR':'symbol':'1.0-2' }}</strong>
+          </div>
+
+          <div>
+            <span class="field-label">Loan liability</span>
+            <strong>{{ f.loan_liability | currency:'INR':'symbol':'1.0-2' }}</strong>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #noFinancial>
+        <p class="hint">Financial details are not available for this case.</p>
+      </ng-template>
+    </section>
+
+    <!-- Risk assessment -->
+    <section class="panel" *ngIf="activeTab === 'risk'">
+      <h2>Risk assessment</h2>
+      <p class="hint">Enter the scores according to your underwriting rules.</p>
+
+      <form (ngSubmit)="calculateRisk()" #riskForm="ngForm">
+        <div class="form-grid">
+          <label>
+            Age score
+            <input
+              type="number"
+              name="age_score"
+              [(ngModel)]="riskInput.age_score"
+              min="0"
+              required
+            />
+          </label>
+
+          <label>
+            Medical score
+            <input
+              type="number"
+              name="medical_score"
+              [(ngModel)]="riskInput.medical_score"
+              min="0"
+              required
+            />
+          </label>
+
+          <label>
+            Occupation score
+            <input
+              type="number"
+              name="occupation_score"
+              [(ngModel)]="riskInput.occupation_score"
+              min="0"
+              required
+            />
+          </label>
+
+          <label>
+            Lifestyle score
+            <input
+              type="number"
+              name="lifestyle_score"
+              [(ngModel)]="riskInput.lifestyle_score"
+              min="0"
+              required
+            />
+          </label>
+
+          <label>
+            Financial score
+            <input
+              type="number"
+              name="financial_score"
+              [(ngModel)]="riskInput.financial_score"
+              min="0"
+              required
+            />
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="busy || !riskForm.valid">
+          Calculate risk
+        </button>
+      </form>
+
+      <div *ngIf="risk as r" class="result-card">
+        <h3>Risk result</h3>
+        <p><strong>Total score:</strong> {{ r.total_score ?? '—' }}</p>
+        <p><strong>Category:</strong> {{ r.risk_category || '—' }}</p>
+      </div>
+    </section>
+
+    <!-- Decision -->
+    <section class="panel" *ngIf="activeTab === 'decision'">
+      <h2>Underwriting decision</h2>
+
+      <div class="form-grid">
+        <label>
+          Premium loading (%)
+          <input
+            type="number"
+            name="loading_percentage"
+            [(ngModel)]="decisionInput.loading_percentage"
+            min="0"
+            max="1000"
+          />
+        </label>
+
+        <label class="full-width">
+          Exclusion details
+          <textarea
+            name="exclusion_details"
+            [(ngModel)]="decisionInput.exclusion_details"
+            rows="3"
+          ></textarea>
+        </label>
+
+        <label class="full-width">
+          Rejection reason (required when rejecting)
+          <textarea
+            name="rejection_reason"
+            [(ngModel)]="decisionInput.rejection_reason"
+            rows="3"
+          ></textarea>
+        </label>
+      </div>
+
+      <div class="action-row">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="approve()"
+          [disabled]="busy"
+        >
+          Approve
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="approveWithLoading()"
+          [disabled]="busy"
+        >
+          Approve with loading
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="reject()"
+          [disabled]="busy"
+        >
+          Reject
+        </button>
+      </div>
+
+      <div *ngIf="decision as d" class="result-card">
+        <h3>Saved decision</h3>
+        <p><strong>Decision:</strong> {{ d.decision }}</p>
+        <p><strong>Loading:</strong> {{ d.loading_percentage }}%</p>
+        <p><strong>Exclusions:</strong> {{ d.exclusion_details || 'None recorded' }}</p>
+        <p><strong>Rejection reason:</strong> {{ d.rejection_reason || '—' }}</p>
+      </div>
+    </section>
+
+    <!-- Audit history -->
+    <section class="panel" *ngIf="activeTab === 'audit'">
+      <h2>Audit history</h2>
+
+      <div class="table-wrapper" *ngIf="auditLogs.length > 0; else noAudit">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Action</th>
+              <th>Performed by</th>
+              <th>Remarks</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let log of auditLogs">
+              <td>{{ log.action_date | date:'medium' }}</td>
+              <td>{{ log.action }}</td>
+              <td>{{ log.performed_by ?? '—' }}</td>
+              <td>{{ log.remarks || '—' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ng-template #noAudit>
+        <p class="hint">No audit history is available for this case.</p>
+      </ng-template>
+    </section>
+  </ng-container>
+</div>

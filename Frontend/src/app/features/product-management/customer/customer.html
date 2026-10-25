@@ -1,0 +1,211 @@
+<div class="customer-page">
+  <nav class="customer-nav">
+    <a class="brand" (click)="closeDetails()">Insurance<span>+</span></a>
+
+    <div class="nav-links">
+      <a (click)="chooseCategory('All')">Insurance Products</a>
+      <a href="#how-it-works">How It Works</a>
+    </div>
+
+    <span class="nav-label">Explore Plans</span>
+  </nav>
+
+  <header class="customer-hero" *ngIf="!selectedProduct">
+    <div class="hero-copy">
+      <span class="eyebrow">PROTECTION FOR EVERY STAGE OF LIFE</span>
+      <h1>Find the right insurance for <span>your needs.</span></h1>
+      <p>Explore available plans, understand your coverage and compare insurance options.</p>
+
+      <div class="search-box">
+        <span>⌕</span>
+        <input
+          type="text"
+          [(ngModel)]="searchText"
+          placeholder="Search health, life, vehicle insurance..."
+          aria-label="Search insurance products"
+        />
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <div class="shield">✓</div>
+      <div class="art-caption">
+        <strong>Your future, protected.</strong>
+        <span>Explore plans that fit your needs.</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <main *ngIf="!selectedProduct">
+    <section class="category-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">EXPLORE BY CATEGORY</span>
+          <h2>What would you like to protect?</h2>
+        </div>
+      </div>
+
+      <div class="category-list">
+        <button
+          class="category-card"
+          [class.selected]="selectedCategory === 'All'"
+          (click)="chooseCategory('All')">
+          <span class="category-icon">✦</span>
+          <strong>All Plans</strong>
+        </button>
+
+        <button
+          class="category-card"
+          *ngFor="let c of categories"
+          [class.selected]="selectedCategory === c.category_name"
+          (click)="chooseCategory(c.category_name)">
+          <span class="category-icon">
+            {{ c.category_name.toLowerCase().includes('health') ? '♡' :
+               c.category_name.toLowerCase().includes('vehicle') ||
+               c.category_name.toLowerCase().includes('car') ? '🚘' : '🛡' }}
+          </span>
+          <strong>{{ c.category_name }}</strong>
+        </button>
+      </div>
+    </section>
+
+    <section class="plans-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">OUR INSURANCE PLANS</span>
+          <h2>Explore available products</h2>
+        </div>
+        <button class="refresh-btn" (click)="loadProducts()">Refresh ↻</button>
+      </div>
+
+      <p *ngIf="loading">Loading available plans...</p>
+
+      <div class="plans-grid">
+        <article class="plan-card" *ngFor="let p of filteredProducts">
+          <div class="plan-card-top">
+            <span class="plan-icon">
+              {{ p.product_type === 'Health' ? '♡' :
+                 p.product_type === 'Vehicle' ? '🚘' : '🛡' }}
+            </span>
+            <span class="category-tag">{{ categoryName(p.category_id) }}</span>
+          </div>
+
+          <h3>{{ p.product_name }}</h3>
+          <p class="plan-description">
+            {{ p.description || 'Explore the coverage and benefits of this insurance plan.' }}
+          </p>
+
+          <div class="plan-feature">
+            <span>Sum insured range</span>
+            <strong>₹{{ p.minimum_sum_insured | number }} – ₹{{ p.maximum_sum_insured | number }}</strong>
+          </div>
+
+          <div class="plan-feature">
+            <span>Eligible age</span>
+            <strong>{{ p.minimum_age }}–{{ p.maximum_age }} years</strong>
+          </div>
+
+          <button class="plan-button" (click)="viewProduct(p)">
+            Explore this plan <span>→</span>
+          </button>
+        </article>
+      </div>
+
+      <p class="empty" *ngIf="!loading && filteredProducts.length === 0">
+        No available plans found. Try another category or search term.
+      </p>
+    </section>
+
+    <section class="how-section" id="how-it-works">
+      <span class="eyebrow">SIMPLE AND CLEAR</span>
+      <h2>Explore your options in three steps</h2>
+
+      <div class="how-grid">
+        <article>
+          <span>01</span>
+          <h3>Explore plans</h3>
+          <p>Browse available insurance products by category.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Compare coverage</h3>
+          <p>Review coverage amounts, benefits and available riders.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Understand your options</h3>
+          <p>Review product details before proceeding with the appropriate process.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <main class="product-detail-page" *ngIf="selectedProduct as p">
+    <button class="back-btn" (click)="closeDetails()">← All insurance plans</button>
+
+    <section class="product-detail-hero">
+      <span class="category-tag">{{ categoryName(p.category_id) }}</span>
+      <h1>{{ p.product_name }}</h1>
+      <p>{{ p.description || 'Review the details of this insurance plan.' }}</p>
+
+      <div class="detail-highlights">
+        <div>
+          <span>Sum insured</span>
+          <strong>₹{{ p.minimum_sum_insured | number }} – ₹{{ p.maximum_sum_insured | number }}</strong>
+        </div>
+        <div>
+          <span>Eligible age</span>
+          <strong>{{ p.minimum_age }}–{{ p.maximum_age }} years</strong>
+        </div>
+      </div>
+    </section>
+
+    <div class="customer-detail-grid">
+      <section class="customer-detail-card">
+        <h2>Coverage</h2>
+        <article *ngFor="let c of coverages">
+          <h3>{{ c.coverage_name }}</h3>
+          <p>Minimum: ₹{{ c.minimum_coverage ?? 0 | number }}</p>
+          <p>Maximum: ₹{{ c.maximum_coverage ?? 0 | number }}</p>
+          <p>Waiting period: {{ c.waiting_period_days }} days</p>
+          <p>Deductible: ₹{{ c.deductible_amount | number }}</p>
+        </article>
+        <p *ngIf="coverages.length === 0">Coverage details are not available yet.</p>
+      </section>
+
+      <section class="customer-detail-card">
+        <h2>Benefits</h2>
+        <article *ngFor="let b of benefits">
+          <h3>{{ b.benefit_name }}</h3>
+          <p>{{ b.benefit_description }}</p>
+          <p *ngIf="b.benefit_limit != null">
+            Benefit limit: ₹{{ b.benefit_limit | number }}
+          </p>
+        </article>
+        <p *ngIf="benefits.length === 0">Benefit details are not available yet.</p>
+      </section>
+
+      <section class="customer-detail-card">
+        <h2>Optional Riders</h2>
+        <article *ngFor="let r of riders">
+          <h3>{{ r.rider_name }}</h3>
+          <p>{{ r.rider_description }}</p>
+          <p>Additional premium: ₹{{ r.rider_premium | number }}</p>
+        </article>
+        <p *ngIf="riders.length === 0">No rider details are available yet.</p>
+      </section>
+    </div>
+
+    <p class="disclaimer">
+      Premium quotes, purchases and policy issuance are not included in this page.
+      They can be connected to the relevant modules later.
+    </p>
+  </main>
+
+  <footer class="customer-footer">
+    <strong>Insurance+</strong>
+    <span>Explore protection. Understand your options.</span>
+  </footer>
+</div>
