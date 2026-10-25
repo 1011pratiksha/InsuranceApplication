@@ -3,12 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using Reports.Application.DTO;
 using Reports.Application.Interface;
 using Reports.Api.Wrappers;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace Reports.Api.Controllers
 {
     [Route("api/v1/reports")]
     [ApiController]
+    [Authorize]
     public class ReportsController : ControllerBase
     {
         private readonly IReportService _service;
@@ -19,6 +21,7 @@ namespace Reports.Api.Controllers
         }
 
         [HttpGet("customers")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetCustomers(
             [FromQuery] ReportFilterDto filter)
         {
