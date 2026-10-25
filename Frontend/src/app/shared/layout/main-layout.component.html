@@ -1,0 +1,42 @@
+<div class="app-layout">
+  <!-- Role-based Sidebar -->
+  <app-sidebar></app-sidebar>
+
+  <!-- Main Content Area -->
+  <div class="content-wrapper">
+    <!-- Top Header -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="portal-badge" [attr.data-role]="auth.role()">
+          <span class="pulse-dot"></span>
+          {{ auth.roleLabel() }} Portal
+        </span>
+      </div>
+
+      <div class="topbar-right">
+        <div class="action-icons">
+          <a [routerLink]="'/' + auth.role() + '/notifications'" class="icon-btn" title="Notifications">
+            <span class="material-symbols-rounded">notifications</span>
+            <span class="notification-dot"></span>
+          </a>
+          <a [routerLink]="'/' + auth.role() + '/settings'" class="icon-btn" title="Settings">
+            <span class="material-symbols-rounded">settings</span>
+          </a>
+        </div>
+
+        <div class="user-pill">
+          <div class="avatar">{{ auth.userName().charAt(0) }}</div>
+          <div class="user-meta">
+            <span class="name">{{ auth.userName() }}</span>
+            <span class="role">{{ auth.roleLabel() }}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Router Viewport -->
+    <main class="page-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

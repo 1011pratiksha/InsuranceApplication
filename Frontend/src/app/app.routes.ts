@@ -1,26 +1,66 @@
-
 import { Routes } from '@angular/router';
-import { CustomerRegistrationComponent } from './features/customer-registration/customer-registration/customer-registration.component';
-import { PolicyIssueComponent } from './features/policy-issuance/admin/policy-issue/policy-issue.component';
-import { MyPoliciesComponent } from './features/policy-issuance/customer/my-policies/my-policies.component';
-import { PolicyDetailsComponent } from './features/policy-issuance/customer/policy-details/policy-details.component';
+import { MainLayoutComponent } from './shared/layout/main-layout.component';
+import { roleGuard } from './core/guards/role.guard';
 
 export const routes: Routes = [
+  // Shared authentication screens outside sidebar layout
   {
-    path: 'admin/policy-issuance',
-    component: PolicyIssueComponent
+    path: 'auth',
+    loadChildren: () => import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES)
   },
+
+  // Main application layout with role-based side navigation
   {
-    path: 'customer/my-policies',
-    component: MyPoliciesComponent
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: 'customer',
+        canActivate: [roleGuard('customer')],
+        loadChildren: () => import('./features/customer/customer.routes').then(m => m.CUSTOMER_ROUTES)
+      },
+      {
+        path: 'agent',
+        canActivate: [roleGuard('agent')],
+        loadChildren: () => import('./features/agent/agent.routes').then(m => m.AGENT_ROUTES)
+      },
+      {
+        path: 'admin',
+        canActivate: [roleGuard('admin')],
+        loadChildren: () => import('./features/admin/admin.routes').then(m => m.ADMIN_ROUTES)
+      },
+      // Backward-compatibility aliases for legacy routes
+      {
+        path: 'customer-registration',
+        redirectTo: 'auth/register',
+        pathMatch: 'full'
+      },
+      {
+        path: 'customer/c-profile',
+        redirectTo: 'customer/profile/personal',
+        pathMatch: 'full'
+      },
+      {
+        path: 'c-profile',
+        redirectTo: 'customer/profile/personal',
+        pathMatch: 'full'
+      },
+      {
+        path: 'kyc-verification',
+        redirectTo: 'customer/kyc/submit',
+        pathMatch: 'full'
+      },
+      {
+        path: '',
+        redirectTo: 'customer/dashboard',
+        pathMatch: 'full'
+      }
+    ]
   },
+
+  // Fallback for unmatched routes
   {
-    path: 'customer/policy-details/:id',
-    component: PolicyDetailsComponent
-  },
-    
-  { path: '', component: CustomerRegistrationComponent },
-  { path: 'customer-registration', component: CustomerRegistrationComponent },
-  { path: 'customer/c-profile', component: CustomerRegistrationComponent },
-  { path: 'c-profile', component: CustomerRegistrationComponent }
+    path: '**',
+    redirectTo: 'customer/dashboard'
+  }
 ];
