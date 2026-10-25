@@ -4,7 +4,7 @@ using System.Net.Http.Json;
 using QuoteGenerationMS.Application.DTO;
 using QuoteGenerationMS.Application.Interface;
 
-namespace QuoteGenerationMS.Infrastructure.Services
+namespace QuoteGenerationMS.Infrastructure.Clients
 {
     public class UnderwritingClient : IUnderwritingClient
     {
@@ -15,7 +15,8 @@ namespace QuoteGenerationMS.Infrastructure.Services
             _httpClient = httpClient;
         }
 
-        public async Task<int> CreateCase(createUnderwritingRequestDTO dto)
+        public async Task<int> CreateCase(
+            createUnderwritingRequestDTO dto)
         {
             var response = await _httpClient.PostAsJsonAsync(
                 "api/v1/underwriting", dto);
@@ -26,12 +27,23 @@ namespace QuoteGenerationMS.Infrastructure.Services
                 .ReadFromJsonAsync<createUnderwritingResponseDTO>();
 
             if (result == null || result.underwriting_id <= 0)
-            {
                 throw new InvalidOperationException(
-                    "Underwriting case was created, but its ID was not returned.");
-            }
+                    "Underwriting case ID was not returned.");
 
             return result.underwriting_id;
+        }
+
+        public async Task<List<underwriting_caseResponseDTO>> GetAllCases()
+        {
+            var response = await _httpClient.GetAsync(
+                "api/v1/underwriting");
+
+            response.EnsureSuccessStatusCode();
+
+            var result = await response.Content
+                .ReadFromJsonAsync<List<underwriting_caseResponseDTO>>();
+
+            return result ?? new List<underwriting_caseResponseDTO>();
         }
 
         public async Task CalculateRiskScore(

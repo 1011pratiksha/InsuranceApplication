@@ -4,6 +4,7 @@ using UnderwritingMS.Application.Interface;
 using UnderwritingMS.Application.Mapper;
 using UnderwritingMS.Infrastructure.Data;
 using UnderwritingMS.Infrastructure.Services;
+using UnderwritingMS.Infrastructure.Clients;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,39 @@ builder.Services.AddScoped<IRiskScoreService, RiskScoreService>();
 builder.Services.AddScoped<IPremiumLoadingService,PremiumLoadingService>();
 builder.Services.AddScoped<IUnderwritingDecisionService,UnderwritingDecisionService>();
 builder.Services.AddScoped<IAuditLogService, AuditLogService>();
+
+
+
+
+builder.Services.AddHttpClient<ICustomerRegistrationClient, CustomerRegistrationClient>(client =>
+{
+    var url = builder.Configuration["ServiceUrls:CustomerRegistration"]
+        ?? throw new InvalidOperationException(
+            "Customer Registration URL is missing.");
+
+    client.BaseAddress = new Uri(url);
+});
+
+builder.Services.AddHttpClient<IProductManagementClient, ProductManagementClient>(client =>
+{
+    var url = builder.Configuration["ServiceUrls:ProductManagement"]
+        ?? throw new InvalidOperationException(
+            "Product Management URL is missing.");
+
+    client.BaseAddress = new Uri(url);
+});
+
+// Register KYC only when the KYC client and its API contract are ready.
+builder.Services.AddHttpClient<IKycClient, KycClient>(client =>
+{
+    var url = builder.Configuration["ServiceUrls:Kyc"]
+        ?? throw new InvalidOperationException("KYC URL is missing.");
+
+    client.BaseAddress = new Uri(url);
+});
+
+
+
 
 var app = builder.Build();
 

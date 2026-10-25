@@ -1,0 +1,349 @@
+
+<div class="quote-page">
+  <header class="page-header">
+    <div>
+      <p class="eyebrow">INSURANCE OPERATIONS</p>
+      <h1>Quote Generation</h1>
+      <p class="subtitle">
+        Create quotations, review premiums and manage quote approvals.
+      </p>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      [disabled]="loading"
+      (click)="loadQuotes()">
+      {{ loading ? 'Refreshing...' : 'Refresh Quotes' }}
+    </button>
+  </header>
+
+  <div *ngIf="errorMessage" class="alert alert-error" role="alert">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success" role="status">
+    {{ successMessage }}
+  </div>
+
+  <!-- Summary cards -->
+  <section class="stats-grid">
+    <article class="stat-card">
+      <span>Total Quotes</span>
+      <strong>{{ totalQuotes }}</strong>
+    </article>
+
+    <article class="stat-card">
+      <span>Pending</span>
+      <strong>{{ countByStatus('Pending') }}</strong>
+    </article>
+
+    <article class="stat-card">
+      <span>Approved</span>
+      <strong>{{ countByStatus('Approved') }}</strong>
+    </article>
+
+    <article class="stat-card">
+      <span>Expired</span>
+      <strong>{{ countByStatus('Expired') }}</strong>
+    </article>
+  </section>
+
+  <!-- Quote form -->
+  <section class="panel">
+    <div class="panel-heading">
+      <div>
+        <h2>Create New Quote</h2>
+        <p>Enter customer and policy details to calculate a premium.</p>
+      </div>
+
+      <span class="step-label">STEP 1 · DETAILS</span>
+    </div>
+
+    <form #quoteForm="ngForm" (ngSubmit)="calculatePremium()">
+      <div class="form-grid">
+        <div class="field">
+          <label for="customerId">Customer ID *</label>
+          <input
+            id="customerId"
+            type="number"
+            name="customerId"
+            min="1"
+            step="1"
+            required
+            [(ngModel)]="form.customerId"
+            placeholder="Enter registered customer ID">
+        </div>
+
+        <div class="field">
+          <label for="productId">Product ID *</label>
+          <input
+            id="productId"
+            type="number"
+            name="productId"
+            min="1"
+            step="1"
+            required
+            [(ngModel)]="form.productId"
+            placeholder="Enter active product ID">
+        </div>
+
+        <div class="field">
+          <label for="sumInsured">Sum Insured (₹) *</label>
+          <input
+            id="sumInsured"
+            type="number"
+            name="sumInsured"
+            min="1"
+            required
+            [(ngModel)]="form.sumInsured">
+        </div>
+
+        <div class="field">
+          <label for="policyTerm">Policy Term (years) *</label>
+          <input
+            id="policyTerm"
+            type="number"
+            name="policyTerm"
+            min="1"
+            required
+            [(ngModel)]="form.policyTerm">
+        </div>
+
+        <div class="field">
+          <label for="frequencyId">Premium Frequency ID *</label>
+          <input
+            id="frequencyId"
+            type="number"
+            name="frequencyId"
+            min="1"
+            step="1"
+            required
+            [(ngModel)]="form.premiumFrequencyId"
+            placeholder="Enter configured frequency ID">
+        </div>
+
+        <div class="field">
+          <label for="discount">Discount (%)</label>
+          <input
+            id="discount"
+            type="number"
+            name="discount"
+            min="0"
+            max="100"
+            step="0.01"
+            [(ngModel)]="form.discountPercentage">
+        </div>
+      </div>
+
+      <div class="form-note">
+        <strong>Validation requirements</strong>
+        <p>
+          Customer KYC, product activation, eligibility, sum insured limits,
+          risk assessment and selected riders must be validated by the backend.
+        </p>
+      </div>
+
+      <div class="form-actions">
+        <button
+          class="btn btn-secondary"
+          type="button"
+          [disabled]="submitting"
+          (click)="resetForm()">
+          Reset
+        </button>
+
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="submitting || quoteForm.invalid">
+          {{ submitting ? 'Calculating...' : 'Calculate Premium' }}
+        </button>
+
+        <button
+          class="btn btn-success"
+          type="button"
+          [disabled]="submitting || !preview"
+          (click)="generateQuote()">
+          Generate Quote
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Premium result -->
+  <section class="panel" *ngIf="showResult && preview">
+    <div class="panel-heading">
+      <div>
+        <h2>Premium Summary</h2>
+        <p>Values returned by the premium calculation API.</p>
+      </div>
+
+      <span class="status-badge">
+        {{ preview.quoteStatus || 'Calculated' }}
+      </span>
+    </div>
+
+    <div class="premium-grid">
+      <div>
+        <span>Quote Number</span>
+        <strong>{{ preview.quoteNumber || 'Generated on save' }}</strong>
+      </div>
+
+      <div>
+        <span>Base Premium</span>
+        <strong>
+          {{ preview.basePremium ?? 0 | currency:'INR':'symbol':'1.2-2' }}
+        </strong>
+      </div>
+
+      <div>
+        <span>Risk Loading</span>
+        <strong>
+          {{ preview.riskLoading ?? 0 | currency:'INR':'symbol':'1.2-2' }}
+        </strong>
+      </div>
+
+      <div>
+        <span>Rider Premium</span>
+        <strong>
+          {{ preview.riderPremium ?? 0 | currency:'INR':'symbol':'1.2-2' }}
+        </strong>
+      </div>
+
+      <div>
+        <span>Discount</span>
+        <strong>
+          {{ preview.discountAmount ?? 0 | currency:'INR':'symbol':'1.2-2' }}
+        </strong>
+      </div>
+
+      <div>
+        <span>GST</span>
+        <strong>
+          {{ preview.gstAmount ?? 0 | currency:'INR':'symbol':'1.2-2' }}
+        </strong>
+      </div>
+    </div>
+
+    <div class="final-premium">
+      <span>Final Premium</span>
+      <strong>
+        {{ preview.finalPremium ?? 0 | currency:'INR':'symbol':'1.2-2' }}
+      </strong>
+    </div>
+
+    <p class="muted">
+      Quote number, date, expiry and status should be supplied by the backend
+      when the quote is saved.
+    </p>
+  </section>
+
+  <!-- Quote history -->
+  <section class="panel">
+    <div class="panel-heading">
+      <div>
+        <h2>Quote History</h2>
+        <p>Review quotations and available actions.</p>
+      </div>
+    </div>
+
+    <div *ngIf="loading" class="empty-state">
+      Loading quotes...
+    </div>
+
+    <div *ngIf="!loading && quotes.length === 0" class="empty-state">
+      No quotes found. Create a quote to get started.
+    </div>
+
+    <div
+      class="table-wrapper"
+      *ngIf="!loading && quotes.length > 0">
+
+      <table>
+        <thead>
+          <tr>
+            <th>Quote Number</th>
+            <th>Customer ID</th>
+            <th>Product ID</th>
+            <th>Sum Insured</th>
+            <th>Final Premium</th>
+            <th>Quote Date</th>
+            <th>Expiry Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let quote of quotes">
+            <td class="quote-number">
+              {{ quote.quoteNumber || '—' }}
+            </td>
+
+            <td>{{ quote.customerId }}</td>
+            <td>{{ quote.productId }}</td>
+
+            <td>
+              {{ quote.sumInsured | currency:'INR':'symbol':'1.0-0' }}
+            </td>
+
+            <td>
+              {{ quote.finalPremium ?? 0 | currency:'INR':'symbol':'1.2-2' }}
+            </td>
+
+            <td>
+              {{ quote.quoteDate ? (quote.quoteDate | date:'dd MMM yyyy') : '—' }}
+            </td>
+
+            <td>
+              {{ quote.expiryDate ? (quote.expiryDate | date:'dd MMM yyyy') : '—' }}
+            </td>
+
+            <td>
+              <span
+                class="status-badge"
+                [class.pending]="quote.quoteStatus?.toLowerCase() === 'pending'"
+                [class.approved]="quote.quoteStatus?.toLowerCase() === 'approved'"
+                [class.rejected]="quote.quoteStatus?.toLowerCase() === 'rejected'"
+                [class.expired]="quote.quoteStatus?.toLowerCase() === 'expired'">
+                {{ quote.quoteStatus || 'Unknown' }}
+              </span>
+            </td>
+
+            <td>
+              <div class="row-actions">
+                <button
+                  *ngIf="quote.quoteStatus?.toLowerCase() === 'pending'"
+                  type="button"
+                  class="text-button"
+                  [disabled]="submitting"
+                  (click)="approveQuote(quote)">
+                  Approve
+                </button>
+
+                <button
+                  *ngIf="quote.quoteStatus?.toLowerCase() === 'pending'"
+                  type="button"
+                  class="text-button danger"
+                  [disabled]="submitting"
+                  (click)="rejectQuote(quote)">
+                  Reject
+                </button>
+
+                <button
+                  *ngIf="quote.quoteStatus?.toLowerCase() === 'approved'"
+                  type="button"
+                  class="text-button"
+                  [disabled]="submitting"
+                  (click)="convertToPolicy(quote)">
+                  Convert
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
