@@ -1,7 +1,6 @@
-
 import { Routes } from '@angular/router';
-
-import { MainLayout } from './shared/main-layout/main-layout';
+import { MainLayoutComponent } from './shared/layout/main-layout.component';
+import { roleGuard } from './core/guards/role.guard';
 
 // Authentication
 import { Login } from './features/authentication/login/login';
@@ -54,8 +53,7 @@ import { CommissionRules } from './features/Agent/commission-rules/commission-ru
 import { AgentCommissions } from './features/Agent/agent-commissions/agent-commissions';
 
 export const routes: Routes = [
-
-  // Authentication pages
+  // ── Authentication pages (outside sidebar layout) ──
   {
     path: '',
     redirectTo: 'login',
@@ -81,12 +79,32 @@ export const routes: Routes = [
     path: 'login-success',
     component: LoginSuccess
   },
+  {
+    path: 'auth',
+    loadChildren: () => import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES)
+  },
 
-  // Application pages inside MainLayout
+  // ── Application pages inside MainLayout with Role-based Sidebar ──
   {
     path: '',
-    component: MainLayout,
+    component: MainLayoutComponent,
     children: [
+      // Role-based modular navigation prefixes (from PDF)
+      {
+        path: 'customer',
+        canActivate: [roleGuard('customer')],
+        loadChildren: () => import('./features/customer/customer.routes').then(m => m.CUSTOMER_ROUTES)
+      },
+      {
+        path: 'agent',
+        canActivate: [roleGuard('agent')],
+        loadChildren: () => import('./features/agent/agent.routes').then(m => m.AGENT_ROUTES)
+      },
+      {
+        path: 'admin',
+        canActivate: [roleGuard('admin')],
+        loadChildren: () => import('./features/admin/admin.routes').then(m => m.ADMIN_ROUTES)
+      },
 
       // Customer Registration and Profile
       {
@@ -324,7 +342,7 @@ export const routes: Routes = [
     ]
   },
 
-  // Unknown URLs
+  // Fallback for unknown URLs
   {
     path: '**',
     redirectTo: 'login'

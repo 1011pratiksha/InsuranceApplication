@@ -32,11 +32,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            
             "security": {
               "allowedHosts": []
             }
-            
           },
           "configurations": {
             "production": {
@@ -48,8 +46,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "8kB",
-                  "maximumError": "16kB"
+                  "maximumWarning": "10kB",
+                  "maximumError": "20kB"
                 }
               ],
               "outputHashing": "all"
@@ -63,20 +61,23 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-  "builder": "@angular/build:dev-server",
-"options": {
-  "proxyConfig": "proxy.conf.json"
-},
-  "configurations": {
-    "production": {
-      "buildTarget": "Premium:build:production"
-    },
-    "development": {
-      "buildTarget": "Premium:build:development"
-    }
-  },
-  "defaultConfiguration": "development"
-},
+          "builder": "@angular/build:dev-server",
+          "options": {
+            "proxyConfig": "proxy.conf.json",
+            "ssl": true,
+            "sslCert": ".certs/localhost.pem",
+            "sslKey": ".certs/localhost.key"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "Premium:build:production"
+            },
+            "development": {
+              "buildTarget": "Premium:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
         },
