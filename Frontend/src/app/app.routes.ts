@@ -1,17 +1,22 @@
+
 import { Routes } from '@angular/router';
 
 import { MainLayout } from './shared/main-layout/main-layout';
 
-import { AuditLogs } from './features/audit-logs/audit-logs';
-import { CustomerSupport } from './features/customer-support/customer-support';
-import { AgentSupport } from './features/agent-support/agent-support';
-import { Support } from './features/support/support';
-
+// Authentication
 import { Login } from './features/authentication/login/login';
 import { TwoFactor } from './features/authentication/two-factor/two-factor';
 import { ForgotPassword } from './features/authentication/forgot-password/forgot-password';
 import { ResetPassword } from './features/authentication/reset-password/reset-password';
 import { LoginSuccess } from './features/authentication/login-success/login-success';
+
+// Audit and Support
+import { AuditLogs } from './features/audit-logs/audit-logs';
+import { CustomerSupport } from './features/customer-support/customer-support';
+import { AgentSupport } from './features/agent-support/agent-support';
+import { Support } from './features/support/support';
+
+// Claims
 import { ClaimsDashboard } from './features/claim-management/claims-dashboard/claims-dashboard';
 import { ClaimRegistration } from './features/claim-management/claim-registration/claim-registration';
 import { ClaimList } from './features/claim-management/claim-list/claim-list';
@@ -23,33 +28,81 @@ import { ClaimAssessmentComponent } from './features/claim-management/claim-asse
 import { ClaimApproval } from './features/claim-management/claim-approval/claim-approval';
 import { ClaimSettlement } from './features/claim-management/claim-settlement/claim-settlement';
 import { ClaimTracking } from './features/claim-management/claim-tracking/claim-tracking';
+
+// Customer Registration
 import { CustomerRegistrationComponent } from './features/customer-registration/customer-registration/customer-registration.component';
+
+// Policy Issuance
 import { PolicyIssueComponent } from './features/policy-issuance/admin/policy-issue/policy-issue.component';
 import { MyPoliciesComponent } from './features/policy-issuance/customer/my-policies/my-policies.component';
 import { PolicyDetailsComponent } from './features/policy-issuance/customer/policy-details/policy-details.component';
 
+// Policy Servicing
 import { Policyserviceingss } from './features/policy-servicing/policyserviceingss/policyserviceingss';
 import { Adminservicerequest } from './features/policy-servicing/adminservicerequest/adminservicerequest';
 import { CustomerEndorsement } from './features/policy-servicing/customer-endorsementng/customer-endorsementng';
+
+// Policy Closure
 import { Policyclosure } from './features/policy-closure/policyclosure/policyclosure';
 
+// Agent Module
+import { AgentDashboard } from './features/Agent/agent-dashboard/agent-dashboard';
+import { AssignedCustomersComponent } from './features/Agent/assigned-customers/assigned-customers';
+import { Agent } from './features/Agent/agent/agent';
+import { AgentPolicies } from './features/Agent/agent-policies/agent-policies';
+import { CommissionRules } from './features/Agent/commission-rules/commission-rules';
+import { AgentCommissions } from './features/Agent/agent-commissions/agent-commissions';
 
 export const routes: Routes = [
-    {path:'',redirectTo:'login',pathMatch:'full'},
-    {path:'login',component:Login},
-    {path:'two-factor',component:TwoFactor},
-    {path:'forgot-password',component:ForgotPassword},
-    {path:'reset-password',component:ResetPassword},
-    {path:'login-success',component:LoginSuccess},
-    {path:'**',redirectTo:'login'},
+
+  // Authentication pages
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: Login
+  },
+  {
+    path: 'two-factor',
+    component: TwoFactor
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPassword
+  },
+  {
+    path: 'reset-password',
+    component: ResetPassword
+  },
+  {
+    path: 'login-success',
+    component: LoginSuccess
+  },
+
+  // Application pages inside MainLayout
   {
     path: '',
     component: MainLayout,
     children: [
+
+      // Customer Registration and Profile
       {
-        path: 'admin/policy-issuance',
-        component: PolicyIssueComponent
+        path: 'customer-registration',
+        component: CustomerRegistrationComponent
       },
+      {
+        path: 'customer/c-profile',
+        component: CustomerRegistrationComponent
+      },
+      {
+        path: 'c-profile',
+        component: CustomerRegistrationComponent
+      },
+
+      // Customer Policy Issuance
       {
         path: 'customer/my-policies',
         component: MyPoliciesComponent
@@ -58,6 +111,14 @@ export const routes: Routes = [
         path: 'customer/policy-details/:id',
         component: PolicyDetailsComponent
       },
+
+      // Admin Policy Issuance
+      {
+        path: 'admin/policy-issuance',
+        component: PolicyIssueComponent
+      },
+
+      // Policy Servicing
       {
         path: 'customer/svc',
         component: Policyserviceingss
@@ -70,110 +131,202 @@ export const routes: Routes = [
         path: 'customer/endoresement',
         component: CustomerEndorsement
       },
+
+      // Policy Closure
       {
         path: 'admin/closure',
         component: Policyclosure
       },
+
+      // Customer Claims
       {
-        path: 'customer-registration',
-        component: CustomerRegistrationComponent
+        path: 'customer/dashboard',
+        component: ClaimsDashboard
       },
       {
-        path: 'customer/c-profile',
-        component: CustomerRegistrationComponent
+        path: 'customer/claims/register',
+        component: ClaimRegistration
       },
       {
-        path: 'c-profile',
-        component: CustomerRegistrationComponent
+        path: 'customer/claims/list',
+        component: ClaimList
+      },
+      {
+        path: 'customer/claims/documents',
+        component: DocumentUpload
+      },
+      {
+        path: 'customer/claims/tracking',
+        component: ClaimTracking
+      },
+      {
+        path: 'customer/claims/details/:id',
+        component: ClaimDetails
+      },
+
+      // Agent Dashboard
+      {
+        path: 'agent/dashboard',
+        component: AgentDashboard
+      },
+
+      // Agent Module Pages
+      {
+        path: 'agent/assigned-customers',
+        component: AssignedCustomersComponent
+      },
+      {
+        path: 'agent/profile',
+        component: Agent
+      },
+      {
+        path: 'agent/policies',
+        component: AgentPolicies
+      },
+      {
+        path: 'agent/commission-rules',
+        component: CommissionRules
+      },
+      {
+        path: 'agent/commissions',
+        component: AgentCommissions
+      },
+
+      // Agent Claims
+      {
+        path: 'agent/claims/register',
+        component: ClaimRegistration
+      },
+      {
+        path: 'agent/claims/list',
+        component: ClaimList
+      },
+      {
+        path: 'agent/claims/tracking',
+        component: ClaimTracking
+      },
+      {
+        path: 'agent/claims/details/:id',
+        component: ClaimDetails
+      },
+
+      // Admin Dashboard
+      {
+        path: 'admin/dashboard',
+        component: ClaimsDashboard
+      },
+
+      // Admin Claims
+      {
+        path: 'admin/claims/list',
+        component: ClaimList
+      },
+      {
+        path: 'admin/claims/details/:id',
+        component: ClaimDetails
+      },
+      {
+        path: 'admin/claims/documents',
+        component: DocumentUpload
+      },
+      {
+        path: 'admin/claims/survey',
+        component: SurveyManagement
+      },
+      {
+        path: 'admin/claims/investigation',
+        component: InvestigationManagement
+      },
+      {
+        path: 'admin/claims/assessment',
+        component: ClaimAssessmentComponent
+      },
+      {
+        path: 'admin/claims/approval',
+        component: ClaimApproval
+      },
+      {
+        path: 'admin/claims/settlement',
+        component: ClaimSettlement
+      },
+      {
+        path: 'admin/claims/tracking',
+        component: ClaimTracking
+      },
+
+      // General Claims Routes
+      {
+        path: 'claims/dashboard',
+        component: ClaimsDashboard
+      },
+      {
+        path: 'claims/register',
+        component: ClaimRegistration
+      },
+      {
+        path: 'claims/list',
+        component: ClaimList
+      },
+      {
+        path: 'claims/details/:id',
+        component: ClaimDetails
+      },
+      {
+        path: 'claims/details',
+        component: ClaimDetails
+      },
+      {
+        path: 'claims/documents',
+        component: DocumentUpload
+      },
+      {
+        path: 'claims/survey',
+        component: SurveyManagement
+      },
+      {
+        path: 'claims/investigation',
+        component: InvestigationManagement
+      },
+      {
+        path: 'claims/assessment',
+        component: ClaimAssessmentComponent
+      },
+      {
+        path: 'claims/approval',
+        component: ClaimApproval
+      },
+      {
+        path: 'claims/settlement',
+        component: ClaimSettlement
+      },
+      {
+        path: 'claims/tracking',
+        component: ClaimTracking
+      },
+
+      // Audit and Support
+      {
+        path: 'audit-logs',
+        component: AuditLogs
+      },
+      {
+        path: 'support',
+        component: Support
+      },
+      {
+        path: 'customer-support',
+        component: CustomerSupport
+      },
+      {
+        path: 'agent-support',
+        component: AgentSupport
       }
     ]
-    
-  },
-  {
-    path: '',
-    redirectTo: 'customer-registration',
-    pathMatch: 'full'
-  },
-  {
-    path: 'admin/policy-issuance',
-    component: PolicyIssueComponent,
-  },
-  {
-    path: 'customer/my-policies',
-    component: MyPoliciesComponent,
-  },
-  {
-    path: 'customer/policy-details/:id',
-    component: PolicyDetailsComponent,
-  },
-  {
-    path: 'audit-logs',
-    component: AuditLogs,
-  },
-  {
-    path: 'support',
-    component: Support,
   },
 
+  // Unknown URLs
   {
-    path: 'customer-support',
-    component: CustomerSupport,
-  },
-  {
-    path: 'agent-support',
-    component: AgentSupport,
-  },
-
-
-
-  { path: 'customer/svc', component: Policyserviceingss},
-  {path: 'admin/service-requests', component: Adminservicerequest},
-     { path: 'customer/dashboard', component: ClaimsDashboard },
-  { path: 'customer/claims/register', component: ClaimRegistration },
-  { path: 'customer/claims/list', component: ClaimList },
-  { path: 'customer/claims/documents', component: DocumentUpload },
-  { path: 'customer/claims/tracking', component: ClaimTracking },
-  { path: 'customer/claims/details/:id', component: ClaimDetails },
-     { path: 'agent/dashboard', component: ClaimsDashboard },
-  { path: 'agent/claims/register', component: ClaimRegistration },
-  { path: 'agent/claims/list', component: ClaimList },
-  { path: 'agent/claims/tracking', component: ClaimTracking },
-  { path: 'agent/claims/details/:id', component: ClaimDetails },
-{ path: 'admin/dashboard', component: ClaimsDashboard },
-  { path: 'admin/claims/list', component: ClaimList },
-  { path: 'admin/claims/details/:id', component: ClaimDetails },
-  { path: 'admin/claims/documents', component: DocumentUpload },
-  { path: 'admin/claims/survey', component: SurveyManagement },
-  { path: 'admin/claims/investigation', component: InvestigationManagement },
-  { path: 'admin/claims/assessment', component: ClaimAssessmentComponent },
-  { path: 'admin/claims/approval', component: ClaimApproval },
-  { path: 'admin/claims/settlement', component: ClaimSettlement },
-  { path: 'admin/claims/tracking', component: ClaimTracking },
-    { path: 'claims/dashboard', component: ClaimsDashboard },
-  { path: 'claims/register', component: ClaimRegistration },
-  { path: 'claims/list', component: ClaimList },
-  { path: 'claims/details/:id', component: ClaimDetails },
-  { path: 'claims/details', component: ClaimDetails },
-  { path: 'claims/documents', component: DocumentUpload },
-  { path: 'claims/survey', component: SurveyManagement },
-  { path: 'claims/investigation', component: InvestigationManagement },
-  { path: 'claims/assessment', component: ClaimAssessmentComponent },
-  { path: 'claims/approval', component: ClaimApproval },
-  { path: 'claims/settlement', component: ClaimSettlement },
-  { path: 'claims/tracking', component: ClaimTracking },
-    {path :'customer/endoresement' , component: CustomerEndorsement},
- {
-  path: 'admin/closure',
-  component: Policyclosure
-},
-    
-
-  { path: '', component: CustomerRegistrationComponent },
-  { path: 'customer-registration', component: CustomerRegistrationComponent },
-  { path: 'customer/c-profile', component: CustomerRegistrationComponent },
-  { path: 'c-profile', component: CustomerRegistrationComponent }
-
-
-
+    path: '**',
+    redirectTo: 'login'
+  }
 ];
-

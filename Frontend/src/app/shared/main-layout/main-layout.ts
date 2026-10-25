@@ -4,6 +4,7 @@ import { isPlatformBrowser } from '@angular/common';
 
 import { CustomerSidebar } from '../customer-sidebar/customer-sidebar';
 import { AdminSidebar } from '../admin-sidebar/admin-sidebar';
+import { SidebarAgent } from '../sidebar-agent/sidebar-agent';
 
 @Component({
   selector: 'app-main-layout',
@@ -11,7 +12,8 @@ import { AdminSidebar } from '../admin-sidebar/admin-sidebar';
   imports: [
     RouterOutlet,
     CustomerSidebar,
-    AdminSidebar
+    AdminSidebar,
+    SidebarAgent
   ],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.scss'
@@ -93,5 +95,9 @@ export class MainLayout implements OnInit {
       'super admin',
       'superadmin'
     ].includes(this.userRole);
+  }
+
+  get isAgent(): boolean {
+    return this.userRole === 'agent';
   }
 }

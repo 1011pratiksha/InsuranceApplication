@@ -1,4 +1,3 @@
-
 <div class="app-layout">
 
   @if (isCustomer) {
@@ -7,6 +6,10 @@
 
   @if (isAdmin) {
     <app-admin-sidebar></app-admin-sidebar>
+  }
+
+  @if (isAgent) {
+    <app-sidebar-agent></app-sidebar-agent>
   }
 
   <main class="main-content">
