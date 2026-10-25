@@ -41,7 +41,7 @@ export const routes: Routes = [
     {path:'forgot-password',component:ForgotPassword},
     {path:'reset-password',component:ResetPassword},
     {path:'login-success',component:LoginSuccess},
-    {path:'**',redirectTo:'login'}
+    {path:'**',redirectTo:'login'},
   {
     path: '',
     component: MainLayout,
@@ -87,12 +87,14 @@ export const routes: Routes = [
         component: CustomerRegistrationComponent
       }
     ]
+    
   },
   {
     path: '',
     redirectTo: 'customer-registration',
     pathMatch: 'full'
-  }
+  },
+  {
     path: 'admin/policy-issuance',
     component: PolicyIssueComponent,
   },
@@ -174,3 +176,4 @@ export const routes: Routes = [
 
 
 ];
+
