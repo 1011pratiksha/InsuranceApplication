@@ -1,4 +1,30 @@
+
 import { Routes } from '@angular/router';
+import { CustomerRegistrationComponent } from './features/customer-registration/customer-registration/customer-registration.component';
+import { PolicyIssueComponent } from './features/policy-issuance/admin/policy-issue/policy-issue.component';
+import { MyPoliciesComponent } from './features/policy-issuance/customer/my-policies/my-policies.component';
+import { PolicyDetailsComponent } from './features/policy-issuance/customer/policy-details/policy-details.component';
+import { Policyserviceingss } from './features/policy-servicing/policyserviceingss/policyserviceingss';
+import { Adminservicerequest } from './features/policy-servicing/adminservicerequest/adminservicerequest';
+import { CustomerEndorsement } from './features/policy-servicing/customer-endorsementng/customer-endorsementng';
+import { Policyclosure } from './features/policy-closure/policyclosure/policyclosure';
+
+export const routes: Routes = [
+  {
+    path: 'admin/policy-issuance',
+    component: PolicyIssueComponent
+  },
+  {
+    path: 'customer/my-policies',
+    component: MyPoliciesComponent
+  },
+  {
+    path: 'customer/policy-details/:id',
+    component: PolicyDetailsComponent
+  },
+
+  { path: 'customer/svc', component: Policyserviceingss},
+  {path: 'admin/service-requests', component: Adminservicerequest},
 
 import { ClaimsDashboard } from './features/claim-management/claims-dashboard/claims-dashboard';
 import { ClaimRegistration } from './features/claim-management/claim-registration/claim-registration';
@@ -63,4 +89,14 @@ export const routes: Routes = [
   { path: 'claims/tracking', component: ClaimTracking },
 
   { path: '**', redirectTo: 'customer/dashboard' }
+  {path :'customer/endoresement' , component: CustomerEndorsement},
+ {
+  path: 'admin/closure',
+  component: Policyclosure
+}
+    
+  { path: '', component: CustomerRegistrationComponent },
+  { path: 'customer-registration', component: CustomerRegistrationComponent },
+  { path: 'customer/c-profile', component: CustomerRegistrationComponent },
+  { path: 'c-profile', component: CustomerRegistrationComponent }
 ];

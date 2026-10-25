@@ -1,0 +1,54 @@
+
+<h2>Policy Endorsement</h2>
+
+<form [formGroup]="form">
+
+  <label for="request_id">Select Service Request</label>
+
+  <select
+    id="request_id"
+    formControlName="request_id"
+    (change)="searchRequest()">
+
+    <option value="">Select your request</option>
+
+    <option *ngFor="let req of requests" [value]="req.request_id">
+      {{ req.request_number }} - {{ req.request_type }}
+    </option>
+
+  </select>
+
+</form>
+
+<div *ngIf="request">
+
+  <p><b>Request ID:</b> {{ request.request_id }}</p>
+  <p><b>Request Number:</b> {{ request.request_number }}</p>
+  <p><b>Request Type:</b> {{ request.request_type }}</p>
+  <p><b>Status:</b> {{ request.status }}</p>
+
+  <p>
+    <b>Request Details:</b>
+    {{ request.details || 'No details available' }}
+  </p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <label for="updated_value">Updated Value</label>
+
+    <textarea
+      id="updated_value"
+      formControlName="updated_value"
+      rows="3"
+      placeholder="Enter the updated value">
+    </textarea>
+
+    <button type="submit" [disabled]="form.controls.updated_value.invalid">
+      Submit Endorsement
+    </button>
+
+  </form>
+
+</div>
+
+<p>{{ message }}</p>

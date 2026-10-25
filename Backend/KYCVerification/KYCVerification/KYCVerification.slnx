@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="KYCVerification.Application/KYCVerification.Application.csproj" />
+  <Project Path="KYCVerification.Domain/KYCVerification.Domain.csproj" />
+  <Project Path="KYCVerification.Infrastructure/KYCVerification.Infrastructure.csproj" />
+  <Project Path="KYCVerification/KYCVerification.csproj" />
+</Solution>

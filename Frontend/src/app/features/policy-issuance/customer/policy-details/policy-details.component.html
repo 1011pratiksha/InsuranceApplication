@@ -1,0 +1,75 @@
+
+<div class="page-container">
+  <p class="breadcrumb">Policy Issuance / Policy Details</p>
+  <h2>Policy Details</h2>
+
+  <div *ngIf="loading" class="alert alert-info">
+    Loading policy details...
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <ng-container *ngIf="policy && !loading">
+    <div class="details-card">
+      <div class="detail">
+        <small>Policy no.</small>
+        <strong>{{ policy.policyNumber || policy.policyNo || '-' }}</strong>
+      </div>
+
+      <div class="detail">
+        <small>Status</small>
+        <strong>{{ policy.status || policy.policyStatus || '-' }}</strong>
+      </div>
+
+      <div class="detail">
+        <small>Cover</small>
+        <strong>{{ policy.sumInsured | currency:'INR':'symbol':'1.0-0' }}</strong>
+      </div>
+
+      <div class="detail">
+        <small>Nominee</small>
+        <strong>{{ policy.nomineeName || '-' }}</strong>
+      </div>
+
+      <div class="detail">
+        <small>Riders</small>
+        <strong>{{ policy.riders?.join(', ') || 'None' }}</strong>
+      </div>
+
+      <div class="detail">
+        <small>Valid till</small>
+        <strong>{{ policy.expiryDate ? (policy.expiryDate | date:'dd MMM yyyy') : '-' }}</strong>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-success"
+              [disabled]="downloading"
+              (click)="downloadPdf()">
+        {{ downloading ? 'Downloading...' : 'Download policy PDF' }}
+      </button>
+
+      <button class="btn btn-outline-secondary"
+              (click)="payPremium()">
+        Pay premium
+      </button>
+
+      <button class="btn btn-outline-secondary"
+              (click)="requestChange()">
+        Request change
+      </button>
+
+      <button class="btn btn-outline-secondary"
+              (click)="raiseClaim()">
+        Raise claim
+      </button>
+
+      <button class="btn btn-outline-secondary"
+              (click)="backToPolicies()">
+        Back to My Policies
+      </button>
+    </div>
+  </ng-container>
+</div>

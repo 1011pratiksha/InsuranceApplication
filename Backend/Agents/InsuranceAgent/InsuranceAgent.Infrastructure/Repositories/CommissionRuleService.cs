@@ -1,5 +1,6 @@
 ﻿using InsuranceAgent.Application.DTO;
 using InsuranceAgent.Application.Interfaces;
+using InsuranceAgent.Application.Mapper;
 using InsuranceAgent.Domain.Entities;
 using InsuranceAgent.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -15,36 +16,38 @@ namespace InsuranceAgent.Infrastructure.Repositories
     {
 
         AppDbContext data;
+        ProductClient productClient;
 
-        public CommissionRuleService(AppDbContext data)
+        public CommissionRuleService(AppDbContext data, ProductClient productClient)
         {
             this.data = data;
+            this.productClient = productClient;
         }
+
+       
 
         public async Task CreateCommissionRule(CreateCommissionRuleDto dto)
         {
+            var product = await productClient.GetProductById(dto.ProductId);
 
-            //var productExists = await data.Products.AnyAsync(p => p.ProductId == dto.ProductId);
+            if (product == null)
+            {
+                throw new Exception("Product not found.");
+            }
 
-            //if (!productExists)
-            //{
-            //    throw new Exception("Product not found.");
-            //}
+            var commissionRule = new CommissionRule
+            {
+                ProductId = dto.ProductId,
+                CommissionPercentage = dto.CommissionPercentage,
+                EffectiveFrom = dto.EffectiveFrom,
+                EffectiveTo = dto.EffectiveTo,
+                IsActive = dto.IsActive,
+                CreatedAt = DateTime.Now
+            };
 
+            await data.CommissionRules.AddAsync(commissionRule);
 
-            //var commissionRule = new CommissionRule
-            //{
-            //    ProductId = dto.ProductId,
-            //    CommissionPercentage = dto.CommissionPercentage,
-            //    EffectiveFrom = dto.EffectiveFrom,
-            //    EffectiveTo = dto.EffectiveTo,
-            //    IsActive = dto.IsActive,
-            //    CreatedAt = DateTime.Now
-            //};
-
-            //await data.CommissionRules.AddAsync(commissionRule);
-
-            //await data.SaveChangesAsync();
+            await data.SaveChangesAsync();
         }
 
 
@@ -53,18 +56,19 @@ namespace InsuranceAgent.Infrastructure.Repositories
         {
 
             var commissionRules = await data.CommissionRules.Select(cr => new CommissionRuleResponseDto
-        {
-            CommissionRuleId = cr.CommissionRuleId,
-            ProductId = cr.ProductId,
-            CommissionPercentage = cr.CommissionPercentage,
-            EffectiveFrom = cr.EffectiveFrom,
-            EffectiveTo = cr.EffectiveTo,
-            IsActive = cr.IsActive,
-            CreatedAt = cr.CreatedAt
-        }).ToListAsync();
+              {
+                CommissionRuleId = cr.CommissionRuleId,
+                ProductId = cr.ProductId,
+                CommissionPercentage = cr.CommissionPercentage,
+                EffectiveFrom = cr.EffectiveFrom,
+                EffectiveTo = cr.EffectiveTo,
+                IsActive = cr.IsActive,
+                CreatedAt = cr.CreatedAt
+              }).ToListAsync();
 
-            return commissionRules;
+                return commissionRules;
         }
+
 
 
 
@@ -72,10 +76,12 @@ namespace InsuranceAgent.Infrastructure.Repositories
         {
             var rule = await data.CommissionRules.FirstOrDefaultAsync(cr => cr.ProductId == productId && cr.IsActive);
 
+
             if (rule == null)
             {
                 throw new Exception("Commission rule not found.");
             }
+
 
             return new CommissionRuleResponseDto
             {
@@ -88,6 +94,7 @@ namespace InsuranceAgent.Infrastructure.Repositories
                 CreatedAt = rule.CreatedAt
             };
         }
+
 
 
 
@@ -108,5 +115,13 @@ namespace InsuranceAgent.Infrastructure.Repositories
             await data.SaveChangesAsync();
 
         }
+
+        public async Task<List<ProductDTO>> GetAllProducts()
+        {
+            var products = await productClient.GetAllProducts();
+            return products;
+        }
+
+
     }
 }

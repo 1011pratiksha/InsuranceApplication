@@ -13,5 +13,6 @@ namespace PolicySevicing.Application.Interface
         Task<List<ServiceRequestResponseDto>> GetAllServiceRequests();
         Task<ServiceRequestResponseDto?> GetServiceRequestById(long id);
         Task UpdateServiceRequest(long id,UpdateServiceRequestDto dto);
+        Task<bool> UpdateServiceRequestStatus( long id, UpdateServiceRequestDto dto);
     }
 }

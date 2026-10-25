@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Dashboard.api/Dashboard.api.csproj" />
+  <Project Path="Dashboard.application/Dashboard.application.csproj" />
+  <Project Path="Dashboard.domain/Dashboard.domain.csproj" />
+  <Project Path="Dashboard.infrastructure/Dashboard.infrastructure.csproj" />
+</Solution>

@@ -1,6 +1,7 @@
 ﻿
 using InsuranceAgent.Application.DTO;
 using InsuranceAgent.Application.Interfaces;
+using InsuranceAgent.Application.Mapper;
 using InsuranceAgent.Domain.Entities;
 using InsuranceAgent.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -11,37 +12,44 @@ namespace InsuranceAgent.Infrastructure.Repositories
     {
         AppDbContext data;
 
-        public AgentService(AppDbContext data)
+        UserClient userClient;
+
+        public AgentService(AppDbContext data, UserClient userClient)
         {
             this.data = data;
+            this.userClient = userClient;
         }
+
 
         public async Task CreateAgent(CreateAgentDto dto)
         {
-            //var user = await data.Users.FindAsync(dto.UserId);
+            var user = await userClient.GetUserById(dto.UserId);
 
-            //if (user == null)
-            //{
-            //    throw new Exception("User not found.");
-            //}
+            if (user == null)
+            {
+                throw new Exception("User not found.");
+            }
 
-            //var agent = new Agent
-            //{
-            //    UserId = dto.UserId,
-            //    AgentCode = "AG00" + (await data.Agents.CountAsync() + 1),
-            //    UserName = user.UserName,
-            //    Email = user.Email,
-            //    MobileNo = user.Mobile,
-            //    JoiningDate = dto.JoiningDate,
-            //    LicenseNumber = dto.LicenseNumber,
-            //    Status = "Pending",
-            //    CreatedAt = DateTime.Now
-            //};
 
-            //data.Agents.Add(agent);
+            var agent = new Agent
+            {
+                UserId = user.UserId,
+                AgentCode = "AG00" + (await data.Agents.CountAsync() + 1),
+                UserName = user.Username,
+                Email = user.Email,
+                MobileNo = user.MobileNumber,
+                JoiningDate = dto.JoiningDate,
+                LicenseNumber = dto.LicenseNumber,
+                Status = "Pending",
+                CreatedAt = DateTime.Now
+            };
 
-            //await data.SaveChangesAsync();
+            await data.Agents.AddAsync(agent);
+
+            await data.SaveChangesAsync();
         }
+
+
 
         public async Task<GetAgentDto?> GetAgentById(int id)
         {
@@ -70,6 +78,7 @@ namespace InsuranceAgent.Infrastructure.Repositories
             return d;
         }
 
+
         public async Task<List<GetAgentDto>> GetAllAgents()
         {
             var agents = await data.Agents.ToListAsync();
@@ -92,6 +101,7 @@ namespace InsuranceAgent.Infrastructure.Repositories
             return list;
         }
 
+
         public async Task UpdateAgent(int id, UpdateAgentDto dto)
         {
             var agent = await data.Agents.FindAsync(id);
@@ -106,6 +116,14 @@ namespace InsuranceAgent.Infrastructure.Repositories
             agent.UpdatedAt = DateTime.Now;
 
             await data.SaveChangesAsync();
+        }
+
+
+        public async Task<List<UserDTO>> GetAllUsers()
+        {
+            var users = await userClient.GetAllUsers();
+
+            return users;
         }
     }
 }

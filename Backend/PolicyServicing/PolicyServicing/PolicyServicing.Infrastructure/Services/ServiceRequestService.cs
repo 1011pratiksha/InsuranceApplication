@@ -5,6 +5,7 @@ using PolicyServicing.Domain.Entities;
 using PolicyServicing.Infrastructure.Data;
 using PolicySevicing.Application.DTO;
 using PolicySevicing.Application.Interface;
+using PolicySevicing.Application.Mapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,12 @@ namespace PolicyServicing.Infrastructure.Services
     {
         AppDbContext db;
         IMapper mapper;
-        public ServiceRequestService(AppDbContext db, IMapper mapper)
+        PolicyIssuanceClient client;
+        public ServiceRequestService(AppDbContext db, IMapper mapper, PolicyIssuanceClient client)
         {
             this.db = db;
             this.mapper = mapper;
+            this.client = client;
             
         }
         public async Task CreateServiceRequest(CreateServiceRequestDto dto)
@@ -33,7 +36,17 @@ namespace PolicyServicing.Infrastructure.Services
             await db.SaveChangesAsync();
 
         }
-
+        public async Task<bool> UpdateServiceRequestStatus(long id, UpdateServiceRequestDto dto)
+        {
+            var req = await db.ServiceRequests.FirstOrDefaultAsync(x => x.request_id == id);
+            if (req == null)
+            {
+                return false;
+            }
+            req.status = dto.Status;
+            await db.SaveChangesAsync();
+            return true;
+        }
         public async Task<List<ServiceRequestResponseDto>> GetAllServiceRequests()
         {
             var reqs = await db.ServiceRequests.ToListAsync();
