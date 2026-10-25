@@ -27,6 +27,16 @@ builder.Services.AddScoped<IClaimRepository, ClaimRepository>();
 builder.Services.AddScoped<IInvestigationRepository, InvestigationRepository>();
 builder.Services.AddScoped<ISurveyRepository, SurveyRepository>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddHttpClient<PolicyClient>(client =>
 {
     client.BaseAddress = new Uri(builder.Configuration["PolicyServiceBaseUrl"] ?? "http://localhost:7134");
@@ -47,6 +57,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("MyApp");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

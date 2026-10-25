@@ -1,0 +1,66 @@
+
+<div class="closure-page">
+  <div class="page-heading">
+    <span class="eyebrow">POLICY SERVICING</span>
+    <h1>Policy Closure</h1>
+    <p>Submit a request to close your insurance policy.</p>
+  </div>
+
+  <div class="closure-card">
+    <div class="card-heading">
+      <div class="icon-box">📄</div>
+      <div>
+        <h2>Closure Request</h2>
+        <p>Enter your policy details below.</p>
+      </div>
+    </div>
+
+    <div class="info-note">
+      Please provide the correct policy ID and a reason for cancellation.
+    </div>
+
+    <form [formGroup]="closureForm" (ngSubmit)="submitClosure()">
+
+      <div class="form-group">
+        <label for="policy_id">Policy ID <span>*</span></label>
+        <input
+          id="policy_id"
+          type="number"
+          formControlName="policy_id"
+          placeholder="Enter your policy ID"
+          min="1"
+        />
+        <small
+          class="validation"
+          *ngIf="closureForm.controls.policy_id.touched && closureForm.controls.policy_id.invalid">
+          Please enter a valid policy ID.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="cancellation_reason">Reason for Closure <span>*</span></label>
+        <textarea id="cancellation_reason" formControlName="cancellation_reason" rows="5" placeholder="Explain why you want to close this policy"></textarea>
+        <small
+          class="validation"
+          *ngIf="closureForm.controls.cancellation_reason.touched && closureForm.controls.cancellation_reason.invalid">
+          Please enter a cancellation reason.
+        </small>
+      </div>
+
+      <button type="submit" [disabled]="closureForm.invalid">
+        Submit Closure Request
+      </button>
+
+    </form>
+
+    <div
+      *ngIf="message"
+      class="response-message"
+      role="status"
+      aria-live="polite">
+      {{ message }}
+    </div>
+
+    <p class="footer-note">Fields marked * are required.</p>
+  </div>
+</div>

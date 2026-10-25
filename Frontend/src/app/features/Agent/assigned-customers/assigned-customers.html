@@ -1,0 +1,199 @@
+
+<div class="customers-page">
+
+  <!-- Page Heading -->
+  <div class="page-heading">
+    <div>
+      <h2>Assigned Customers</h2>
+      <p>Manage customer assignments and transfers.</p>
+    </div>
+  </div>
+
+  <!-- Assign Customer Card -->
+  <section class="content-card">
+    <div class="card-heading">
+      <div class="heading-icon">＋</div>
+      <div>
+        <h3>Assign Customer</h3>
+        <p>Select a customer by name to assign them to your agent account.</p>
+      </div>
+    </div>
+
+    <form class="customer-form">
+      <div class="form-group">
+        <label for="customerId">Customer Name</label>
+
+        <select
+          id="customerId"
+          name="customerId"
+          [(ngModel)]="customerId">
+
+          <option [ngValue]="0">-- Select Customer --</option>
+
+          <option
+            *ngFor="let customer of availableCustomers"
+            [ngValue]="customer.customerId">
+
+            {{ customer.firstName }}
+            {{ customer.middleName || '' }}
+            {{ customer.lastName }}
+            ({{ customer.customerCode || customer.customerId }})
+          </option>
+
+        </select>
+      </div>
+
+<div class="form-group">
+  <label>Assigned By</label>
+  <input
+    type="text"
+    value="Logged-in User"
+    readonly>
+  <small>The logged-in user's ID is obtained automatically by the backend.</small>
+</div>
+
+      <div class="form-action">
+        <button
+          type="button"
+          class="primary-button"
+          (click)="assignCustomer()"
+          [disabled]="!customerId">
+
+          Assign Customer
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Customer List Card -->
+  <section class="content-card">
+    <div class="card-heading list-heading">
+      <div>
+        <h3>Customer List</h3>
+        <p>View customers currently assigned to you.</p>
+      </div>
+
+      <button
+        type="button"
+        class="secondary-button"
+        (click)="loadCustomers()">
+
+        Refresh List
+      </button>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Customer ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Mobile Number</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let customer of customers">
+            <td>{{ customer.customerId }}</td>
+            <td>{{ customer.firstName }}</td>
+            <td>{{ customer.lastName }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.mobileNo }}</td>
+            <td>
+              <span class="status-badge">{{ customer.status }}</span>
+            </td>
+          </tr>
+
+          <tr *ngIf="customers.length === 0">
+            <td colspan="6" class="empty-message">
+              No assigned customers to display.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Transfer Customer Card -->
+  <section class="content-card">
+    <div class="card-heading">
+      <div class="heading-icon transfer-icon">⇄</div>
+      <div>
+        <h3>Transfer Customer</h3>
+        <p>Select an assigned customer and the agent who will receive them.</p>
+      </div>
+    </div>
+
+    <div class="customer-form">
+
+      <div class="form-group">
+        <label for="transferCustomerId">Customer Name</label>
+
+        <select
+          id="transferCustomerId"
+          name="transferCustomerId"
+          [(ngModel)]="transferCustomerId">
+
+          <option [ngValue]="0">-- Select Customer --</option>
+
+          <option
+            *ngFor="let customer of customers"
+            [ngValue]="customer.customerId">
+
+            {{ customer.firstName }} {{ customer.lastName }}
+            ({{ customer.customerId }})
+          </option>
+
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="newAgentId">New Agent Name</label>
+
+        <select
+          id="newAgentId"
+          name="newAgentId"
+          [(ngModel)]="newAgentId">
+
+          <option [ngValue]="0">-- Select Agent --</option>
+
+          <option
+            *ngFor="let agent of agents"
+            [ngValue]="agent.agentId">
+
+            {{ agent.firstName }} {{ agent.lastName }}
+            ({{ agent.agentCode || agent.agentId }})
+          </option>
+
+        </select>
+      </div>
+
+
+<div class="form-group">
+  <label>Assigned By</label>
+  <input
+    type="text"
+    value="Logged-in User"
+    readonly>
+  <small>The logged-in user's ID is obtained automatically by the backend.</small>
+</div>
+
+
+      <div class="form-action">
+        <button
+          type="button"
+          class="primary-button"
+          (click)="transferCustomer()"
+          [disabled]="!transferCustomerId || !newAgentId">
+
+          Transfer Customer
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+</div>

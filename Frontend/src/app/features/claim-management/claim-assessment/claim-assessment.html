@@ -1,0 +1,141 @@
+<div class="assessment-container">
+  <div class="page-header">
+    <div>
+      <h2>Loss Assessment (ClaimAssessmentController)</h2>
+      <p>Calculate net payable using the formula: <strong>NetPayable = AssessedAmount - Deductible - Depreciation - NonPayable</strong></p>
+    </div>
+    <a [routerLink]="getRoleLink('claims/list')" class="btn btn-secondary">← Back to Claims</a>
+  </div>
+
+  <div *ngIf="successMessage" class="success-banner">
+    <span>✅ {{ successMessage }}</span>
+  </div>
+  <div *ngIf="errorMessage" class="error-banner">
+    <span>⚠️ {{ errorMessage }}</span>
+  </div>
+
+  <!-- Claim Selector -->
+  <div class="card selector-card">
+    <label class="selector-label">Select Claim ID:</label>
+    <select class="form-select claim-dropdown" [(ngModel)]="selectedClaimId" (change)="onClaimSelect()">
+      <option *ngFor="let c of claims" [value]="c.claimId">
+        Claim ID: {{ c.claimId }} — {{ c.claimNumber }} (Type: {{ c.claimType }}, Status: {{ c.claimStatus }}, Est. Loss: ${{ c.estimatedLoss | number:'1.2-2' }})
+      </option>
+    </select>
+  </div>
+
+  <!-- Existing Assessment View -->
+  <div *ngIf="assessment && !isLoading" class="card assessment-result-card">
+    <div class="card-header">
+      <h4 class="card-title">Existing Assessment (GET /api/claims/&#123;id&#125;/assessment)</h4>
+      <span class="badge badge-success">Assessment ID #{{ assessment.assessmentId }}</span>
+    </div>
+    <div class="assessment-breakdown">
+      <div class="breakdown-row">
+        <span>Claim ID</span>
+        <strong>{{ assessment.claimId }}</strong>
+      </div>
+      <div class="breakdown-row">
+        <span>Assessed Amount</span>
+        <strong>${{ assessment.assessedAmount | number:'1.2-2' }}</strong>
+      </div>
+      <div class="breakdown-row deduct">
+        <span>- Deductible</span>
+        <strong>-${{ assessment.deductible | number:'1.2-2' }}</strong>
+      </div>
+      <div class="breakdown-row deduct">
+        <span>- Depreciation</span>
+        <strong>-${{ assessment.depreciation | number:'1.2-2' }}</strong>
+      </div>
+      <div class="breakdown-row deduct">
+        <span>- Non Payable</span>
+        <strong>-${{ assessment.nonPayable | number:'1.2-2' }}</strong>
+      </div>
+      <div class="breakdown-row net">
+        <span>= Net Payable</span>
+        <strong class="net-value">${{ assessment.netPayable | number:'1.2-2' }}</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Assessment Form: STRICTLY CreateAssessmentDto FIELDS -->
+  <div class="card form-card">
+    <h4 class="card-title">
+      {{ assessment ? 'Update Assessment' : 'Create Assessment' }}
+      <small class="text-muted font-normal">(POST /api/claims/&#123;id&#125;/assessment)</small>
+    </h4>
+    <p class="text-muted"><small>DTO: <code>CreateAssessmentDto</code> — All amounts in decimal (Min: 0.01 for AssessedAmount, 0 for others)</small></p>
+
+    <div class="form-row">
+      <div class="form-group col-6">
+        <label>Assessed Amount * <small class="text-muted">(Range: 0.01 to Max)</small></label>
+        <input
+          type="number"
+          step="0.01"
+          min="0.01"
+          class="form-control"
+          [(ngModel)]="formData.assessedAmount"
+          (ngModelChange)="onAmountChange()"
+          placeholder="e.g. 50000.00"
+        />
+      </div>
+      <div class="form-group col-6">
+        <label>Deductible <small class="text-muted">(Range: 0 to Max)</small></label>
+        <input
+          type="number"
+          step="0.01"
+          min="0"
+          class="form-control"
+          [(ngModel)]="formData.deductible"
+          (ngModelChange)="onAmountChange()"
+          placeholder="e.g. 5000.00"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-6">
+        <label>Depreciation <small class="text-muted">(Range: 0 to Max)</small></label>
+        <input
+          type="number"
+          step="0.01"
+          min="0"
+          class="form-control"
+          [(ngModel)]="formData.depreciation"
+          (ngModelChange)="onAmountChange()"
+          placeholder="e.g. 2000.00"
+        />
+      </div>
+      <div class="form-group col-6">
+        <label>Non Payable <small class="text-muted">(Range: 0 to Max)</small></label>
+        <input
+          type="number"
+          step="0.01"
+          min="0"
+          class="form-control"
+          [(ngModel)]="formData.nonPayable"
+          (ngModelChange)="onAmountChange()"
+          placeholder="e.g. 1000.00"
+        />
+      </div>
+    </div>
+
+    <!-- Auto-Calculated Net Payable (Formula from PDF) -->
+    <div class="net-payable-display">
+      <div class="formula-label">
+        <span>Net Payable (Auto-Calculated):</span>
+        <small class="text-muted">= AssessedAmount − Deductible − Depreciation − NonPayable</small>
+      </div>
+      <div class="net-amount" [class.positive]="computedNetPayable > 0" [class.zero]="computedNetPayable <= 0">
+        ${{ computedNetPayable | number:'1.2-2' }}
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-primary" (click)="submitAssessment()" [disabled]="isSubmitting || computedNetPayable <= 0">
+        <span *ngIf="!isSubmitting">Submit Assessment via API</span>
+        <span *ngIf="isSubmitting">Saving...</span>
+      </button>
+    </div>
+  </div>
+</div>

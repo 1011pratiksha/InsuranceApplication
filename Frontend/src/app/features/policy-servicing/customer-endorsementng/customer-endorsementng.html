@@ -1,30 +1,54 @@
 
-<div class="endorsement-card">
-  <h2>Policy Endorsement</h2>
+<h2>Policy Endorsement</h2>
 
-  <p *ngIf="message">{{ message }}</p>
+<form [formGroup]="form">
 
-  <form [formGroup]="endorsementForm" (ngSubmit)="submitEndorsement()">
+  <label for="request_id">Select Service Request</label>
 
-    <label>Service Request ID</label>
-    <input type="number" formControlName="request_id">
+  <select
+    id="request_id"
+    formControlName="request_id"
+    (change)="searchRequest()">
 
-    <label>Endorsement Type</label>
-    <select formControlName="endorsement_type">
-      <option value="">Select Type</option>
-      <option value="Address">Address Change</option>
-      <option value="Nominee">Nominee Change</option>
-      <option value="Contact">Contact Details Change</option>
-      <option value="Other">Other</option>
-    </select>
+    <option value="">Select your request</option>
 
-    <label>Previous Value</label>
-    <textarea formControlName="previous_value"></textarea>
+    <option *ngFor="let req of requests" [value]="req.request_id">
+      {{ req.request_number }} - {{ req.request_type }}
+    </option>
 
-    <label>Updated Value</label>
-    <textarea formControlName="updated_value"></textarea>
+  </select>
 
-    <button type="submit">Submit Endorsement</button>
+</form>
+
+<div *ngIf="request">
+
+  <p><b>Request ID:</b> {{ request.request_id }}</p>
+  <p><b>Request Number:</b> {{ request.request_number }}</p>
+  <p><b>Request Type:</b> {{ request.request_type }}</p>
+  <p><b>Status:</b> {{ request.status }}</p>
+
+  <p>
+    <b>Request Details:</b>
+    {{ request.details || 'No details available' }}
+  </p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <label for="updated_value">Updated Value</label>
+
+    <textarea
+      id="updated_value"
+      formControlName="updated_value"
+      rows="3"
+      placeholder="Enter the updated value">
+    </textarea>
+
+    <button type="submit" [disabled]="form.controls.updated_value.invalid">
+      Submit Endorsement
+    </button>
 
   </form>
+
 </div>
+
+<p>{{ message }}</p>

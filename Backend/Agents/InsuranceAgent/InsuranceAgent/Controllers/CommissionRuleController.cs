@@ -83,5 +83,20 @@ namespace InsuranceAgent.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+        [HttpGet("products")]
+        public async Task<IActionResult> GetAllProducts()
+        {
+            try
+            {
+                var products = await service.GetAllProducts();
+                return Ok(products);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
