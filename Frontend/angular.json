@@ -62,13 +62,11 @@
           },
           "defaultConfiguration": "production"
         },
-        "serve": {
+
+"serve": {
   "builder": "@angular/build:dev-server",
   "options": {
-    "proxyConfig": "proxy.conf.json",
-    "ssl": true,
-    "sslCert": ".certs/localhost.pem",
-    "sslKey": ".certs/localhost.key"
+    "proxyConfig": "proxy.conf.json"
   },
   "configurations": {
     "production": {
@@ -79,7 +77,8 @@
     }
   },
   "defaultConfiguration": "development"
-},
+}
+
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
         },
