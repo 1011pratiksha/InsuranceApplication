@@ -30,7 +30,7 @@ export const routes: Routes = [
  {
   path: 'admin/closure',
   component: Policyclosure
-}
+},
     
   { path: '', component: CustomerRegistrationComponent },
   { path: 'customer-registration', component: CustomerRegistrationComponent },
