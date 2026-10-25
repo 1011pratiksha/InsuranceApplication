@@ -1,1 +1,37 @@
-<app-my-policies></app-my-policies>
+<div class="placeholder-container">
+  <div class="placeholder-card">
+    <div class="placeholder-icon-wrapper">
+      <span class="material-symbols-rounded placeholder-icon">{{ icon }}</span>
+      <div class="icon-glow"></div>
+    </div>
+
+    <div class="placeholder-badge" *ngIf="category">
+      <span class="badge-dot"></span>
+      {{ category }}
+    </div>
+
+    <h1 class="placeholder-title">{{ title }}</h1>
+    <p class="placeholder-description">{{ description }}</p>
+
+    <div class="placeholder-status">
+      <div class="status-bar">
+        <div class="status-progress"></div>
+      </div>
+      <span class="status-text">
+        <span class="material-symbols-rounded status-icon">engineering</span>
+        Module Under Development
+      </span>
+    </div>
+
+    <div class="placeholder-info">
+      <div class="info-item">
+        <span class="material-symbols-rounded">code</span>
+        <span>Your teammate is building this module</span>
+      </div>
+      <div class="info-item">
+        <span class="material-symbols-rounded">integration_instructions</span>
+        <span>Will be integrated into the sidebar when ready</span>
+      </div>
+    </div>
+  </div>
+</div>
