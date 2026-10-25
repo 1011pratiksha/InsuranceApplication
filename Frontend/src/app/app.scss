@@ -1,0 +1,251 @@
+/* App Layout */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #1e293b;
+}
+
+/* Top Navigation Bar */
+.topbar {
+  background: #0b1a30;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  .topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    .brand-square {
+      font-size: 1.1rem;
+      color: #38bdf8;
+    }
+
+    .brand-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+    }
+  }
+
+  .topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  /* Role Switcher */
+  .role-toggle-group {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    .toggle-label {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-right: 0.2rem;
+    }
+
+    .role-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e2e8f0;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      &.active {
+        background: #ffffff;
+        color: #0b1a30;
+        font-weight: 700;
+      }
+    }
+  }
+
+  /* User Menu: Hello, Role + Dropdown */
+  .user-menu-container {
+    position: relative;
+
+    .user-dropdown-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.25rem 0.65rem 0.25rem 0.35rem;
+      border-radius: 9999px;
+      color: #ffffff;
+      cursor: pointer;
+      transition: all 0.15s ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .user-avatar {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #ffffff;
+
+        &.customer { background: #0d9488; }
+        &.agent { background: #d97706; }
+        &.admin { background: #4f46e5; }
+      }
+
+      .user-greeting {
+        font-size: 0.8rem;
+        color: #f1f5f9;
+
+        strong {
+          color: #ffffff;
+        }
+      }
+
+      .dropdown-chevron {
+        color: #94a3b8;
+        transition: transform 0.2s ease;
+
+        &.open {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    /* Dropdown Floating Card */
+    .user-dropdown-card {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      width: 190px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      padding: 0.5rem 0;
+      z-index: 1000;
+      animation: fadeIn 0.15s ease-out;
+
+      .dropdown-user-info {
+        padding: 0.5rem 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+
+        .info-label {
+          font-size: 0.68rem;
+          color: #64748b;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+        }
+
+        .info-role {
+          font-size: 0.82rem;
+          font-weight: 700;
+
+          &.customer { color: #0d9488; }
+          &.agent { color: #d97706; }
+          &.admin { color: #4f46e5; }
+        }
+      }
+
+      .dropdown-divider {
+        height: 1px;
+        background: #f1f5f9;
+        margin: 0.35rem 0;
+      }
+
+      .dropdown-link {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        padding: 0.55rem 1rem;
+        background: transparent;
+        border: none;
+        color: #334155;
+        font-size: 0.82rem;
+        font-weight: 500;
+        cursor: pointer;
+        text-align: left;
+        transition: background 0.15s ease, color 0.15s ease;
+
+        svg {
+          color: #64748b;
+        }
+
+        &:hover {
+          background: #f8fafc;
+          color: #0f172a;
+
+          svg {
+            color: #0f172a;
+          }
+        }
+
+        &.logout-link {
+          color: #e11d48;
+
+          svg {
+            color: #e11d48;
+          }
+
+          &:hover {
+            background: #fff1f2;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sidebar & Main Wrapper */
+.content-wrapper {
+  display: flex;
+  flex: 1;
+  min-height: calc(100vh - 52px);
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  overflow-y: auto;
+  background-color: #f8fafc;
+  min-width: 0;
+}

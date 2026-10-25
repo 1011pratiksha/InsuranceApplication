@@ -1,0 +1,165 @@
+<div *ngIf="isLoading" class="loading-state">
+  <div class="spinner"></div>
+  <p>Loading claim data from backend...</p>
+</div>
+
+<div *ngIf="errorMessage && !isLoading" class="error-banner">
+  <span>⚠️ {{ errorMessage }}</span>
+  <a [routerLink]="getRoleLink('claims/list')" class="btn btn-secondary btn-sm ml-3">← Back to Claims</a>
+</div>
+
+<div *ngIf="claim && !isLoading" class="claim-details-container">
+  <!-- Header -->
+  <div class="details-header">
+    <div class="claim-title-block">
+      <div class="badge-row">
+        <span class="claim-code">{{ claim.claimNumber }}</span>
+        <span class="badge" [ngClass]="getStatusBadgeClass(claim.claimStatus)">{{ claim.claimStatus }}</span>
+        <span class="badge badge-neutral">{{ claim.claimType }}</span>
+      </div>
+      <h2>Claim ID #{{ claim.claimId }} — Full Claim File</h2>
+    </div>
+    <div class="workflow-actions">
+      <a [routerLink]="getRoleLink('claims/documents')" [queryParams]="{claimId: claim.claimId}" class="btn btn-secondary">📁 Documents</a>
+      <a [routerLink]="getRoleLink('claims/list')" class="btn btn-secondary">← Back</a>
+      <button *ngIf="claim.claimStatus === 'Registered'" class="btn btn-danger" (click)="deleteClaim()">
+        🗑️ Delete
+      </button>
+    </div>
+  </div>
+
+  <div class="details-grid">
+    <!-- Core Claim Data: ClaimResponseDto -->
+    <div class="card section-card">
+      <h4 class="card-title">Claim Data (ClaimResponseDto)</h4>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Claim ID</span>
+          <span class="info-val font-mono font-bold">{{ claim.claimId }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Claim Number</span>
+          <span class="info-val font-mono">{{ claim.claimNumber }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Policy ID</span>
+          <span class="info-val">{{ claim.policyId }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Customer ID</span>
+          <span class="info-val">{{ claim.customerId }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Claim Type</span>
+          <span class="info-val">{{ claim.claimType }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Incident Date</span>
+          <span class="info-val">{{ claim.incidentDate | date:'mediumDate' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Claim Date</span>
+          <span class="info-val">{{ claim.claimDate | date:'medium' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Estimated Loss</span>
+          <span class="info-val large-amount">${{ claim.estimatedLoss | number:'1.2-2' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Claim Status</span>
+          <span class="badge" [ngClass]="getStatusBadgeClass(claim.claimStatus)">{{ claim.claimStatus }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documents: ClaimDocumentResponseDto -->
+    <div class="card section-card">
+      <div class="card-header-flex">
+        <h4 class="card-title">Documents ({{ documents.length }})</h4>
+        <a [routerLink]="getRoleLink('claims/documents')" [queryParams]="{claimId: claim.claimId}" class="btn btn-secondary btn-sm">+ Upload</a>
+      </div>
+      <table class="mini-table" *ngIf="documents.length > 0">
+        <thead>
+          <tr>
+            <th>Doc ID</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Uploaded</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let doc of documents">
+            <td>{{ doc.documentId }}</td>
+            <td>{{ doc.documentName }}</td>
+            <td>
+              <span class="badge" [ngClass]="doc.verificationStatus === 'Verified' ? 'badge-success' : 'badge-warning'">
+                {{ doc.verificationStatus }}
+              </span>
+            </td>
+            <td>{{ doc.uploadedDate | date:'shortDate' }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p *ngIf="documents.length === 0" class="text-muted">No documents uploaded yet.</p>
+    </div>
+
+    <!-- Surveys: SurveyResponseDto -->
+    <div class="card section-card">
+      <div class="card-header-flex">
+        <h4 class="card-title">Surveys ({{ surveys.length }})</h4>
+        <a *ngIf="claimService.currentRole === 'Admin'" [routerLink]="getRoleLink('claims/survey')" [queryParams]="{claimId: claim.claimId}" class="btn btn-secondary btn-sm">Manage</a>
+      </div>
+      <table class="mini-table" *ngIf="surveys.length > 0">
+        <thead>
+          <tr>
+            <th>Survey ID</th>
+            <th>Surveyor ID</th>
+            <th>Status</th>
+            <th>Inspection Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of surveys">
+            <td>{{ s.surveyId }}</td>
+            <td>{{ s.surveyorId }}</td>
+            <td>
+              <span class="badge" [ngClass]="s.surveyStatus === 'Completed' ? 'badge-success' : 'badge-warning'">
+                {{ s.surveyStatus }}
+              </span>
+            </td>
+            <td>{{ s.inspectionDate ? (s.inspectionDate | date:'shortDate') : '—' }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p *ngIf="surveys.length === 0" class="text-muted">No surveys assigned yet.</p>
+    </div>
+
+    <!-- Assessment: AssessmentResponseDto -->
+    <div class="card section-card">
+      <h4 class="card-title">Assessment</h4>
+      <div *ngIf="assessment" class="assessment-summary">
+        <div class="summary-row"><span>Assessment ID:</span> <strong>{{ assessment.assessmentId }}</strong></div>
+        <div class="summary-row"><span>Assessed Amount:</span> <strong>${{ assessment.assessedAmount | number:'1.2-2' }}</strong></div>
+        <div class="summary-row"><span>Deductible:</span> <strong>-${{ assessment.deductible | number:'1.2-2' }}</strong></div>
+        <div class="summary-row"><span>Depreciation:</span> <strong>-${{ assessment.depreciation | number:'1.2-2' }}</strong></div>
+        <div class="summary-row"><span>Non Payable:</span> <strong>-${{ assessment.nonPayable | number:'1.2-2' }}</strong></div>
+        <div class="summary-row net"><span>Net Payable:</span> <strong class="net-amount">${{ assessment.netPayable | number:'1.2-2' }}</strong></div>
+      </div>
+      <p *ngIf="!assessment" class="text-muted">No assessment recorded yet.</p>
+    </div>
+
+    <!-- Settlement: SettlementResponseDTO -->
+    <div class="card section-card">
+      <h4 class="card-title">Settlement</h4>
+      <div *ngIf="settlement" class="settlement-summary">
+        <div class="summary-row"><span>Settlement ID:</span> <strong>{{ settlement.settlementId }}</strong></div>
+        <div class="summary-row"><span>Approved Amount:</span> <strong>${{ settlement.approvedAmount | number:'1.2-2' }}</strong></div>
+        <div class="summary-row"><span>Payment Mode:</span> <strong>{{ settlement.paymentMode }}</strong></div>
+        <div class="summary-row"><span>Transaction Ref:</span> <strong class="font-mono">{{ settlement.transactionReference }}</strong></div>
+        <div class="summary-row"><span>Settlement Date:</span> <strong>{{ settlement.settlementDate | date:'medium' }}</strong></div>
+        <div class="summary-row"><span>Status:</span> <span class="badge badge-success">{{ settlement.settlementStatus }}</span></div>
+      </div>
+      <p *ngIf="!settlement" class="text-muted">No settlement recorded yet.</p>
+    </div>
+  </div>
+</div>

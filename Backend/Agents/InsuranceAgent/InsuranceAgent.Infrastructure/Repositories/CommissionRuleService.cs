@@ -115,5 +115,13 @@ namespace InsuranceAgent.Infrastructure.Repositories
             await data.SaveChangesAsync();
 
         }
+
+        public async Task<List<ProductDTO>> GetAllProducts()
+        {
+            var products = await productClient.GetAllProducts();
+            return products;
+        }
+
+
     }
 }

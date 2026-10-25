@@ -1,0 +1,187 @@
+<div class="container-fluid py-4">
+  <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+    <div>
+      <h2 class="fw-bold mb-1">Agent Support Dashboard</h2>
+      <p class="text-secondary mb-0">Manage ticket status and priority.</p>
+    </div>
+
+    <button class="btn btn-outline-primary" (click)="loadTickets()" [disabled]="loading">
+      Refresh Tickets
+    </button>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-sm-6 col-xl-3">
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <p class="text-secondary mb-1">Total Tickets</p>
+          <h3 class="fw-bold">{{ tickets.length }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-3">
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <p class="text-secondary mb-1">Open</p>
+          <h3 class="fw-bold text-warning">{{ openCount }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-3">
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <p class="text-secondary mb-1">In Progress</p>
+          <h3 class="fw-bold text-primary">{{ inProgressCount }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-3">
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <p class="text-secondary mb-1">Resolved / Closed</p>
+          <h3 class="fw-bold text-success">{{ resolvedCount }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card border-0 shadow-sm">
+    <div class="card-header bg-white py-3">
+      <h5 class="fw-bold mb-0">Support Tickets</h5>
+    </div>
+
+    <div class="card-body">
+      <div class="row g-3 mb-4">
+        <div class="col-12 col-md-6">
+          <label for="ticketSearch" class="form-label">Search</label>
+          <input
+            id="ticketSearch"
+            type="text"
+            class="form-control"
+            placeholder="Search ticket ID, subject or customer"
+            [(ngModel)]="searchText"
+            (ngModelChange)="applyFilters()"
+          />
+        </div>
+
+        <div class="col-12 col-md-3">
+          <label for="statusFilter" class="form-label">Status</label>
+          <select
+            id="statusFilter"
+            class="form-select"
+            [(ngModel)]="statusFilter"
+            (ngModelChange)="applyFilters()"
+          >
+            <option value="">All Statuses</option>
+            <option *ngFor="let status of statuses" [value]="status">
+              {{ status }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-12 col-md-3">
+          <label for="priorityFilter" class="form-label">Priority</label>
+          <select
+            id="priorityFilter"
+            class="form-select"
+            [(ngModel)]="priorityFilter"
+            (ngModelChange)="applyFilters()"
+          >
+            <option value="">All Priorities</option>
+            <option *ngFor="let priority of priorities" [value]="priority">
+              {{ priority }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div *ngIf="loading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status"></div>
+        <p class="text-secondary mt-2">Loading tickets...</p>
+      </div>
+
+      <div *ngIf="!loading" class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Customer</th>
+              <th>Subject</th>
+              <th>Current Status</th>
+              <th>New Status</th>
+              <th>New Priority</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let ticket of filteredTickets">
+              <td>#{{ ticket.ticketId ?? ticket.id ?? ticket.supportId }}</td>
+              <td>{{ ticket.customerId }}</td>
+
+              <td class="ticket-description">
+                <div class="fw-semibold">{{ ticket.subject }}</div>
+                <small class="text-secondary">{{ ticket.description }}</small>
+              </td>
+
+              <td>
+                <span class="badge" [ngClass]="getStatusClass(ticket.status)">
+                  {{ ticket.status }}
+                </span>
+                <br />
+                <span class="badge mt-2" [ngClass]="getPriorityClass(ticket.priority)">
+                  {{ ticket.priority }}
+                </span>
+              </td>
+
+              <td>
+                <select class="form-select form-select-sm" [(ngModel)]="ticket.status">
+                  <option *ngFor="let status of statuses" [value]="status">
+                    {{ status }}
+                  </option>
+                </select>
+              </td>
+
+              <td>
+                <select class="form-select form-select-sm" [(ngModel)]="ticket.priority">
+                  <option *ngFor="let priority of priorities" [value]="priority">
+                    {{ priority }}
+                  </option>
+                </select>
+              </td>
+
+              <td>
+                <button
+                  class="btn btn-primary btn-sm text-nowrap"
+                  (click)="saveChanges(ticket)"
+                  [disabled]="savingId === (ticket.ticketId ?? ticket.id ?? ticket.supportId)"
+                >
+                  {{
+                    savingId === (ticket.ticketId ?? ticket.id ?? ticket.supportId)
+                      ? 'Saving...'
+                      : 'Save Changes'
+                  }}
+                </button>
+              </td>
+            </tr>
+
+            <tr *ngIf="filteredTickets.length === 0">
+              <td colspan="7" class="text-center py-4 text-secondary">No tickets found.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

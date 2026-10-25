@@ -1,5 +1,6 @@
 using ClaimManagement.Application.DTO;
 using ClaimManagement.Application.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClaimManagement.API.Controllers
@@ -17,6 +18,7 @@ namespace ClaimManagement.API.Controllers
             this.eligibilityRepository = eligibilityRepository;
         }
 
+        [Authorize(Roles = "Customer")]
         [HttpPost]
         public async Task<IActionResult> CreateClaim(CreateClaimDto dto)
         {
@@ -27,7 +29,8 @@ namespace ClaimManagement.API.Controllers
             var claim = await repository.AddClaimAsync(dto);
             return Ok(claim);
         }
-
+        
+        [Authorize(Roles = "Customer,Admin")]
         [HttpGet]
         public async Task<IActionResult> GetAllClaims()
         {
@@ -35,6 +38,7 @@ namespace ClaimManagement.API.Controllers
             return Ok(claims);
         }
 
+        [Authorize(Roles = "Customer,Admin")]
         [HttpGet("{claimId:long}")]
         public async Task<IActionResult> GetClaimById(long claimId)
         {
@@ -44,7 +48,7 @@ namespace ClaimManagement.API.Controllers
 
             return Ok(claim);
         }
-
+        [Authorize(Roles = "Customer")]
         [HttpPut("{claimId:long}")]
         public async Task<IActionResult> UpdateClaim(long claimId, UpdateClaimDto dto)
         {
@@ -60,6 +64,7 @@ namespace ClaimManagement.API.Controllers
             return Ok(updatedClaim);
         }
 
+        [Authorize(Roles = "Customer")]
         [HttpDelete("{claimId:long}")]
         public async Task<IActionResult> DeleteClaim(long claimId)
         {

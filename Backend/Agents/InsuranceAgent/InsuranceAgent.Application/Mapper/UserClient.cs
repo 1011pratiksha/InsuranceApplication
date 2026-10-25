@@ -15,8 +15,12 @@ namespace InsuranceAgent.Application.Mapper
 
         public async Task<UserDTO?> GetUserById(int id)
         {
-            return await client.GetFromJsonAsync<UserDTO>(
-                $"api/v1/users/{id}");
+            return await client.GetFromJsonAsync<UserDTO>($"api/v1/users/{id}");
+        }
+
+        public async Task<List<UserDTO>> GetAllUsers()
+        {
+            return await client.GetFromJsonAsync<List<UserDTO>>("api/v1/users") ?? new List<UserDTO>();
         }
     }
 }

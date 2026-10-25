@@ -1,0 +1,17 @@
+<div class="success-page">
+  <h3>Insurance Application</h3>
+
+  <div class="success-box">
+    <h2>Login successfully</h2>
+
+    <button type="button" (click)="Logout()" [disabled]="loading">
+      {{loading ? 'Logging out...' : 'Logout'}}
+    </button>
+
+    <a routerLink="/two-factor">First time? Set up authenticator</a>
+
+    <p class="error" role="alert" *ngIf="message">{{message}}</p>
+
+    <a routerLink="/login" *ngIf="message">Back to login</a>
+  </div>
+</div>

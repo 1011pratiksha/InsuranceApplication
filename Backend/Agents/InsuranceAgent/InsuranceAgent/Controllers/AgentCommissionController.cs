@@ -41,8 +41,7 @@ namespace InsuranceAgent.Controllers
         {
             try
             {
-                var commissions = await service.GetAllCommissions(
-                    status, agentId, fromDate, toDate);
+                var commissions = await service.GetAllCommissions(status, agentId, fromDate, toDate);
 
                 return Ok(commissions);
             }
@@ -87,6 +86,24 @@ namespace InsuranceAgent.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        
+     
+        [HttpGet("policies")]
+        public async Task<IActionResult> GetAllPolicies()
+                {
+                    try
+                    {
+                        var policies = await service.GetAllPolicies();
+                        return Ok(policies);
+                    }
+                    catch (Exception ex)
+                    {
+                        return BadRequest(ex.Message);
+                    }
+                }
+
+
 
 
     }

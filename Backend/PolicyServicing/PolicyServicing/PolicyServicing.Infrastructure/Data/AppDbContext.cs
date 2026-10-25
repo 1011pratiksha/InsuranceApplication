@@ -42,20 +42,20 @@ namespace PolicyServicing.Infrastructure.Data
             //    .OnDelete(DeleteBehavior.Restrict);
 
 
-            modelBuilder.Entity<PolicyEndorsement>()
-                .HasIndex(x => x.endorsement_number)
-                .IsUnique();
+            //modelBuilder.Entity<PolicyEndorsement>()
+            //    .HasIndex(x => x.endorsement_number)
+            //    .IsUnique();
 
             modelBuilder.Entity<PolicyEndorsement>()
                 .ToTable(t => t.HasCheckConstraint(
                     "CK_PolicyEndorsement_ApprovalStatus",
                     "[approval_status] IN ('Pending', 'Approved', 'Rejected')"));
 
-            modelBuilder.Entity<PolicyEndorsement>()
-                .HasOne(x => x.ServiceRequest)
-                .WithMany(x => x.Endorsements)
-                .HasForeignKey(x => x.request_id)
-                .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<PolicyEndorsement>()
+            //    .HasOne(x => x.ServiceRequest)
+            //    .WithMany(x => x.Endorsements)
+            //    .HasForeignKey(x => x.request_id)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<NomineeDetails>()
                 .ToTable(t => t.HasCheckConstraint(

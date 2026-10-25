@@ -1,0 +1,135 @@
+<div class="investigation-container">
+  <div class="page-header">
+    <div>
+      <h2>Investigation Management (InvestigationsController)</h2>
+      <p>Assign investigators and submit investigation reports via the backend APIs</p>
+    </div>
+    <a [routerLink]="getRoleLink('claims/list')" class="btn btn-secondary">← Back to Claims</a>
+  </div>
+
+  <div *ngIf="successMessage" class="success-banner">
+    <span>✅ {{ successMessage }}</span>
+  </div>
+  <div *ngIf="errorMessage" class="error-banner">
+    <span>⚠️ {{ errorMessage }}</span>
+  </div>
+
+  <!-- Claim Selector -->
+  <div class="card selector-card">
+    <label class="selector-label">Select Claim ID:</label>
+    <select class="form-select claim-dropdown" [(ngModel)]="selectedClaimId" (change)="onClaimSelect()">
+      <option *ngFor="let c of claims" [value]="c.claimId">
+        Claim ID: {{ c.claimId }} — {{ c.claimNumber }} (Type: {{ c.claimType }}, Status: {{ c.claimStatus }})
+      </option>
+    </select>
+  </div>
+
+  <div class="survey-grid">
+
+    <!-- LEFT: Assign Investigator (POST /api/claims/{id}/investigation) -->
+    <div class="card form-card">
+      <h4 class="card-title">1. Assign Investigator</h4>
+      <p class="text-muted"><small>Endpoint: <code>POST /api/claims/&#123;claimId&#125;/investigation</code><br>DTO: <code>CreateInvestigationDto</code></small></p>
+
+      <div class="form-group mb-3">
+        <label>Investigator ID <small class="text-muted">(Optional, int?)</small></label>
+        <input
+          type="number"
+          min="1"
+          class="form-control"
+          [(ngModel)]="assignForm.investigatorId"
+          placeholder="e.g. 201 (leave blank if none)"
+        />
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Investigation Reason * <small class="text-muted">(Required, MaxLength: 500)</small></label>
+        <textarea
+          class="form-control"
+          rows="3"
+          maxlength="500"
+          [(ngModel)]="assignForm.investigationReason"
+          placeholder="e.g. Suspicious claim pattern detected — multiple claims within 6 months."
+        ></textarea>
+      </div>
+
+      <button class="btn btn-primary btn-block" (click)="assignInvestigator()" [disabled]="isSaving">
+        <span *ngIf="!isSaving">Assign Investigator via API</span>
+        <span *ngIf="isSaving">Assigning...</span>
+      </button>
+    </div>
+
+    <!-- RIGHT: Submit Investigation Report (PUT /api/investigations/{id}) -->
+    <div class="card form-card">
+      <h4 class="card-title">2. Submit Investigation Report</h4>
+      <p class="text-muted"><small>Endpoint: <code>PUT /api/investigations/&#123;id&#125;</code><br>DTO: <code>InvestigationReportDto</code></small></p>
+
+      <div class="form-group mb-3">
+        <label>Investigation ID * <small class="text-muted">(Select from assigned investigations)</small></label>
+        <select class="form-select" [(ngModel)]="selectedInvestigationId">
+          <option *ngFor="let inv of investigations" [value]="inv.investigationId">
+            Investigation #{{ inv.investigationId }} (Status: {{ inv.investigationStatus }})
+          </option>
+          <option *ngIf="investigations.length === 0" value="0" disabled>No investigations available — assign first</option>
+        </select>
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Report Path * <small class="text-muted">(Required, MaxLength: 500)</small></label>
+        <input
+          type="text"
+          class="form-control"
+          maxlength="500"
+          [(ngModel)]="reportForm.reportPath"
+          placeholder="e.g. /reports/investigation_201.pdf"
+        />
+      </div>
+
+      <button class="btn btn-primary btn-block" (click)="submitReport()" [disabled]="isSubmittingReport || investigations.length === 0">
+        <span *ngIf="!isSubmittingReport">Submit Report via API</span>
+        <span *ngIf="isSubmittingReport">Submitting...</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Investigations Table: InvestigationResponseDto Columns -->
+  <div class="card table-card mt-4" *ngIf="investigations.length > 0">
+    <div class="card-header">
+      <h4 class="card-title">Investigations for Claim ID #{{ selectedClaimId }}</h4>
+    </div>
+    <div class="table-responsive">
+      <table class="claims-table">
+        <thead>
+          <tr>
+            <th>Investigation ID</th>
+            <th>Claim ID</th>
+            <th>Investigator ID</th>
+            <th>Investigation Reason</th>
+            <th>Status</th>
+            <th>Created Date</th>
+            <th>Assigned Date</th>
+            <th>Completed Date</th>
+            <th>Report Path</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let inv of investigations">
+            <td class="font-mono font-bold">{{ inv.investigationId }}</td>
+            <td>{{ inv.claimId }}</td>
+            <td>{{ inv.investigatorId ?? '—' }}</td>
+            <td>{{ inv.investigationReason }}</td>
+            <td>
+              <span class="badge" [ngClass]="inv.investigationStatus === 'Completed' ? 'badge-success' : 'badge-warning'">
+                {{ inv.investigationStatus }}
+              </span>
+            </td>
+            <td>{{ inv.createdDate | date:'mediumDate' }}</td>
+            <td>{{ inv.assignedDate ? (inv.assignedDate | date:'mediumDate') : '—' }}</td>
+            <td>{{ inv.completedDate ? (inv.completedDate | date:'mediumDate') : '—' }}</td>
+            <td>{{ inv.reportPath || '—' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -82,6 +82,7 @@ namespace InsuranceAgent.Infrastructure.Repositories
                 throw new Exception("Agent not found.");
             }
 
+
             var policies = await data.AgentPolicies.Where(ap => ap.AgentId == agentId)
                 .Select(ap => new AgentPolicyResponseDto
                 {
@@ -100,8 +101,7 @@ namespace InsuranceAgent.Infrastructure.Repositories
 
 
 
-        public async Task<AgentPolicyDetailsDto> GetAgentPolicyById(
-            int agentId, int policyId)
+        public async Task<AgentPolicyDetailsDto> GetAgentPolicyById(int agentId, int policyId)
         {
             var agent = await data.Agents.AnyAsync(a => a.AgentId == agentId);
 
@@ -129,6 +129,21 @@ namespace InsuranceAgent.Infrastructure.Repositories
             }
 
             return policy;
+        }
+
+
+        public async Task<List<PolicyDTO>> GetAllPolicies()
+        {
+            var policies = await policyClient.GetAllPolicies();
+
+            return policies;
+        }
+
+        public async Task<List<CustomerDTO>> GetAllCustomers()
+        {
+            var customers = await customerClient.GetAllCustomers();
+
+            return customers ?? new List<CustomerDTO>();
         }
     }
 }

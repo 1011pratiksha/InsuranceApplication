@@ -1,0 +1,192 @@
+.claims-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+}
+
+.toolbar-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: var(--shadow-sm);
+
+  .search-bar {
+    position: relative;
+    width: 100%;
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      outline: none;
+      transition: all 0.2s ease;
+
+      &:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+      }
+    }
+  }
+
+  .filters-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+
+    .status-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+
+      .pill-btn {
+        background: #f1f5f9;
+        border: 1px solid transparent;
+        color: var(--text-muted);
+        padding: 0.35rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: #e2e8f0;
+          color: var(--text-main);
+        }
+
+        &.active {
+          background: var(--primary);
+          color: #ffffff;
+        }
+      }
+    }
+
+    .type-filter {
+      min-width: 160px;
+    }
+  }
+}
+
+.table-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+
+  .card-header {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 0.825rem;
+    color: var(--text-muted);
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  .claims-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    text-align: left;
+
+    th {
+      background: #f8fafc;
+      padding: 0.85rem 1.25rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 0.95rem 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+      vertical-align: middle;
+    }
+
+    tbody tr:hover {
+      background: #f8fafc;
+    }
+
+    .claim-link {
+      font-weight: 700;
+      color: var(--primary);
+      &:hover { text-decoration: underline; }
+    }
+
+    .amount-val {
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .priority-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+
+      &.p-high { background: #fee2e2; color: #b91c1c; }
+      &.p-med { background: #fef3c7; color: #b45309; }
+      &.p-low { background: #e0f2fe; color: #0369a1; }
+    }
+
+    .row-actions {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .no-records {
+      text-align: center;
+      padding: 3rem 1rem;
+
+      .empty-state {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+
+        .empty-icon {
+          font-size: 2.5rem;
+        }
+
+        p {
+          color: var(--text-muted);
+        }
+      }
+    }
+  }
+}
