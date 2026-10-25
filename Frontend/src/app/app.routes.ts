@@ -51,6 +51,14 @@ import { Agent } from './features/Agent/agent/agent';
 import { AgentPolicies } from './features/Agent/agent-policies/agent-policies';
 import { CommissionRules } from './features/Agent/commission-rules/commission-rules';
 import { AgentCommissions } from './features/Agent/agent-commissions/agent-commissions';
+
+// Dashboards
+import {AdminDashboard} from './features/admin-dashboard/admin-dashboard'
+import {AgentDashboard} from './features/agent-dashboard/agent-dashboard'
+import {CustomerDashboard} from './features/customer-dashboard/customer-dashboard'
+
+
+
 // Premium Payment and Schedule
 import { PremiumSchedule } from './features/premium-schedule/premium-schedule/premium-schedule';
 import { PayPremium } from './features/premium-schedule/pay-premium/pay-premium';
@@ -352,12 +360,15 @@ export const routes: Routes = [
       {
         path: 'agent-support',
         component: AgentSupport
-      }
+      },
+       { path: 'admin', component: AdminDashboard },
+       { path: 'agent', component: AgentDashboard },
+       { path: 'customer', component: CustomerDashboard }
     ]
   },
 
   // Fallback for unknown URLs
-  {
+  { 
     path: '**',
     redirectTo: 'login'
   },

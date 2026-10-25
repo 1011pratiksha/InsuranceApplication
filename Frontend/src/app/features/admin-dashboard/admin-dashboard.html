@@ -1,0 +1,135 @@
+<div class="main-content">
+    @if (loading) {
+  <div class="alert alert-info">
+    Loading dashboard data...
+  </div>
+}
+
+@if (errorMessage) {
+  <div class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+}
+
+  <!-- Page Heading -->
+  <div class="breadcrumb-text">
+    Dashboards / Admin Dashboard
+  </div>
+
+  <header class="page-header">
+    <div>
+      <h1>Admin Dashboard</h1>
+      <p>Welcome back! Here's your insurance overview.</p>
+    </div>
+  </header>
+
+  <!-- Dashboard Summary Cards -->
+  <section class="dashboard-cards">
+
+    @for (card of dashboardCards; track card.title) {
+      <article class="dashboard-card">
+
+        <div class="card-icon">
+          <i class="bi" [ngClass]="card.icon"></i>
+        </div>
+
+        <div class="card-details">
+          <p>{{ card.title }}</p>
+          <h2>{{ card.value }}</h2>
+        </div>
+
+        <i class="bi bi-arrow-up-right card-arrow"></i>
+
+      </article>
+    }
+
+  </section>
+
+  <!-- Trend Chart -->
+  <section class="chart-card">
+
+    <div class="chart-header">
+
+      <div>
+        <h2>Trend – Last 7 Periods</h2>
+        <p>Overview of activity across seven periods</p>
+      </div>
+
+      <span class="chart-badge">
+        <i class="bi bi-graph-up"></i>
+        Activity trend
+      </span>
+
+    </div>
+
+    <!-- Chart Area -->
+    <div class="chart-area">
+
+      <!-- Y Axis -->
+      <div class="y-axis">
+        <span>{{ maxChartValue }}</span>
+
+        <span>
+          {{ maxChartValue * 0.75 | number:'1.0-0' }}
+        </span>
+
+        <span>
+          {{ maxChartValue * 0.5 | number:'1.0-0' }}
+        </span>
+
+        <span>
+          {{ maxChartValue * 0.25 | number:'1.0-0' }}
+        </span>
+
+        <span>0</span>
+      </div>
+
+      <!-- Chart Content -->
+      <div class="chart-content">
+
+        <!-- Horizontal Grid Lines -->
+        <div class="grid-lines">
+          @for (line of [1, 2, 3, 4, 5]; track line) {
+            <span></span>
+          }
+        </div>
+
+        <!-- Bars -->
+        <div class="bars">
+
+          @for (period of chartPeriods; track period.label) {
+
+            <div class="bar-column">
+
+              <div
+                class="bar"
+                [style.height.%]="
+                  (period.value / maxChartValue) * 100
+                "
+                [title]="period.label + ': ' + period.value">
+              </div>
+
+              <span class="bar-label">
+                {{ period.label }}
+              </span>
+
+            </div>
+
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="dashboard-footer">
+    <span>Insurance Management System</span>
+    <span>Dashboard Overview</span>
+  </footer>
+
+</div>
+
