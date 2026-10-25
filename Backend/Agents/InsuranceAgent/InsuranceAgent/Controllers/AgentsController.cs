@@ -44,6 +44,24 @@ namespace InsuranceAgent.Controllers
             return Ok(agents);
         }
 
+
+
+        [HttpGet("users")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            try
+            {
+                var users = await service.GetAllUsers();
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { msg = ex.Message });
+            }
+        }
+
+
+
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetAgentById(int id)
@@ -57,6 +75,8 @@ namespace InsuranceAgent.Controllers
 
             return Ok(agent);
         }
+
+
 
         [HttpPut]
         [Route("{id}")]

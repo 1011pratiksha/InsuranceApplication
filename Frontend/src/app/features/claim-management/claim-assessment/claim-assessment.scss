@@ -1,0 +1,207 @@
+.assessment-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+}
+
+.success-banner {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-md);
+
+  .banner-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+}
+
+.assessment-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 1.5rem;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.worksheet-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+
+  .card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+
+  .calc-section {
+    background: #f8fafc;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    margin: 1rem 0;
+  }
+
+  .form-row {
+    display: flex;
+    margin: 0 -0.5rem;
+
+    .col-4 {
+      flex: 0 0 33.333%;
+      padding: 0 0.5rem;
+    }
+
+    .col-6 {
+      flex: 0 0 50%;
+      padding: 0 0.5rem;
+    }
+  }
+
+  .net-payout-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    border: 2px solid #bfdbfe;
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    margin-top: 1rem;
+
+    .payout-left {
+      display: flex;
+      flex-direction: column;
+
+      .payout-label {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--text-main);
+      }
+
+      .payout-formula {
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        margin-top: 0.2rem;
+      }
+    }
+
+    .payout-right {
+      .payout-amount {
+        font-size: 1.7rem;
+        font-weight: 800;
+        color: var(--primary);
+      }
+    }
+  }
+
+  .actions-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.25rem;
+  }
+}
+
+.history-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+  }
+
+  .assessment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .assessment-item {
+    background: #f8fafc;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    .item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .claim-tag {
+        font-family: monospace;
+        color: var(--primary);
+        font-size: 0.95rem;
+      }
+    }
+
+    .item-financials {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      font-size: 0.85rem;
+
+      .fin-row {
+        display: flex;
+        justify-content: space-between;
+
+        &.net {
+          padding-top: 0.4rem;
+          border-top: 1px dashed var(--border-subtle);
+          font-weight: 700;
+        }
+
+        .text-danger {
+          color: var(--danger);
+        }
+      }
+    }
+
+    .item-meta {
+      font-size: 0.75rem;
+    }
+
+    .item-action {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 0.35rem;
+    }
+  }
+}

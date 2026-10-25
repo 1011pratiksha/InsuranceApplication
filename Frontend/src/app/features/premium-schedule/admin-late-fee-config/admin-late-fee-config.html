@@ -1,0 +1,83 @@
+
+<div class="container py-4">
+  <div class="card shadow-sm border-0">
+    <div class="card-header text-white py-3" style="background-color: #4338ca;">
+      <h4 class="mb-1">Grace Period & Late Fee Configuration</h4>
+      <small>Review late fees applied to existing premium installments</small>
+    </div>
+
+    <div class="card-body">
+      <div class="alert alert-warning">
+        <strong>Configuration limitation:</strong>
+        The existing APIs do not provide an operation to save grace-period
+        rules or change late-fee calculation settings. This page displays
+        the late fees currently returned by the backend.
+      </div>
+
+      <form (ngSubmit)="loadSchedule()" class="row g-3 align-items-end mb-4">
+        <div class="col-md-6">
+          <label for="policyId" class="form-label">Policy ID</label>
+          <input
+            id="policyId"
+            name="policyId"
+            type="number"
+            class="form-control"
+            [(ngModel)]="policyId"
+            min="1"
+            required>
+        </div>
+
+        <div class="col-md-3">
+          <button
+            type="submit"
+            class="btn btn-primary w-100"
+            [disabled]="loading">
+            {{ loading ? 'Loading...' : 'View Installments' }}
+          </button>
+        </div>
+      </form>
+
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <div *ngIf="successMessage" class="alert alert-info">
+        {{ successMessage }}
+      </div>
+
+      <div *ngIf="loading" class="text-center py-3">
+        Loading installment details...
+      </div>
+
+      <div class="table-responsive" *ngIf="installments.length > 0">
+        <table class="table table-bordered table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Schedule ID</th>
+              <th>Installment No.</th>
+              <th>Due Date</th>
+              <th>Premium Amount</th>
+              <th>Current Late Fee</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of installments">
+              <td>{{ item.schedule_id }}</td>
+              <td>{{ item.installment_no }}</td>
+              <td>{{ item.due_date | date:'mediumDate' }}</td>
+              <td>{{ item.premium_amount | currency:'INR':'symbol':'1.2-2' }}</td>
+              <td>{{ item.late_fee | currency:'INR':'symbol':'1.2-2' }}</td>
+              <td>
+                <span class="badge bg-secondary">
+                  {{ item.status }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

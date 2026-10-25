@@ -1,0 +1,232 @@
+.approval-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+}
+
+.success-banner {
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #065f46;
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-md);
+
+  .banner-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+}
+
+.approval-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1.5rem;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pending-list-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 1.25rem;
+  height: fit-content;
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+  }
+
+  .claims-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .queue-item {
+    background: #f8fafc;
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: #cbd5e1;
+      background: #f1f5f9;
+    }
+
+    &.active {
+      border-color: var(--primary);
+      background: #eff6ff;
+    }
+
+    .queue-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.25rem;
+
+      .claim-tag {
+        font-family: monospace;
+        color: var(--primary);
+        font-size: 0.875rem;
+      }
+    }
+
+    .queue-name {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text-main);
+    }
+
+    .queue-bottom {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      margin-top: 0.35rem;
+    }
+  }
+
+  .empty-queue {
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+}
+
+.review-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 1.75rem;
+
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0.3rem 0;
+    }
+
+    .stat-payout {
+      text-align: right;
+
+      .stat-lbl {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        display: block;
+      }
+
+      .stat-num {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--primary);
+      }
+    }
+  }
+
+  .summary-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.25rem 0;
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+
+    .detail-box {
+      display: flex;
+      flex-direction: column;
+
+      .lbl {
+        font-size: 0.725rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        text-transform: uppercase;
+      }
+
+      .val {
+        font-size: 0.875rem;
+        margin-top: 0.2rem;
+      }
+    }
+  }
+
+  .loss-narrative {
+    background: #f8fafc;
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+
+    .lbl {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  .decision-form {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 1.25rem;
+
+    .form-row {
+      display: flex;
+      margin: 0 -0.5rem;
+
+      .col-6 {
+        flex: 0 0 50%;
+        padding: 0 0.5rem;
+      }
+    }
+
+    .decision-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+  }
+}

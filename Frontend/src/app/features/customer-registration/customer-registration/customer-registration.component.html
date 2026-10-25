@@ -1,0 +1,77 @@
+<div class="page-container">
+  <div class="header-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <div>
+      <div class="crumb">Authentication / Customer Registration</div>
+      <h1 style="margin: 4px 0 0 0;">Customer Registration</h1>
+    </div>
+    <a routerLink="/login" class="btn" style="text-decoration: none; padding: 8px 16px; border: 1px solid #d9e0e8; border-radius: 4px; color: #245d9f; font-weight: 500;">
+      &larr; Back to Login
+    </a>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <div class="card grid2">
+    <div class="f">
+      <label>First name</label>
+      <input type="text" class="in" [(ngModel)]="personalForm.firstName" placeholder="Enter first name" />
+    </div>
+
+    <div class="f">
+      <label>Middle name</label>
+      <input type="text" class="in" [(ngModel)]="personalForm.middleName" placeholder="Enter middle name" />
+    </div>
+
+    <div class="f">
+      <label>Last name</label>
+      <input type="text" class="in" [(ngModel)]="personalForm.lastName" placeholder="Enter last name" />
+    </div>
+
+    <div class="f">
+      <label>Date of birth</label>
+      <input type="date" class="in" [(ngModel)]="personalForm.dateOfBirth" />
+    </div>
+
+    <div class="f">
+      <label>Gender</label>
+      <input type="text" class="in" [(ngModel)]="personalForm.gender" placeholder="Enter gender" />
+    </div>
+
+    <div class="f">
+      <label>Marital status</label>
+      <input type="text" class="in" [(ngModel)]="personalForm.maritalStatus" placeholder="Enter marital status" />
+    </div>
+
+    <div class="f">
+      <label>Occupation</label>
+      <input type="text" class="in" [(ngModel)]="personalForm.occupation" placeholder="Enter occupation" />
+    </div>
+
+    <div class="f">
+      <label>Annual income</label>
+      <input type="number" class="in" [(ngModel)]="personalForm.annualIncome" placeholder="Enter annual income" />
+    </div>
+
+    <div class="f">
+      <label>Mobile</label>
+      <input type="tel" class="in" [(ngModel)]="personalForm.mobileNumber" placeholder="Enter mobile" />
+    </div>
+
+    <div class="f">
+      <label>Email</label>
+      <input type="email" class="in" [(ngModel)]="personalForm.email" placeholder="Enter email" />
+    </div>
+  </div>
+
+  <div class="acts" style="display: flex; align-items: center; gap: 16px; margin-top: 20px;">
+    <button class="btn p" [disabled]="submitting" (click)="saveChanges()">
+      {{ submitting ? 'Saving...' : 'Register Customer' }}
+    </button>
+    <a routerLink="/login" style="color: #245d9f; text-decoration: none; font-size: 14px;">Already registered? Login here</a>
+  </div>
+</div>

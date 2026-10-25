@@ -1,0 +1,95 @@
+<div class="app-container">
+
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+
+    <div class="brand">
+      <div class="brand-icon">IA</div>
+      <div>
+        <h2>Insurance</h2>
+        <p>Agent Portal</p>
+      </div>
+    </div>
+
+    <div class="menu-heading">MAIN MENU</div>
+
+    <nav class="navigation">
+
+      <!-- Dashboard -->
+      <a
+        routerLink="/admin"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">
+        <span class="menu-icon">⌂</span>
+        <span>Dashboard</span>
+      </a>
+
+      <!-- Agent Management -->
+      <a routerLink="/agent" routerLinkActive="active">
+        <span class="menu-icon">♙</span>
+        <span>Agent Management</span>
+      </a>
+
+      <!-- Customers -->
+      <a routerLink="/assigned-customers" routerLinkActive="active">
+        <span class="menu-icon">♙</span>
+        <span>Customers</span>
+      </a>
+
+      <!-- Agent Policies -->
+      <a routerLink="/agent-policies" routerLinkActive="active">
+        <span class="menu-icon">▤</span>
+        <span>Agent Policies</span>
+      </a>
+
+    <a routerLink="/commission-rules" routerLinkActive="active">
+      <span class="menu-icon">⚙</span>
+      <span>Commission Rules</span>
+    </a>
+
+
+    <!-- Agent Commissions -->
+    <a routerLink="/agent-commissions" routerLinkActive="active">
+      <span class="menu-icon">₹</span>
+      <span>Commissions</span>
+    </a>
+
+
+
+    </nav>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+      <span class="profile-icon">A</span>
+      <div>
+        <strong>Insurance Agent</strong>
+        <p>Agent Portal</p>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <div>
+        <h1>Insurance Agent Portal</h1>
+        <p>Manage your customers, policies and commissions</p>
+      </div>
+
+      <div class="topbar-badge">
+        <span class="status-dot"></span>
+        Agent Workspace
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <section class="page-content">
+      <router-outlet></router-outlet>
+    </section>
+
+  </main>
+
+</div>

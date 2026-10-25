@@ -1,0 +1,132 @@
+
+<div class="container py-4">
+  <div class="card shadow-sm border-0">
+    <div class="card-header text-white py-3" style="background-color: #4338ca;">
+      <h4 class="mb-1">Premium Reminders</h4>
+      <small>Review upcoming and overdue premium installments</small>
+    </div>
+
+    <div class="card-body">
+      <div class="alert alert-warning">
+        <strong>Reminder limitation:</strong>
+        The existing APIs identified so far do not provide reminder sending,
+        reminder configuration, or reminder-history operations. This page
+        displays installment information only; it does not send notifications.
+      </div>
+
+      <form (ngSubmit)="loadSchedule()" class="row g-3 align-items-end mb-4">
+        <div class="col-md-6">
+          <label for="policyId" class="form-label">Policy ID</label>
+          <input
+            id="policyId"
+            name="policyId"
+            type="number"
+            class="form-control"
+            [(ngModel)]="policyId"
+            min="1"
+            required>
+        </div>
+
+        <div class="col-md-3">
+          <button
+            type="submit"
+            class="btn btn-primary w-100"
+            [disabled]="loading">
+            {{ loading ? 'Loading...' : 'Load Schedule' }}
+          </button>
+        </div>
+      </form>
+
+      <div class="row g-3 mb-4">
+        <div class="col-md-4">
+          <div class="card bg-light border-0 h-100">
+            <div class="card-body">
+              <div class="text-muted">Total Installments</div>
+              <h3>{{ installments.length }}</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card bg-light border-0 h-100">
+            <div class="card-body">
+              <div class="text-muted">Upcoming / Pending</div>
+              <h3>
+                {{ installments.length  }}
+              </h3>
+              <small class="text-muted">Use the filter below for details.</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card bg-light border-0 h-100">
+            <div class="card-body">
+              <div class="text-muted">Overdue / Pending</div>
+              <h3>{{ installments.length > 0 ? 'Review below' : 0 }}</h3>
+              <small class="text-muted">Overdue status is based on due date and status.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <div *ngIf="successMessage" class="alert alert-info">
+        {{ successMessage }}
+      </div>
+
+      <div class="row g-3 mb-3">
+        <div class="col-md-4">
+          <label for="filter" class="form-label">Filter Installments</label>
+          <select id="filter" name="filter" class="form-select" [(ngModel)]="filter">
+            <option value="All">All Installments</option>
+            <option value="Pending">Pending</option>
+            <option value="Upcoming">Upcoming</option>
+            <option value="Overdue">Overdue</option>
+          </select>
+        </div>
+      </div>
+
+      <div *ngIf="loading" class="text-center py-3">
+        Loading schedule...
+      </div>
+
+      <div class="table-responsive" *ngIf="filteredInstallments.length > 0">
+        <table class="table table-bordered table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Schedule ID</th>
+              <th>Installment</th>
+              <th>Due Date</th>
+              <th>Premium Amount</th>
+              <th>Late Fee</th>
+              <th>Status</th>
+              <th>Reminder Category</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of filteredInstallments">
+              <td>{{ item.schedule_id }}</td>
+              <td>{{ item.installment_no }}</td>
+              <td>{{ item.due_date | date:'mediumDate' }}</td>
+              <td>{{ item.premium_amount | currency:'INR':'symbol':'1.2-2' }}</td>
+              <td>{{ item.late_fee | currency:'INR':'symbol':'1.2-2' }}</td>
+              <td>{{ item.status }}</td>
+              <td>{{ getReminderCategory(item) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div
+        *ngIf="!loading && installments.length > 0 && filteredInstallments.length === 0"
+        class="alert alert-info">
+        No installments match the selected filter.
+      </div>
+    </div>
+  </div>
+</div>

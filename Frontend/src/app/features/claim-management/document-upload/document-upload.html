@@ -1,0 +1,140 @@
+<div class="doc-upload-container">
+  <div class="page-header">
+    <div>
+      <h2>Claim Documents (ClaimDocumentsController)</h2>
+      <p>Upload and verify claim documents matching <code>CreateClaimDocumentDto</code> & <code>ClaimDocumentResponseDto</code></p>
+    </div>
+    <a [routerLink]="getRoleLink('claims/list')" class="btn btn-secondary">← Back to Claims</a>
+  </div>
+
+  <!-- Claim Context Selector -->
+  <div class="card selector-card">
+    <div class="selector-content">
+      <label class="selector-label">Target Claim (claimId):</label>
+      <select class="form-select claim-dropdown" [(ngModel)]="selectedClaimId" (change)="onClaimSelect()">
+        <option *ngFor="let c of claims" [value]="c.claimId">
+          Claim ID: {{ c.claimId }} — {{ c.claimNumber }} (Policy: {{ c.policyId }}, Status: {{ c.claimStatus }})
+        </option>
+      </select>
+    </div>
+    <div class="quick-status">
+      <span class="badge badge-info">{{ documents.length }} Documents on Record</span>
+    </div>
+  </div>
+
+  <div *ngIf="successMessage" class="success-banner">
+    <span>✅ {{ successMessage }}</span>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-banner">
+    <span>⚠️ {{ errorMessage }}</span>
+  </div>
+
+  <div class="upload-grid">
+    <!-- Left: Upload Box (Strictly CreateClaimDocumentDto Fields: DocumentName, FilePath) -->
+    <div class="card upload-box-card">
+      <h4 class="card-title">Upload Document (POST /api/claims/&#123;id&#125;/documents)</h4>
+      <p class="text-muted"><small>DTO: <code>CreateClaimDocumentDto</code></small></p>
+
+      <div class="form-group mb-3">
+        <label>Document Name * <small class="text-muted">(MaxLength: 150)</small></label>
+        <input 
+          type="text" 
+          class="form-control" 
+          maxlength="150" 
+          [(ngModel)]="newDoc.documentName" 
+          placeholder="e.g. Police_FIR_Report.pdf" 
+          required 
+        />
+      </div>
+
+      <div class="form-group mb-3">
+        <label>File Path <small class="text-muted">(Optional, MaxLength: 500)</small></label>
+        <input 
+          type="text" 
+          class="form-control" 
+          maxlength="500" 
+          [(ngModel)]="newDoc.filePath" 
+          placeholder="e.g. /uploads/claims/101/fir.pdf" 
+        />
+      </div>
+
+      <!-- File Attachment Simulation -->
+      <div class="dropzone mb-3" (click)="fileInput.click()">
+        <input #fileInput type="file" (change)="onFileSelected($event)" style="display: none;" />
+        <span class="drop-icon">📁</span>
+        <p class="drop-text">Browse & Select File to Auto-Fill Name & Path</p>
+      </div>
+
+      <button class="btn btn-primary btn-block" (click)="uploadDocument()" [disabled]="isUploading">
+        <span *ngIf="!isUploading">Upload Document</span>
+        <span *ngIf="isUploading">Uploading via API...</span>
+      </button>
+    </div>
+
+    <!-- Right: Documents Table (Strictly ClaimDocumentResponseDto Columns) -->
+    <div class="card docs-table-card">
+      <div class="card-header">
+        <h4 class="card-title">Documents for Claim ID #{{ selectedClaimId }}</h4>
+        <button class="btn btn-secondary btn-sm" (click)="loadDocuments()">🔄 Refresh</button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="docs-table">
+          <thead>
+            <tr>
+              <th>Document ID</th>
+              <th>Claim ID</th>
+              <th>Document Name</th>
+              <th>File Path</th>
+              <th>Verification Status</th>
+              <th>Uploaded Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let doc of documents">
+              <td class="font-mono font-bold">{{ doc.documentId }}</td>
+              <td>{{ doc.claimId }}</td>
+              <td>
+                <span class="font-bold">{{ doc.documentName }}</span>
+              </td>
+              <td>
+                <span class="text-muted font-mono">{{ doc.filePath || 'None' }}</span>
+              </td>
+              <td>
+                <span 
+                  class="badge" 
+                  [ngClass]="doc.verificationStatus === 'Verified' ? 'badge-success' : 'badge-warning'"
+                >
+                  {{ doc.verificationStatus }}
+                </span>
+              </td>
+              <td>{{ doc.uploadedDate | date:'mediumDate' }}</td>
+              <td>
+                <button
+                  *ngIf="doc.verificationStatus !== 'Verified'"
+                  class="btn btn-sm btn-success"
+                  (click)="verifyDocument(doc)"
+                  [disabled]="isVerifying"
+                  title="PUT /api/claims/{id}/documents/verify"
+                >
+                  Verify
+                </button>
+                <span *ngIf="doc.verificationStatus === 'Verified'" class="text-success font-bold">
+                  ✓ Verified
+                </span>
+              </td>
+            </tr>
+
+            <tr *ngIf="documents.length === 0">
+              <td colspan="7" class="text-center py-4 text-muted">
+                No documents uploaded for this claim yet.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

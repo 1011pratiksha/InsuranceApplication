@@ -1,0 +1,126 @@
+<div class="registration-container">
+  <div class="page-header">
+    <div>
+      <h2>New Claim Registration</h2>
+      <p>Fill in the required claim details according to the backend specification (CreateClaimDto)</p>
+    </div>
+    <button class="btn btn-secondary" (click)="goToList()">← Back to Claims</button>
+  </div>
+
+  <!-- Success Notification Banner -->
+  <div *ngIf="successClaim" class="success-banner">
+    <div class="banner-content">
+      <h3>Claim Registered Successfully!</h3>
+      <p>Assigned Claim Number: <strong class="claim-badge">{{ successClaim.claimNumber }}</strong></p>
+      <div class="summary-details">
+        <span>Claim ID: <strong>{{ successClaim.claimId }}</strong></span> &bull;
+        <span>Policy ID: <strong>{{ successClaim.policyId }}</strong></span> &bull;
+        <span>Customer ID: <strong>{{ successClaim.customerId }}</strong></span> &bull;
+        <span>Type: <strong>{{ successClaim.claimType }}</strong></span> &bull;
+        <span>Estimated Loss: <strong>${{ successClaim.estimatedLoss | number:'1.2-2' }}</strong></span> &bull;
+        <span>Status: <span class="badge badge-info">{{ successClaim.claimStatus }}</span></span>
+      </div>
+      <div class="banner-actions">
+        <button class="btn btn-primary" (click)="goToUploadDocs()">Proceed to Upload Documents</button>
+        <button class="btn btn-secondary" (click)="resetForm()">Register Another Claim</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-banner">
+    <span>⚠️ {{ errorMessage }}</span>
+  </div>
+
+  <!-- Registration Form Card: STRICTLY CreateClaimDto FIELDS ONLY -->
+  <div *ngIf="!successClaim" class="card form-card">
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-section">
+        <h4 class="section-heading">Claim Parameters (CreateClaimDto)</h4>
+        
+        <div class="form-row">
+          <!-- PolicyId -->
+          <div class="form-group col-6">
+            <label for="policyId">Policy ID * <small class="text-muted">(Range: 1 to Max)</small></label>
+            <input 
+              id="policyId" 
+              type="number" 
+              min="1" 
+              class="form-control" 
+              [(ngModel)]="formData.policyId" 
+              name="policyId" 
+              placeholder="e.g. 101" 
+              required 
+            />
+          </div>
+
+          <!-- CustomerId -->
+          <div class="form-group col-6">
+            <label for="customerId">Customer ID * <small class="text-muted">(Range: 1 to Max)</small></label>
+            <input 
+              id="customerId" 
+              type="number" 
+              min="1" 
+              class="form-control" 
+              [(ngModel)]="formData.customerId" 
+              name="customerId" 
+              placeholder="e.g. 501" 
+              required 
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <!-- ClaimType -->
+          <div class="form-group col-4">
+            <label for="claimType">Claim Type * <small class="text-muted">(Max: 50 chars)</small></label>
+            <select id="claimType" class="form-select" [(ngModel)]="formData.claimType" name="claimType" required>
+              <option value="Motor">Motor</option>
+              <option value="Health">Health</option>
+              <option value="Property">Property</option>
+              <option value="Life">Life</option>
+              <option value="Travel">Travel</option>
+            </select>
+          </div>
+
+          <!-- IncidentDate -->
+          <div class="form-group col-4">
+            <label for="incidentDate">Incident Date * <small class="text-muted">(<= Today)</small></label>
+            <input 
+              id="incidentDate" 
+              type="date" 
+              class="form-control" 
+              [(ngModel)]="formData.incidentDate" 
+              name="incidentDate" 
+              required 
+            />
+          </div>
+
+          <!-- EstimatedLoss -->
+          <div class="form-group col-4">
+            <label for="estimatedLoss">Estimated Loss ($) * <small class="text-muted">(Min: 0.01)</small></label>
+            <input 
+              id="estimatedLoss" 
+              type="number" 
+              step="0.01" 
+              min="0.01" 
+              class="form-control" 
+              [(ngModel)]="formData.estimatedLoss" 
+              name="estimatedLoss" 
+              placeholder="e.g. 5000.00" 
+              required 
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" (click)="goToList()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+          <span *ngIf="!isSubmitting">Register Claim</span>
+          <span *ngIf="isSubmitting">Registering via API...</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

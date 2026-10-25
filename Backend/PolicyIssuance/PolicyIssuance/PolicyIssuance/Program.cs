@@ -1,4 +1,4 @@
-
+﻿
 using Microsoft.EntityFrameworkCore;
 using PolicyIssuance.Application.Interfaces;
 using PolicyIssuance.Application.Mapper;
@@ -16,13 +16,13 @@ builder.Services.AddSwaggerGen();
 // CORS: allow Angular frontend
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AngularFrontend", policy =>
-    {
-        policy
-            .WithOrigins("http://localhost:4200")
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-    });
+  options.AddPolicy("AngularFrontend", policy =>
+  {
+    policy
+        .WithOrigins("http://localhost:4200")
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+  });
 });
 
 // Database configuration
@@ -61,14 +61,15 @@ foreach (var name in new[]
     "Underwriting",
     "Payment",
     "Document",
-    "Notification"
+    "Notification",
+    "AuditLogs"
 })
 {
-    builder.Services.AddHttpClient(name, client =>
-    {
-        client.BaseAddress = new Uri(GetServiceUrl(name));
-        client.Timeout = TimeSpan.FromSeconds(15);
-    });
+  builder.Services.AddHttpClient(name, client =>
+  {
+    client.BaseAddress = new Uri(GetServiceUrl(name));
+    client.Timeout = TimeSpan.FromSeconds(15);
+  });
 }
 
 // Policy integration service
@@ -81,8 +82,8 @@ var app = builder.Build();
 // HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+  app.UseSwagger();
+  app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

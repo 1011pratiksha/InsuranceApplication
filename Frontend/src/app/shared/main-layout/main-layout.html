@@ -1,0 +1,19 @@
+<div class="app-layout">
+
+  @if (isCustomer) {
+    <app-customer-sidebar></app-customer-sidebar>
+  }
+
+  @if (isAdmin) {
+    <app-admin-sidebar></app-admin-sidebar>
+  }
+
+  @if (isAgent) {
+    <app-sidebar-agent></app-sidebar-agent>
+  }
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

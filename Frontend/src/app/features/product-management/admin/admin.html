@@ -1,0 +1,79 @@
+
+<div class="role-page">
+  <header>
+    <p>Product Management / Admin</p>
+    <h1>Admin</h1>
+    <p>Manage and review the insurance product catalogue.</p>
+  </header>
+
+  <div class="stats">
+    <article>
+      <span>Total Products</span>
+      <strong>{{ products.length }}</strong>
+    </article>
+
+    <article>
+      <span>Active Products</span>
+      <strong>{{ activeCount }}</strong>
+    </article>
+
+    <article>
+      <span>Inactive Products</span>
+      <strong>{{ inactiveCount }}</strong>
+    </article>
+  </div>
+
+  <section class="panel">
+    <div class="panel-header">
+      <h2>Product Catalogue</h2>
+
+      <div class="actions">
+        <button type="button" (click)="loadProducts()" [disabled]="loading">
+          {{ loading ? 'Loading...' : 'Refresh' }}
+        </button>
+
+        <a routerLink="/product-management">
+          Open Product Management
+        </a>
+      </div>
+    </div>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+
+    <p *ngIf="loading">Loading products...</p>
+
+    <div class="table-scroll" *ngIf="!loading">
+      <table>
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Product Name</th>
+            <th>Type</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let p of products">
+            <td>{{ p.product_code }}</td>
+            <td>{{ p.product_name }}</td>
+            <td>{{ p.product_type }}</td>
+            <td>
+              <span
+                class="status"
+                [class.inactive]="p.status.toLowerCase() !== 'active'">
+                {{ p.status }}
+              </span>
+            </td>
+          </tr>
+
+          <tr *ngIf="!error && products.length === 0">
+            <td colspan="4" class="empty">
+              No products available.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

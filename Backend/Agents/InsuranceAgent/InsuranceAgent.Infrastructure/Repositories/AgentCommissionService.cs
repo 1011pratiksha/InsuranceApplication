@@ -150,5 +150,11 @@ namespace InsuranceAgent.Infrastructure.Repositories
 
             await data.SaveChangesAsync();
         }
+
+
+        public async Task<List<PolicyDTO>> GetAllPolicies()
+        {
+            return await policyClient.GetAllPolicies();
+        }
     }
 }

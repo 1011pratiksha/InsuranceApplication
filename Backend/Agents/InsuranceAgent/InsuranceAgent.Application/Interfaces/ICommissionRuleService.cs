@@ -16,5 +16,6 @@ namespace InsuranceAgent.Application.Interfaces
         Task<CommissionRuleResponseDto> GetCommissionRuleByProductId(int productId);
 
         Task UpdateCommissionRule(int ruleId, UpdateCommissionRuleDto dto);
+        Task<List<ProductDTO>> GetAllProducts();
     }
 }

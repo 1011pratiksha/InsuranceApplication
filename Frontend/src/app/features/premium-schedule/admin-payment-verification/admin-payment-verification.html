@@ -1,0 +1,131 @@
+
+<div class="container py-4">
+  <div class="card shadow-sm border-0">
+    <div class="card-header text-white py-3" style="background-color: #4338ca;">
+      <h4 class="mb-1">Payment Verification & Receipts</h4>
+      <small>Review payment records and manage payment receipts</small>
+    </div>
+
+    <div class="card-body">
+      <form (ngSubmit)="findPayment()" class="row g-3 align-items-end mb-4">
+        <div class="col-md-7">
+          <label for="paymentId" class="form-label">Payment ID</label>
+          <input
+            id="paymentId"
+            name="paymentId"
+            type="number"
+            class="form-control"
+            [(ngModel)]="paymentId"
+            min="1"
+            required
+            placeholder="Enter payment ID">
+        </div>
+
+        <div class="col-md-3">
+          <button
+            type="submit"
+            class="btn text-white w-100"
+            style="background-color: #4338ca;"
+            [disabled]="loading">
+            {{ loading ? 'Searching...' : 'Find Payment' }}
+          </button>
+        </div>
+      </form>
+
+      <div *ngIf="loading" class="alert alert-info">
+        Loading payment details...
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <div *ngIf="successMessage" class="alert alert-success">
+        {{ successMessage }}
+      </div>
+
+      <div *ngIf="payment" class="card mb-4">
+        <div class="card-header">
+          <strong>Payment Details</strong>
+        </div>
+
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <strong>Payment ID:</strong>
+              <div>{{ payment.payment_id ?? '-' }}</div>
+            </div>
+
+            <div class="col-md-6">
+              <strong>Policy ID:</strong>
+              <div>{{ payment.policy_id ?? '-' }}</div>
+            </div>
+
+            <div class="col-md-6">
+              <strong>Schedule ID:</strong>
+              <div>{{ payment.schedule_id ?? '-' }}</div>
+            </div>
+
+            <div class="col-md-6">
+              <strong>Payment Date:</strong>
+              <div>
+                {{ payment.payment_date ? (payment.payment_date | date:'medium') : '-' }}
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <strong>Amount:</strong>
+              <div>{{ payment.amount_paid != null ? (payment.amount_paid | currency:'INR':'symbol':'1.2-2') : '-' }}</div>
+            </div>
+
+            <div class="col-md-6">
+              <strong>Payment Mode:</strong>
+              <div>{{ payment.payment_mode ?? '-' }}</div>
+            </div>
+
+            <div class="col-md-6">
+              <strong>Transaction Reference:</strong>
+              <div>{{ payment.transaction_reference ?? '-' }}</div>
+            </div>
+
+            <div class="col-md-6">
+              <strong>Payment Status:</strong>
+              <div>
+                <span class="badge bg-secondary">
+                  {{ payment.payment_status ?? '-' }}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="d-flex flex-wrap gap-2">
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              [disabled]="receiptLoading"
+              (click)="downloadReceipt()">
+              Download Receipt
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              [disabled]="receiptLoading"
+              (click)="regenerateReceipt()">
+              Regenerate Receipt
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-warning mb-0">
+        <strong>Offline payments:</strong>
+        This page does not record or verify offline payments because the
+        currently identified APIs do not provide an offline-payment recording
+        operation. Payment status is displayed as returned by the backend.
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
-﻿using QuoteGenerationMS.Application.DTO;
+﻿
+using QuoteGenerationMS.Application.DTO;
 
 namespace QuoteGenerationMS.Application.Interface
 {

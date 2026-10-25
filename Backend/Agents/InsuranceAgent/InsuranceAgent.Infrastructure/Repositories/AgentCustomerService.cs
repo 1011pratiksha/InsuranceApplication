@@ -19,10 +19,10 @@ namespace InsuranceAgent.Infrastructure.Repositories
             this.customerClient = customerClient;
         }
 
-        public async Task AssignCustomer(int agentId, CreateAgentCustomerDto dto)
+
+        public async Task AssignCustomer(int agentId, CreateAgentCustomerDto dto, int assignedBy)
         {
-            var agent = await data.Agents
-                .FirstOrDefaultAsync(x => x.AgentId == agentId);
+            var agent = await data.Agents.FirstOrDefaultAsync(x => x.AgentId == agentId);
 
             if (agent == null)
             {
@@ -51,7 +51,7 @@ namespace InsuranceAgent.Infrastructure.Repositories
             {
                 AgentId = agentId,
                 CustomerId = dto.CustomerId,
-                AssignedBy = dto.AssignedBy,
+                AssignedBy = assignedBy,
                 AssignedDate = DateTime.Now,
                 Status = "Active",
                 CreatedAt = DateTime.Now
@@ -92,7 +92,7 @@ namespace InsuranceAgent.Infrastructure.Repositories
 
 
 
-        public async Task TransferCustomer(int agentId, int customerId, TransferAgentCustomerDto dto)
+        public async Task TransferCustomer(int agentId, int customerId, TransferAgentCustomerDto dto, int assignedBy)
         {
             var assignment = await data.AgentCustomers.FirstOrDefaultAsync(x => x.AgentId == agentId && x.CustomerId == customerId && x.Status == "Active");
 
@@ -123,7 +123,7 @@ namespace InsuranceAgent.Infrastructure.Repositories
                 AgentId = dto.NewAgentId,
                 CustomerId = customerId,
                 AssignedDate = DateTime.Now,
-                AssignedBy = dto.AssignedBy,
+                AssignedBy = assignedBy,
                 Status = "Active",
                 CreatedAt = DateTime.Now
             };
@@ -131,6 +131,12 @@ namespace InsuranceAgent.Infrastructure.Repositories
             data.AgentCustomers.Add(newAssignment);
 
             await data.SaveChangesAsync();
+        }
+
+
+        public async Task<List<CustomerDTO>?> GetAllCustomers()
+        {
+            return await customerClient.GetAllCustomers();
         }
     }
 }
