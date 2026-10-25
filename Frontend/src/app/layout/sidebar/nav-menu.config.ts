@@ -1,6 +1,8 @@
+
 import { UserRole } from '../../services/claim-management/claim-service';
 
 export interface NavSubItem {
+  id?: string;
   label: string;
   route: string;
   badge?: string;
@@ -19,7 +21,7 @@ export interface NavItem {
 }
 
 // ========================================================
-// 1. CUSTOMER NAVIGATION (Claims Management Backend Flow)
+// 1. CUSTOMER NAVIGATION
 // ========================================================
 export const CUSTOMER_NAV_ITEMS: NavItem[] = [
   {
@@ -51,11 +53,17 @@ export const CUSTOMER_NAV_ITEMS: NavItem[] = [
     label: 'Track Claim',
     route: '/customer/claims/tracking',
     icon: 'refresh'
+  },
+  {
+    id: 'customer-quotes',
+    label: 'My Quotes',
+    route: '/customer/quotes',
+    icon: 'file-text'
   }
 ];
 
 // ========================================================
-// 2. AGENT NAVIGATION (Claims Management Backend Flow)
+// 2. AGENT NAVIGATION
 // ========================================================
 export const AGENT_NAV_ITEMS: NavItem[] = [
   {
@@ -81,11 +89,33 @@ export const AGENT_NAV_ITEMS: NavItem[] = [
     label: 'Track Claims',
     route: '/agent/claims/tracking',
     icon: 'refresh'
+  },
+  {
+    id: 'agent-quote-generation',
+    label: 'Quote Generation',
+    icon: 'file-text',
+    subItems: [
+      {
+        id: 'agent-new-quote',
+        label: 'Create New Quote',
+        route: '/agent/quote-new'
+      },
+      {
+        id: 'agent-quotes-list',
+        label: 'Quotes List',
+        route: '/agent/quotes'
+      },
+      {
+        id: 'agent-generate-quote',
+        label: 'Generate Quote',
+        route: '/agent/quotes/generate'
+      }
+    ]
   }
 ];
 
 // ========================================================
-// 3. ADMIN NAVIGATION (Claims Management Backend Flow)
+// 3. ADMIN NAVIGATION
 // ========================================================
 export const ADMIN_NAV_ITEMS: NavItem[] = [
   {
@@ -93,6 +123,51 @@ export const ADMIN_NAV_ITEMS: NavItem[] = [
     label: 'Dashboard',
     route: '/admin/dashboard',
     icon: 'dashboard'
+  },
+  {
+    id: 'admin-product-management',
+    label: 'Product Management',
+    route: '/admin/product-management',
+    icon: 'package'
+  },
+  {
+    id: 'admin-quote-generation',
+    label: 'Quote Generation',
+    icon: 'file-text',
+    subItems: [
+      {
+        id: 'admin-quotes-list',
+        label: 'Quotes List',
+        route: '/admin/quote-generation'
+      },
+      {
+        id: 'admin-quote-review',
+        label: 'Quote Review',
+        route: '/admin/quote-review/1'
+      }
+    ]
+  },
+  {
+    id: 'admin-underwriting',
+    label: 'Underwriting',
+    icon: 'clipboard-list',
+    subItems: [
+      {
+        id: 'admin-underwriting-queue',
+        label: 'Underwriting Queue',
+        route: '/admin/underwriting'
+      },
+      {
+        id: 'admin-underwriting-case-review',
+        label: 'Case Review',
+        route: '/admin/uw-case/1'
+      },
+      {
+        id: 'admin-underwriting-proposal',
+        label: 'Proposal Form',
+        route: '/admin/underwriting/proposal'
+      }
+    ]
   },
   {
     id: 'admin-claims-list',
@@ -144,12 +219,17 @@ export const ADMIN_NAV_ITEMS: NavItem[] = [
   }
 ];
 
+// ========================================================
+// 4. ROLE-BASED NAVIGATION
+// ========================================================
 export function getNavItemsForRole(role: UserRole): NavItem[] {
   switch (role) {
     case 'Customer':
       return CUSTOMER_NAV_ITEMS;
+
     case 'Agent':
       return AGENT_NAV_ITEMS;
+
     case 'Admin':
     default:
       return ADMIN_NAV_ITEMS;

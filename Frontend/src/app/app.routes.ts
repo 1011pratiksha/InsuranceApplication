@@ -1,6 +1,14 @@
+
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './shared/layout/main-layout.component';
 import { roleGuard } from './core/guards/role.guard';
+
+// Product Management, Quote Generation and Underwriting
+import { ProductManagement } from './features/product-management/product-management';
+import { QuoteWorkspace } from './features/quote-workspace/quote-workspace';
+import { UnderwritingQueue } from './features/underwriting/underwriting-queue/underwriting-queue';
+import { UnderwritingCaseReview } from './features/underwriting/underwriting-case-review/underwriting-case-review';
+import { ProposalForm } from './features/underwriting/proposal-form/proposal-form';
 
 // Authentication
 import { Login } from './features/authentication/login/login';
@@ -53,57 +61,127 @@ import { CommissionRules } from './features/Agent/commission-rules/commission-ru
 import { AgentCommissions } from './features/Agent/agent-commissions/agent-commissions';
 
 export const routes: Routes = [
-  // ── Authentication pages (outside sidebar layout) ──
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    component: Login
-  },
-  {
-    path: 'two-factor',
-    component: TwoFactor
-  },
-  {
-    path: 'forgot-password',
-    component: ForgotPassword
-  },
-  {
-    path: 'reset-password',
-    component: ResetPassword
-  },
-  {
-    path: 'login-success',
-    component: LoginSuccess
-  },
+  // Authentication pages outside the main layout
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: Login },
+  { path: 'two-factor', component: TwoFactor },
+  { path: 'forgot-password', component: ForgotPassword },
+  { path: 'reset-password', component: ResetPassword },
+  { path: 'login-success', component: LoginSuccess },
+
   {
     path: 'auth',
-    loadChildren: () => import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES)
+    loadChildren: () =>
+      import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES)
   },
 
-  // ── Application pages inside MainLayout with Role-based Sidebar ──
+  // Main application layout
   {
     path: '',
     component: MainLayoutComponent,
     children: [
-      // Role-based modular navigation prefixes (from PDF)
+      // Product Management
+      {
+        path: 'admin/product-management',
+        component: ProductManagement,
+        canActivate: [roleGuard('admin')]
+      },
+
+      // Quote Generation - Agent
+      {
+        path: 'agent/quote-new',
+        component: QuoteWorkspace,
+        canActivate: [roleGuard('agent')],
+        data: { role: 'agent', page: 'new' }
+      },
+      {
+        path: 'agent/quotes',
+        component: QuoteWorkspace,
+        canActivate: [roleGuard('agent')],
+        data: { role: 'agent', page: 'list' }
+      },
+      {
+        path: 'agent/quotes/generate',
+        component: QuoteWorkspace,
+        canActivate: [roleGuard('agent')],
+        data: { role: 'agent', page: 'new' }
+      },
+      {
+        path: 'agent/quote-result/:id',
+        component: QuoteWorkspace,
+        canActivate: [roleGuard('agent')],
+        data: { role: 'agent', page: 'result' }
+      },
+      {
+        path: 'agent/quote-details/:id',
+        component: QuoteWorkspace,
+        canActivate: [roleGuard('agent')],
+        data: { role: 'agent', page: 'detail' }
+      },
+
+      // Quote Generation - Admin
+      {
+        path: 'admin/quote-generation',
+        component: QuoteWorkspace,
+        canActivate: [roleGuard('admin')],
+        data: { role: 'admin', page: 'list' }
+      },
+      {
+        path: 'admin/quote-review/:id',
+        component: QuoteWorkspace,
+        canActivate: [roleGuard('admin')],
+        data: { role: 'admin', page: 'review' }
+      },
+
+      // Quote Generation - Customer
+      {
+        path: 'customer/quotes',
+        component: QuoteWorkspace,
+        canActivate: [roleGuard('customer')],
+        data: { role: 'customer', page: 'accept' }
+      },
+      {
+        path: 'customer/quote-details/:id',
+        component: QuoteWorkspace,
+        canActivate: [roleGuard('customer')],
+        data: { role: 'customer', page: 'detail' }
+      },
+
+      // Underwriting
+      {
+        path: 'admin/underwriting',
+        component: UnderwritingQueue,
+        canActivate: [roleGuard('admin')]
+      },
+      {
+        path: 'admin/uw-case/:id',
+        component: UnderwritingCaseReview,
+        canActivate: [roleGuard('admin')]
+      },
+      {
+        path: 'admin/underwriting/proposal',
+        component: ProposalForm,
+        canActivate: [roleGuard('admin')]
+      },
+
+      // Role-based lazy-loaded routes
       {
         path: 'customer',
         canActivate: [roleGuard('customer')],
-        loadChildren: () => import('./features/customer/customer.routes').then(m => m.CUSTOMER_ROUTES)
+        loadChildren: () =>
+          import('./features/customer/customer.routes').then(m => m.CUSTOMER_ROUTES)
       },
       {
         path: 'agent',
         canActivate: [roleGuard('agent')],
-        loadChildren: () => import('./features/agent/agent.routes').then(m => m.AGENT_ROUTES)
+        loadChildren: () =>
+          import('./features/Agent/agent.routes').then(m => m.AGENT_ROUTES)
       },
       {
         path: 'admin',
         canActivate: [roleGuard('admin')],
-        loadChildren: () => import('./features/admin/admin.routes').then(m => m.ADMIN_ROUTES)
+        loadChildren: () =>
+          import('./features/admin/admin.routes').then(m => m.ADMIN_ROUTES)
       },
 
       // Customer Registration and Profile
@@ -182,13 +260,11 @@ export const routes: Routes = [
         component: ClaimDetails
       },
 
-      // Agent Dashboard
+      // Agent Dashboard and Pages
       {
         path: 'agent/dashboard',
         component: AgentDashboard
       },
-
-      // Agent Module Pages
       {
         path: 'agent/assigned-customers',
         component: AssignedCustomersComponent
@@ -228,13 +304,11 @@ export const routes: Routes = [
         component: ClaimDetails
       },
 
-      // Admin Dashboard
+      // Admin Dashboard and Claims
       {
         path: 'admin/dashboard',
         component: ClaimsDashboard
       },
-
-      // Admin Claims
       {
         path: 'admin/claims/list',
         component: ClaimList
@@ -272,7 +346,7 @@ export const routes: Routes = [
         component: ClaimTracking
       },
 
-      // General Claims Routes
+      // General Claims
       {
         path: 'claims/dashboard',
         component: ClaimsDashboard
@@ -342,9 +416,6 @@ export const routes: Routes = [
     ]
   },
 
-  // Fallback for unknown URLs
-  {
-    path: '**',
-    redirectTo: 'login'
-  }
+  // Always keep wildcard route last
+  { path: '**', redirectTo: 'login' }
 ];
