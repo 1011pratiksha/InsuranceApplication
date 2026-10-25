@@ -1,0 +1,90 @@
+
+<div class="dashboard-container">
+    <header class="dashboard-header">
+      <div>
+        <p class="page-label">KYC VERIFICATION</p>
+        <h1>Admin Dashboard</h1>
+        <p class="subtitle">Monitor and manage customer KYC verification requests.</p>
+      </div>
+  
+      <button class="primary-button" routerLink="/kyc/admin/requests">
+        View All Requests
+      </button>
+    </header>
+  
+    <!-- Summary cards -->
+    <section class="summary-grid">
+      <div class="summary-card total">
+        <div class="card-icon">📋</div>
+        <p>Total Requests</p>
+        <h2>0</h2>
+        <span>All submitted requests</span>
+      </div>
+  
+      <div class="summary-card pending">
+        <div class="card-icon">⏳</div>
+        <p>Pending Review</p>
+        <h2>0</h2>
+        <span>Awaiting verification</span>
+      </div>
+  
+      <div class="summary-card approved">
+        <div class="card-icon">✓</div>
+        <p>Approved</p>
+        <h2>0</h2>
+        <span>Successfully verified</span>
+      </div>
+  
+      <div class="summary-card rejected">
+        <div class="card-icon">✕</div>
+        <p>Rejected</p>
+        <h2>0</h2>
+        <span>Requests not approved</span>
+      </div>
+    </section>
+  
+    <!-- Main dashboard content -->
+    <section class="content-panel">
+      <div class="panel-heading">
+        <div>
+          <h2>KYC Overview</h2>
+          <p>Review the current verification workflow.</p>
+        </div>
+        <span class="status-badge">Admin</span>
+      </div>
+  
+      <div class="workflow-list">
+        <div class="workflow-item">
+          <div class="workflow-number">01</div>
+          <div class="workflow-text">
+            <h3>Review Customer Requests</h3>
+            <p>Check submitted KYC information and customer details.</p>
+          </div>
+          <a routerLink="/kyc/admin/requests">Open →</a>
+        </div>
+  
+        <div class="workflow-item">
+          <div class="workflow-number">02</div>
+          <div class="workflow-text">
+            <h3>Verify Documents</h3>
+            <p>Review identity documents and their verification status.</p>
+          </div>
+          <span class="coming-soon">Coming next</span>
+        </div>
+  
+        <div class="workflow-item">
+          <div class="workflow-number">03</div>
+          <div class="workflow-text">
+            <h3>Update KYC Status</h3>
+            <p>Approve, reject, or request corrections from customers.</p>
+          </div>
+          <span class="coming-soon">Coming next</span>
+        </div>
+      </div>
+    </section>
+  
+    <p class="dashboard-note">
+      Dashboard figures are placeholders. They will be connected to the KYC backend later.
+    </p>
+  </div>
+  
