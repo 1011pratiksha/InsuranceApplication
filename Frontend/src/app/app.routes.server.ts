@@ -1,7 +1,13 @@
 import { RenderMode, ServerRoute } from '@angular/ssr';
 
 export const serverRoutes: ServerRoute[] = [
-  {
+
+    {
+        path: '**',
+        renderMode: RenderMode.Client
+    },
+    
+ {
     path: 'claims/details/:id',
     renderMode: RenderMode.Client
   },
@@ -22,3 +28,4 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender
   }
 ];
+
