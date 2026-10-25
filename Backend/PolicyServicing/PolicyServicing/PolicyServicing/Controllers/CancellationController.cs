@@ -16,7 +16,7 @@ namespace PolicyServicing.Controllers
             this.service = service;
         }
 
-        [HttpPost("policies/{id}/cancel")]
+        [HttpPost("policies/{id}")]
         public async Task<ApisResponse<string>> CancelPolicy(long id , CancelPolicyDto dto)
         {
            var res= await service.CancelPolicy(id, dto);
