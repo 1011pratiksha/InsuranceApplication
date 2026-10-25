@@ -26,6 +26,19 @@ builder.Services.AddScoped<IBenefitService, BenefitService>();
 builder.Services.AddScoped<IPremiumFrequencyService,PremiumFrequencyService>();
 builder.Services.AddScoped<IProductCommissionService,ProductCommissionService>();
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AngularFrontend", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -35,10 +48,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 app.UseHttpsRedirection();
+
+app.UseCors("AngularFrontend");
 
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
+

@@ -12,7 +12,7 @@ using UnderwritingMS.Infrastructure.Data;
 namespace UnderwritingMS.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261022140627_initdb")]
+    [Migration("20261024080810_initdb")]
     partial class initdb
     {
         /// <inheritdoc />

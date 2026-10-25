@@ -1,0 +1,71 @@
+
+<section class="page">
+  <p class="breadcrumb">Underwriting / Underwriting Queue</p>
+  <div class="heading-row">
+    <div>
+      <h1>Underwriting Queue</h1>
+      <p class="subheading">Review and manage insurance applications</p>
+    </div>
+    <button class="secondary" (click)="loadCases()">Refresh</button>
+  </div>
+
+  <div class="panel">
+    <div class="filters">
+      <input
+        type="search"
+        placeholder="Search case, quote, customer or product ID"
+        [(ngModel)]="searchText"
+      />
+
+      <select [(ngModel)]="selectedStatus">
+        <option>All</option>
+        <option>Pending</option>
+        <option>Approved</option>
+        <option>Rejected</option>
+        <option>In Review</option>
+        <option>Approved with Loading</option>
+      </select>
+    </div>
+
+    <p *ngIf="loading">Loading underwriting cases...</p>
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <div class="table-wrap" *ngIf="!loading">
+      <table>
+        <thead>
+          <tr>
+            <th>Case no.</th>
+            <th>Quote ID</th>
+            <th>Customer ID</th>
+            <th>Product ID</th>
+            <th>Created</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of filteredCases">
+            <td>UW-{{ item.underwriting_id }}</td>
+            <td>{{ item.quote_id }}</td>
+            <td>{{ item.customer_id }}</td>
+            <td>{{ item.product_id }}</td>
+            <td>{{ item.underwriting_date | date:'mediumDate' }}</td>
+            <td>
+              <span class="status" [ngClass]="item.status.toLowerCase().replace(' ', '-')">
+                {{ item.status }}
+              </span>
+            </td>
+            <td>
+              <button class="link-button" (click)="openCase(item.underwriting_id)">
+                Open case →
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="filteredCases.length === 0">
+            <td colspan="7" class="empty">No matching underwriting cases found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

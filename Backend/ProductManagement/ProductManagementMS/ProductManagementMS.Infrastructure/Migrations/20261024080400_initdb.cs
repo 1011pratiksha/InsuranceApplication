@@ -5,7 +5,7 @@
 namespace ProductManagementMS.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class ProductMgmt : Migration
+    public partial class initdb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
