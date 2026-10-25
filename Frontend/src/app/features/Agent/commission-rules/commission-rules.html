@@ -1,0 +1,209 @@
+<div class="container mt-4">
+
+  <!-- Page Heading -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Commission Rules</h2>
+
+    <button type="button" class="btn btn-primary" (click)="toggleForm()">
+      {{ showForm ? 'Cancel' : '+ Add Commission Rule' }}
+    </button>
+  </div>
+
+  <!-- Commission Rule Form -->
+  <div class="card mb-4" *ngIf="showForm">
+    <div class="card-header">
+      {{ isEditMode ? 'Edit Commission Rule' : 'Add Commission Rule' }}
+    </div>
+
+    <div class="card-body">
+      <form #ruleForm="ngForm" (ngSubmit)="saveCommissionRule()">
+
+        <!-- Product ID -->
+     <div class="mb-3">
+  <label for="productId" class="form-label">Product</label>
+
+  <select
+    id="productId"
+    name="productId"
+    class="form-select"
+    [(ngModel)]="commissionRule.productId"
+    required
+    [disabled]="isEditMode">
+
+    <option [ngValue]="0">Select Product</option>
+
+    <option
+      *ngFor="let product of products"
+      [ngValue]="product.product_id">
+
+      {{ product.product_name }} 
+    </option>
+  </select>
+</div>
+
+        <!-- Commission Percentage -->
+        <div class="mb-3">
+          <label for="commissionPercentage" class="form-label">
+            Commission Percentage (%)
+          </label>
+
+          <input
+            type="number"
+            id="commissionPercentage"
+            name="commissionPercentage"
+            class="form-control"
+            [(ngModel)]="commissionRule.commissionPercentage"
+            min="0.01"
+            max="100"
+            step="0.01"
+            required>
+        </div>
+
+        <!-- Effective Dates -->
+        <div class="row">
+
+          <div class="col-md-6 mb-3">
+            <label for="effectiveFrom" class="form-label">
+              Effective From
+            </label>
+
+            <input
+              type="date"
+              id="effectiveFrom"
+              name="effectiveFrom"
+              class="form-control"
+              [(ngModel)]="commissionRule.effectiveFrom"
+              required>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="effectiveTo" class="form-label">
+              Effective To
+            </label>
+
+            <input
+              type="date"
+              id="effectiveTo"
+              name="effectiveTo"
+              class="form-control"
+              [(ngModel)]="commissionRule.effectiveTo">
+          </div>
+
+        </div>
+
+        <!-- Active Status -->
+        <div class="form-check mb-3">
+          <input
+            type="checkbox"
+            id="isActive"
+            name="isActive"
+            class="form-check-input"
+            [(ngModel)]="commissionRule.isActive">
+
+          <label for="isActive" class="form-check-label">
+            Active
+          </label>
+        </div>
+
+        <!-- Buttons -->
+        <button
+          type="submit"
+          class="btn btn-success me-2"
+          [disabled]="ruleForm.invalid">
+
+          {{ isEditMode ? 'Update Rule' : 'Save Rule' }}
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="toggleForm()">
+          Cancel
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Commission Rules Table -->
+  <div class="card">
+    <div class="card-header">
+      Commission Rules List
+    </div>
+
+    <div class="card-body table-responsive">
+
+      <div *ngIf="isLoading" class="text-center p-3">
+        Loading commission rules...
+      </div>
+
+      <table
+        class="table table-bordered table-striped table-hover"
+        *ngIf="!isLoading">
+
+        <thead class="table-dark">
+          <tr>
+            <th>Rule ID</th>
+            <th>Product Name</th>
+            <th>Commission (%)</th>
+            <th>Effective From</th>
+            <th>Effective To</th>
+            <th>Status</th>
+            <th>Created At</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let rule of commissionRules">
+
+            <td>{{ rule.commissionRuleId }}</td>
+           <td>{{ getProductName(rule.productId) }}</td>
+            <td>{{ rule.commissionPercentage }}%</td>
+
+            <td>
+              {{ rule.effectiveFrom | date:'dd-MM-yyyy' }}
+            </td>
+
+            <td>
+              {{ rule.effectiveTo
+                ? (rule.effectiveTo | date:'dd-MM-yyyy')
+                : '-' }}
+            </td>
+
+            <td>
+              <span
+                class="badge"
+                [ngClass]="rule.isActive ? 'bg-success' : 'bg-secondary'">
+
+                {{ rule.isActive ? 'Active' : 'Inactive' }}
+              </span>
+            </td>
+
+            <td>
+              {{ rule.createdAt | date:'dd-MM-yyyy' }}
+            </td>
+
+            <td>
+              <button
+                type="button"
+                class="btn btn-sm btn-warning"
+                (click)="editCommissionRule(rule)">
+                Edit
+              </button>
+            </td>
+
+          </tr>
+
+          <tr *ngIf="commissionRules.length === 0">
+            <td colspan="8" class="text-center">
+              No commission rules available.
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+
+</div>

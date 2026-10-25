@@ -1,0 +1,102 @@
+<div class="agent-page">
+  <div class="page-header">
+    <div>
+      <h2>Agent Management</h2>
+      <p>View and manage registered agents.</p>
+    </div>
+
+    <button type="button" class="btn-primary" (click)="showForm = !showForm">
+      {{ showForm ? 'Cancel' : '+ Add Agent' }}
+    </button>
+  </div>
+
+  <section class="agent-form-card" *ngIf="showForm">
+    <h3>Create Agent</h3>
+
+    <form (ngSubmit)="createAgent()">
+      <div class="form-grid">
+        <div class="form-group">
+
+<label for="userId">Select User</label>
+
+<select
+  id="userId"
+  name="userId"
+  [(ngModel)]="agent.userId"
+  required>
+
+  <option [ngValue]="0" disabled>Select a user</option>
+
+<option *ngFor="let user of users" [ngValue]="user.userId">
+  {{ user.username }}
+</option>
+</select>
+
+        </div>
+
+        <div class="form-group">
+          <label for="joiningDate">Joining Date</label>
+          <input
+            id="joiningDate"
+            type="date"
+            name="joiningDate"
+            [(ngModel)]="agent.joiningDate"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="licenseNumber">License Number</label>
+          <input
+            id="licenseNumber"
+            type="text"
+            name="licenseNumber"
+            [(ngModel)]="agent.licenseNumber"
+          />
+        </div>
+      </div>
+
+      <button type="submit" class="btn-success">Create Agent</button>
+    </form>
+  </section>
+
+  <section class="agent-table-card">
+    <h3>Agents List</h3>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Agent ID</th>
+            <th>Agent Code</th>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Mobile Number</th>
+            <th>Joining Date</th>
+            <th>License Number</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of agents">
+            <td>{{ item.agentId }}</td>
+            <td>{{ item.agentCode }}</td>
+            <td>{{ item.userName }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.mobileNo }}</td>
+            <td>{{ item.joiningDate | date:'dd-MM-yyyy' }}</td>
+            <td>{{ item.licenseNumber || '-' }}</td>
+            <td>
+              <span class="status-badge">{{ item.status }}</span>
+            </td>
+          </tr>
+
+        <tr *ngIf="!agents || agents.length === 0">
+          <td colspan="8" class="empty-message">No agents to display.</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
