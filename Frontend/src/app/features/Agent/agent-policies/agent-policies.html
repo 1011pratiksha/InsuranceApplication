@@ -1,0 +1,200 @@
+
+<div class="container mt-4">
+
+  <!-- Page Heading -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Agent Policies</h2>
+
+    <button type="button" class="btn btn-primary" (click)="toggleForm()">
+      {{ showForm ? 'Cancel' : '+ Assign Policy' }}
+    </button>
+  </div>
+
+  <!-- Assign Policy Form -->
+  <div class="card mb-4" *ngIf="showForm">
+    <div class="card-header">
+      <h5 class="mb-0">Assign Policy</h5>
+    </div>
+
+    <div class="card-body">
+      <form #assignForm="ngForm" (ngSubmit)="assignPolicy()">
+
+        <!-- Agent Dropdown -->
+        <div class="mb-3">
+          <label for="formAgentId" class="form-label">Select Agent</label>
+
+          <select
+            id="formAgentId"
+            class="form-select"
+            name="formAgentId"
+            [(ngModel)]="agentPolicy.agentId"
+            required>
+
+            <option [ngValue]="0" disabled>-- Select Agent --</option>
+
+            <option *ngFor="let agent of agents" [ngValue]="agent.agentId">
+              {{ agent.userName || agent.firstName + ' ' + agent.lastName }}
+              (ID: {{ agent.agentId }})
+            </option>
+          </select>
+        </div>
+
+        <!-- Customer Dropdown -->
+        <div class="mb-3">
+          <label for="customerId" class="form-label">Select Customer</label>
+
+          <select
+            id="customerId"
+            class="form-select"
+            name="customerId"
+            [(ngModel)]="agentPolicy.customerId"
+            required>
+
+            <option [ngValue]="0" disabled>-- Select Customer --</option>
+
+            <option *ngFor="let customer of customers"
+                    [ngValue]="customer.customerId">
+              {{ customer.firstName }} {{ customer.lastName }}
+            </option>
+          </select>
+
+          <small class="text-muted" *ngIf="customers.length === 0">
+            No customers available.
+          </small>
+        </div>
+
+        <!-- Policy Dropdown -->
+        <div class="mb-3">
+          <label for="policyId" class="form-label">Select Policy</label>
+
+          <select
+            id="policyId"
+            class="form-select"
+            name="policyId"
+            [(ngModel)]="agentPolicy.policyId"
+            required>
+
+            <option [ngValue]="0" disabled>-- Select Policy --</option>
+
+          <option *ngFor="let policy of policies"
+                  [ngValue]="policy.policyId">
+            {{ policy.policyNumber }} (ID: {{ policy.policyId }})
+          </option>
+          </select>
+
+          <small class="text-muted" *ngIf="policies.length === 0">
+            No policies available.
+          </small>
+        </div>
+
+        <!-- Sale Date -->
+        <div class="mb-3">
+          <label for="saleDate" class="form-label">Sale Date</label>
+
+          <input
+            type="date"
+            id="saleDate"
+            class="form-control"
+            name="saleDate"
+            [(ngModel)]="agentPolicy.saleDate">
+        </div>
+
+        <!-- Buttons -->
+        <button
+          type="submit"
+          class="btn btn-success me-2"
+          [disabled]="assignForm.invalid
+            || agentPolicy.agentId <= 0
+            || agentPolicy.customerId <= 0
+            || agentPolicy.policyId <= 0">
+          Assign Policy
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="toggleForm()">
+          Cancel
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Filter by Agent -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <label for="agentId" class="form-label">Select Agent</label>
+
+      <select
+        id="agentId"
+        class="form-select"
+        name="selectedAgentId"
+        [(ngModel)]="selectedAgentId"
+        (ngModelChange)="onAgentChange()">
+
+        <option [ngValue]="0">-- Select Agent --</option>
+
+        <option *ngFor="let agent of agents" [ngValue]="agent.agentId">
+          {{ agent.userName || agent.firstName + ' ' + agent.lastName }}
+          (ID: {{ agent.agentId }})
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Assigned Policies Table -->
+  <div class="card">
+    <div class="card-header">
+      <h5 class="mb-0">Assigned Policies</h5>
+    </div>
+
+    <div class="card-body table-responsive">
+      <table
+        class="table table-bordered table-hover"
+        *ngIf="agentPolicies.length > 0; else noPolicies">
+
+        <thead class="table-light">
+          <tr>
+            <th>Agent Policy ID</th>
+            <th>Agent ID</th>
+            <th>Policy ID</th>
+            <th>Customer ID</th>
+            <th>Assigned Date</th>
+            <th>Sale Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of agentPolicies">
+            <td>{{ item.agentPolicyId }}</td>
+            <td>{{ item.agentId }}</td>
+            <td>{{ item.policyId }}</td>
+            <td>{{ item.customerId }}</td>
+            <td>{{ item.assignedDate | date:'dd-MM-yyyy' }}</td>
+            <td>
+              {{ item.saleDate ? (item.saleDate | date:'dd-MM-yyyy') : '-' }}
+            </td>
+            <td>
+              <span
+                class="badge"
+                [ngClass]="item.status === 'Sold'
+                  ? 'bg-success'
+                  : 'bg-warning text-dark'">
+                {{ item.status }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ng-template #noPolicies>
+        <p class="text-center text-muted mb-0">
+          Select an agent to view assigned policies.
+        </p>
+      </ng-template>
+    </div>
+  </div>
+
+</div>

@@ -1,5 +1,6 @@
 using ClaimManagement.Application.DTO;
 using ClaimManagement.Application.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClaimManagement.API.Controllers
@@ -15,6 +16,7 @@ namespace ClaimManagement.API.Controllers
             this.repository = repository;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("claims/{claimId:int}/investigation")]
         public async Task<IActionResult> AssignInvestigator(int claimId, CreateInvestigationDto dto)
         {
@@ -24,7 +26,8 @@ namespace ClaimManagement.API.Controllers
             var investigation = await repository.AssignInvestigatorAsync(claimId, dto);
             return Ok(investigation);
         }
-
+        
+        [Authorize(Roles = "Admin")]
         [HttpPut("investigations/{id:int}")]
         public async Task<IActionResult> SubmitInvestigationReport(int id, InvestigationReportDto dto)
         {

@@ -1,0 +1,256 @@
+<aside class="sidebar-container" [class]="currentRole.toLowerCase() + '-sidebar'">
+  <!-- Sidebar Header -->
+  <div class="sidebar-header">
+    <div class="role-indicator">
+      <span class="role-dot" [class]="currentRole.toLowerCase()"></span>
+      <div class="role-text-group">
+        <span class="role-title">{{ currentRole.toUpperCase() }} MENU</span>
+        <span class="role-subtitle">Insurance Suite</span>
+      </div>
+    </div>
+
+    <!-- Quick Action / Expand-Collapse Tools -->
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" (click)="expandAll()" title="Expand All">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="7 13 12 18 17 13"></polyline>
+          <polyline points="7 6 12 11 17 6"></polyline>
+        </svg>
+      </button>
+      <button type="button" class="tool-btn" (click)="collapseAll()" title="Collapse All">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="17 11 12 6 7 11"></polyline>
+          <polyline points="17 18 12 13 7 18"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Search / Quick Filter Input -->
+  <div class="search-box-wrapper">
+    <div class="search-box">
+      <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input 
+        type="text" 
+        class="search-input" 
+        placeholder="Filter navigation..." 
+        [ngModel]="searchQuery()" 
+        (ngModelChange)="searchQuery.set($event)"
+      />
+      <button *ngIf="searchQuery()" type="button" class="clear-btn" (click)="clearSearch()" title="Clear">
+        &times;
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Scrollable Navigation Tree -->
+  <nav class="sidebar-nav">
+    <div *ngIf="filteredNavItems().length === 0" class="no-results">
+      <span>No items matching "{{ searchQuery() }}"</span>
+      <button type="button" class="btn-link" (click)="clearSearch()">Reset filter</button>
+    </div>
+
+    <ul class="nav-tree">
+      <li *ngFor="let item of filteredNavItems()" class="nav-node" [class.has-children]="item.subItems && item.subItems.length > 0">
+        
+        <!-- Case 1: Item WITHOUT Children (Direct Route Link) -->
+        <a *ngIf="!item.subItems || item.subItems.length === 0"
+           [routerLink]="item.route" 
+           routerLinkActive="active" 
+           [routerLinkActiveOptions]="{ exact: false }"
+           class="nav-item-link single-link">
+          <span class="icon-wrap">
+            <ng-container *ngTemplateOutlet="iconTemplate; context: { icon: item.icon }"></ng-container>
+          </span>
+          <span class="item-label">{{ item.label }}</span>
+          <span *ngIf="item.badge" class="item-badge" [class]="item.badgeClass || 'badge-default'">
+            {{ item.badge }}
+          </span>
+        </a>
+
+        <!-- Case 2: Item WITH Submenu Children (Expandable Accordion Parent) -->
+        <div *ngIf="item.subItems && item.subItems.length > 0" 
+             class="nav-parent-row" 
+             [class.expanded]="isExpanded(item.id)"
+             (click)="onParentClick(item)">
+          <div class="parent-info">
+            <span class="icon-wrap">
+              <ng-container *ngTemplateOutlet="iconTemplate; context: { icon: item.icon }"></ng-container>
+            </span>
+            <span class="item-label">{{ item.label }}</span>
+          </div>
+
+          <div class="parent-actions">
+            <span class="chevron-toggle" [class.rotated]="isExpanded(item.id)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Submenu Children List (Tree Branch Style: ├─ / └─) -->
+        <div *ngIf="item.subItems && item.subItems.length > 0 && isExpanded(item.id)" class="sub-tree-container">
+          <ul class="sub-tree-list">
+            <li *ngFor="let sub of item.subItems; let isLast = last" class="sub-tree-node">
+              <a [routerLink]="sub.route" 
+                 routerLinkActive="active" 
+                 [routerLinkActiveOptions]="{ exact: true }"
+                 class="sub-item-link">
+                <!-- Visual Tree Hierarchy Connector Branch -->
+                <span class="tree-connector" [class.last]="isLast" aria-hidden="true">
+                  <span class="branch-vertical"></span>
+                  <span class="branch-horizontal"></span>
+                </span>
+                <span class="sub-label">{{ sub.label }}</span>
+                <span *ngIf="sub.badge" class="sub-badge">{{ sub.badge }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Sidebar Footer -->
+  <div class="sidebar-footer">
+    <div class="footer-role-card">
+      <div class="footer-avatar">{{ currentRole.charAt(0) }}</div>
+      <div class="footer-meta">
+        <span class="user-name">{{ currentRole }} User</span>
+        <span class="user-status">Online &bull; v2.4</span>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- Icon Helper Template -->
+<ng-template #iconTemplate let-icon="icon">
+  <ng-container [ngSwitch]="icon">
+    <!-- Dashboard -->
+    <svg *ngSwitchCase="'dashboard'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="7" height="9"></rect>
+      <rect x="14" y="3" width="7" height="5"></rect>
+      <rect x="14" y="12" width="7" height="9"></rect>
+      <rect x="3" y="16" width="7" height="5"></rect>
+    </svg>
+    <!-- User / Profile -->
+    <svg *ngSwitchCase="'user'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+      <circle cx="12" cy="7" r="4"></circle>
+    </svg>
+    <!-- User Check -->
+    <svg *ngSwitchCase="'user-check'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+      <circle cx="8.5" cy="7" r="4"></circle>
+      <polyline points="17 11 19 13 23 9"></polyline>
+    </svg>
+    <!-- Users -->
+    <svg *ngSwitchCase="'users'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+      <circle cx="9" cy="7" r="4"></circle>
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+    </svg>
+    <!-- ID Card / KYC -->
+    <svg *ngSwitchCase="'id-card'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+      <circle cx="8" cy="11" r="3"></circle>
+      <line x1="14" y1="9" x2="18" y2="9"></line>
+      <line x1="14" y1="13" x2="18" y2="13"></line>
+      <line x1="6" y1="17" x2="18" y2="17"></line>
+    </svg>
+    <!-- Shield / Policy -->
+    <svg *ngSwitchCase="'shield'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+    </svg>
+    <!-- File Text / Quotes -->
+    <svg *ngSwitchCase="'file-text'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+      <polyline points="14 2 14 8 20 8"></polyline>
+      <line x1="16" y1="13" x2="8" y2="13"></line>
+      <line x1="16" y1="17" x2="8" y2="17"></line>
+      <polyline points="10 9 9 9 8 9"></polyline>
+    </svg>
+    <!-- Clipboard List / Applications -->
+    <svg *ngSwitchCase="'clipboard-list'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+      <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+      <line x1="9" y1="11" x2="15" y2="11"></line>
+      <line x1="9" y1="15" x2="15" y2="15"></line>
+    </svg>
+    <!-- File Check / Policies -->
+    <svg *ngSwitchCase="'file-check'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+      <polyline points="14 2 14 8 20 8"></polyline>
+      <polyline points="9 15 11 17 15 13"></polyline>
+    </svg>
+    <!-- Credit Card / Payments -->
+    <svg *ngSwitchCase="'credit-card'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+      <line x1="1" y1="10" x2="23" y2="10"></line>
+    </svg>
+    <!-- Wrench / Services -->
+    <svg *ngSwitchCase="'wrench'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+    </svg>
+    <!-- Refresh / Renewals -->
+    <svg *ngSwitchCase="'refresh'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="23 4 23 10 17 10"></polyline>
+      <polyline points="1 20 1 14 7 14"></polyline>
+      <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+    </svg>
+    <!-- Umbrella / Claims -->
+    <svg *ngSwitchCase="'umbrella'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"></path>
+    </svg>
+    <!-- Chart Bar / Reports -->
+    <svg *ngSwitchCase="'chart-bar'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="20" x2="18" y2="10"></line>
+      <line x1="12" y1="20" x2="12" y2="4"></line>
+      <line x1="6" y1="20" x2="6" y2="14"></line>
+    </svg>
+    <!-- Bell / Notifications -->
+    <svg *ngSwitchCase="'bell'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+      <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+    </svg>
+    <!-- Settings / Account Settings / Admin System -->
+    <svg *ngSwitchCase="'settings'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"></circle>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+    </svg>
+    <!-- Package / Products -->
+    <svg *ngSwitchCase="'package'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
+      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+      <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+      <line x1="12" y1="22.08" x2="12" y2="12"></line>
+    </svg>
+    <!-- Percent / Commission -->
+    <svg *ngSwitchCase="'percent'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="19" y1="5" x2="5" y2="19"></line>
+      <circle cx="6.5" cy="6.5" r="2.5"></circle>
+      <circle cx="17.5" cy="17.5" r="2.5"></circle>
+    </svg>
+    <!-- Dollar Sign / Payouts -->
+    <svg *ngSwitchCase="'dollar-sign'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="1" x2="12" y2="23"></line>
+      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+    </svg>
+    <!-- Database / Master Data -->
+    <svg *ngSwitchCase="'database'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+      <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+      <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+    </svg>
+    <!-- Default Bullet -->
+    <svg *ngSwitchDefault width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="4"></circle>
+    </svg>
+  </ng-container>
+</ng-template>

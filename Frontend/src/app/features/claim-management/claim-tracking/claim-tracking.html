@@ -1,0 +1,113 @@
+<div class="tracking-container">
+  <div class="page-header">
+    <div>
+      <h2>Claim Lifecycle Tracker</h2>
+      <p>Enter Claim ID or Claim Number to track progress through the 7-stage pipeline</p>
+    </div>
+    <a [routerLink]="getRoleLink('dashboard')" class="btn btn-secondary">← Dashboard</a>
+  </div>
+
+  <!-- Search Box -->
+  <div class="card search-card">
+    <div class="search-form">
+      <div class="search-input-wrap">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          class="track-input"
+          placeholder="Enter Claim ID (number) or Claim Number (e.g. CLM-ABC123456789)..."
+          [(ngModel)]="searchQuery"
+          (keyup.enter)="trackClaim()"
+        />
+      </div>
+      <button class="btn btn-primary" (click)="trackClaim()" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Track Claim</span>
+        <span *ngIf="isLoading">Searching...</span>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-banner">
+    <span>⚠️ {{ errorMessage }}</span>
+  </div>
+
+  <div *ngIf="notFound && !isLoading" class="not-found-card card">
+    <span class="nf-icon">⚠️</span>
+    <h3>No Claim Found for "{{ searchQuery }}"</h3>
+    <p>Enter a valid Claim ID (integer) or Claim Number (e.g. CLM-XXXXXXXXXXXX).</p>
+  </div>
+
+  <!-- Tracking Result: Only ClaimResponseDto fields -->
+  <div *ngIf="claim && !notFound" class="tracking-result">
+    <!-- Progress Banner -->
+    <div class="card progress-banner">
+      <div class="banner-top">
+        <div>
+          <span class="badge" [ngClass]="getStatusBadgeClass(claim.claimStatus)">{{ claim.claimStatus }}</span>
+          <h3 class="claim-title">{{ claim.claimNumber }}</h3>
+          <div class="claim-meta">
+            <span>Claim ID: <strong>{{ claim.claimId }}</strong></span> &bull;
+            <span>Policy ID: <strong>{{ claim.policyId }}</strong></span> &bull;
+            <span>Customer ID: <strong>{{ claim.customerId }}</strong></span> &bull;
+            <span>Type: <strong>{{ claim.claimType }}</strong></span>
+          </div>
+        </div>
+        <div class="progress-score">
+          <span class="score-pct">{{ progressPercentage }}%</span>
+          <span class="score-lbl">Lifecycle Complete</span>
+        </div>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" [style.width.%]="progressPercentage"></div>
+      </div>
+    </div>
+
+    <!-- Claim Fields: ClaimResponseDto -->
+    <div class="card summary-footer-card">
+      <h4 class="card-title">Claim Data (ClaimResponseDto)</h4>
+      <div class="summary-grid">
+        <div class="sum-col">
+          <span class="lbl">Incident Date</span>
+          <span class="val">{{ claim.incidentDate | date:'mediumDate' }}</span>
+        </div>
+        <div class="sum-col">
+          <span class="lbl">Claim Date</span>
+          <span class="val">{{ claim.claimDate | date:'mediumDate' }}</span>
+        </div>
+        <div class="sum-col">
+          <span class="lbl">Estimated Loss</span>
+          <span class="val">${{ claim.estimatedLoss | number:'1.2-2' }}</span>
+        </div>
+        <div class="sum-col">
+          <span class="lbl">Claim Status</span>
+          <span class="badge" [ngClass]="getStatusBadgeClass(claim.claimStatus)">{{ claim.claimStatus }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7-Stage Timeline from Section 1 of PDF -->
+    <div class="card timeline-card">
+      <h4 class="timeline-title">7-Stage Claim Lifecycle Pipeline</h4>
+      <div class="stepper-list">
+        <div
+          *ngFor="let step of steps"
+          class="stepper-item"
+          [class.completed]="step.completed"
+          [class.active]="step.active"
+        >
+          <div class="step-marker">
+            <span *ngIf="step.completed">✓</span>
+            <span *ngIf="!step.completed">{{ step.stepNumber }}</span>
+          </div>
+          <div class="step-content">
+            <div class="step-header">
+              <h5 class="step-title">{{ step.title }}</h5>
+              <span class="step-date" *ngIf="step.date">{{ step.date | date:'mediumDate' }}</span>
+            </div>
+            <p class="step-desc">{{ step.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
