@@ -1,5 +1,8 @@
-
 import { Routes } from '@angular/router';
+import { AuditLogs } from './features/audit-logs/audit-logs';
+import { CustomerSupport } from './features/customer-support/customer-support';
+import { AgentSupport } from './features/agent-support/agent-support';
+import { Support } from './features/support/support';
 
 import { Login } from './features/authentication/login/login';
 import { TwoFactor } from './features/authentication/two-factor/two-factor';
@@ -37,16 +40,35 @@ export const routes: Routes = [
     {path:'**',redirectTo:'login'}
   {
     path: 'admin/policy-issuance',
-    component: PolicyIssueComponent
+    component: PolicyIssueComponent,
   },
   {
     path: 'customer/my-policies',
-    component: MyPoliciesComponent
+    component: MyPoliciesComponent,
   },
   {
     path: 'customer/policy-details/:id',
-    component: PolicyDetailsComponent
+    component: PolicyDetailsComponent,
   },
+  {
+    path: 'audit-logs',
+    component: AuditLogs,
+  },
+  {
+    path: 'support',
+    component: Support,
+  },
+
+  {
+    path: 'customer-support',
+    component: CustomerSupport,
+  },
+  {
+    path: 'agent-support',
+    component: AgentSupport,
+  },
+
+
 
   { path: 'customer/svc', component: Policyserviceingss},
   {path: 'admin/service-requests', component: Adminservicerequest},
@@ -89,6 +111,7 @@ export const routes: Routes = [
   component: Policyclosure
 },
     
+
   { path: '', component: CustomerRegistrationComponent },
   { path: 'customer-registration', component: CustomerRegistrationComponent },
   { path: 'customer/c-profile', component: CustomerRegistrationComponent },
