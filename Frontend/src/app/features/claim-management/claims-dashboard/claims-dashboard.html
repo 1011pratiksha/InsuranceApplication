@@ -1,0 +1,312 @@
+<div class="dashboard-container">
+  <!-- ================= AGENT VIEW: CLAIMS SERVICES ================= -->
+  <div *ngIf="currentRole === 'Agent'" class="card agent-claims-box">
+    <div class="welcome-header agent-header">
+      <div class="welcome-text">
+        <h2>Agent Claims Services</h2>
+        <p>Register claims on behalf of your assigned policyholders and monitor claims status in real-time.</p>
+      </div>
+      <div class="header-actions">
+        <a [routerLink]="getRoleLink('claims/register')" class="btn btn-primary">
+          <span>+ Register Claim for Customer</span>
+        </a>
+        <a [routerLink]="getRoleLink('claims/tracking')" class="btn btn-secondary">
+          <span>Track Customer Claims</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CUSTOMER & ADMIN VIEW ================= -->
+  <ng-container *ngIf="currentRole !== 'Agent'">
+    <!-- Welcome Header -->
+    <div class="welcome-header" [class.customer-header]="currentRole === 'Customer'">
+      <div class="welcome-text">
+        <h2 *ngIf="currentRole === 'Admin'">Claims Command Center (Admin)</h2>
+        <h2 *ngIf="currentRole === 'Customer'">Customer Claims Portal</h2>
+        <p *ngIf="currentRole === 'Admin'">Manage claims verification, surveyor & SIU audits, loss assessments, and settlements.</p>
+        <p *ngIf="currentRole === 'Customer'">File new claims, upload supporting evidence, and track claim status in real-time.</p>
+      </div>
+      <div class="header-actions">
+        <!-- Customer Actions -->
+        <ng-container *ngIf="currentRole === 'Customer'">
+          <a [routerLink]="getRoleLink('claims/register')" class="btn btn-primary">
+            <span>+ Register New Claim</span>
+          </a>
+          <a [routerLink]="getRoleLink('claims/documents')" class="btn btn-secondary">
+            <span>Upload Documents</span>
+          </a>
+          <a [routerLink]="getRoleLink('claims/tracking')" class="btn btn-secondary">
+            <span>Track Status</span>
+          </a>
+        </ng-container>
+
+        <!-- Admin Actions -->
+        <ng-container *ngIf="currentRole === 'Admin'">
+          <a [routerLink]="getRoleLink('claims/list')" class="btn btn-primary">
+            <span>View Claims Queue</span>
+          </a>
+          <a [routerLink]="getRoleLink('claims/settlement')" class="btn btn-secondary">
+            <span>Settlement Queue</span>
+          </a>
+        </ng-container>
+      </div>
+    </div>
+
+    <!-- KPI Metric Cards -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon bg-blue">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">{{ currentRole === 'Customer' ? 'My Claims' : 'Total Claims' }}</span>
+          <h3 class="stat-value">{{ totalClaimsCount }}</h3>
+          <span class="stat-trend positive">Active in system</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon bg-amber">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">{{ currentRole === 'Customer' ? 'In Progress' : 'Pending Verification' }}</span>
+          <h3 class="stat-value">{{ pendingReviewCount }}</h3>
+          <span class="stat-trend neutral">Status: Registered</span>
+        </div>
+      </div>
+
+      <div class="stat-card" *ngIf="currentRole === 'Admin'">
+        <div class="stat-icon bg-purple">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">Approved Claims</span>
+          <h3 class="stat-value">{{ approvedCount }}</h3>
+          <span class="stat-trend positive">Ready for Settlement</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon bg-emerald">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">{{ currentRole === 'Customer' ? 'Settled Claims' : 'Settled Claims' }}</span>
+          <h3 class="stat-value">{{ settledCount }}</h3>
+          <span class="stat-trend positive">${{ totalSettlementValue | number:'1.2-2' }} Settled</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Claims Lifecycle Operations: STRICTLY ROLE FILTERED -->
+    <div class="quick-nav-card">
+      <div class="section-title">
+        <h4 *ngIf="currentRole === 'Customer'">Claims Lifecycle Operations (Customer)</h4>
+        <h4 *ngIf="currentRole === 'Admin'">Claims Lifecycle Operations (Admin)</h4>
+        <span *ngIf="currentRole === 'Customer'" class="badge badge-info">Access: Register, Track & Upload Documents</span>
+        <span *ngIf="currentRole === 'Admin'" class="badge badge-purple">Access: Verify, Investigate & Settle</span>
+      </div>
+
+      <!-- ================= 1. CUSTOMER OPERATIONS ================= -->
+      <div *ngIf="currentRole === 'Customer'" class="customer-ops-grid">
+        <a [routerLink]="getRoleLink('claims/register')" class="op-card">
+          <div class="op-icon-circle customer">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+          </div>
+          <div class="op-content">
+            <span class="op-title">1. Claim Registration</span>
+            <span class="op-desc">Register a new First Notice of Loss (FNOL) claim</span>
+          </div>
+          <span class="op-arrow">&rarr;</span>
+        </a>
+
+        <a [routerLink]="getRoleLink('claims/documents')" class="op-card">
+          <div class="op-icon-circle customer">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+          </div>
+          <div class="op-content">
+            <span class="op-title">2. Document Upload</span>
+            <span class="op-desc">Upload claim documents & verify status</span>
+          </div>
+          <span class="op-arrow">&rarr;</span>
+        </a>
+
+        <a [routerLink]="getRoleLink('claims/tracking')" class="op-card">
+          <div class="op-icon-circle customer">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M12 2a10 10 0 0 0-10 10c0 5.25 10 12 10 12s10-6.75 10-12a10 10 0 0 0-10-10z"></path>
+            </svg>
+          </div>
+          <div class="op-content">
+            <span class="op-title">3. Claim Tracking</span>
+            <span class="op-desc">Track real-time lifecycle progression & status updates</span>
+          </div>
+          <span class="op-arrow">&rarr;</span>
+        </a>
+      </div>
+
+      <!-- ================= 2. ADMIN OPERATIONS ================= -->
+      <div *ngIf="currentRole === 'Admin'" class="admin-pillars-container">
+        <!-- PILLAR 1: VERIFY -->
+        <div class="admin-pillar-column">
+          <div class="pillar-header verify">
+            <span class="pillar-tag">1. VERIFY</span>
+            <span class="pillar-subtitle">Audit claims & verify documents</span>
+          </div>
+          <div class="pillar-cards">
+            <a [routerLink]="getRoleLink('claims/list')" class="pillar-card">
+              <span class="card-icon">📋</span>
+              <div class="card-text">
+                <span class="card-title">Claims Queue</span>
+                <span class="card-desc">Review submitted claims</span>
+              </div>
+            </a>
+            <a [routerLink]="getRoleLink('claims/documents')" class="pillar-card">
+              <span class="card-icon">📁</span>
+              <div class="card-text">
+                <span class="card-title">Verify Documents</span>
+                <span class="card-desc">Audit & verify document files</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- PILLAR 2: INVESTIGATE -->
+        <div class="admin-pillar-column">
+          <div class="pillar-header investigate">
+            <span class="pillar-tag">2. INVESTIGATE</span>
+            <span class="pillar-subtitle">Surveys & fraud detection</span>
+          </div>
+          <div class="pillar-cards">
+            <a [routerLink]="getRoleLink('claims/survey')" class="pillar-card">
+              <span class="card-icon">🔍</span>
+              <div class="card-text">
+                <span class="card-title">Survey Management</span>
+                <span class="card-desc">Assign surveyor & submit report</span>
+              </div>
+            </a>
+            <a [routerLink]="getRoleLink('claims/investigation')" class="pillar-card">
+              <span class="card-icon">🛡️</span>
+              <div class="card-text">
+                <span class="card-title">Investigation (SIU)</span>
+                <span class="card-desc">Audit suspicious claims</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- PILLAR 3: SETTLE -->
+        <div class="admin-pillar-column">
+          <div class="pillar-header settle">
+            <span class="pillar-tag">3. SETTLE</span>
+            <span class="pillar-subtitle">Assessment, approval & payout</span>
+          </div>
+          <div class="pillar-cards">
+            <a [routerLink]="getRoleLink('claims/assessment')" class="pillar-card">
+              <span class="card-icon">📊</span>
+              <div class="card-text">
+                <span class="card-title">Claim Assessment</span>
+                <span class="card-desc">Deductibles & Net Payable</span>
+              </div>
+            </a>
+            <a [routerLink]="getRoleLink('claims/approval')" class="pillar-card">
+              <span class="card-icon">⚖️</span>
+              <div class="card-text">
+                <span class="card-title">Claim Approval</span>
+                <span class="card-desc">Manager sanction / rejection</span>
+              </div>
+            </a>
+            <a [routerLink]="getRoleLink('claims/settlement')" class="pillar-card">
+              <span class="card-icon">💳</span>
+              <div class="card-text">
+                <span class="card-title">Claim Settlement</span>
+                <span class="card-desc">Electronic fund disbursement</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Claims Table: ClaimResponseDto Columns -->
+    <div class="card recent-claims-card">
+      <div class="card-header">
+        <div>
+          <h3>{{ currentRole === 'Customer' ? 'My Claims History' : 'Recent Claims Queue' }}</h3>
+          <p class="subtitle">{{ currentRole === 'Customer' ? 'View status of your submitted claims' : 'Real-time status updates across all claims' }}</p>
+        </div>
+        <a *ngIf="currentRole === 'Admin'" [routerLink]="getRoleLink('claims/list')" class="btn btn-secondary btn-sm">View All Claims &rarr;</a>
+        <a *ngIf="currentRole === 'Customer'" [routerLink]="getRoleLink('claims/register')" class="btn btn-primary btn-sm">+ File New Claim</a>
+      </div>
+
+      <div class="table-responsive">
+        <table class="claims-table">
+          <thead>
+            <tr>
+              <th>Claim Number</th>
+              <th>Policy ID</th>
+              <th>Customer ID</th>
+              <th>Type</th>
+              <th>Estimated Loss</th>
+              <th>Status</th>
+              <th>Registration Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of claims">
+              <td class="font-mono font-bold">{{ c.claimNumber }}</td>
+              <td>{{ c.policyId }}</td>
+              <td>{{ c.customerId }}</td>
+              <td><span class="type-tag">{{ c.claimType }}</span></td>
+              <td>${{ c.estimatedLoss | number:'1.2-2' }}</td>
+              <td>
+                <span class="badge" [ngClass]="getStatusBadgeClass(c.claimStatus)">
+                  {{ c.claimStatus }}
+                </span>
+              </td>
+              <td>{{ c.claimDate | date:'mediumDate' }}</td>
+              <td>
+                <a *ngIf="currentRole === 'Customer'" [routerLink]="getRoleLink('claims/tracking')" [queryParams]="{q: c.claimNumber}" class="btn-table-action">
+                  Track
+                </a>
+                <a *ngIf="currentRole !== 'Customer'" [routerLink]="getRoleLink('claims/details/' + c.claimId)" class="btn-table-action">
+                  Review
+                </a>
+              </td>
+            </tr>
+            <tr *ngIf="claims.length === 0">
+              <td colspan="8" class="text-center py-4 text-muted">
+                {{ currentRole === 'Customer' ? 'You have no active claims. Click "+ File New Claim" to register.' : 'No claims found in the database. Ensure backend API is running at https://localhost:7232/api.' }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+</div>

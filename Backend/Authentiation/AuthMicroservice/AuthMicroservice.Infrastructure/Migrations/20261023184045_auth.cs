@@ -84,6 +84,12 @@ namespace AuthMicroservice.Infrastructure.Migrations
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsTwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
                     TwoFactorSecretKey = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastTwoFactorTimeStep = table.Column<long>(type: "bigint", nullable: true),
+                    RefreshTokenHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RefreshTokenExpiry = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PasswordResetTokenHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PasswordResetTokenExpiry = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    TokenVersion = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>

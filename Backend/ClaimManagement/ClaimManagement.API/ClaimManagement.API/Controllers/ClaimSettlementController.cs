@@ -1,5 +1,6 @@
 using ClaimManagement.Application.DTO;
 using ClaimManagement.Application.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClaimManagement.API.Controllers;
@@ -14,6 +15,7 @@ public class ClaimSettlementController : ControllerBase
         this.settlementservice = settlementservice;
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public async Task<IActionResult> ProcessSettlement(long id, SettlementDTO dto)
     {
@@ -36,6 +38,7 @@ public class ClaimSettlementController : ControllerBase
         }
     }
 
+    [Authorize(Roles = "Admin,Customer")]
     [HttpGet]
     public async Task<IActionResult> FindSettlementByClaimId(long id)
     {
@@ -45,7 +48,7 @@ public class ClaimSettlementController : ControllerBase
         return Ok(data);
     }
 
-
+    [Authorize(Roles = "Admin")]
     [HttpPut("/api/claims/{id:long}/approve")]
     public async Task<IActionResult> ApproveClaim(long id)
     {
@@ -64,6 +67,7 @@ public class ClaimSettlementController : ControllerBase
         }
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPut("/api/claims/{id:long}/reject")]
     public async Task<IActionResult> RejectClaim(long id)
     {

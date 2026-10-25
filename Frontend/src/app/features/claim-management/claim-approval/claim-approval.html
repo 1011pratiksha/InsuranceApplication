@@ -1,0 +1,136 @@
+<div class="approval-container">
+  <div class="page-header">
+    <div>
+      <h2>Claim Approval / Rejection (ClaimSettlementController)</h2>
+      <p>Senior Officer Decision — Approve or Reject claims via <code>PUT /api/claims/&#123;id&#125;/approve</code> or <code>reject</code></p>
+    </div>
+    <a [routerLink]="getRoleLink('claims/list')" class="btn btn-secondary">← Back to Claims</a>
+  </div>
+
+  <div *ngIf="successMessage" class="success-banner">
+    <span>✅ {{ successMessage }}</span>
+  </div>
+  <div *ngIf="errorMessage" class="error-banner">
+    <span>⚠️ {{ errorMessage }}</span>
+  </div>
+
+  <div class="approval-grid">
+    <!-- Left: Claims List for Selection -->
+    <div class="card claims-panel">
+      <div class="card-header">
+        <h4 class="card-title">Select Claim to Review</h4>
+        <button class="btn btn-secondary btn-sm" (click)="loadClaims()">🔄 Refresh</button>
+      </div>
+      <div class="claims-select-list">
+        <div
+          *ngFor="let c of claims"
+          class="claim-select-item"
+          [class.selected]="selectedClaim?.claimId === c.claimId"
+          (click)="selectClaim(c)"
+        >
+          <div class="item-header">
+            <span class="claim-code">{{ c.claimNumber }}</span>
+            <span class="badge" [ngClass]="getStatusBadgeClass(c.claimStatus)">{{ c.claimStatus }}</span>
+          </div>
+          <div class="item-details">
+            <span>Claim ID: <strong>{{ c.claimId }}</strong></span> &bull;
+            <span>Policy: <strong>{{ c.policyId }}</strong></span> &bull;
+            <span>Type: <strong>{{ c.claimType }}</strong></span>
+          </div>
+          <div class="item-amount">
+            Est. Loss: ${{ c.estimatedLoss | number:'1.2-2' }}
+          </div>
+        </div>
+        <div *ngIf="claims.length === 0" class="empty-state">
+          <p>No claims found. Backend may be offline or no claims registered yet.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Decision Panel -->
+    <div class="card decision-panel" *ngIf="selectedClaim">
+      <div class="claim-summary">
+        <div class="summary-header">
+          <span class="claim-code">{{ selectedClaim.claimNumber }}</span>
+          <span class="badge" [ngClass]="getStatusBadgeClass(selectedClaim.claimStatus)">
+            {{ selectedClaim.claimStatus }}
+          </span>
+        </div>
+
+        <!-- ClaimResponseDto Fields Display -->
+        <div class="summary-grid">
+          <div class="summary-item">
+            <span class="summary-label">Claim ID</span>
+            <span class="summary-value font-mono">{{ selectedClaim.claimId }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Policy ID</span>
+            <span class="summary-value">{{ selectedClaim.policyId }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Customer ID</span>
+            <span class="summary-value">{{ selectedClaim.customerId }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Claim Type</span>
+            <span class="summary-value">{{ selectedClaim.claimType }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Incident Date</span>
+            <span class="summary-value">{{ selectedClaim.incidentDate | date:'mediumDate' }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Claim Date</span>
+            <span class="summary-value">{{ selectedClaim.claimDate | date:'mediumDate' }}</span>
+          </div>
+          <div class="summary-item full-width">
+            <span class="summary-label">Estimated Loss</span>
+            <span class="summary-value large-amount">${{ selectedClaim.estimatedLoss | number:'1.2-2' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decision Buttons — NO extra form fields required per backend spec -->
+      <div class="decision-section">
+        <h4 class="decision-title">Senior Officer Decision</h4>
+        <p class="decision-hint">
+          <small>
+            Business Rules: Settled claims → 409 | Rejected → can't approve (409) | Already Approved → 409
+          </small>
+        </p>
+
+        <div class="decision-buttons">
+          <button
+            class="btn btn-success decision-btn"
+            (click)="approveClaim()"
+            [disabled]="isProcessing || selectedClaim.claimStatus === 'Approved' || selectedClaim.claimStatus === 'Settled'"
+            title="PUT /api/claims/{id}/approve"
+          >
+            <span *ngIf="!isProcessing">✓ Approve Claim</span>
+            <span *ngIf="isProcessing">Processing...</span>
+          </button>
+
+          <button
+            class="btn btn-danger decision-btn"
+            (click)="rejectClaim()"
+            [disabled]="isProcessing || selectedClaim.claimStatus === 'Rejected' || selectedClaim.claimStatus === 'Settled'"
+            title="PUT /api/claims/{id}/reject"
+          >
+            <span *ngIf="!isProcessing">✗ Reject Claim</span>
+            <span *ngIf="isProcessing">Processing...</span>
+          </button>
+        </div>
+
+        <div class="settlement-nav" *ngIf="selectedClaim.claimStatus === 'Approved'">
+          <button class="btn btn-primary" (click)="goToSettlement()">
+            Proceed to Settlement → POST /api/claims/&#123;id&#125;/settlement
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card decision-panel empty-decision" *ngIf="!selectedClaim">
+      <p class="text-muted text-center">Select a claim from the list to review and make a decision.</p>
+    </div>
+  </div>
+</div>
