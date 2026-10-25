@@ -1,24 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PolicyServicing.Domain.Entities
 {
+    [Table("PolicyEndorsements", Schema = "dbo")]
     public class PolicyEndorsement
     {
         [Key]
-        public long endorsement_id { get; set; }
-        [ForeignKey("ServiceRequest")]
-        public long request_id { get; set; }
-        public  ServiceRequest? ServiceRequest { get; set; }
-        public string endorsement_number { get; set; }
-        public string endorsement_type { get; set; } 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("EndorsementId")]
+        public int endorsement_id { get; set; }
+
+        [Column("PolicyId")]
+        public int policy_id { get; set; }
+
+        [Required]
+        [Column("EndorsementType")]
+        public string endorsement_type { get; set; } = string.Empty;
+
+        [Column("OldValue")]
         public string? previous_value { get; set; }
+
+        [Column("NewValue")]
         public string? updated_value { get; set; }
-        public string approval_status { get; set; } 
+
+        [Column("ApprovedBy")]
+        public int? approved_by { get; set; }
+
+        [Required]
+        [Column("EndorsementDate")]
+        public DateTime endorsement_date { get; set; }
+
+        public string approvel_status { get; set; }
     }
 }
