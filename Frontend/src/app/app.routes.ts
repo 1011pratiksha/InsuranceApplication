@@ -80,6 +80,10 @@ export const routes: Routes = [
     component: LoginSuccess
   },
   {
+    path: 'register',
+    component: CustomerRegistrationComponent
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES)
   },
@@ -98,7 +102,7 @@ export const routes: Routes = [
       {
         path: 'agent',
         canActivate: [roleGuard('agent')],
-        loadChildren: () => import('./features/agent/agent.routes').then(m => m.AGENT_ROUTES)
+        loadChildren: () => import('./features/Agent/agent.routes').then(m => m.AGENT_ROUTES)
       },
       {
         path: 'admin',
