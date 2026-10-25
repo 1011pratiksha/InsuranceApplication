@@ -52,6 +52,13 @@ import { AgentPolicies } from './features/Agent/agent-policies/agent-policies';
 import { CommissionRules } from './features/Agent/commission-rules/commission-rules';
 import { AgentCommissions } from './features/Agent/agent-commissions/agent-commissions';
 
+// Dashboards
+import {AdminDashboard} from './features/admin-dashboard/admin-dashboard'
+import {AgentDashboard} from './features/agent-dashboard/agent-dashboard'
+import {CustomerDashboard} from './features/customer-dashboard/customer-dashboard'
+
+
+
 export const routes: Routes = [
   // ── Authentication pages (outside sidebar layout) ──
   {
@@ -338,12 +345,15 @@ export const routes: Routes = [
       {
         path: 'agent-support',
         component: AgentSupport
-      }
+      },
+       { path: 'admin', component: AdminDashboard },
+       { path: 'agent', component: AgentDashboard },
+       { path: 'customer', component: CustomerDashboard }
     ]
   },
 
   // Fallback for unknown URLs
-  {
+  { 
     path: '**',
     redirectTo: 'login'
   }
