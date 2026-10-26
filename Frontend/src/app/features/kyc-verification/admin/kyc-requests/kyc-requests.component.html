@@ -1,0 +1,103 @@
+
+<div class="requests-container">
+    <header class="page-header">
+      <div>
+        <p class="page-label">KYC VERIFICATION</p>
+        <h1>Customer KYC Requests</h1>
+        <p class="subtitle">
+          Review customer verification requests and track their status.
+        </p>
+      </div>
+  
+      <a routerLink="/kyc/admin/dashboard" class="back-button">
+        ← Back to Dashboard
+      </a>
+    </header>
+  
+    <!-- Summary cards -->
+    <section class="summary-grid">
+      <div class="summary-card">
+        <span>Total Requests</span>
+        <h2>0</h2>
+      </div>
+  
+      <div class="summary-card pending-card">
+        <span>Pending</span>
+        <h2>0</h2>
+      </div>
+  
+      <div class="summary-card approved-card">
+        <span>Approved</span>
+        <h2>0</h2>
+      </div>
+  
+      <div class="summary-card rejected-card">
+        <span>Rejected</span>
+        <h2>0</h2>
+      </div>
+    </section>
+  
+    <!-- Search and filter -->
+    <section class="requests-panel">
+      <div class="panel-header">
+        <div>
+          <h2>All Requests</h2>
+          <p>Search and filter KYC applications.</p>
+        </div>
+      </div>
+  
+      <div class="filters">
+        <input
+          type="text"
+          placeholder="Search by customer name or KYC ID"
+          aria-label="Search KYC requests"
+        />
+  
+        <select aria-label="Filter by KYC status">
+          <option value="">All Statuses</option>
+          <option value="Pending">Pending</option>
+          <option value="Under Review">Under Review</option>
+          <option value="Approved">Approved</option>
+          <option value="Rejected">Rejected</option>
+        </select>
+      </div>
+  
+      <!-- Requests table -->
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>KYC ID</th>
+              <th>Customer</th>
+              <th>Submitted On</th>
+              <th>Document Type</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr>
+              <td colspan="6" class="empty-state">
+                <div class="empty-icon">📄</div>
+                <h3>No KYC requests found</h3>
+                <p>
+                  Customer requests will appear here when they are submitted.
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <div class="table-footer">
+        Showing 0 requests
+      </div>
+    </section>
+  
+    <p class="page-note">
+      This page currently uses placeholder data. Search, filters, and request
+      actions will work after we connect the page to the backend.
+    </p>
+  </div>
+  

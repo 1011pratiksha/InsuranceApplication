@@ -1,0 +1,430 @@
+
+<div class="kyc-layout">
+
+    <!-- Customer sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">🛡</div>
+        <div>
+          <h2>InsureFlow</h2>
+          <p>Insurance Portal</p>
+        </div>
+      </div>
+  
+      <div class="sidebar-section-label">CUSTOMER MENU</div>
+  
+      <nav class="sidebar-nav">
+        <a routerLink="/kyc/customer/dashboard" class="nav-link">
+          <span>▦</span> Dashboard
+        </a>
+  
+        <a routerLink="/kyc/customer/dashboard" class="nav-link">
+          <span>♙</span> My Profile
+        </a>
+  
+        <a routerLink="/kyc/customer/submit" class="nav-link active">
+          <span>▤</span> KYC Verification
+          <span class="nav-badge">!</span>
+        </a>
+  
+        <a routerLink="/customer/my-policies" class="nav-link">
+          <span>▣</span> My Policies
+        </a>
+  
+        <a routerLink="/customer/my-policies" class="nav-link">
+          <span>₹</span> Premium Payments
+        </a>
+  
+        <a routerLink="/customer/my-policies" class="nav-link">
+          <span>▧</span> Claims
+        </a>
+      </nav>
+  
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <div class="help-icon">?</div>
+          <h3>Need help?</h3>
+          <p>Contact our support team if you need assistance with verification.</p>
+        </div>
+  
+        <div class="user-profile">
+          <div class="avatar">C</div>
+          <div>
+            <strong>Customer</strong>
+            <span>Customer Portal</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  
+    <!-- Main page -->
+    <main class="main-content">
+  
+      <header class="topbar">
+        <div class="breadcrumb">
+          <span>Customer Portal</span>
+          <span>/</span>
+          <strong>KYC Verification</strong>
+        </div>
+  
+        <div class="topbar-actions">
+          <span class="secure-label">🔒 Secure Session</span>
+          <div class="topbar-avatar">C</div>
+        </div>
+      </header>
+  
+      <div class="page-content">
+  
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow">IDENTITY VERIFICATION</p>
+            <h1>Submit KYC Documents</h1>
+            <p class="page-description">
+              Complete your identity verification to access all insurance services.
+            </p>
+          </div>
+  
+          <span class="pending-status">
+            <span class="status-dot"></span>
+            Verification Pending
+          </span>
+        </div>
+  
+        <!-- Progress indicator -->
+        <section class="progress-card">
+          <div class="progress-heading">
+            <div>
+              <h2>Verification Process</h2>
+              <p>Complete the steps below to submit your KYC.</p>
+            </div>
+            <span class="step-count">STEP 1 OF 3</span>
+          </div>
+  
+          <div class="progress-steps">
+            <div class="progress-step current">
+              <div class="step-circle">1</div>
+              <span>Personal Details</span>
+            </div>
+  
+            <div class="step-line"></div>
+  
+            <div class="progress-step">
+              <div class="step-circle">2</div>
+              <span>Document Upload</span>
+            </div>
+  
+            <div class="step-line"></div>
+  
+            <div class="progress-step">
+              <div class="step-circle">3</div>
+              <span>Review & Submit</span>
+            </div>
+          </div>
+        </section>
+  
+        <form #kycForm="ngForm" (ngSubmit)="submitKyc()">
+  
+          <!-- Identity details -->
+          <section class="form-card">
+            <div class="section-heading">
+              <div class="section-icon">♙</div>
+              <div>
+                <h2>Identity Information</h2>
+                <p>Enter your government-issued identity details.</p>
+              </div>
+            </div>
+  
+            <div class="field-grid">
+              <div class="form-field">
+                <label for="aadhaarNumber">Aadhaar Number <span>*</span></label>
+                <input
+                  id="aadhaarNumber"
+                  name="aadhaarNumber"
+                  type="text"
+                  inputmode="numeric"
+                  autocomplete="off"
+                  maxlength="12"
+                  pattern="[0-9]{12}"
+                  placeholder="Enter 12-digit Aadhaar number"
+                  [(ngModel)]="aadhaarNumber"
+                  required
+                />
+                <small>Enter your 12-digit Aadhaar number.</small>
+              </div>
+  
+              <div class="form-field">
+                <label for="panNumber">PAN Number <span>*</span></label>
+                <input
+                  id="panNumber"
+                  name="panNumber"
+                  type="text"
+                  maxlength="10"
+                  pattern="[A-Za-z]{5}[0-9]{4}[A-Za-z]"
+                  placeholder="e.g. ABCDE1234F"
+                  [(ngModel)]="panNumber"
+                  required
+                />
+                <small>Enter your 10-character PAN number.</small>
+              </div>
+  
+              <div class="form-field">
+                <label for="passportNumber">Passport Number</label>
+                <input
+                  id="passportNumber"
+                  name="passportNumber"
+                  type="text"
+                  placeholder="Enter passport number (optional)"
+                  [(ngModel)]="passportNumber"
+                />
+              </div>
+  
+              <div class="form-field">
+                <label for="drivingLicenceNumber">Driving Licence Number</label>
+                <input
+                  id="drivingLicenceNumber"
+                  name="drivingLicenceNumber"
+                  type="text"
+                  placeholder="Enter driving licence number (optional)"
+                  [(ngModel)]="drivingLicenceNumber"
+                />
+              </div>
+            </div>
+          </section>
+  
+          <!-- Document uploads -->
+          <section class="form-card">
+            <div class="section-heading">
+              <div class="section-icon">▤</div>
+              <div>
+                <h2>Upload Documents</h2>
+                <p>Upload clear, readable copies of your documents.</p>
+              </div>
+            </div>
+  
+            <div class="upload-grid">
+  
+              <div class="upload-card">
+                <div class="upload-card-heading">
+                  <div class="upload-icon">▤</div>
+                  <span class="required-tag">Required</span>
+                </div>
+  
+                <h3>Aadhaar Card</h3>
+                <p>Upload a clear copy of your Aadhaar card.</p>
+  
+                <label class="file-picker" for="aadhaarFile">
+                  <span class="upload-symbol">↑</span>
+                  <span>Choose Aadhaar file</span>
+                </label>
+  
+                <input
+                  class="native-file-input"
+                  id="aadhaarFile"
+                  name="aadhaarFile"
+                  type="file"
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  (change)="onFileSelected($event, 'aadhaar')"
+                  required
+                />
+  
+                @if (aadhaarFile) {
+                  <div class="selected-file">
+                    <span>✓</span>
+                    <span>{{ aadhaarFile.name }}</span>
+                  </div>
+                }
+  
+                <small>PDF, JPG or PNG · Max 5 MB</small>
+              </div>
+  
+              <div class="upload-card">
+                <div class="upload-card-heading">
+                  <div class="upload-icon pan-icon">▤</div>
+                  <span class="required-tag">Required</span>
+                </div>
+  
+                <h3>PAN Card</h3>
+                <p>Upload a clear copy of your PAN card.</p>
+  
+                <label class="file-picker" for="panFile">
+                  <span class="upload-symbol">↑</span>
+                  <span>Choose PAN file</span>
+                </label>
+  
+                <input
+                  class="native-file-input"
+                  id="panFile"
+                  name="panFile"
+                  type="file"
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  (change)="onFileSelected($event, 'pan')"
+                  required
+                />
+  
+                @if (panFile) {
+                  <div class="selected-file">
+                    <span>✓</span>
+                    <span>{{ panFile.name }}</span>
+                  </div>
+                }
+  
+                <small>PDF, JPG or PNG · Max 5 MB</small>
+              </div>
+  
+              <div class="upload-card">
+                <div class="upload-card-heading">
+                  <div class="upload-icon address-icon">⌂</div>
+                  <span class="required-tag">Required</span>
+                </div>
+  
+                <h3>Address Proof</h3>
+                <p>Upload a document that supports your address.</p>
+  
+                <label class="file-picker" for="addressProofFile">
+                  <span class="upload-symbol">↑</span>
+                  <span>Choose address-proof file</span>
+                </label>
+  
+                <input
+                  class="native-file-input"
+                  id="addressProofFile"
+                  name="addressProofFile"
+                  type="file"
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  (change)="onFileSelected($event, 'address')"
+                  required
+                />
+  
+                @if (addressProofFile) {
+                  <div class="selected-file">
+                    <span>✓</span>
+                    <span>{{ addressProofFile.name }}</span>
+                  </div>
+                }
+  
+                <small>PDF, JPG or PNG · Max 5 MB</small>
+              </div>
+  
+              <div class="upload-card">
+                <div class="upload-card-heading">
+                  <div class="upload-icon selfie-icon">◎</div>
+                  <span class="optional-tag">Optional</span>
+                </div>
+  
+                <h3>Recent Photograph</h3>
+                <p>Select a recent photograph if requested.</p>
+  
+                <label class="file-picker" for="selfieFile">
+                  <span class="upload-symbol">↑</span>
+                  <span>Choose photograph</span>
+                </label>
+  
+                <input
+                  class="native-file-input"
+                  id="selfieFile"
+                  name="selfieFile"
+                  type="file"
+                  accept=".jpg,.jpeg,.png"
+                  (change)="onFileSelected($event, 'selfie')"
+                />
+  
+                @if (selfieFile) {
+                  <div class="selected-file">
+                    <span>✓</span>
+                    <span>{{ selfieFile.name }}</span>
+                  </div>
+                }
+  
+                <small>JPG or PNG · Max 5 MB</small>
+              </div>
+  
+            </div>
+  
+            <div class="upload-note">
+              <span>🔒</span>
+              <p>
+                Your documents are submitted securely for verification.
+                Do not upload documents belonging to another person.
+              </p>
+            </div>
+          </section>
+  
+          <!-- CKYC consent -->
+          <section class="consent-card">
+            <label class="consent-label">
+              <input
+                type="checkbox"
+                name="consentToCkyc"
+                [(ngModel)]="consentToCkyc"
+                required
+              />
+  
+              <span>
+                <strong>CKYC Verification Consent</strong>
+                <span>
+                  I consent to the use of my submitted information for KYC
+                  verification and CKYC-related processing, where applicable.
+                </span>
+              </span>
+            </label>
+          </section>
+  
+          <!-- API success/error feedback -->
+          @if (message) {
+            <div
+              class="form-message"
+              [class.success-message]="messageType === 'success'"
+              [class.error-message]="messageType === 'error'"
+              role="status"
+              aria-live="polite"
+            >
+              <p>{{ message }}</p>
+  
+              @if (createdKycId !== null) {
+                <p>KYC Request ID: {{ createdKycId }}</p>
+              }
+            </div>
+          }
+  
+          <!-- Form actions -->
+          <div class="form-actions">
+            <a
+              routerLink="/kyc/customer/dashboard"
+              class="secondary-button"
+            >
+              Cancel
+            </a>
+  
+            <button
+              type="button"
+              class="draft-button"
+              disabled
+              title="Draft saving is not yet supported by the backend"
+            >
+              Save Draft
+            </button>
+  
+            <button
+              type="submit"
+              class="submit-button"
+              [disabled]="isSubmitting"
+            >
+              @if (isSubmitting) {
+                Submitting...
+              } @else {
+                Submit for Verification →
+              }
+            </button>
+          </div>
+  
+        </form>
+  
+        <footer class="page-footer">
+          <span>🔒 Your information is handled securely.</span>
+          <span>KYC Verification Portal</span>
+        </footer>
+  
+      </div>
+    </main>
+  </div>
+  

@@ -1,82 +1,75 @@
 
-<div class="page-container">
-  <header class="topbar">
-    <div class="brand">▣ PAS · Insurance</div>
-    <span class="role-chip">Customer</span>
-  </header>
+<div class="content">
+  <p class="breadcrumb">Policy Servicing / New Service Request</p>
 
-  <div class="layout">
-    <aside class="sidebar">
-      <h4>CUSTOMER MENU</h4>
-      <a>Dashboard</a>
-      <a>My Profile</a>
-      <a>KYC</a>
-      <a>Products</a>
-      <a>Quotes</a>
-      <a>My Policies</a>
-      <a>Premiums</a>
-      <a class="active">Service Requests</a>
-      <a>Claims</a>
-    </aside>
+  <h1>New Service Request</h1>
+  <p class="subtitle">
+    Submit a request to update your insurance policy details.
+  </p>
 
-    <main class="content">
-      <p class="breadcrumb">Policy Servicing / New Service Request</p>
-      <h1>New Service Request</h1>
-      <p class="subtitle">
-        Submit a request to update your insurance policy details.
-      </p>
+  <form
+    class="request-card"
+    [formGroup]="requestForm"
+    (ngSubmit)="submitreq()"
+  >
+    <div class="form-grid">
+      <div class="field">
+        <label for="policy_id">Policy ID *</label>
+        <input
+          id="policy_id"
+          type="number"
+          formControlName="policy_id"
+          placeholder="Enter policy ID"
+        />
+      </div>
 
-      <form class="request-card"
-            [formGroup]="requestForm"
-            (ngSubmit)="submitreq()">
+      <div class="field">
+        <label for="request_type">Request Type *</label>
+        <select id="request_type" formControlName="request_type">
+          <option value="">Select request type</option>
+          <option value="address">Address Change</option>
+          <option value="contact">Contact Change</option>
+          <option value="nominee">Nominee Change</option>
+          <option value="coverage">Coverage Change</option>
+          <option value="rider">Rider Change</option>
+          <option value="endorsement">Policy Endorsement</option>
+          <option value="cancellation">Policy Cancellation</option>
+        </select>
+      </div>
 
-        <div class="form-grid">
-          <div class="field">
-            <label for="policy_id">Policy ID *</label>
-            <input id="policy_id" type="number"
-                   formControlName="policy_id"
-                   placeholder="Enter policy ID">
-          </div>
+      <div class="field full-width">
+        <label for="details">Request Details *</label>
+        <textarea
+          id="details"
+          formControlName="details"
+          rows="4"
+          placeholder="Enter your request details"
+        ></textarea>
+      </div>
 
-          <div class="field">
-            <label for="request_type">Request Type *</label>
-            <select id="request_type" formControlName="request_type">
-              <option value="">Select request type</option>
-              <option value="address">Address Change</option>
-              <option value="contact">Contact Change</option>
-              <option value="nominee">Nominee Change</option>
-              <option value="coverage">Coverage Change</option>
-              <option value="rider">Rider Change</option>
-              <option value="endorsement">Policy Endorsement</option>
-              <option value="cancellation">Policy Cancellation</option>
-            </select>
-          </div>
+      <div class="field full-width">
+        <label for="remarks">Remarks</label>
+        <textarea
+          id="remarks"
+          formControlName="remarks"
+          rows="3"
+          placeholder="Add additional remarks"
+        ></textarea>
+      </div>
+    </div>
 
-          <div class="field full-width">
-            <label for="details">Request Details *</label>
-            <textarea id="details" formControlName="details"
-                      rows="4"
-                      placeholder="Enter your request details"></textarea>
-          </div>
+    <div class="actions">
+      <button type="submit" class="submit-btn">
+        Submit Request
+      </button>
 
-          <div class="field full-width">
-            <label for="remarks">Remarks</label>
-            <textarea id="remarks" formControlName="remarks"
-                      rows="3"
-                      placeholder="Add additional remarks"></textarea>
-          </div>
-        </div>
-
-        <div class="actions">
-          <button type="submit" class="submit-btn">
-            Submit Request
-          </button>
-          <button type="button" class="cancel-btn"
-                  (click)="requestForm.reset({customer_id: 1})">
-            Clear Form
-          </button>
-        </div>
-      </form>
-    </main>
-  </div>
+      <button
+        type="button"
+        class="cancel-btn"
+        (click)="requestForm.reset({ customer_id: 1 })"
+      >
+        Clear Form
+      </button>
+    </div>
+  </form>
 </div>

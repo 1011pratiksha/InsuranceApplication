@@ -1,0 +1,17 @@
+:host {
+  display: block;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+.ticket-description {
+  min-width: 220px;
+  max-width: 320px;
+  overflow-wrap: anywhere;
+}
+
+.table th {
+  white-space: nowrap;
+}

@@ -1,6 +1,13 @@
 <div class="page-container">
-  <div class="crumb">Customer Registration / My Profile</div>
-  <h1>My Profile</h1>
+  <div class="header-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <div>
+      <div class="crumb">Authentication / Customer Registration</div>
+      <h1 style="margin: 4px 0 0 0;">Customer Registration</h1>
+    </div>
+    <a routerLink="/login" class="btn" style="text-decoration: none; padding: 8px 16px; border: 1px solid #d9e0e8; border-radius: 4px; color: #245d9f; font-weight: 500;">
+      &larr; Back to Login
+    </a>
+  </div>
 
   <div *ngIf="errorMessage" class="alert alert-danger">
     {{ errorMessage }}
@@ -61,9 +68,10 @@
     </div>
   </div>
 
-  <div class="acts">
+  <div class="acts" style="display: flex; align-items: center; gap: 16px; margin-top: 20px;">
     <button class="btn p" [disabled]="submitting" (click)="saveChanges()">
-      {{ submitting ? 'Saving...' : 'Save changes' }}
+      {{ submitting ? 'Saving...' : 'Register Customer' }}
     </button>
+    <a routerLink="/login" style="color: #245d9f; text-decoration: none; font-size: 14px;">Already registered? Login here</a>
   </div>
 </div>

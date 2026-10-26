@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CustomerRegistrationService } from '../../../services/customer-registration/customer-registration.service';
 import {
   Customer,
@@ -18,7 +18,7 @@ import {
 @Component({
   selector: 'app-customer-registration',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './customer-registration.component.html',
   styleUrl: './customer-registration.component.css'
 })

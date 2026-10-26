@@ -1,0 +1,719 @@
+<div class="page">
+
+  <header class="topbar">
+    <div>
+      <span class="eyebrow">INSURANCE ADMINISTRATION</span>
+      <h1>Insurance Products</h1>
+      <p>Create categories, configure insurance products and publish them.</p>
+    </div>
+
+    <div class="header-actions" *ngIf="!selectedProduct">
+      <button class="btn secondary"
+              (click)="showCategoryForm = !showCategoryForm">
+        + Category
+      </button>
+
+      <button class="btn primary"
+              (click)="showProductForm = !showProductForm">
+        + Add Product
+      </button>
+    </div>
+  </header>
+
+  <div class="notice success" *ngIf="message">{{ message }}</div>
+  <div class="notice error" *ngIf="error">{{ error }}</div>
+
+  <!-- CATEGORY FORM -->
+  <section class="panel"
+           *ngIf="showCategoryForm && !selectedProduct">
+    <h2>Create Product Category</h2>
+
+    <form (ngSubmit)="saveCategory()">
+      <div class="form-grid">
+        <label>
+          Category Name *
+          <input name="category_name"
+                 [(ngModel)]="categoryForm.category_name"
+                 placeholder="e.g. Health Insurance"
+                 required />
+        </label>
+
+        <label>
+          Description
+          <input name="category_description"
+                 [(ngModel)]="categoryForm.description"
+                 placeholder="Describe this category" />
+        </label>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn primary" type="submit">Save Category</button>
+        <button class="btn secondary" type="button"
+                (click)="showCategoryForm = false">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- PRODUCT FORM -->
+  <section class="panel"
+           *ngIf="showProductForm && !selectedProduct">
+    <h2>Create Insurance Product</h2>
+    <p class="muted">
+      Select a category by name. New products start as inactive.
+    </p>
+
+    <form (ngSubmit)="saveProduct()">
+      <div class="form-grid">
+        <label>
+          Product Category *
+          <select name="category_id"
+                  [(ngModel)]="productForm.category_id"
+                  required>
+            <option [ngValue]="null">Select a category</option>
+            <option *ngFor="let c of categories"
+                    [ngValue]="c.category_id"
+                    [disabled]="c.status !== 'Active'">
+              {{ c.category_name }}
+            </option>
+          </select>
+        </label>
+
+        <label>
+          Product Code *
+          <input name="product_code"
+                 [(ngModel)]="productForm.product_code"
+                 placeholder="e.g. HEALTH001"
+                 required />
+        </label>
+
+        <label>
+          Product Name *
+          <input name="product_name"
+                 [(ngModel)]="productForm.product_name"
+                 placeholder="e.g. Family Health Secure"
+                 required />
+        </label>
+
+        <label>
+          Product Type *
+          <select name="product_type"
+                  [(ngModel)]="productForm.product_type">
+            <option value="Life">Life</option>
+            <option value="Health">Health</option>
+            <option value="Vehicle">Vehicle</option>
+          </select>
+        </label>
+
+        <label class="full">
+          Description
+          <textarea name="description"
+                    [(ngModel)]="productForm.description"
+                    rows="3"
+                    placeholder="Describe the product"></textarea>
+        </label>
+
+        <label>
+          Minimum Age
+          <input type="number"
+                 name="minimum_age"
+                 [(ngModel)]="productForm.minimum_age"
+                 min="0"
+                 required />
+        </label>
+
+        <label>
+          Maximum Age
+          <input type="number"
+                 name="maximum_age"
+                 [(ngModel)]="productForm.maximum_age"
+                 min="0"
+                 required />
+        </label>
+
+        <label>
+          Minimum Sum Insured (₹)
+          <input type="number"
+                 name="minimum_sum_insured"
+                 [(ngModel)]="productForm.minimum_sum_insured"
+                 min="1"
+                 required />
+        </label>
+
+        <label>
+          Maximum Sum Insured (₹)
+          <input type="number"
+                 name="maximum_sum_insured"
+                 [(ngModel)]="productForm.maximum_sum_insured"
+                 min="1"
+                 required />
+        </label>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn primary" type="submit">Create Product</button>
+        <button class="btn secondary" type="button"
+                (click)="showProductForm = false">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- MAIN PRODUCT AND CATEGORY VIEW -->
+  <ng-container *ngIf="!selectedProduct">
+
+    <div class="summary-grid">
+      <article class="summary-card">
+        <span>Total Products</span>
+        <strong>{{ products.length }}</strong>
+      </article>
+
+      <article class="summary-card">
+        <span>Published Products</span>
+        <strong>{{ activeProductCount }}</strong>
+      </article>
+
+      <article class="summary-card">
+        <span>Categories</span>
+        <strong>{{ categories.length }}</strong>
+      </article>
+    </div>
+
+    <!-- PRODUCT CATALOGUE -->
+    <section class="panel">
+      <div class="section-heading">
+        <div>
+          <h2>Product Catalogue</h2>
+          <p class="muted">
+            Select a product to configure its coverage, benefits and riders.
+          </p>
+        </div>
+
+        <button class="btn secondary"
+                (click)="loadProducts(); loadCategories()">
+          Refresh
+        </button>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Type</th>
+              <th>Sum Insured</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let p of products">
+              <td>
+                <strong>{{ p.product_name }}</strong>
+                <small>{{ p.product_code }}</small>
+              </td>
+
+              <td>{{ categoryName(p.category_id) }}</td>
+              <td>{{ p.product_type }}</td>
+
+              <td>
+                ₹{{ p.minimum_sum_insured | number }}
+                – ₹{{ p.maximum_sum_insured | number }}
+              </td>
+
+              <td>
+                <span
+                  class="status"
+                  [class.active]="p.status.toLowerCase() === 'active'">
+                  {{ p.status }}
+                </span>
+              </td>
+
+              <td>
+                <div class="row-actions">
+                  <button class="btn small secondary"
+                          (click)="openProduct(p)">
+                    Configure
+                  </button>
+
+                  <button class="btn small primary"
+                          *ngIf="p.status.toLowerCase() !== 'active'"
+                          (click)="publishProduct(p)">
+                    Publish
+                  </button>
+
+                  <button class="btn small danger"
+                          *ngIf="p.status.toLowerCase() === 'active'"
+                          (click)="deactivateProduct(p)">
+                    Deactivate
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <tr *ngIf="!loading && products.length === 0">
+              <td colspan="6" class="empty">
+                No products found. Create a category first, then add a product.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="panel">
+      <div class="section-heading">
+        <div>
+          <h2>Product Categories</h2>
+          <p class="muted">
+            Categories available in the product form dropdown.
+          </p>
+        </div>
+
+        <button class="btn secondary" (click)="loadCategories()">
+          Refresh
+        </button>
+      </div>
+
+      <div class="category-grid">
+        <article class="category-card" *ngFor="let c of categories">
+          <div>
+            <h3>{{ c.category_name }}</h3>
+            <p>{{ c.description || 'No description provided.' }}</p>
+          </div>
+
+          <div class="category-footer">
+            <span
+              class="status"
+              [class.active]="c.status.toLowerCase() === 'active'">
+              {{ c.status }}
+            </span>
+
+            <button class="btn small danger"
+                    *ngIf="c.status.toLowerCase() === 'active'"
+                    (click)="deactivateCategory(c)">
+              Deactivate
+            </button>
+          </div>
+        </article>
+
+        <p class="empty" *ngIf="categories.length === 0">
+          No categories created yet.
+        </p>
+      </div>
+    </section>
+
+    <!-- PREMIUM FREQUENCIES -->
+    <section class="panel">
+      <div class="section-heading">
+        <div>
+          <h2>Premium Frequencies</h2>
+          <p class="muted">
+            Add payment frequencies that products can use.
+          </p>
+        </div>
+      </div>
+
+      <form (ngSubmit)="saveFrequency()" class="frequency-form">
+        <label>
+          Frequency
+          <select name="frequency_name"
+                  [(ngModel)]="frequencyForm.frequency_name">
+            <option value="Monthly">Monthly</option>
+            <option value="Quarterly">Quarterly</option>
+            <option value="Half-Yearly">Half-Yearly</option>
+            <option value="Yearly">Yearly</option>
+            <option value="Single Premium">Single Premium</option>
+          </select>
+        </label>
+
+        <label>
+          Installment Count
+          <input type="number"
+                 name="installment_count"
+                 [(ngModel)]="frequencyForm.installment_count"
+                 min="1"
+                 required />
+        </label>
+
+        <button class="btn primary" type="submit">Add Frequency</button>
+      </form>
+
+      <div class="frequency-list">
+        <span class="frequency-chip" *ngFor="let f of frequencies">
+          {{ f.frequency_name }} · {{ f.installment_count }} installment(s)
+        </span>
+      </div>
+    </section>
+
+  </ng-container>
+
+  <!-- SELECTED PRODUCT CONFIGURATION -->
+  <ng-container *ngIf="selectedProduct as product">
+
+    <button class="back-button" (click)="backToProducts()">
+      ← Back to Products
+    </button>
+
+    <section class="product-banner">
+      <div>
+        <span class="eyebrow">PRODUCT CONFIGURATION</span>
+        <h2>{{ product.product_name }}</h2>
+        <p>
+          {{ product.product_code }} ·
+          {{ categoryName(product.category_id) }} ·
+          {{ product.product_type }}
+        </p>
+      </div>
+
+      <span
+        class="status"
+        [class.active]="product.status.toLowerCase() === 'active'">
+        {{ product.status }}
+      </span>
+    </section>
+
+    <nav class="tabs">
+      <button [class.selected]="activeSection === 'coverages'"
+              (click)="setSection('coverages')">
+        Coverage
+      </button>
+
+      <button [class.selected]="activeSection === 'benefits'"
+              (click)="setSection('benefits')">
+        Benefits
+      </button>
+
+      <button [class.selected]="activeSection === 'riders'"
+              (click)="setSection('riders')">
+        Riders
+      </button>
+
+      <button [class.selected]="activeSection === 'commission'"
+              (click)="setSection('commission')">
+        Commission
+      </button>
+
+      <button [class.selected]="activeSection === 'frequency'"
+              (click)="setSection('frequency')">
+        Premium Frequency
+      </button>
+    </nav>
+
+    <!-- COVERAGE -->
+    <section class="panel" *ngIf="activeSection === 'coverages'">
+      <h2>Coverage Management</h2>
+
+      <form (ngSubmit)="saveCoverage()">
+        <div class="form-grid">
+          <label>
+            Coverage Name *
+            <input name="coverage_name"
+                   [(ngModel)]="coverageForm.coverage_name"
+                   required />
+          </label>
+
+          <label>
+            Minimum Coverage (₹)
+            <input type="number"
+                   name="minimum_coverage"
+                   [(ngModel)]="coverageForm.minimum_coverage"
+                   min="0" />
+          </label>
+
+          <label>
+            Maximum Coverage (₹)
+            <input type="number"
+                   name="maximum_coverage"
+                   [(ngModel)]="coverageForm.maximum_coverage"
+                   min="0" />
+          </label>
+
+          <label>
+            Waiting Period (days)
+            <input type="number"
+                   name="waiting_period_days"
+                   [(ngModel)]="coverageForm.waiting_period_days"
+                   min="0" />
+          </label>
+
+          <label>
+            Deductible Amount (₹)
+            <input type="number"
+                   name="deductible_amount"
+                   [(ngModel)]="coverageForm.deductible_amount"
+                   min="0" />
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn primary" type="submit">Add Coverage</button>
+        </div>
+      </form>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Minimum</th>
+              <th>Maximum</th>
+              <th>Waiting Days</th>
+              <th>Deductible</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let c of coverages">
+              <td>{{ c.coverage_name }}</td>
+              <td>{{ c.minimum_coverage ?? '—' }}</td>
+              <td>{{ c.maximum_coverage ?? '—' }}</td>
+              <td>{{ c.waiting_period_days }}</td>
+              <td>{{ c.deductible_amount }}</td>
+              <td>
+                <button class="btn small danger"
+                        (click)="deleteCoverage(c.coverage_id)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+
+            <tr *ngIf="coverages.length === 0">
+              <td colspan="6" class="empty">
+                No coverage configured.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="panel" *ngIf="activeSection === 'benefits'">
+      <h2>Benefit Management</h2>
+
+      <form (ngSubmit)="saveBenefit()">
+        <div class="form-grid">
+          <label>
+            Benefit Name *
+            <input name="benefit_name"
+                   [(ngModel)]="benefitForm.benefit_name"
+                   required />
+          </label>
+
+          <label>
+            Benefit Limit (₹)
+            <input type="number"
+                   name="benefit_limit"
+                   [(ngModel)]="benefitForm.benefit_limit"
+                   min="0" />
+          </label>
+
+          <label class="full">
+            Description
+            <textarea name="benefit_description"
+                      [(ngModel)]="benefitForm.benefit_description"
+                      rows="3"></textarea>
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn primary" type="submit">Add Benefit</button>
+        </div>
+      </form>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Limit</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let b of benefits">
+              <td>{{ b.benefit_name }}</td>
+              <td>{{ b.benefit_description }}</td>
+              <td>{{ b.benefit_limit ?? '—' }}</td>
+              <td>
+                <button class="btn small danger"
+                        (click)="deleteBenefit(b.benefit_id)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+
+            <tr *ngIf="benefits.length === 0">
+              <td colspan="4" class="empty">
+                No benefits configured.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- RIDERS -->
+    <section class="panel" *ngIf="activeSection === 'riders'">
+      <h2>Rider Management</h2>
+
+      <form (ngSubmit)="saveRider()">
+        <div class="form-grid">
+          <label>
+            Rider Name *
+            <input name="rider_name"
+                   [(ngModel)]="riderForm.rider_name"
+                   required />
+          </label>
+
+          <label>
+            Rider Premium (₹)
+            <input type="number"
+                   name="rider_premium"
+                   [(ngModel)]="riderForm.rider_premium"
+                   min="0" />
+          </label>
+
+          <label class="full">
+            Description
+            <textarea name="rider_description"
+                      [(ngModel)]="riderForm.rider_description"
+                      rows="3"></textarea>
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn primary" type="submit">Add Rider</button>
+        </div>
+      </form>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Premium</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let r of riders">
+              <td>{{ r.rider_name }}</td>
+              <td>{{ r.rider_description }}</td>
+              <td>{{ r.rider_premium }}</td>
+              <td>{{ r.status }}</td>
+              <td>
+                <button class="btn small danger"
+                        (click)="deleteRider(r.rider_id)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+
+            <tr *ngIf="riders.length === 0">
+              <td colspan="5" class="empty">
+                No riders configured.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- COMMISSION -->
+    <section class="panel" *ngIf="activeSection === 'commission'">
+      <h2>Commission Configuration</h2>
+      <p class="muted">Enter percentages between 0 and 100.</p>
+
+      <form (ngSubmit)="saveCommission()">
+        <div class="form-grid">
+          <label>
+            First-Year Commission (%)
+            <input type="number"
+                   name="first_year_commission"
+                   [(ngModel)]="commissionForm.first_year_commission"
+                   min="0" max="100" required />
+          </label>
+
+          <label>
+            Renewal Commission (%)
+            <input type="number"
+                   name="renewal_commission"
+                   [(ngModel)]="commissionForm.renewal_commission"
+                   min="0" max="100" required />
+          </label>
+
+          <label>
+            Branch Commission (%)
+            <input type="number"
+                   name="branch_commission"
+                   [(ngModel)]="commissionForm.branch_commission"
+                   min="0" max="100" required />
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn primary" type="submit">
+            Save Commission
+          </button>
+        </div>
+      </form>
+
+      <div class="info-card" *ngIf="commission">
+        <strong>Saved commission</strong>
+        <p>First year: {{ commission.first_year_commission }}%</p>
+        <p>Renewal: {{ commission.renewal_commission }}%</p>
+        <p>Branch: {{ commission.branch_commission }}%</p>
+      </div>
+    </section>
+
+    <!-- PREMIUM FREQUENCY -->
+    <section class="panel" *ngIf="activeSection === 'frequency'">
+      <h2>Available Premium Frequencies</h2>
+      <p class="muted">
+        Manage frequencies from the main Products page.
+      </p>
+
+      <div class="frequency-list">
+        <span class="frequency-chip" *ngFor="let f of frequencies">
+          {{ f.frequency_name }} · {{ f.installment_count }} installment(s)
+        </span>
+      </div>
+    </section>
+
+    <!-- PRODUCT PUBLISH / DEACTIVATE -->
+    <section class="publish-bar">
+      <div>
+        <strong>Product status: {{ product.status }}</strong>
+        <p class="muted">
+          Configure the required product details before publishing.
+        </p>
+      </div>
+
+      <button class="btn primary"
+              *ngIf="product.status.toLowerCase() !== 'active'"
+              (click)="publishProduct(product)">
+        Publish Product
+      </button>
+
+      <button class="btn danger"
+              *ngIf="product.status.toLowerCase() === 'active'"
+              (click)="deactivateProduct(product)">
+        Deactivate Product
+      </button>
+    </section>
+
+  </ng-container>
+</div>

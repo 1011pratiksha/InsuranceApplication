@@ -1,0 +1,102 @@
+<aside class="sidebar" [class.collapsed]="collapsed()">
+
+  <!-- ── Brand / Logo ── -->
+  <div class="sidebar-brand">
+    <div class="brand-icon">
+      <span class="material-symbols-rounded">shield</span>
+    </div>
+    @if (!collapsed()) {
+      <div class="brand-text">
+        <span class="brand-name">InsurancePAS</span>
+        <span class="brand-sub">{{ auth.roleLabel() }} Portal</span>
+      </div>
+    }
+  </div>
+
+  <!-- ── Navigation ── -->
+  <nav class="sidebar-nav">
+    <ul class="nav-list">
+      @for (item of auth.sidebarMenu(); track item.label) {
+        <li class="nav-item" [class.has-children]="!!item.children?.length">
+
+          <!-- Leaf item (no children) -->
+          @if (!item.children?.length) {
+            <a
+              class="nav-link"
+              [routerLink]="item.route"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: false }"
+              [title]="item.label">
+              @if (item.icon) {
+                <span class="material-symbols-rounded nav-icon">{{ item.icon }}</span>
+              }
+              @if (!collapsed()) {
+                <span class="nav-label">{{ item.label }}</span>
+              }
+              @if (item.badge && !collapsed()) {
+                <span class="nav-badge">{{ item.badge }}</span>
+              }
+            </a>
+          }
+
+          <!-- Group item (has children) -->
+          @if (item.children?.length) {
+            <button
+              class="nav-link group-toggle"
+              [class.expanded]="isGroupExpanded(item.label)"
+              (click)="toggleGroup(item.label)"
+              [title]="item.label">
+              @if (item.icon) {
+                <span class="material-symbols-rounded nav-icon">{{ item.icon }}</span>
+              }
+              @if (!collapsed()) {
+                <span class="nav-label">{{ item.label }}</span>
+                <span class="material-symbols-rounded chevron">expand_more</span>
+              }
+            </button>
+
+            @if (isGroupExpanded(item.label) && !collapsed()) {
+              <ul class="sub-list">
+                @for (child of item.children; track child.label) {
+                  <li class="sub-item">
+                    <a
+                      class="sub-link"
+                      [routerLink]="child.route"
+                      routerLinkActive="active"
+                      [routerLinkActiveOptions]="{ exact: false }">
+                      <span class="sub-dot"></span>
+                      <span class="sub-label">{{ child.label }}</span>
+                    </a>
+                  </li>
+                }
+              </ul>
+            }
+          }
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <!-- ── Footer / User ── -->
+  <div class="sidebar-footer">
+    <div class="user-card" [title]="auth.userName()">
+      <div class="user-avatar">{{ getUserInitial() }}</div>
+      @if (!collapsed()) {
+        <div class="user-info">
+          <span class="user-name">{{ auth.userName() }}</span>
+          <span class="user-role">{{ auth.roleLabel() }}</span>
+        </div>
+        <button class="logout-btn" title="Logout">
+          <span class="material-symbols-rounded">logout</span>
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- ── Collapse Toggle ── -->
+  <button class="collapse-toggle" (click)="toggleSidebar()" title="Toggle sidebar">
+    <span class="material-symbols-rounded">
+      {{ collapsed() ? 'chevron_right' : 'chevron_left' }}
+    </span>
+  </button>
+</aside>

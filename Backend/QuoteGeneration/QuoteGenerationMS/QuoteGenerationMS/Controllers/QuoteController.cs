@@ -16,112 +16,75 @@ namespace QuoteGenerationMS.Controllers
             this.service = service;
         }
 
-        // Create Quote
         [HttpPost]
         public async Task<IActionResult> CreateQuote(createQuoteDTO dto)
         {
             try
             {
                 await service.CreateQuote(dto);
-
-                return Ok(new
-                {
-                    msg = "Quote created"
-                });
+                return Ok(new { msg = "Quote created" });
             }
             catch (Exception ex)
             {
-                return BadRequest(new
-                {
-                    msg = ex.Message
-                });
+                return BadRequest(new { msg = ex.Message });
             }
         }
 
-        // Get Quote By ID
         [HttpGet("{id}")]
         public async Task<IActionResult> GetQuoteById(int id)
         {
             var data = await service.GetQuoteById(id);
 
             if (data == null)
-            {
-                return NotFound(new
-                {
-                    msg = "Quote not found"
-                });
-            }
+                return NotFound(new { msg = "Quote not found" });
 
             return Ok(data);
         }
 
-        // Get All Quotes
         [HttpGet]
         public async Task<IActionResult> GetAllQuotes()
         {
-            var data = await service.GetAllQuotes();
-
-            return Ok(data);
+            return Ok(await service.GetAllQuotes());
         }
 
-        // Update Quote
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateQuote(
-            int id,
-            updateQuoteDTO dto)
+            int id, updateQuoteDTO dto)
         {
             try
             {
                 await service.UpdateQuote(id, dto);
-
-                return Ok(new
-                {
-                    msg = "Quote updated"
-                });
+                return Ok(new { msg = "Quote updated" });
             }
             catch (Exception ex)
             {
-                return BadRequest(new
-                {
-                    msg = ex.Message
-                });
+                return BadRequest(new { msg = ex.Message });
             }
         }
 
-        // Cancel Quote
         [HttpDelete("{id}")]
         public async Task<IActionResult> CancelQuote(int id)
         {
             try
             {
                 await service.CancelQuote(id);
-
-                return Ok(new
-                {
-                    msg = "Quote cancelled"
-                });
+                return Ok(new { msg = "Quote cancelled" });
             }
             catch (Exception ex)
             {
-                return BadRequest(new
-                {
-                    msg = ex.Message
-                });
+                return BadRequest(new { msg = ex.Message });
             }
         }
 
-        // Send Quote For Underwriting
         [HttpPost("{quoteId}/send-for-underwriting")]
         public async Task<IActionResult> SendQuoteForUnderwriting(
-            int quoteId,
-            [FromQuery] int customerId)
+            int quoteId, [FromQuery] int customerId)
         {
             try
             {
                 var underwritingId =
                     await service.SendQuoteForUnderwriting(
-                        quoteId,
-                        customerId);
+                        quoteId, customerId);
 
                 return Ok(new
                 {
@@ -132,10 +95,99 @@ namespace QuoteGenerationMS.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new
+                return BadRequest(new { msg = ex.Message });
+            }
+        }
+
+        [HttpPost("{quoteId}/risk-score")]
+        public async Task<IActionResult> CalculateRiskScore(
+            int quoteId, [FromBody] calculateRiskScoreRequestDTO dto)
+        {
+            try
+            {
+                await service.CalculateUnderwritingRiskScore(quoteId, dto);
+
+                return Ok(new
                 {
-                    msg = ex.Message
+                    msg = "Underwriting risk score calculated successfully.",
+                    quote_id = quoteId
                 });
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { msg = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { msg = ex.Message });
+            }
+        }
+
+        [HttpGet("{quoteId}/underwriting")]
+        public async Task<IActionResult> GetUnderwritingCase(int quoteId)
+        {
+            try
+            {
+                var result = await service.GetUnderwritingCase(quoteId);
+
+                if (result == null)
+                    return NotFound(new { msg = "Underwriting case not found." });
+
+                return Ok(result);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { msg = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { msg = ex.Message });
+            }
+        }
+
+        [HttpGet("{quoteId}/risk-score")]
+        public async Task<IActionResult> GetRiskScore(int quoteId)
+        {
+            try
+            {
+                var result =
+                    await service.GetUnderwritingRiskScore(quoteId);
+
+                if (result == null)
+                    return NotFound(new { msg = "Risk score not found." });
+
+                return Ok(result);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { msg = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { msg = ex.Message });
+            }
+        }
+
+        [HttpGet("{quoteId}/underwriting-decision")]
+        public async Task<IActionResult> GetUnderwritingDecision(int quoteId)
+        {
+            try
+            {
+                var result =
+                    await service.GetUnderwritingDecision(quoteId);
+
+                if (result == null)
+                    return NotFound(new { msg = "Underwriting decision not found." });
+
+                return Ok(result);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { msg = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { msg = ex.Message });
             }
         }
     }

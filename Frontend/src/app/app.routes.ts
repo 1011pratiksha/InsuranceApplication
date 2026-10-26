@@ -1,13 +1,21 @@
 import { Routes } from '@angular/router';
-import { CustomerRegistrationComponent } from './features/customer-registration/customer-registration/customer-registration.component';
-import { PolicyIssueComponent } from './features/policy-issuance/admin/policy-issue/policy-issue.component';
-import { MyPoliciesComponent } from './features/policy-issuance/customer/my-policies/my-policies.component';
-import { PolicyDetailsComponent } from './features/policy-issuance/customer/policy-details/policy-details.component';
-import { Policyserviceingss } from './features/policy-servicing/policyserviceingss/policyserviceingss';
-import { Adminservicerequest } from './features/policy-servicing/adminservicerequest/adminservicerequest';
-import { CustomerEndorsement } from './features/policy-servicing/customer-endorsementng/customer-endorsementng';
-import { Policyclosure } from './features/policy-closure/policyclosure/policyclosure';
+import { MainLayoutComponent } from './shared/layout/main-layout.component';
+import { roleGuard } from './core/guards/role.guard';
 
+// Authentication
+import { Login } from './features/authentication/login/login';
+import { TwoFactor } from './features/authentication/two-factor/two-factor';
+import { ForgotPassword } from './features/authentication/forgot-password/forgot-password';
+import { ResetPassword } from './features/authentication/reset-password/reset-password';
+import { LoginSuccess } from './features/authentication/login-success/login-success';
+
+// Audit and Support
+import { AuditLogs } from './features/audit-logs/audit-logs';
+import { CustomerSupport } from './features/customer-support/customer-support';
+import { AgentSupport } from './features/agent-support/agent-support';
+import { Support } from './features/support/support';
+
+// Claims
 import { ClaimsDashboard } from './features/claim-management/claims-dashboard/claims-dashboard';
 import { ClaimRegistration } from './features/claim-management/claim-registration/claim-registration';
 import { ClaimList } from './features/claim-management/claim-list/claim-list';
@@ -20,74 +28,120 @@ import { ClaimApproval } from './features/claim-management/claim-approval/claim-
 import { ClaimSettlement } from './features/claim-management/claim-settlement/claim-settlement';
 import { ClaimTracking } from './features/claim-management/claim-tracking/claim-tracking';
 
+// Customer Registration
+import { CustomerRegistrationComponent } from './features/customer-registration/customer-registration/customer-registration.component';
+
+// Existing Policy Issuance pages
+// Policy Issuance
+import { PolicyIssueComponent } from './features/policy-issuance/admin/policy-issue/policy-issue.component';
+import { MyPoliciesComponent } from './features/policy-issuance/customer/my-policies/my-policies.component';
+import { PolicyDetailsComponent } from './features/policy-issuance/customer/policy-details/policy-details.component';
+
+// KYC Admin pages
+import { KycAdminDashboardComponent } from './features/kyc-verification/admin/kyc-dashboard/kyc-dashboard.component';
+import { KycRequestsComponent } from './features/kyc-verification/admin/kyc-requests/kyc-requests.component';
+
+// KYC Customer page
+import { KycSubmitComponent } from './features/kyc-verification/customer/kyc-submit/kyc-submit.component';
+
 export const routes: Routes = [
-  { path: '', redirectTo: 'customer/dashboard', pathMatch: 'full' },
+  // Open Customer KYC Submission when visiting the root URL
+  {
+    path: '',
+    redirectTo: 'kyc/customer/submit',
+    pathMatch: 'full'
+  },
 
-  // Customer Registration & Profile
-  { path: 'customer-registration', component: CustomerRegistrationComponent },
-  { path: 'customer/c-profile', component: CustomerRegistrationComponent },
-  { path: 'c-profile', component: CustomerRegistrationComponent },
+  // Existing Policy Issuance routes
+// Policy Servicing
+import { Policyserviceingss } from './features/policy-servicing/policyserviceingss/policyserviceingss';
+import { Adminservicerequest } from './features/policy-servicing/adminservicerequest/adminservicerequest';
+import { CustomerEndorsement } from './features/policy-servicing/customer-endorsementng/customer-endorsementng';
 
-  // Policy Issuance
-  { path: 'admin/policy-issuance', component: PolicyIssueComponent },
-  { path: 'customer/my-policies', component: MyPoliciesComponent },
-  { path: 'customer/policy-details/:id', component: PolicyDetailsComponent },
+// Policy Closure
+import { Policyclosure } from './features/policy-closure/policyclosure/policyclosure';
 
-  // Policy Servicing
-  { path: 'customer/svc', component: Policyserviceingss },
-  { path: 'admin/service-requests', component: Adminservicerequest },
-  { path: 'customer/endoresement', component: CustomerEndorsement },
+// Agent Module
+import { AgentDashboard } from './features/Agent/agent-dashboard/agent-dashboard';
+import { AssignedCustomersComponent } from './features/Agent/assigned-customers/assigned-customers';
+import { Agent } from './features/Agent/agent/agent';
+import { AgentPolicies } from './features/Agent/agent-policies/agent-policies';
+import { CommissionRules } from './features/Agent/commission-rules/commission-rules';
+import { AgentCommissions } from './features/Agent/agent-commissions/agent-commissions';
 
-  // Policy Closure
-  { path: 'admin/closure', component: Policyclosure },
+// Dashboards
+import {AdminDashboard} from './features/admin-dashboard/admin-dashboard'
+import {AgentDashboard} from './features/agent-dashboard/agent-dashboard'
+import {CustomerDashboard} from './features/customer-dashboard/customer-dashboard'
 
-  // ==========================================
-  // 1. CUSTOMER ROUTES (Claims Management)
-  // ==========================================
-  { path: 'customer/dashboard', component: ClaimsDashboard },
-  { path: 'customer/claims/register', component: ClaimRegistration },
-  { path: 'customer/claims/list', component: ClaimList },
-  { path: 'customer/claims/documents', component: DocumentUpload },
-  { path: 'customer/claims/tracking', component: ClaimTracking },
-  { path: 'customer/claims/details/:id', component: ClaimDetails },
 
-  // ==========================================
-  // 2. AGENT ROUTES (Claims Management)
-  // ==========================================
-  { path: 'agent/dashboard', component: ClaimsDashboard },
-  { path: 'agent/claims/register', component: ClaimRegistration },
-  { path: 'agent/claims/list', component: ClaimList },
-  { path: 'agent/claims/tracking', component: ClaimTracking },
-  { path: 'agent/claims/details/:id', component: ClaimDetails },
 
-  // ==========================================
-  // 3. ADMIN ROUTES (Claims Management)
-  // ==========================================
-  { path: 'admin/dashboard', component: ClaimsDashboard },
-  { path: 'admin/claims/list', component: ClaimList },
-  { path: 'admin/claims/details/:id', component: ClaimDetails },
-  { path: 'admin/claims/documents', component: DocumentUpload },
-  { path: 'admin/claims/survey', component: SurveyManagement },
-  { path: 'admin/claims/investigation', component: InvestigationManagement },
-  { path: 'admin/claims/assessment', component: ClaimAssessmentComponent },
-  { path: 'admin/claims/approval', component: ClaimApproval },
-  { path: 'admin/claims/settlement', component: ClaimSettlement },
-  { path: 'admin/claims/tracking', component: ClaimTracking },
+// Premium Payment and Schedule
+import { PremiumSchedule } from './features/premium-schedule/premium-schedule/premium-schedule';
+import { PayPremium } from './features/premium-schedule/pay-premium/pay-premium';
+import { PaymentHistory } from './features/premium-schedule/payment-history/payment-history';
+import { Receipts } from './features/premium-schedule/receipts/receipts';
+import { RefundStatus } from './features/premium-schedule/refund-status/refund-status';
+import { AdminPremiumSchedules } from './features/premium-schedule/admin-premium-schedules/admin-premium-schedules';
+import { AdminPaymentVerification } from './features/premium-schedule/admin-payment-verification/admin-payment-verification';
+import { AdminLateFeeConfig } from './features/premium-schedule/admin-late-fee-config/admin-late-fee-config';
+import { AdminReminders } from './features/premium-schedule/admin-reminders/admin-reminders';
+import { AdminRefunds } from './features/premium-schedule/admin-refunds/admin-refunds';
+export const routes: Routes = [
+  // ── Authentication pages (outside sidebar layout) ──
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: Login
+  },
+  {
+    path: 'two-factor',
+    component: TwoFactor
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPassword
+  },
+  {
+    path: 'reset-password',
+    component: ResetPassword
+  },
+  {
+    path: 'login-success',
+    component: LoginSuccess
+  },
+  {
+    path: 'register',
+    component: CustomerRegistrationComponent
+  },
+  {
+    path: 'customer/policy-details/:id',
+    component: PolicyDetailsComponent
+  },
 
-  // Direct shortcuts
-  { path: 'claims/dashboard', component: ClaimsDashboard },
-  { path: 'claims/register', component: ClaimRegistration },
-  { path: 'claims/list', component: ClaimList },
-  { path: 'claims/details/:id', component: ClaimDetails },
-  { path: 'claims/details', component: ClaimDetails },
-  { path: 'claims/documents', component: DocumentUpload },
-  { path: 'claims/survey', component: SurveyManagement },
-  { path: 'claims/investigation', component: InvestigationManagement },
-  { path: 'claims/assessment', component: ClaimAssessmentComponent },
-  { path: 'claims/approval', component: ClaimApproval },
-  { path: 'claims/settlement', component: ClaimSettlement },
-  { path: 'claims/tracking', component: ClaimTracking },
+  // KYC Admin routes
+  {
+    path: 'kyc/admin/dashboard',
+    component: KycAdminDashboardComponent
+  },
+  {
+    path: 'kyc/admin/requests',
+    component: KycRequestsComponent
+  },
 
-  // Wildcard fallback
-  { path: '**', redirectTo: 'customer/dashboard' }
+  // KYC Customer route
+  {
+    path: 'kyc/customer/submit',
+    component: KycSubmitComponent
+  },
+
+  // Redirect unknown URLs to the Customer KYC Submission page
+  {
+    path: '**',
+    redirectTo: 'kyc/customer/submit'
+  }
 ];

@@ -1,0 +1,120 @@
+
+<div class="proposal-page">
+  <div class="breadcrumb">Underwriting / Proposal Form</div>
+  <h1>Proposal Form</h1>
+  <p class="subtitle">Provide your medical and financial details for underwriting assessment.</p>
+
+  <form #proposalForm="ngForm" (ngSubmit)="submitProposal()">
+    <section class="panel">
+      <h2>Application details</h2>
+      <div class="form-grid three">
+        <label>
+          Quote ID
+          <input type="number" name="quote_id" [(ngModel)]="form.quote_id" min="1" required>
+        </label>
+        <label>
+          Customer ID
+          <input type="number" name="customer_id" [(ngModel)]="form.customer_id" min="1" required>
+        </label>
+        <label>
+          Product ID
+          <input type="number" name="product_id" [(ngModel)]="form.product_id" min="1" required>
+        </label>
+      </div>
+      <p class="hint">
+        These IDs are temporary inputs. In the integrated application, populate them
+        from the logged-in customer and selected quote/product.
+      </p>
+    </section>
+
+    <section class="panel">
+      <h2>Medical information</h2>
+      <div class="form-grid">
+        <label>
+          Height (cm)
+          <input type="number" name="height" [(ngModel)]="medical.height" min="1" required>
+        </label>
+        <label>
+          Weight (kg)
+          <input type="number" name="weight" [(ngModel)]="medical.weight" min="1" required>
+        </label>
+        <label>
+          Blood pressure
+          <input name="blood_pressure" [(ngModel)]="medical.blood_pressure" placeholder="e.g. 120/80">
+        </label>
+      </div>
+
+      <div class="checkbox-grid">
+        <label><input type="checkbox" name="diabetes" [(ngModel)]="medical.diabetes"> Diabetes</label>
+        <label><input type="checkbox" name="heart_disease" [(ngModel)]="medical.heart_disease"> Heart disease</label>
+        <label><input type="checkbox" name="cancer_history" [(ngModel)]="medical.cancer_history"> Cancer history</label>
+        <label><input type="checkbox" name="smoking" [(ngModel)]="medical.smoking"> Smoking</label>
+        <label><input type="checkbox" name="alcohol" [(ngModel)]="medical.alcohol"> Alcohol consumption</label>
+      </div>
+
+      <label class="full-field">
+        Existing illness / surgeries / other medical history
+        <textarea rows="4" name="medical_history" [(ngModel)]="medical.medical_history"
+          placeholder="Enter relevant medical history"></textarea>
+      </label>
+
+      <label class="full-field">
+        Medical report path (optional)
+        <input name="medical_report_path" [(ngModel)]="medical.medical_report_path"
+          placeholder="Enter a stored report path, if available">
+      </label>
+      <p class="hint">
+        The current API accepts a report path, not the actual file. File upload requires
+        a backend upload endpoint and secure file storage.
+      </p>
+    </section>
+
+    <section class="panel">
+      <h2>Financial and employment information</h2>
+      <div class="form-grid">
+        <label>
+          Annual income (₹)
+          <input type="number" name="annual_income" [(ngModel)]="financial.annual_income"
+            min="0" required>
+        </label>
+        <label>
+          Monthly income (₹)
+          <input type="number" name="monthly_income" [(ngModel)]="financial.monthly_income"
+            min="0" required>
+        </label>
+        <label>
+          Employer name
+          <input name="employer_name" [(ngModel)]="financial.employer_name" required>
+        </label>
+        <label>
+          Occupation
+          <input name="occupation" [(ngModel)]="financial.occupation" required>
+        </label>
+        <label>
+          Existing insurance value (₹)
+          <input type="number" name="existing_insurance"
+            [(ngModel)]="financial.existing_insurance" min="0" required>
+        </label>
+        <label>
+          Loan liabilities (₹)
+          <input type="number" name="loan_liability"
+            [(ngModel)]="financial.loan_liability" min="0" required>
+        </label>
+      </div>
+    </section>
+
+    <section class="declaration">
+      <label>
+        <input type="checkbox" name="declaration" [(ngModel)]="declarationAccepted">
+        I declare that the information provided above is true and accurate.
+      </label>
+    </section>
+
+    <div *ngIf="errorMessage" class="alert error">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="alert success">{{ successMessage }}</div>
+
+    <button type="submit" [disabled]="loading || !proposalForm.valid">
+      {{ loading ? 'Submitting...' : 'Submit proposal' }}
+    </button>
+  </form>
+</div>
