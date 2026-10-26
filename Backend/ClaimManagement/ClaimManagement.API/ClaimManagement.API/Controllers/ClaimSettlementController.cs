@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ClaimManagement.API.Controllers;
 
-[Route("api/claims/{id:long}/settlement")]
+[Route("api")]
 [ApiController]
 public class ClaimSettlementController : ControllerBase
 {
@@ -16,7 +16,7 @@ public class ClaimSettlementController : ControllerBase
     }
 
     [Authorize(Roles = "Admin")]
-    [HttpPost]
+    [HttpPost("admin/claims/{id:long}/settlement")]
     public async Task<IActionResult> ProcessSettlement(long id, SettlementDTO dto)
     {
         try
@@ -39,7 +39,7 @@ public class ClaimSettlementController : ControllerBase
     }
 
     [Authorize(Roles = "Admin,Customer")]
-    [HttpGet]
+    [HttpGet("claims/{id:long}/settlement")]
     public async Task<IActionResult> FindSettlementByClaimId(long id)
     {
         var data = await settlementservice.FindSettlementByClaimId(id);
@@ -49,7 +49,7 @@ public class ClaimSettlementController : ControllerBase
     }
 
     [Authorize(Roles = "Admin")]
-    [HttpPut("/api/claims/{id:long}/approve")]
+    [HttpPut("admin/claims/{id:long}/approve")]
     public async Task<IActionResult> ApproveClaim(long id)
     {
         try
@@ -68,7 +68,7 @@ public class ClaimSettlementController : ControllerBase
     }
 
     [Authorize(Roles = "Admin")]
-    [HttpPut("/api/claims/{id:long}/reject")]
+    [HttpPut("admin/claims/{id:long}/reject")]
     public async Task<IActionResult> RejectClaim(long id)
     {
         try

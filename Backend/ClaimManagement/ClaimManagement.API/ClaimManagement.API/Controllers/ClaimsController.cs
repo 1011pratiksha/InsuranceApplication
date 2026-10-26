@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ClaimManagement.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
     public class ClaimsController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace ClaimManagement.API.Controllers
         }
 
         [Authorize(Roles = "Customer")]
-        [HttpPost]
+        [HttpPost("customer/claims")]
         public async Task<IActionResult> CreateClaim(CreateClaimDto dto)
         {
             var error = await eligibilityRepository.CheckEligibilityAsync(dto);
@@ -29,9 +29,9 @@ namespace ClaimManagement.API.Controllers
             var claim = await repository.AddClaimAsync(dto);
             return Ok(claim);
         }
-        
+
         [Authorize(Roles = "Customer,Admin")]
-        [HttpGet]
+        [HttpGet("claims")]
         public async Task<IActionResult> GetAllClaims()
         {
             var claims = await repository.GetAllClaimsAsync();
@@ -39,7 +39,7 @@ namespace ClaimManagement.API.Controllers
         }
 
         [Authorize(Roles = "Customer,Admin")]
-        [HttpGet("{claimId:long}")]
+        [HttpGet("claims/{claimId:long}")]
         public async Task<IActionResult> GetClaimById(long claimId)
         {
             var claim = await repository.GetClaimByIdAsync(claimId);
@@ -48,8 +48,9 @@ namespace ClaimManagement.API.Controllers
 
             return Ok(claim);
         }
+
         [Authorize(Roles = "Customer")]
-        [HttpPut("{claimId:long}")]
+        [HttpPut("customer/claims/{claimId:long}")]
         public async Task<IActionResult> UpdateClaim(long claimId, UpdateClaimDto dto)
         {
             var claim = await repository.GetClaimByIdAsync(claimId);
@@ -65,7 +66,7 @@ namespace ClaimManagement.API.Controllers
         }
 
         [Authorize(Roles = "Customer")]
-        [HttpDelete("{claimId:long}")]
+        [HttpDelete("customer/claims/{claimId:long}")]
         public async Task<IActionResult> DeleteClaim(long claimId)
         {
             var claim = await repository.GetClaimByIdAsync(claimId);

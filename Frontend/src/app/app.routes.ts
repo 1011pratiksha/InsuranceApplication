@@ -1,4 +1,3 @@
-
 import { Routes } from '@angular/router';
 import { CustomerRegistrationComponent } from './features/customer-registration/customer-registration/customer-registration.component';
 import { PolicyIssueComponent } from './features/policy-issuance/admin/policy-issue/policy-issue.component';
@@ -8,23 +7,6 @@ import { Policyserviceingss } from './features/policy-servicing/policyserviceing
 import { Adminservicerequest } from './features/policy-servicing/adminservicerequest/adminservicerequest';
 import { CustomerEndorsement } from './features/policy-servicing/customer-endorsementng/customer-endorsementng';
 import { Policyclosure } from './features/policy-closure/policyclosure/policyclosure';
-
-export const routes: Routes = [
-  {
-    path: 'admin/policy-issuance',
-    component: PolicyIssueComponent
-  },
-  {
-    path: 'customer/my-policies',
-    component: MyPoliciesComponent
-  },
-  {
-    path: 'customer/policy-details/:id',
-    component: PolicyDetailsComponent
-  },
-
-  { path: 'customer/svc', component: Policyserviceingss},
-  {path: 'admin/service-requests', component: Adminservicerequest},
 
 import { ClaimsDashboard } from './features/claim-management/claims-dashboard/claims-dashboard';
 import { ClaimRegistration } from './features/claim-management/claim-registration/claim-registration';
@@ -41,8 +23,26 @@ import { ClaimTracking } from './features/claim-management/claim-tracking/claim-
 export const routes: Routes = [
   { path: '', redirectTo: 'customer/dashboard', pathMatch: 'full' },
 
+  // Customer Registration & Profile
+  { path: 'customer-registration', component: CustomerRegistrationComponent },
+  { path: 'customer/c-profile', component: CustomerRegistrationComponent },
+  { path: 'c-profile', component: CustomerRegistrationComponent },
+
+  // Policy Issuance
+  { path: 'admin/policy-issuance', component: PolicyIssueComponent },
+  { path: 'customer/my-policies', component: MyPoliciesComponent },
+  { path: 'customer/policy-details/:id', component: PolicyDetailsComponent },
+
+  // Policy Servicing
+  { path: 'customer/svc', component: Policyserviceingss },
+  { path: 'admin/service-requests', component: Adminservicerequest },
+  { path: 'customer/endoresement', component: CustomerEndorsement },
+
+  // Policy Closure
+  { path: 'admin/closure', component: Policyclosure },
+
   // ==========================================
-  // 1. CUSTOMER ROUTES
+  // 1. CUSTOMER ROUTES (Claims Management)
   // ==========================================
   { path: 'customer/dashboard', component: ClaimsDashboard },
   { path: 'customer/claims/register', component: ClaimRegistration },
@@ -52,7 +52,7 @@ export const routes: Routes = [
   { path: 'customer/claims/details/:id', component: ClaimDetails },
 
   // ==========================================
-  // 2. AGENT ROUTES
+  // 2. AGENT ROUTES (Claims Management)
   // ==========================================
   { path: 'agent/dashboard', component: ClaimsDashboard },
   { path: 'agent/claims/register', component: ClaimRegistration },
@@ -61,7 +61,7 @@ export const routes: Routes = [
   { path: 'agent/claims/details/:id', component: ClaimDetails },
 
   // ==========================================
-  // 3. ADMIN ROUTES
+  // 3. ADMIN ROUTES (Claims Management)
   // ==========================================
   { path: 'admin/dashboard', component: ClaimsDashboard },
   { path: 'admin/claims/list', component: ClaimList },
@@ -88,15 +88,6 @@ export const routes: Routes = [
   { path: 'claims/settlement', component: ClaimSettlement },
   { path: 'claims/tracking', component: ClaimTracking },
 
+  // Wildcard fallback
   { path: '**', redirectTo: 'customer/dashboard' }
-  {path :'customer/endoresement' , component: CustomerEndorsement},
- {
-  path: 'admin/closure',
-  component: Policyclosure
-}
-    
-  { path: '', component: CustomerRegistrationComponent },
-  { path: 'customer-registration', component: CustomerRegistrationComponent },
-  { path: 'customer/c-profile', component: CustomerRegistrationComponent },
-  { path: 'c-profile', component: CustomerRegistrationComponent }
 ];

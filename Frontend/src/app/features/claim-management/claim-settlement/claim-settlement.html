@@ -84,18 +84,18 @@
 
     <!-- THE ONLY FORM FIELD: PaymentMode -->
     <div class="form-group">
-      <label class="label-lg">Payment Mode * <small class="text-muted">(NEFT | RTGS | IMPS | UPI | Cheque)</small></label>
-      <div class="payment-mode-selector">
-        <button
-          *ngFor="let mode of paymentModes"
-          class="mode-btn"
-          [class.selected]="formData.paymentMode === mode"
-          (click)="formData.paymentMode = mode"
-          type="button"
-        >
+      <label class="label-lg" for="paymentMode">Payment Mode * <small class="text-muted">(NEFT | RTGS | IMPS | UPI | Cheque)</small></label>
+      <select
+        id="paymentMode"
+        class="form-select"
+        [(ngModel)]="formData.paymentMode"
+        name="paymentMode"
+        required
+      >
+        <option *ngFor="let mode of paymentModes" [value]="mode">
           {{ mode }}
-        </button>
-      </div>
+        </option>
+      </select>
     </div>
 
     <div class="form-actions mt-4">

@@ -4,6 +4,9 @@ using ClaimManagement.Infrastructure.Config;
 using ClaimManagement.Infrastructure.Data;
 using ClaimManagement.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +32,7 @@ builder.Services.AddScoped<ISurveyRepository, SurveyRepository>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("MyApp", policy =>
+    options.AddPolicy("Angular", policy =>
     {
         policy.WithOrigins("http://localhost:4200")
               .AllowAnyMethod()
@@ -47,6 +50,41 @@ builder.Services.AddHttpClient<CustomerClient>(client =>
     client.BaseAddress = new Uri(builder.Configuration["CustomerServiceBaseUrl"] ?? "http://localhost:7135");
 });
 
+var jwtKey = builder.Configuration["JwtSettings:Key"]
+    ?? throw new InvalidOperationException("JWT key is missing");
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+
+            ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+            ValidAudience = builder.Configuration["JwtSettings:Audience"],
+
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(jwtKey))
+        };
+
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                if (!context.Request.Headers.ContainsKey("Authorization"))
+                {
+                    context.Token = context.Request.Cookies["access_token"];
+                }
+
+                return Task.CompletedTask;
+            }
+        };
+    });
+
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -57,9 +95,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("MyApp");
 app.UseHttpsRedirection();
+app.UseCors("Angular");
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
