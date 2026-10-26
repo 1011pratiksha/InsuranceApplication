@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ClaimManagement.API.Controllers
 {
-    [Route("api/claims/{claimId:int}/documents")]
+    [Route("api")]
     [ApiController]
     public class ClaimDocumentsController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace ClaimManagement.API.Controllers
         }
 
         [Authorize(Roles = "Customer")]
-        [HttpPost]
+        [HttpPost("customer/claims/{claimId:int}/documents")]
         public async Task<IActionResult> AddDocument(int claimId, CreateClaimDocumentDto dto)
         {
             var claim = await claimRepository.GetClaimByIdAsync(claimId);
@@ -31,7 +31,7 @@ namespace ClaimManagement.API.Controllers
         }
 
         [Authorize(Roles = "Customer,Admin")]
-        [HttpGet]
+        [HttpGet("claims/{claimId:int}/documents")]
         public async Task<IActionResult> GetDocuments(int claimId)
         {
             var claim = await claimRepository.GetClaimByIdAsync(claimId);
@@ -42,8 +42,8 @@ namespace ClaimManagement.API.Controllers
             return Ok(documents);
         }
 
-        [Authorize(Roles = "Admin")]
-        [HttpPut("verify")]
+    [Authorize(Roles = "Admin")]
+    [HttpPut("admin/claims/{claimId:int}/documents/verify")]
         public async Task<IActionResult> VerifyDocuments(int claimId, [FromBody] List<int> documentIds)
         {
             var claim = await claimRepository.GetClaimByIdAsync(claimId);

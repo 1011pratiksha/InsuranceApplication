@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ClaimManagement.API.Controllers
 {
-    [Route("api/claims/{claimId:long}/assessment")]
+    [Route("api")]
     [ApiController]
     public class ClaimAssessmentController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace ClaimManagement.API.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPost]
+        [HttpPost("admin/claims/{claimId:long}/assessment")]
         public async Task<IActionResult> AddAssessment(long claimId, CreateAssessmentDto dto)
         {
             var claim = await claimRepository.GetClaimByIdAsync(claimId);
@@ -31,7 +31,7 @@ namespace ClaimManagement.API.Controllers
         }
 
         [Authorize(Roles = "Admin,Customer")]
-        [HttpGet]
+        [HttpGet("claims/{claimId:long}/assessment")]
         public async Task<IActionResult> GetAssessment(long claimId)
         {
             var claim = await claimRepository.GetClaimByIdAsync(claimId);
