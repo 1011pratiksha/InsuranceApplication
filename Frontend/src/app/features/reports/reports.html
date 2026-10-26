@@ -1,0 +1,733 @@
+
+<div class="reports-page">
+
+  <!-- PAGE HEADER -->
+  <section class="reports-header">
+
+    <div class="header-content">
+      <div>
+        <h1>Reports &amp; Analytics</h1>
+
+        <p>
+          Access insurance data and export reports for your records.
+        </p>
+      </div>
+
+      <div class="header-icon">
+        <i class="bi bi-file-earmark-bar-graph"></i>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- REPORT CATEGORIES -->
+  <section class="available-reports">
+
+    <div class="section-heading">
+
+      <div>
+        <h2>Available Reports</h2>
+
+        <p>Select a report to view its records.</p>
+      </div>
+
+    </div>
+
+
+    <div class="report-categories">
+
+      <div
+        class="report-card"
+        *ngFor="let category of categories"
+        [class.selected]="selectedCategory === category.name"
+        (click)="selectCategory(category.name)"
+      >
+
+        <div class="report-card-icon">
+          <i class="bi" [ngClass]="category.icon"></i>
+        </div>
+
+        <div class="report-card-content">
+
+          <h3>{{ category.name }}</h3>
+
+          <p>{{ category.description }}</p>
+
+          <button
+            type="button"
+            class="view-report-btn"
+            (click)="viewReport(category.name); $event.stopPropagation()"
+          >
+            View report
+
+            <i class="bi bi-arrow-right"></i>
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- REPORT DETAILS -->
+  <section class="report-details">
+
+    <div class="section-heading report-heading">
+
+      <div>
+        <span class="section-label">REPORT DETAILS</span>
+
+        <h2>{{ selectedCategory }} Report</h2>
+
+        <p>
+          Filter and view {{ selectedCategory.toLowerCase() }} records.
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="btn-export"
+        [disabled]="reportData.length === 0"
+        (click)="exportCSV()"
+      >
+        <i class="bi bi-download"></i>
+        Export CSV
+      </button>
+
+    </div>
+
+
+    <!-- FILTERS -->
+    <div class="filter-card">
+
+      <div class="filter-grid">
+
+        <div class="form-group">
+
+          <label for="reportType">
+            Report Type
+          </label>
+
+          <select
+            id="reportType"
+            class="form-control"
+            [(ngModel)]="reportType"
+          >
+
+            <option value="">
+              All {{ selectedCategory }} Reports
+            </option>
+
+            <option
+              *ngFor="let option of availableReports"
+              [value]="option"
+            >
+              {{ option }}
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="fromDate">
+            From Date
+          </label>
+
+          <input
+            id="fromDate"
+            type="date"
+            class="form-control"
+            [(ngModel)]="fromDate"
+          />
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="toDate">
+            To Date
+          </label>
+
+          <input
+            id="toDate"
+            type="date"
+            class="form-control"
+            [(ngModel)]="toDate"
+          />
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="status">
+            Status
+          </label>
+
+          <select
+            id="status"
+            class="form-control"
+            [(ngModel)]="status"
+          >
+
+            <option value="">
+              All Status
+            </option>
+
+            <option value="Active">
+              Active
+            </option>
+
+            <option value="Inactive">
+              Inactive
+            </option>
+
+            <option value="Pending">
+              Pending
+            </option>
+
+            <option value="Approved">
+              Approved
+            </option>
+
+            <option value="Rejected">
+              Rejected
+            </option>
+
+            <option value="Expired">
+              Expired
+            </option>
+
+            <option value="Cancelled">
+              Cancelled
+            </option>
+
+            <option value="Settled">
+              Settled
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <div class="filter-actions">
+
+        <button
+          type="button"
+          class="btn-primary-custom"
+          [disabled]="loading"
+          (click)="generateReport()"
+        >
+
+          <i
+            class="bi"
+            [ngClass]="loading ? 'bi-arrow-repeat' : 'bi-search'"
+          ></i>
+
+          {{ loading ? 'Generating...' : 'Generate Report' }}
+
+        </button>
+
+
+        <button
+          type="button"
+          class="btn-secondary-custom"
+          (click)="resetFilters()"
+        >
+
+          <i class="bi bi-arrow-counterclockwise"></i>
+
+          Reset
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- ALERTS -->
+    <div
+      class="alert-message alert-success"
+      *ngIf="successMessage"
+    >
+
+      <i class="bi bi-check-circle"></i>
+
+      {{ successMessage }}
+
+    </div>
+
+
+    <div
+      class="alert-message alert-error"
+      *ngIf="errorMessage"
+    >
+
+      <i class="bi bi-exclamation-circle"></i>
+
+      {{ errorMessage }}
+
+    </div>
+
+
+    <!-- REPORT TABLE -->
+    <div class="report-table-card">
+
+      <div class="table-header">
+
+        <div>
+
+          <h3>{{ selectedCategory }} Records</h3>
+
+          <p>
+            {{ reportData.length }} records found
+          </p>
+
+        </div>
+
+        <span class="records-badge">
+          {{ reportData.length }} Records
+        </span>
+
+      </div>
+
+
+      <!-- LOADING -->
+      <div class="loading-state" *ngIf="loading">
+
+        <div class="spinner"></div>
+
+        <p>Loading report records...</p>
+
+      </div>
+
+
+      <!-- TABLE -->
+      <div
+        class="table-responsive"
+        *ngIf="!loading && reportData.length > 0"
+      >
+
+        <table class="report-table">
+
+          <thead>
+
+            <tr>
+
+              <th
+                *ngFor="let column of reportColumns"
+              >
+                {{ formatColumnName(column) }}
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            <tr
+              *ngFor="let row of reportData; let i = index"
+            >
+
+              <td
+                *ngFor="let column of reportColumns"
+              >
+
+                {{ formatValue(row[column]) }}
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      <!-- EMPTY STATE -->
+      <div
+        class="empty-state"
+        *ngIf="!loading && reportData.length === 0"
+      >
+
+        <div class="empty-icon">
+
+          <i class="bi bi-file-earmark-bar-graph"></i>
+
+        </div>
+
+        <h3>No report records</h3>
+
+        <p>
+          Select your filters and click Generate Report
+          to view records.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SCHEDULED REPORTS -->
+  <section
+    class="scheduled-reports"
+    id="scheduled-reports"
+  >
+
+    <div class="section-heading">
+
+      <div>
+
+        <span class="section-label">
+          AUTOMATION
+        </span>
+
+        <h2>Scheduled Reports</h2>
+
+        <p>
+          Choose a report and configure its schedule.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- SCHEDULE FORM -->
+    <div class="schedule-form-card">
+
+      <div class="schedule-grid">
+
+
+        <!-- REPORT TYPE -->
+        <div class="form-group">
+
+          <label for="scheduleReportType">
+            Report Type
+          </label>
+
+          <select
+            id="scheduleReportType"
+            class="form-control"
+            [(ngModel)]="scheduleReportType"
+          >
+
+            <option
+              *ngFor="let category of categories"
+              [value]="category.name"
+            >
+
+              {{ category.name }}
+
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- SCHEDULE TYPE -->
+        <div class="form-group">
+
+          <label for="scheduleType">
+            Schedule Type
+          </label>
+
+          <select
+            id="scheduleType"
+            class="form-control"
+            [(ngModel)]="scheduleType"
+          >
+
+            <option
+              *ngFor="let option of scheduleOptions"
+              [value]="option"
+            >
+
+              {{ option }}
+
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- NEXT RUN DATE -->
+        <div class="form-group">
+
+          <label for="nextRunDate">
+            Next Run Date
+          </label>
+
+          <input
+            id="nextRunDate"
+            type="date"
+            class="form-control"
+            [(ngModel)]="nextRunDate"
+          />
+
+        </div>
+
+
+        <!-- EMAIL -->
+        <div class="form-group">
+
+          <label for="emailTo">
+            Email To
+          </label>
+
+          <input
+            id="emailTo"
+            type="email"
+            class="form-control"
+            placeholder="name@example.com"
+            [(ngModel)]="emailTo"
+          />
+
+        </div>
+
+      </div>
+
+
+      <!-- SCHEDULE BUTTON -->
+      <div class="schedule-actions">
+
+        <button
+          type="button"
+          class="btn-primary-custom"
+          (click)="saveSchedule()"
+        >
+
+          <i
+            class="bi"
+            [ngClass]="editingScheduleId ? 'bi-check-lg' : 'bi-plus-lg'"
+          ></i>
+
+          {{ editingScheduleId ? 'Update Schedule' : 'Add Schedule' }}
+
+        </button>
+
+
+        <button
+          type="button"
+          class="btn-secondary-custom"
+          *ngIf="editingScheduleId"
+          (click)="cancelEdit()"
+        >
+
+          Cancel
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- SCHEDULE LIST -->
+    <div class="schedule-list-card">
+
+      <div class="table-header">
+
+        <div>
+
+          <h3>Scheduled Reports List</h3>
+
+          <p>
+            Manage your report schedules.
+          </p>
+
+        </div>
+
+        <button
+          type="button"
+          class="refresh-btn"
+          (click)="loadSchedules()"
+          [disabled]="scheduleLoading"
+        >
+
+          <i class="bi bi-arrow-clockwise"></i>
+
+          Refresh
+
+        </button>
+
+      </div>
+
+
+      <!-- LOADING -->
+      <div
+        class="loading-state"
+        *ngIf="scheduleLoading"
+      >
+
+        <div class="spinner"></div>
+
+        <p>Loading schedules...</p>
+
+      </div>
+
+
+      <!-- TABLE -->
+      <div
+        class="table-responsive"
+        *ngIf="!scheduleLoading && schedules.length > 0"
+      >
+
+        <table class="report-table schedule-table">
+
+          <thead>
+
+            <tr>
+
+              <th>Report</th>
+
+              <th>Schedule</th>
+
+              <th>Next Run</th>
+
+              <th>Email</th>
+
+              <th>Status</th>
+
+              <th>Actions</th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            <tr
+              *ngFor="let schedule of schedules"
+            >
+
+              <td class="schedule-report-name">
+
+                {{ getScheduleValue(schedule, 'ReportType') }}
+
+              </td>
+
+
+              <td>
+
+                {{ getScheduleValue(schedule, 'ScheduleType') }}
+
+              </td>
+
+
+              <td>
+
+                {{ getScheduleValue(schedule, 'NextRunDate') | date:'dd/MM/yyyy hh:mm a' }}
+
+              </td>
+
+
+              <td>
+
+                {{ getScheduleValue(schedule, 'EmailTo') }}
+
+              </td>
+
+
+              <td>
+
+                <span
+                  class="status-badge"
+                  [ngClass]="getStatusClass(schedule)"
+                >
+
+                  <span class="status-dot"></span>
+
+                  {{ getScheduleStatus(schedule) }}
+
+                </span>
+
+              </td>
+
+
+              <td>
+
+                <div class="table-actions">
+
+                  <button
+                    type="button"
+                    class="action-btn edit-btn"
+                    title="Edit Schedule"
+                    (click)="editSchedule(schedule)"
+                  >
+
+                    <i class="bi bi-pencil"></i>
+
+                  </button>
+
+
+                  <button
+                    type="button"
+                    class="action-btn delete-btn"
+                    title="Delete Schedule"
+                    (click)="deleteSchedule(schedule)"
+                  >
+
+                    <i class="bi bi-trash"></i>
+
+                  </button>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      <!-- EMPTY SCHEDULE -->
+      <div
+        class="empty-state"
+        *ngIf="!scheduleLoading && schedules.length === 0"
+      >
+
+        <div class="empty-icon">
+
+          <i class="bi bi-calendar2-week"></i>
+
+        </div>
+
+        <h3>No scheduled reports</h3>
+
+        <p>
+          Create your first schedule using the form above.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>
